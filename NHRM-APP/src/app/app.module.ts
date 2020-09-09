@@ -15,6 +15,7 @@ import { VasPainComponent } from './components/vas-pain/vas-pain.component';
 import { QolComponent } from './components/qol/qol.component';
 import { LikertComponent } from './components/likert/likert.component';
 import { EcogStatusComponent } from './components/ecog-status/ecog-status.component';
+import { PatientResourcesComponent } from './components/patient-resources/patient-resources.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { EcogStatusComponent } from './components/ecog-status/ecog-status.compon
     QolComponent,
     LikertComponent,
     EcogStatusComponent,
+    PatientResourcesComponent,
   ],
   imports: [
     BrowserModule,
