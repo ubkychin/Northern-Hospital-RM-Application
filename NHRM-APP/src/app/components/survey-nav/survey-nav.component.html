@@ -1,1 +1,13 @@
-<p>survey-nav works!</p>
+<header>
+    <span class="n">Record Patient Condition Status</span>
+    <span class="s">Select from the following to<br> 
+        update your current condition</span>
+</header>
+<div class="main-buttons">
+    <button class="main-btn btn1" [routerLink]="['/ecog-status']"><fa-icon [icon]="['fas', 'running']" transform="grow-5"></fa-icon><p>Ecog Status</p></button>
+    <button class="main-btn btn2" [routerLink]="['/likert']"><fa-icon [icon]="['fas', 'smile-beam']" transform="grow-5"></fa-icon><p>Likert Scale</p></button>
+    <button class="main-btn btn3" [routerLink]="['/vas-breath']"><fa-icon [icon]="['fas', 'lungs']" transform="grow-5"></fa-icon><p>Breathlessness</p></button>
+    <button class="main-btn btn4" [routerLink]="['/vas-pain']"><fa-icon [icon]="['fas', 'user-injured']" transform="grow-5"></fa-icon><p>Level of Pain</p></button>
+    <button class="main-btn btn5" [routerLink]="['/fluid-drain']"><fa-icon [icon]="['fas', 'syringe']" transform="grow-5"></fa-icon><p>Fluid Drain</p></button>
+    <button class="main-btn btn6" [routerLink]="['/qol']"><fa-icon [icon]="['fas', 'thumbs-up']" transform="grow-5"></fa-icon><p>Quality of Life</p></button>
+</div>

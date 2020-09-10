@@ -13,6 +13,11 @@ import { QolComponent } from './components/qol/qol.component';
 
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: '/navigation',
+    pathMatch: 'full'
+  },
   {path: 'login', component: LoginComponent},
   {path: 'welcome', component: WelcomeComponent},
   {path: 'navigation', component: NavigationComponent},

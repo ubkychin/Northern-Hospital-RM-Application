@@ -1,14 +1,37 @@
+<div class="blue-bar top"></div>
+<div class="blue-bar bottom"></div>
+
+
 <header>
     <span class="n">Northern </span>
     <span class="h">Health</span>
 </header>
 
+<nav class="navbar">
+    <a id="logout">Logout</a>
+    <a routerLink="navigation">
+        <fa-icon id="home" class="dropdown" [icon]="['fas', 'home']"></fa-icon>
+    </a>
+    <div class="dropdown">
+        <button class="dropbtn">
+            <fa-icon id="bars" class="dropdown" [icon]="['fas', 'bars']"></fa-icon>
+        </button>
+        <div class="dropdown-content">
+            <a>Patient Resources</a>
+            <a>Patient Details</a>
+            <a routerLink="survey-nav">Record Information</a>
+            <a>Account Settings</a>
+            <a>Patient Surveys</a>
+            <a>Contact Us</a>
+        </div>
+    </div>
+</nav>
 
 <div class="middle-space">
     <router-outlet></router-outlet>
     <!-- 
-        <app-login></app-login>
         <app-welcome></app-welcome>
+        <app-login></app-login>
         <app-navigation></app-navigation>
         <app-survey-nav></app-survey-nav>
         <app-patient-resources></app-patient-resources>

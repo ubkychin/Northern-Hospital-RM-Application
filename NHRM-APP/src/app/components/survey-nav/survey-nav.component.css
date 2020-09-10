@@ -1,0 +1,103 @@
+header {
+    display: grid;
+    height: 50px;
+    padding: 5px;
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    text-align: center;
+    margin: 40px 0px 100px;
+}
+
+.n {
+    font-size: 22px;
+    color: #005CB9;
+}
+
+.s {
+    font-size: 18px;
+    color: #707070;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0)
+  and (min-resolution:.001dpcm) {
+    selector{ max-width: 1920px; } 
+    .main-buttons {
+        justify-items: center;
+        display: grid;
+        gap: 10px;
+        grid-template: 1fr / repeat(6, 155px);
+    }
+    .main-btn {
+        width: 150px;
+        height: 95px;
+    }
+}
+
+@media all and (max-width: 820px) {
+    .main-buttons {
+        justify-items: center;
+        display: grid;
+        gap: 10px;
+        grid-template: 1fr 1fr / repeat(3, 155px);
+    }
+    .main-btn {
+        width: 150px;
+        height: 95px;
+    }
+}
+
+@media all and (max-width: 420px) {
+    .main-buttons {
+        justify-items: center;
+        margin: 50px;
+        display: grid;
+        grid-template: 1fr 1fr 1fr / repeat(2, 1fr);
+    }
+    .main-btn {
+        width: 125px;
+        height: 85px;
+    }
+}
+
+.main-btn p {
+    margin-top: 10px;
+    line-height: 110%;
+    font-family: 'Segoe UI';
+    font-size: 15px;
+}
+
+.main-btn:focus {
+    outline: none;
+}
+
+.main-btn {
+    padding: 10px;
+    border-radius: 10px;
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.btn1 {
+    background: linear-gradient(180deg, #DBA8EF, #9633E2);
+}
+
+.btn2 {
+    background: linear-gradient(180deg, #92CBF2, #2437DF);
+}
+
+.btn3 {
+    background: linear-gradient(180deg, #F2E699, #DE890B);
+}
+
+.btn4 {
+    background: linear-gradient(180deg, #A2F2E1, #0695B9);
+}
+
+.btn5 {
+    background: linear-gradient(180deg, #B7F395, #329408);
+}
+
+.btn6 {
+    background: linear-gradient(180deg, #FF7440, #B51212);
+}

@@ -1,0 +1,14 @@
+.info{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 15px 0px 15px;
+    color: #005CB9;
+}
+
+.info p{
+    font-weight: bold;
+    color: #707070;
+}

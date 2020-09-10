@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VasPainComponent implements OnInit {
 
+  status: number;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  painStatus(value: number){
+    this.status = value;
+  }
+  
 }

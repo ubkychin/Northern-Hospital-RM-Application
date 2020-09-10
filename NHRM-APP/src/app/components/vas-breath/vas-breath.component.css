@@ -1,0 +1,149 @@
+header {
+    display: grid;
+    height: 50px;
+    padding: 5px;
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    text-align: center;
+    margin: 15px 0px 30px;
+}
+
+.n {
+    font-size: 22px;
+    color: #005CB9;
+}
+
+.s {
+    font-size: 18px;
+    color: #707070;
+}
+
+.container {
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    gap: 5px;
+    grid-template: repeat(7, 50px) / 160px 160px;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    text-align: center;
+    border: solid 1px black;
+    width: 150px;
+    height: 50px;
+    opacity: .5;
+    
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    transform: rotate(270deg);
+    width: 250px;
+}
+
+input[type=range]::-moz-range-track {
+    height: 10px;
+    background: #005CB9;
+    border: none;
+    border-radius: 5px;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    height: 10px;
+    background: #005CB9;
+    border: none;
+    border-radius: 5px;
+}
+
+input[type=range]::-moz-range-thumb {
+    border: none;
+    height: 25px;
+    width: 25px;
+    background: #D7374B;
+    border-radius: 15px;
+    margin-top: -7px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 25px;
+    width: 25px;
+    background: #D7374B;
+    border-radius: 15px;
+    margin-top: -7px;
+}
+
+input[type=range]:-moz-focusring{
+    outline: none;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #005CB9;
+}
+
+input[type=range]:focus::-moz-range-track {
+    background: #005CB9;
+}
+
+#good {
+    text-align: center;
+    grid-area: 1 / 1;
+    font-weight: bold;
+}
+
+#bad {
+    text-align: center;
+    grid-area: 7 / 1;
+    font-weight: bold;
+}
+
+#slider {
+    justify-self: center;
+    grid-area: 4 / 1;
+}
+
+.submit {
+    display: grid;
+    justify-items: center;
+}
+
+.none {
+    background-color: #1FC752;
+    grid-area: 2 / 2;
+}
+
+.selected{
+    opacity: 1;
+    box-shadow: -2px 2px 5px black;
+}
+
+.mild {
+    background-color: #97E265;
+    grid-area: 3 / 2;
+}
+
+.moderate {
+    background-color: #E2EC53;
+    grid-area: 4 / 2;
+}
+
+.severe {
+    background-color: #ECA451;
+    grid-area: 5 / 2;
+}
+
+.worst {
+    background-color: #EE4B4B;
+    grid-area: 6 / 2;
+}
+
+

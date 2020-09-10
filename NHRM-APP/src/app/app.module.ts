@@ -16,6 +16,8 @@ import { QolComponent } from './components/qol/qol.component';
 import { LikertComponent } from './components/likert/likert.component';
 import { EcogStatusComponent } from './components/ecog-status/ecog-status.component';
 import { PatientResourcesComponent } from './components/patient-resources/patient-resources.component';
+import { InfoBarComponent } from './components/info-bar/info-bar.component';
+import { SubmitButtonComponent } from './components/submit-button/submit-button.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { PatientResourcesComponent } from './components/patient-resources/patien
     LikertComponent,
     EcogStatusComponent,
     PatientResourcesComponent,
+    InfoBarComponent,
+    SubmitButtonComponent,
   ],
   imports: [
     BrowserModule,

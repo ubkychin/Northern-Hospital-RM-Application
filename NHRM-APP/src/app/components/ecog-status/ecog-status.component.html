@@ -1,1 +1,28 @@
-<p>ecog-status works!</p>
+<header>
+    <span class="n">ECOG Performance Status</span>
+    <span class="s">Select from the following options</span>
+</header>
+
+<app-info-bar></app-info-bar>
+
+<div class="container">
+    
+    <div class="active box" [ngClass]="{'selected': this.status == 0}">Fully Active</div>
+    <p id="ful">0</p>
+    <input type="radio" name="ecog" (click)="ecogStatus(0)">
+    <div class="restricted box" [ngClass]="{'selected': this.status == 1}">Activity Restricted</div>
+    <p id="res">1</p>
+    <input type="radio" name="ecog" (click)="ecogStatus(1)">
+    <div class="capable box" [ngClass]="{'selected': this.status == 2}">Capable of Self-care, Active over 50% of time awake</div>
+    <p id="cap">2</p>
+    <input type="radio" name="ecog" (click)="ecogStatus(2)">
+    <div class="limited box" [ngClass]="{'selected': this.status == 3}">Limited Self-care, Confined over 50% of time awake</div>
+    <p id="lim">3</p>
+    <input type="radio" name="ecog" (click)="ecogStatus(3)">
+    <div class="disabled box" [ngClass]="{'selected': this.status == 4}">Completely Disabled</div>
+    <p id="com">4</p>
+    <input type="radio" name="ecog" (click)="ecogStatus(4)">
+</div>
+<div class="submit">
+    <app-submit-button></app-submit-button>
+</div>

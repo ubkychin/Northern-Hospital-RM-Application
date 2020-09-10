@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VasBreathComponent implements OnInit {
 
+  status: number;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  breathStatus(value: number){
+    this.status = value;
+  }
+  
 }

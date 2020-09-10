@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EcogStatusComponent implements OnInit {
 
+  status: number;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ecogStatus(value: any) {
+
+    this.status = value;
+
   }
 
 }

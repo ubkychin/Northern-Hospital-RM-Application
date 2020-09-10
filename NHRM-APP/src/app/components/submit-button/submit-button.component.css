@@ -1,0 +1,13 @@
+.submit-button{
+    margin-top: 30px;
+    margin-bottom: 100px;
+    justify-self: center;
+    background-color: #005CB9;
+    border-radius: 15px;
+    width: 150px;
+    height: 40px;
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: large;
+    outline: none;
+}
