@@ -1,3 +1,6 @@
+<!-- 
+    <app-welcome></app-welcome>
+-->
 <div class="blue-bar top"></div>
 <div class="blue-bar bottom"></div>
 
@@ -17,7 +20,6 @@
             <fa-icon id="bars" class="dropdown" [icon]="['fas', 'bars']"></fa-icon>
         </button>
         <div class="dropdown-content">
-            <a routerLink="welcome">Welcome Page</a>
             <a>Patient Resources</a>
             <a>Patient Details</a>
             <a routerLink="survey-nav">Record Information</a>
@@ -30,17 +32,4 @@
 
 <div class="middle-space">
     <router-outlet></router-outlet>
-    <!-- 
-        <app-welcome></app-welcome>
-        <app-login></app-login>
-        <app-navigation></app-navigation>
-        <app-survey-nav></app-survey-nav>
-        <app-patient-resources></app-patient-resources>
-        <app-likert></app-likert>
-        <app-ecog-status></app-ecog-status>    
-        <app-vas-breath></app-vas-breath>
-        <app-vas-pain></app-vas-pain>
-        <app-fluid-drain></app-fluid-drain>
-        <app-qol></app-qol>
-    -->
 </div>
