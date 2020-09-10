@@ -10,6 +10,7 @@ import { VasBreathComponent } from './components/vas-breath/vas-breath.component
 import { VasPainComponent } from './components/vas-pain/vas-pain.component';
 import { FluidDrainComponent } from './components/fluid-drain/fluid-drain.component';
 import { QolComponent } from './components/qol/qol.component';
+import { PatientResourcesComponent } from './components/patient-resources/patient-resources.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'vas-pain', component: VasPainComponent},
   {path: 'fluid-drain', component: FluidDrainComponent},
   {path: 'qol', component: QolComponent},
+  {path: 'patient-resources', component: PatientResourcesComponent}
 ];
 
 @NgModule({
