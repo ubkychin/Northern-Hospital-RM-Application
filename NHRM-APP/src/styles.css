@@ -1,1 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+label[for="formly_1_radio_score_0"]{
+    color: #0459bd;
+    font-size: 40px;
+    font-weight: bold;
+
+    border-bottom: 4px solid #0459bd;
+
+    padding-bottom: 10px;
+}
+
+.custom-control-input{
+    width: 50px;
+    height: 50px;
+}
+
+input[type=radio] {
+    appearance: none;
+    border: 3px solid #0459bd;
+    padding: 10px;
+}
+
+
+input[type=radio]:checked {
+    background-color: #0459bd;
+}
+
+.custom-radio {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 20px;
+
+}
+
+.custom-radio  .custom-control-label{
+    max-width: 300px;
+
+    outline: 1px solid red;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    margin-right: 20px;
+
+}

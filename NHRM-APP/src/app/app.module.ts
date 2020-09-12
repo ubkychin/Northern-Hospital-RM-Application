@@ -18,6 +18,9 @@ import { EcogStatusComponent } from './components/ecog-status/ecog-status.compon
 import { PatientResourcesComponent } from './components/patient-resources/patient-resources.component';
 import { InfoBarComponent } from './components/info-bar/info-bar.component';
 import { SubmitButtonComponent } from './components/submit-button/submit-button.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { SubmitButtonComponent } from './components/submit-button/submit-button.
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    FormlyModule.forRoot({ extras: { lazyRender: true } }),
+    FormlyBootstrapModule
   ],
   providers: [],
   bootstrap: [AppComponent]
