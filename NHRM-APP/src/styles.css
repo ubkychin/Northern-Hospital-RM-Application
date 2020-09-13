@@ -15,8 +15,8 @@ label[for="formly_1_radio_score_0"]{
 }
 
 .custom-control-input{
-    width: 50px;
-    height: 50px;
+    width: 10px;
+    height: 10px;
 }
 
 input[type=radio] {
@@ -42,13 +42,34 @@ input[type=radio]:checked {
 }
 
 .custom-radio  .custom-control-label{
-    max-width: 300px;
-
-    outline: 1px solid red;
 
     font-size: 20px;
     font-weight: bold;
 
-    margin-right: 20px;
+    margin: 20px 20px 0px 0px;
 
+}
+
+
+@media (min-width: 550px) {
+    .custom-radio .custom-control-label {
+        max-width: auto;
+        flex-grow: 1;
+    }
+}
+
+.btn {
+    color: white;
+    background-color: #005CB9;
+    border-radius: 17px;
+}
+
+.submit-btn {
+    width: 150px;
+    height: 40px;
+
+    font-weight: bold;
+    border: none;
+
+    font-size: 20px;
 }
