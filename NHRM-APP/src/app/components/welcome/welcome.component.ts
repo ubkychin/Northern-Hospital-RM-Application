@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DataService} from '../../services/data.service';
 
 @Component({
   selector: 'app-welcome',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor() { }
+  terms: boolean;
+  privacy: boolean;
+  
+  constructor(private dataService: DataService) { 
+
+  }
 
   ngOnInit(): void {
   }
 
+  submit(){
+    if(this.terms && this.privacy){
+      this.dataService.termsAcceptance.next(true);
+    }
+      
+  }
 }

@@ -1,9 +1,9 @@
 <!-- 
     <app-login></app-login>
-    <app-welcome></app-welcome>
     Oj change *ngIf to false to hide screen for testing Welcome page
 -->
-<div *ngIf="true"> 
+<app-welcome *ngIf="!this.authorised"></app-welcome>
+<div *ngIf="this.authorised"> 
 
 <div class="blue-bar top"></div>
 <div class="blue-bar bottom"></div>

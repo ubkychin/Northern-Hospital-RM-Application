@@ -11,11 +11,11 @@
         in clinic during follow-up.</p>
     <p class="warning">Data is secured as per Terms and 
         conditions and Privacy message.</p>
-    <input type="checkbox" id="terms-and-conditions">
+    <input type="checkbox" id="terms-and-conditions" [(ngModel)]="this.terms">
     <label for="terms-and-conditions">I agree to the Northern Health <a href="url">Terms and Conditions.</a></label>
 
-    <input type="checkbox" id="privacy-message">
+    <input type="checkbox" id="privacy-message" [(ngModel)]="this.privacy">
     <label for="privacy-message">I agree to the Northern Health <a href="url">Privacy Message.</a></label>
 
-    <input type="submit" value="Accept">
+    <input type="submit" class="submit-button" (click)="submit()" value="Accept">
 </div>
