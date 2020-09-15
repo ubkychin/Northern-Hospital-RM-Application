@@ -22,4 +22,8 @@ export class LikertComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit() {
+    
+  }
+
 }
