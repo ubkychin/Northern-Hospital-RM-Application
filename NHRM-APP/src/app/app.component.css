@@ -34,11 +34,6 @@ header {
     color: #707070;
 }
 
-.middle-space {
-    display: flex;
-    justify-content: center;
-}
-
 .navbar {
     color: whitesmoke;
     margin: auto;

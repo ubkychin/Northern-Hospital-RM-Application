@@ -33,18 +33,6 @@ header {
     line-height: 0%;
 }
 
-input[type=radio] {
-    justify-self: center;
-    transform: scale(1);
-    padding: 15px;
-    -webkit-appearance: none;
-    outline: 1px solid black;
-}
-
-input[type=radio]:checked {
-    background-color: #005CB9;
-}
-
 .box {
     padding: 0px 5px 0px 5px;
     display: flex;
