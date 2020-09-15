@@ -1,0 +1,34 @@
+.welcome-page{
+    text-align: center;
+    padding: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+}
+
+p.description{
+        font-weight: bold;
+        color: #8C8B8B;  
+        font-size: 20px;
+    }
+h1{
+    color: #005CB9;
+    padding: 35px;
+    font-size: 40px;
+}
+
+p.warning{
+    font-weight: bold;
+    color: #D7374B;
+    font-size: 18px;
+
+}
+i.terms-and-conditions{
+    font-size:25px;
+    padding: 10px;
+}
+i.privacy-message{
+    font-size:35px;
+    padding: 10px;
+}
+i.accept{
+    padding: 10px;
+}
