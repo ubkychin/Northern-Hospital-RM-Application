@@ -18,22 +18,6 @@
     width: 100%;
 }
 
-header {
-    margin: 50px 0px 15px;
-    padding: 5px;
-    font-weight: bold;
-    font-size: 25px;
-    text-align: center;
-}
-
-.n {
-    color: #005CB9;
-}
-
-.h {
-    color: #707070;
-}
-
 .navbar {
     color: whitesmoke;
     margin: auto;

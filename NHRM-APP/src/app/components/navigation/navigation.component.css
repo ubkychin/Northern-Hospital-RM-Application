@@ -1,20 +1,5 @@
 header {
-    display: grid;
-    height: 50px;
-    padding: 5px;
-    font-weight: bold;
-    text-align: center;
     margin: 40px 0px 100px;
-}
-
-.n {
-    font-size: 22px;
-    color: #005CB9;
-}
-
-.s {
-    font-size: 18px;
-    color: #707070;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0)

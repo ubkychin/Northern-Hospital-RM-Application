@@ -22,6 +22,7 @@ import { SubmitButtonComponent } from './components/submit-button/submit-button.
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
+import { PatientDetailsComponent } from './patient-details/patient-details.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
     PatientResourcesComponent,
     InfoBarComponent,
     SubmitButtonComponent,
+    PatientDetailsComponent,
   ],
   imports: [
     BrowserModule,

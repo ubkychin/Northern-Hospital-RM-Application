@@ -1,7 +1,3 @@
-<!-- 
-    <app-login></app-login>
-    Oj change *ngIf to false to hide screen for testing Welcome page
--->
 <app-welcome *ngIf="!this.authorised"></app-welcome>
 <div *ngIf="this.authorised"> 
 
@@ -9,10 +5,9 @@
 <div class="blue-bar bottom"></div>
 
 
-<header>
-    <span class="n">Northern </span>
-    <span class="h">Health</span>
-</header>
+<div class="main-logo">
+    <img src="assets/img/Mobile_Logo.png" alt="Northern Health Logo">
+</div>
 
 <nav class="navbar">
     <a id="logout">Logout</a>
@@ -25,11 +20,11 @@
         </button>
         <div class="dropdown-content">
             <a routerLink="patient-resources">Patient Resources</a>
-            <a>Patient Details</a>
+            <a routerLink="patient-details">Patient Details</a>
             <a routerLink="survey-nav">Record Information</a>
-            <a>Account Settings</a>
-            <a>Patient Surveys</a>
-            <a>Contact Us</a>
+            <a routerLink="patient-details">Account Settings</a>
+            <a routerLink="patient-details">Patient Surveys</a>
+            <a routerLink="patient-details">Contact Us</a>
         </div>
     </div>
 </nav>

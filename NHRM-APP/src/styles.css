@@ -14,13 +14,38 @@ body {
     flex-direction: column;
 }
 
+.main-logo{
+    margin: 70px 0px 15px;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 25px;
+    text-align: center;
+}
+
+header {
+    display: grid;
+    height: 50px;
+    padding: 5px;
+    font-weight: bold;
+    text-align: center;
+    margin: 15px 0px 30px;
+}
+
+.n {
+    font-size: 22px;
+    color: #005CB9;
+}
+
+.s {
+    font-size: 18px;
+    color: #707070;
+}
+
 label[for="formly_1_radio_score_0"]{
     color: #0459bd;
     font-size: 40px;
     font-weight: bold;
-
     border-bottom: 4px solid #0459bd;
-
     padding-bottom: 10px;
 }
 
@@ -46,18 +71,14 @@ input[type=radio]:checked {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-
     justify-content: space-between;
-
     margin-top: 20px;
 
 }
 
 .custom-radio  .custom-control-label{
-
     font-size: 20px;
     font-weight: bold;
-
     margin: 20px 20px 0px 0px;
 
 }
@@ -84,6 +105,10 @@ input[type=radio]:checked {
     border: none;
 
     font-size: 20px;
+}
+
+.main-btn{
+    cursor: pointer;
 }
 
 .submit-button{

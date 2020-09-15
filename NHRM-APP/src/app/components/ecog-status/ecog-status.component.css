@@ -1,29 +1,10 @@
-header {
-    display: grid;
-    height: 50px;
-    padding: 5px;
-    font-weight: bold;
-    text-align: center;
-    margin: 15px 0px 15px;
-}
-
-.n {
-    font-size: 22px;
-    color: #005CB9;
-}
-
-.s {
-    font-size: 18px;
-    color: #707070;
-}
-
 .container {
     justify-content: center;
     align-items: center;
     margin: 5px;
     display: grid;
     gap: 5px;
-    grid-template: repeat(5, 1fr) / 1fr 55px 35px;
+    grid-template: repeat(5, 1fr) / 230px 55px 35px;
 }
 
 .container p {
