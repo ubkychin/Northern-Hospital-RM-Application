@@ -1,0 +1,42 @@
+form {
+    display: flex;
+    padding: 1em;
+    flex-direction: column;
+}
+
+form .submit-btn{
+    margin: 2.5em auto;
+}
+
+.user-feeling {
+    display: flex;
+    align-items: center;
+
+    margin: 1em auto;
+}
+
+.user-feeling figure {
+    flex: 1 0 90%;
+    display: flex;
+    align-items: center;
+}
+
+.user-feeling figure figcaption {
+    font-weight: bold;
+}
+
+.emotion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#likert-scale {
+    border: none;
+}
+
+/* Landscape mode for mobile */
+@media only screen and (min-width: 400px) {
+
+}
+

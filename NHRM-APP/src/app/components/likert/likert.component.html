@@ -1,1 +1,63 @@
-<p>likert works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+
+    <fieldset id="likert-scale">
+
+        <div class="user-feeling">
+            <figure>
+                <div class="emotion">
+                    <img src="assets/img/very-poor-80.jpg" />
+                    <figcaption>(Very Poor)</figcaption>
+                </div>
+            </figure>
+            <input type="radio" name="likert-scale" value="Very poor" formControlName="feeling"/>
+        </div>
+
+        <div class="user-feeling">
+            <figure>
+                <div class="emotion">
+                    <img src="assets/img/poor-80.jpg" />
+                    <figcaption>(Poor)</figcaption>
+                </div>
+            </figure>
+            <input type="radio" name="likert-scale" value="Poor" formControlName="feeling"/>
+        </div>
+
+        <div class="user-feeling">
+            <figure>
+                <div class="emotion">
+                    <img src="assets/img/average-80.jpg" />
+                    <figcaption>(Average)</figcaption>
+                </div>
+            </figure>
+            <input type="radio" name="likert-scale" value="Average" formControlName="feeling" checked/>
+        </div>
+
+
+        <div class="user-feeling">
+            <figure>
+                <div class="emotion">
+                    <img src="assets/img/good-80.jpg" />
+                    <figcaption>(Good)</figcaption>
+                </div>
+            </figure>
+            <input type="radio" name="likert-scale" value="Good" formControlName="feeling" />
+        </div>
+
+        <div class="user-feeling">
+            <figure>
+                <div class="emotion">
+                    <img src="assets/img/excellent-80.jpg" />
+                    <figcaption>(Excellent)</figcaption>
+                </div>
+            </figure>  
+            <input type="radio" name="likert-scale" value="Excellent" formControlName="feeling" />
+        </div>
+    </fieldset>
+
+
+    <button type="submit" class="btn submit-btn">Submit</button>
+
+    <pre>{{form.value | json}}</pre>  
+
+</form>

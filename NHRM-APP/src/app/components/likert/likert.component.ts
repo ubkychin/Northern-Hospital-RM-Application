@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormlyFieldConfig, FormlyFormOptions} from '@ngx-formly/core';
 
 @Component({
   selector: 'app-likert',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LikertComponent implements OnInit {
 
-  constructor() { }
+  model: any = {};
+
+  form: FormGroup;
+
+  constructor(fb: FormBuilder) {
+    this.form = fb.group({
+      feeling: ['', Validators.required]
+    });
+  }
 
   ngOnInit(): void {
+  }
+
+  onSubmit() {
+    
   }
 
 }
