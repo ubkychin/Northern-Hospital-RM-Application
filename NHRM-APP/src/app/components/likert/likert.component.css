@@ -1,0 +1,19 @@
+.emotion {
+    display: flex;
+    align-items: center;
+}
+
+.emotion figure {
+    flex: 1 0 80%;
+}
+
+#likert-scale {
+    border: none;
+}
+
+
+/* Landscape mode for mobile */
+@media only screen and (min-width: 400px) {
+
+}
+

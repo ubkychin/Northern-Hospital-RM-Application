@@ -1,1 +1,51 @@
-<p>likert works!</p>
+<form [formGroup]="form">
+
+
+    <fieldset id="likert-scale">
+
+        <div class="emotion">
+            <figure>
+                <img src="assets/img/very-poor-80.jpg" />
+                <figcaption>(Very Poor)</figcaption>
+            </figure>
+            <input type="radio" name="likert-scale" value="Very poor" formControlName="feeling"/>
+        </div>
+
+        <div class="emotion">
+            <figure>
+                <img src="assets/img/poor-80.jpg" />
+                <figcaption>(Poor)</figcaption>
+            </figure>
+            <input type="radio" name="likert-scale" value="Poor" formControlName="feeling"/>
+        </div>
+
+        <div class="emotion">
+            <figure>
+                <img src="assets/img/average-80.jpg" />
+                <figcaption>(Average)</figcaption>
+            </figure>
+            <input type="radio" name="likert-scale" value="Average" formControlName="feeling" checked/>
+        </div>
+
+
+        <div class="emotion">
+            <figure>
+                <img src="assets/img/good-80.jpg" />
+                <figcaption>(Good)</figcaption>
+            </figure>
+            <input type="radio" name="likert-scale" value="Good" formControlName="feeling" />
+        </div>
+
+        <div class="emotion">
+            <figure>
+                <img src="assets/img/excellent-80.jpg" />
+                <figcaption>(Excellent)</figcaption>
+            </figure>  
+            <input type="radio" name="likert-scale" value="Excellent" formControlName="feeling" />
+        </div>
+
+    </fieldset>
+
+    <pre>{{form.value | json}}</pre>  
+
+</form>
