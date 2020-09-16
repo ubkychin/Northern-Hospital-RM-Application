@@ -12,6 +12,7 @@ import { FluidDrainComponent } from './components/fluid-drain/fluid-drain.compon
 import { QolComponent } from './components/qol/qol.component';
 import { PatientResourcesComponent } from './components/patient-resources/patient-resources.component';
 import { PatientDetailsComponent } from './patient-details/patient-details.component';
+import { IPCSheetComponent } from './components/patient-resources/resources/ipc-sheet/ipc-sheet.component';
 
 
 const routes: Routes = [
@@ -31,7 +32,8 @@ const routes: Routes = [
   {path: 'fluid-drain', component: FluidDrainComponent},
   {path: 'qol', component: QolComponent},
   {path: 'patient-resources', component: PatientResourcesComponent},
-  {path: 'patient-details', component: PatientDetailsComponent}
+  {path: 'patient-details', component: PatientDetailsComponent},
+  {path: 'ipc-sheet', component: IPCSheetComponent}
 ];
 
 @NgModule({

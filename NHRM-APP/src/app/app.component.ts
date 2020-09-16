@@ -13,8 +13,7 @@ export class AppComponent {
 
   constructor(private dataService: DataService){
     this.dataService.termsAcceptance.subscribe( data => {
-      this.authorised = data;
+      this.authorised = true;
     })
-    /* this.authorised = true; */
   }
 }

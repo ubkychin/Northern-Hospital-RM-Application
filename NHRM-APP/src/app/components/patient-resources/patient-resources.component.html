@@ -5,11 +5,11 @@
 
 <div class="container">
     <div id="t-1" class="resource-tile tile-one">
-        <p class="res-title">Plural Nurse Clinical Consultant</p>
+        <p class="res-title">Pleural Nurse Clinical Consultant</p>
         <p class="res-info"><strong>Phone: </strong> 0428 167 972</p>
     </div>
-    <div id="t-2" class="resource-tile tile-one resource-click">
-        <p class="res-title">Indwelling Plural Catheter (IPC) patient information sheet</p>
+    <div id="t-2" class="resource-tile tile-one resource-click" [routerLink]="['/ipc-sheet']">
+        <p class="res-title">Indwelling Pleural Catheter (IPC) patient information sheet</p>
         <p class="res-info"><strong>Click on File: </strong><fa-icon [icon]="['fas', 'file-pdf']" transform="grow-10"></fa-icon></p>
     </div>
     <div id="t-3" class="resource-tile tile-one resource-click" (click)="vasInfoDialog()">
@@ -17,11 +17,11 @@
         <p class="res-info"><strong>Click on File: </strong><fa-icon [icon]="['fas', 'file-alt']" transform="grow-10"></fa-icon></p>
     </div>
     <div id="t-4" class="resource-tile tile-one resource-click">
-        <p class="res-title">How to drain your IPC plural catheter</p>
+        <p class="res-title">How to drain your IPC pleural catheter</p>
         <p class="res-info"><strong>Video: </strong><fa-icon [icon]="['fas', 'film']" transform="grow-15"></fa-icon></p>
     </div>
     <div id="t-5" class="resource-tile tile-two">
-        <p class="res-title">Plural Nurse Clinical Consultant</p>
+        <p class="res-title">Pleural Nurse Clinical Consultant</p>
         <a href="https://www.nh.org.au/service/respiratory-medicine/"><p>https://www.nh.org.au/service/respiratory-medicine/</p></a>
     </div>
 </div>
