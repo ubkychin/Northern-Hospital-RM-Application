@@ -1,7 +1,7 @@
 .blue-bar {
     z-index: 5;
     height: 50px;
-    background: #005CB9;
+    background: var(--nh-blue);
 }
 
 .top {

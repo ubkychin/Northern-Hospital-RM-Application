@@ -8,11 +8,11 @@
 }
 
 label[for="formly_1_radio_score_0"]{
-    color: #0459bd;
+    color: var(--nh-blue);
     font-size: 40px;
     font-weight: bold;
 
-    border-bottom: 4px solid #0459bd;
+    border-bottom: 4px solid var(--nh-blue);
 
     padding-bottom: 10px;
 }

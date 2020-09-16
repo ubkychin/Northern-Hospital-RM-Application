@@ -4,6 +4,12 @@
     margin: 0;
     padding: 0;
 }
+
+:root {
+    --nh-blue: #005CB9;
+    --nh-grey:  #707070;
+}
+
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -33,7 +39,7 @@ header {
 
 .n {
     font-size: 22px;
-    color: #005CB9;
+    color: var(--nh-blue);
 }
 
 .s {
@@ -45,7 +51,7 @@ label[for="formly_1_radio_score_0"]{
     color: #0459bd;
     font-size: 40px;
     font-weight: bold;
-    border-bottom: 4px solid #0459bd;
+    border-bottom: 4px solid var(--nh-blue);
     padding-bottom: 10px;
 }
 
@@ -63,7 +69,7 @@ input[type=radio] {
 }
 
 input[type=radio]:checked {
-    background-color: #005CB9;
+    background-color: var(--nh-blue);
 }
 
 
@@ -93,18 +99,8 @@ input[type=radio]:checked {
 
 .btn {
     color: white;
-    background-color: #005CB9;
+    background-color: var(--nh-blue);
     border-radius: 17px;
-}
-
-.submit-btn {
-    width: 150px;
-    height: 40px;
-
-    font-weight: bold;
-    border: none;
-
-    font-size: 20px;
 }
 
 .main-btn{
@@ -113,10 +109,9 @@ input[type=radio]:checked {
 
 .submit-button{
     cursor: pointer;
-    margin-top: 30px;
-    margin-bottom: 100px;
+    margin: 30px auto 100px auto;
     justify-self: center;
-    background-color: #005CB9;
+    background-color: var(--nh-blue);
     border-radius: 15px;
     width: 150px;
     height: 40px;
@@ -124,4 +119,5 @@ input[type=radio]:checked {
     font-weight: bold;
     font-size: large;
     outline: none;
+    border: none;
 }

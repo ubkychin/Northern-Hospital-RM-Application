@@ -1,7 +1,6 @@
-
 <div class="welcome-page">
-    <img src="assets/img/Mobile_Logo.png" alt="Northern Health Logo">
-    <h1>Welcome</h1>
+    <img src="assets/svg/logo.svg" class="logo" alt="Northern Health Logo">
+    <h1 class="main-heading">Welcome</h1>
     <p class="description">There has been a build-up of fluid 
         around your lungs. Therefore, it is 
         important for us to know and monitor 
@@ -11,11 +10,17 @@
         in clinic during follow-up.</p>
     <p class="warning">Data is secured as per Terms and 
         conditions and Privacy message.</p>
-    <input type="checkbox" id="terms-and-conditions" [(ngModel)]="this.terms">
-    <label for="terms-and-conditions">I agree to the Northern Health <a href="url">Terms and Conditions.</a></label>
 
-    <input type="checkbox" id="privacy-message" [(ngModel)]="this.privacy">
-    <label for="privacy-message">I agree to the Northern Health <a href="url">Privacy Statement.</a></label>
+    <div class="condition">
+        <input type="checkbox" id="terms-and-conditions" [(ngModel)]="this.terms">
+        <label for="terms-and-conditions">I agree to the Northern Health <a href="url">Terms and Conditions.</a></label>
+    </div>
+
+
+    <div class="condition">
+        <input type="checkbox" id="privacy-message" [(ngModel)]="this.privacy">
+        <label for="privacy-message">I agree to the Northern Health <a href="url">Privacy Statement.</a></label>
+    </div>
 
     <input type="submit" class="submit-button" (click)="submit()" value="Accept">
 </div>
