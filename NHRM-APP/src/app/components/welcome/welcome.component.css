@@ -3,6 +3,11 @@
     padding: 30px;
 }
 
+a {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+}
 .logo {
     width: 300px;
 }

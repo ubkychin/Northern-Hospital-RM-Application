@@ -121,3 +121,9 @@ input[type=radio]:checked {
     outline: none;
     border: none;
 }
+
+.dialog-close-btn {
+    cursor: pointer;
+    float: right;
+}
+

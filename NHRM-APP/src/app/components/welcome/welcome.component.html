@@ -13,13 +13,13 @@
 
     <div class="condition">
         <input type="checkbox" id="terms-and-conditions" [(ngModel)]="this.terms">
-        <label for="terms-and-conditions">I agree to the Northern Health <a href="url">Terms and Conditions.</a></label>
+        <label>I agree to the Northern Health <a (click)="openTerms()">Terms and Conditions.</a></label>
     </div>
 
 
     <div class="condition">
         <input type="checkbox" id="privacy-message" [(ngModel)]="this.privacy">
-        <label for="privacy-message">I agree to the Northern Health <a href="url">Privacy Statement.</a></label>
+        <label>I agree to the Northern Health <a (click)="openPrivacy()">Privacy Statement.</a></label>
     </div>
 
     <input type="submit" class="submit-button" (click)="submit()" value="Accept">

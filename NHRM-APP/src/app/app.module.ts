@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { LoginComponent } from './components/login/login.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
@@ -24,6 +25,9 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { PatientDetailsComponent } from './patient-details/patient-details.component';
 import { TermsAndConditionsComponent } from './components/dialog-box/terms-and-conditions/terms-and-conditions.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PrivacyStatementComponent } from './components/dialog-box/privacy-statement/privacy-statement.component';
+import { VASPainDialogComponent } from './components/patient-resources/resources/vas-pain-dialog/vas-pain-dialog.component';
 
 @NgModule({
   declarations: [
@@ -43,15 +47,20 @@ import { TermsAndConditionsComponent } from './components/dialog-box/terms-and-c
     SubmitButtonComponent,
     PatientDetailsComponent,
     TermsAndConditionsComponent,
+    PrivacyStatementComponent,
+    VASPainDialogComponent
   ],
-  imports: [
+  entryComponents: [TermsAndConditionsComponent],
+    imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     ReactiveFormsModule,
     FormlyModule.forRoot({ extras: { lazyRender: true } }),
     FormlyBootstrapModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
