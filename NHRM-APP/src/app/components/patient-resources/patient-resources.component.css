@@ -1,4 +1,41 @@
-h1{
-    margin-top: 50px;
-    text-align: center;
+header {
+    margin: 40px 0px 40px;
+}
+
+.container {
+    justify-items: center;
+    align-items: center;
+    display: grid;
+    gap: 5px;
+    grid-template: 140px 100px 140px 180px 100px/ 1fr;
+}
+
+.resource-tile {
+    border: solid 1px grey;
+    border-radius: 5px;
+}
+
+.tile-one{
+    width: 170px;
+    height: 140px;
+}
+
+.tile-two{
+    width: 345px;
+    height: 100px
+}
+
+.tile-three{
+    width: 345px;
+    height: 140px
+}
+
+.tile-four{
+    width: 345px;
+    height: 180px
+}
+
+.first-row {
+    display: flex;
+    gap: 5px;
 }

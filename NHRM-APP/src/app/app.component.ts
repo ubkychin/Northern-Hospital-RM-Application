@@ -12,8 +12,9 @@ export class AppComponent {
   authorised: boolean;
 
   constructor(private dataService: DataService){
-    this.dataService.termsAcceptance.subscribe( data => {
+    this.authorised = true;
+/*     this.dataService.termsAcceptance.subscribe( data => {
       this.authorised = data;
-    })
+    }) */
   }
 }
