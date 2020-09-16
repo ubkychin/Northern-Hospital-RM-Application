@@ -14,22 +14,27 @@ header {
 
 #t-1{
     grid-area: 1 / 1;
+    background:  #DBA8EF;
 }
 
 #t-2{
     grid-area: 1 / 2;
+    background:  #92CBF2;
 }
 
 #t-3{
     grid-area: 1 / 3;
+    background:  #F2E699;
 }
 
 #t-4{
     grid-area: 1 / 4;
+    background:  #B7F395;
 }
 
 #t-5{
     grid-area: 2 / 1 / span 1 / span 4;
+    background:  #eca489;
 }
 
 @media screen and (max-width: 420px) {
