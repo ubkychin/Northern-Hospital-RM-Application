@@ -23,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { PatientDetailsComponent } from './patient-details/patient-details.component';
+import { TermsAndConditionsComponent } from './components/dialog-box/terms-and-conditions/terms-and-conditions.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { PatientDetailsComponent } from './patient-details/patient-details.compo
     InfoBarComponent,
     SubmitButtonComponent,
     PatientDetailsComponent,
+    TermsAndConditionsComponent,
   ],
   imports: [
     BrowserModule,
