@@ -27,7 +27,7 @@ import { PatientDetailsComponent } from './patient-details/patient-details.compo
 import { TermsAndConditionsComponent } from './components/dialog-box/terms-and-conditions/terms-and-conditions.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PrivacyStatementComponent } from './components/dialog-box/privacy-statement/privacy-statement.component';
-import { VASPainDialogComponent } from './components/patient-resources/resources/vas-pain-dialog/vas-pain-dialog.component';
+import { VasInfoDialogComponent } from './components/dialog-box/vas-info-dialog/vas-info-dialog.component';
 
 @NgModule({
   declarations: [
@@ -48,9 +48,8 @@ import { VASPainDialogComponent } from './components/patient-resources/resources
     PatientDetailsComponent,
     TermsAndConditionsComponent,
     PrivacyStatementComponent,
-    VASPainDialogComponent
+    VasInfoDialogComponent
   ],
-  entryComponents: [TermsAndConditionsComponent],
     imports: [
     BrowserModule,
     AppRoutingModule,

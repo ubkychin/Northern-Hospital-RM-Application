@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VASPainDialogComponent } from './vas-pain-dialog.component';
+import { VasInfoDialogComponent } from './vas-info-dialog.component';
 
-describe('VASPainDialogComponent', () => {
-  let component: VASPainDialogComponent;
-  let fixture: ComponentFixture<VASPainDialogComponent>;
+describe('VasInfoDialogComponent', () => {
+  let component: VasInfoDialogComponent;
+  let fixture: ComponentFixture<VasInfoDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VASPainDialogComponent ]
+      declarations: [ VasInfoDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VASPainDialogComponent);
+    fixture = TestBed.createComponent(VasInfoDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { VASPainDialogComponent } from '../patient-resources/resources/vas-pain-dialog/vas-pain-dialog.component';
+import { VasInfoDialogComponent } from '../dialog-box/vas-info-dialog/vas-info-dialog.component';
 
 @Component({
   selector: 'app-vas-pain',
@@ -26,7 +26,7 @@ export class VasPainComponent implements OnInit {
   }
 
   infoDialog(){
-    this.dialog.open(VASPainDialogComponent, this.dialogConfig);
+    this.dialog.open(VasInfoDialogComponent, this.dialogConfig);
   }
   
 }
