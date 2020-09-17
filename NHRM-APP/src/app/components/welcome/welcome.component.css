@@ -102,6 +102,9 @@ input#privacy-message {
         font-size: 1em;
     }
 
+    .condition, a{
+        font-size: 15px;
+    }
     .condition {
         font-size: 0.5em;
         padding: 10px;

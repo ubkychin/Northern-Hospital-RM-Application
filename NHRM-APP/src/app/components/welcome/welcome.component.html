@@ -8,18 +8,21 @@
         to allow us to best optimise your care. 
         The app will be used in hospital and 
         in clinic during follow-up.</p>
-    <p class="warning">Data is secured as per Terms and 
-        conditions and Privacy message.</p>
+    <p class="warning">Data is secured as per Terms & Conditions and Privacy Statement.</p>
 
     <div class="condition">
         <input type="checkbox" id="terms-and-conditions" [(ngModel)]="this.terms">
-        <label>I agree to the Northern Health <a (click)="openTerms()">Terms and Conditions.</a></label>
+        <label for="terms-and-conditions">I agree to the Northern Health</label>
+        <br>
+        <a (click)="openTerms()">Terms and Conditions.</a>
     </div>
 
 
     <div class="condition">
         <input type="checkbox" id="privacy-message" [(ngModel)]="this.privacy">
-        <label>I agree to the Northern Health <a (click)="openPrivacy()">Privacy Statement.</a></label>
+        <label for="privacy-message">I agree to the Northern Health</label>
+        <br>
+        <a (click)="openPrivacy()">Privacy Statement.</a>
     </div>
 
     <input type="submit" class="submit-button" (click)="submit()" value="Accept">

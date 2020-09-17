@@ -65,6 +65,10 @@ label[for="formly_1_radio_score_0"]{
     height: 10px;
 }
 
+input[type=checkbox] {
+    transform: scale(1.2);
+}
+
 input[type=radio] {
     justify-self: center;
     transform: scale(1);

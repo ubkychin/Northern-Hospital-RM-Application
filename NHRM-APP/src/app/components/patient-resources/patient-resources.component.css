@@ -14,7 +14,7 @@ h1{
 
 #t-1{
     grid-area: 1 / 1;
-    background:  #DBA8EF;
+    background:  #DDAEEF;
 }
 
 #t-2{
@@ -34,7 +34,7 @@ h1{
 
 #t-5{
     grid-area: 2 / 1 / span 1 / span 4;
-    background:  #eca489;
+    background:  #FDC7BF;
 }
 
 @media screen and (max-width: 420px) {
@@ -76,10 +76,16 @@ h1{
     margin: 5px;
     border-left: solid 5px  #005CB9;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
 }
 
 .resource-tile p{
     padding-top: 10px;
+}
+
+.resource-tile strong{
+    align-self: flex-end;
 }
 
 fa-icon{

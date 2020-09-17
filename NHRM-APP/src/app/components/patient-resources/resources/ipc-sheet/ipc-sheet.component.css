@@ -16,6 +16,10 @@
     color: #005CB9;
 }
 
+.container h4 {
+    text-align: center;
+}
+
 .section{
     font-weight: bold;
     margin: 10px;
