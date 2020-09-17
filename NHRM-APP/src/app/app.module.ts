@@ -28,6 +28,7 @@ import { TermsAndConditionsComponent } from './components/dialog-box/terms-and-c
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PrivacyStatementComponent } from './components/dialog-box/privacy-statement/privacy-statement.component';
 import { VasInfoDialogComponent } from './components/dialog-box/vas-info-dialog/vas-info-dialog.component';
+import { FluidDrainVideoComponent } from './components/patient-resources/resources/fluid-drain-video/fluid-drain-video.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { VasInfoDialogComponent } from './components/dialog-box/vas-info-dialog/
     PatientDetailsComponent,
     TermsAndConditionsComponent,
     PrivacyStatementComponent,
-    VasInfoDialogComponent
+    VasInfoDialogComponent,
+    FluidDrainVideoComponent
   ],
     imports: [
     BrowserModule,
