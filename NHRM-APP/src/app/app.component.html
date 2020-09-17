@@ -1,49 +1,34 @@
-<!-- <app-welcome *ngIf="!this.authorised"></app-welcome>
-<div *ngIf="this.authorised">  -->
+<app-welcome *ngIf="!this.authorised"></app-welcome>
+<div *ngIf="this.authorised">
+    <header>
+        <div class="blue-bar top"></div>
+        <div class="nh-logo">
+            <!--  <img src="assets/svg/logo.svg" alt="Northern Health"> -->
+        </div>
+        <nav role="navigation" class="navbar">
+            <ul>
+                <li>
+                    <a routerLink="navigation"><fa-icon id="home" class="dropdown" [icon]="['fas', 'home']" transform="grow-15"></fa-icon></a>
+                </li>
+                <li><a href="#" id="bars"><fa-icon class="dropdown" [icon]="['fas', 'bars']" transform="grow-15"></fa-icon></a>
+                    <ul class="dropdown-content">
+                        <li><a routerLink="patient-resources">Patient Resources</a></li>
+                        <li><a routerLink="patient-details">Patient Details</a></li>
+                        <li><a routerLink="survey-nav">Record Status</a></li>
+                        <li><a routerLink="patient-details">Account Settings</a></li>
+                        <li><a routerLink="patient-details">Patient Surveys</a></li>
+                        <li><a routerLink="patient-details">Contact Us</a></li>
+                    </ul>
+                </li>
+                <li class="access"><a id="logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<div *ngIf="true">
+    <div class="middle-space">
+        <router-outlet></router-outlet>
+    </div>
 
-
-<header>
-
-    <div class="blue-bar top"></div>
-
-    <img src="assets/svg/logo.svg" alt="Northern Health">
-    
-    <nav role="navigation" class="navbar">
-
-
-        <ul>
-
-            <li>
-                <a routerLink="navigation">
-                    <fa-icon id="home" class="dropdown" [icon]="['fas', 'home']"></fa-icon>
-                </a>
-            </li>
-
-            <li><a href="#" id="bars"><fa-icon class="dropdown" [icon]="['fas', 'bars']"></fa-icon></a>
-
-                <ul class="dropdown-content">
-                    <li><a routerLink="patient-resources">Patient Resources</a></li>    
-                    <li><a routerLink="patient-details">Patient Details</a></li>
-                    <li><a routerLink="survey-nav">Record Information</a></li>
-                    <li><a routerLink="patient-details">Account Settings</a></li>
-                    <li><a routerLink="patient-details">Patient Surveys</a></li>
-                    <li><a routerLink="patient-details">Contact Us</a></li>
-                </ul>
-
-            </li>
-
-            <li class="access"><a id="logout">Logout</a></li>
-        </ul>    
-    </nav>
-
-</header>
-
-<div class="middle-space">
-    <router-outlet></router-outlet> 
-</div>
-
-<footer class="blue-bar bottom"></footer>
+    <footer class="blue-bar bottom"></footer>
 
 </div>

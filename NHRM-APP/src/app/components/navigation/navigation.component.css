@@ -2,12 +2,6 @@
     text-align: center;
 }
 
-
-.main-buttons{
-    padding: 10px;
-}
-
-
 @media screen and (-webkit-min-device-pixel-ratio:0)
   and (min-resolution:.001dpcm) {
     selector{ max-width: 1920px; } 

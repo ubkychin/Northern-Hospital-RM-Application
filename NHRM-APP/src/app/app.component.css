@@ -64,28 +64,21 @@
 }
 
 .navbar a {
-    font-size: 15px;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
+    color: whitesmoke;
+    font-weight: bold;
+    padding: 15px 20px 0px;
     text-decoration: none;
-}
-
-/* #bars {
-    transform: scale(2.2, 1.3);
-
-}
- #home {
-    transform: scale(1.4,1.4);
+    display: block;
+    text-align: left;
 }
 
 #logout {
-    margin-right: 5px;
-    transform: scale(1.2,1.2);
+    margin-right: 10px;
+    font-size: large;
     font-weight: bold;
-} */
-
-
+    float: right;
+    cursor: pointer;
+}
 
 .dropdown {
     overflow: hidden;
