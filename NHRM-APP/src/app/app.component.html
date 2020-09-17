@@ -1,37 +1,49 @@
-<app-welcome *ngIf="!this.authorised"></app-welcome>
-<div *ngIf="this.authorised"> 
+<!-- <app-welcome *ngIf="!this.authorised"></app-welcome>
+<div *ngIf="this.authorised">  -->
 
-<div class="blue-bar top"></div>
-<div class="blue-bar bottom"></div>
+<div *ngIf="true">
 
 
-<div class="main-logo">
-    <img src="assets/img/Mobile_Logo.png" alt="Northern Health Logo">
-</div>
+<header>
 
-<nav class="navbar">
-    <a id="logout">Logout</a>
-    <a routerLink="navigation">
-        <fa-icon id="home" class="dropdown" [icon]="['fas', 'home']"></fa-icon>
-    </a>
-    <div class="dropdown">
-        <button class="dropbtn">
-            <fa-icon id="bars" class="dropdown" [icon]="['fas', 'bars']"></fa-icon>
-        </button>
-        <div class="dropdown-content">
-            <a routerLink="patient-resources">Patient Resources</a>
-            <a routerLink="patient-details">Patient Details</a>
-            <a routerLink="survey-nav">Record Information</a>
-            <a routerLink="patient-details">Account Settings</a>
-            <a routerLink="patient-details">Patient Surveys</a>
-            <a routerLink="patient-details">Contact Us</a>
-        </div>
-    </div>
-</nav>
+    <div class="blue-bar top"></div>
+
+    <img src="assets/svg/logo.svg" alt="Northern Health">
+    
+    <nav role="navigation" class="navbar">
+
+
+        <ul>
+
+            <li>
+                <a routerLink="navigation">
+                    <fa-icon id="home" class="dropdown" [icon]="['fas', 'home']"></fa-icon>
+                </a>
+            </li>
+
+            <li><a href="#" id="bars"><fa-icon class="dropdown" [icon]="['fas', 'bars']"></fa-icon></a>
+
+                <ul class="dropdown-content">
+                    <li><a routerLink="patient-resources">Patient Resources</a></li>    
+                    <li><a routerLink="patient-details">Patient Details</a></li>
+                    <li><a routerLink="survey-nav">Record Information</a></li>
+                    <li><a routerLink="patient-details">Account Settings</a></li>
+                    <li><a routerLink="patient-details">Patient Surveys</a></li>
+                    <li><a routerLink="patient-details">Contact Us</a></li>
+                </ul>
+
+            </li>
+
+            <li class="access"><a id="logout">Logout</a></li>
+        </ul>    
+    </nav>
+
+</header>
 
 <div class="middle-space">
-    <router-outlet></router-outlet>    
+    <router-outlet></router-outlet> 
 </div>
 
+<footer class="blue-bar bottom"></footer>
 
 </div>

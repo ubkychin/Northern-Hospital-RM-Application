@@ -1,13 +1,9 @@
 .blue-bar {
-    z-index: 5;
     height: 50px;
     background: var(--nh-blue);
 }
 
 .top {
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
 }
 
@@ -22,11 +18,52 @@
     color: whitesmoke;
     margin: auto;
     background: #707070;
-    overflow: hidden;
+
+    width: 100%;
+    height: 50px;
+}
+
+.navbar ul {
+    display: flex;
+    flex-direction: row;
+
+    text-align: right;
+}
+
+.navbar ul li {
+    list-style: none;
+}
+
+.navbar ul li ul li {
+    display: block;
+}
+
+.navbar ul li ul {
+    visibility: hidden;
+    position: absolute;
+    display: none;
+    transition: all 0.5s ease;
+}
+
+
+.navbar ul li:hover > ul
+, .navbar ul li ul:hover 
+{
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+
+.navbar ul li ul li {
+    clear: both;
+    width: 100%;
+}
+
+.access {
+    flex-grow: 1;
 }
 
 .navbar a {
-    float: left;
     font-size: 15px;
     color: white;
     text-align: center;
@@ -34,7 +71,7 @@
     text-decoration: none;
 }
 
-#bars {
+/* #bars {
     transform: scale(2.2, 1.3);
 
 }
@@ -46,11 +83,11 @@
     margin-right: 5px;
     transform: scale(1.2,1.2);
     font-weight: bold;
-    float: right;
-}
+} */
+
+
 
 .dropdown {
-    float: left;
     overflow: hidden;
 }
 

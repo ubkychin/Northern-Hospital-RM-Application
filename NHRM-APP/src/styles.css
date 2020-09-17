@@ -20,21 +20,18 @@ body {
     flex-direction: column;
 }
 
-.main-logo{
+/* .main-logo{
     margin: 70px 0px 15px;
     padding: 5px;
     font-weight: bold;
     font-size: 25px;
     text-align: center;
-}
+} */
 
 header {
-    display: grid;
-    height: 50px;
-    padding: 5px;
+    height: auto;
     font-weight: bold;
     text-align: center;
-    margin: 15px 0px 30px;
 }
 
 .n {
