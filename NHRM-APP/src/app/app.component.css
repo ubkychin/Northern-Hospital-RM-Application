@@ -125,3 +125,7 @@
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
+.space {
+    height: 100px;
+}
