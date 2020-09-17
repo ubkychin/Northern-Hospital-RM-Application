@@ -2,9 +2,10 @@
     text-align: center;
 }
 
-@media screen and (-webkit-min-device-pixel-ratio:0)
-  and (min-resolution:.001dpcm) {
-    selector{ max-width: 1920px; } 
+@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
+    selector {
+        max-width: 1920px;
+    }
     .main-buttons {
         justify-content: center;
         justify-items: center;
@@ -61,31 +62,7 @@
 
 .main-btn {
     border-radius: 10px;
-    color: whitesmoke;
+    color: #ffffff;
     font-weight: bold;
     font-size: 25px;
-}
-
-.btn1 {
-    background: linear-gradient(180deg, #DBA8EF, #9633E2);
-}
-
-.btn2 {
-    background: linear-gradient(180deg, #92CBF2, #2437DF);
-}
-
-.btn3 {
-    background: linear-gradient(180deg, #F2E699, #DE890B);
-}
-
-.btn4 {
-    background: linear-gradient(180deg, #A2F2E1, #0695B9);
-}
-
-.btn5 {
-    background: linear-gradient(180deg, #B7F395, #329408);
-}
-
-.btn6 {
-    background: linear-gradient(180deg, #FF7440, #B51212);
 }

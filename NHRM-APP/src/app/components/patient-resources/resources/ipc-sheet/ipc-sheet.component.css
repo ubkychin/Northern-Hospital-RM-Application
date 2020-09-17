@@ -20,20 +20,19 @@
     text-align: center;
 }
 
-.section{
+.section {
     font-weight: bold;
     margin: 10px;
     text-align: left;
 }
 
-.section li, p{
+.section li, p {
     margin: 10px;
     padding-left: 20px;
     text-align: left;
     color: #707070;
-
 }
 
-.space{
+.space {
     height: 70px;
 }

@@ -1,4 +1,4 @@
-h1{
+h1 {
     font-size: 35px;
 }
 
@@ -7,34 +7,34 @@ h1{
     grid-template: 140px 80px / repeat(4, 170px);
 }
 
-#t-1, #t-2, #t-3, #t-4, #t-5{
-    padding-left: 10px;
-    padding-right: 10px;
+#t-1, #t-2, #t-3, #t-4, #t-5 {
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
-#t-1{
+#t-1 {
     grid-area: 1 / 1;
-    background:  #DDAEEF;
+    background: #DDAEEF;
 }
 
-#t-2{
+#t-2 {
     grid-area: 1 / 2;
-    background:  #92CBF2;
+    background: #B7F395;
 }
 
-#t-3{
+#t-3 {
     grid-area: 1 / 3;
-    background:  #F2E699;
+    background: #F2E699;
 }
 
-#t-4{
+#t-4 {
     grid-area: 1 / 4;
-    background:  #B7F395;
+    background: #92f2dd;
 }
 
-#t-5{
+#t-5 {
     grid-area: 2 / 1 / span 1 / span 4;
-    background:  #FDC7BF;
+    background: #FDC7BF;
 }
 
 @media screen and (max-width: 420px) {
@@ -42,24 +42,19 @@ h1{
         display: grid;
         grid-template: 140px 140px 80px 100px/ 170px 170px;
     }
-
-    #t-1{
+    #t-1 {
         grid-area: 1 / 1;
     }
-
-    #t-2{
+    #t-2 {
         grid-area: 1 / 2;
     }
-
-    #t-3{
+    #t-3 {
         grid-area: 2 / 1;
     }
-
-    #t-4{
+    #t-4 {
         grid-area: 2 / 2;
     }
-
-    #t-5{
+    #t-5 {
         grid-area: 3 / 1 / span 1 / span 2;
     }
 }
@@ -74,39 +69,56 @@ h1{
 .resource-tile {
     box-shadow: 0px 0px 0px 2px whitesmoke, 0px 0px 0px 4px #707070;
     margin: 5px;
-    border-left: solid 5px  #005CB9;
+    border-left: solid 5px #005CB9;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
 }
 
-.resource-tile p{
+.resource-tile p {
+    text-align: center;
     padding-top: 10px;
 }
 
-.resource-tile strong{
-    align-self: flex-end;
-}
-
-fa-icon{
-    padding-left: 10px;
-}
-
-.res-title{
+.res-title {
     font-weight: bold;
-    color:  #005CB9;
+    color: #005CB9;
 }
 
-.tile-one{
+.res-info {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.tile-one {
     width: 170px;
     height: 140px;
 }
 
-.tile-two{
+.tile-two {
+    text-align: center;
     width: 100%;
     height: 80px
 }
 
 .resource-click {
     cursor: pointer;
+}
+
+span {
+    font-weight: bold;
+}
+
+a {
+    font-size: 0.9em;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+    padding-bottom: 5px;
+}
+
+fa-icon {
+    color: #005CB9;
+    position: relative;
+    left: -10px;
 }

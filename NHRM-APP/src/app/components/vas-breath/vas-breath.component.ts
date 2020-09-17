@@ -14,7 +14,6 @@ export class VasBreathComponent implements OnInit {
 
   constructor(public dialog: MatDialog) { 
     this.dialogConfig = new MatDialogConfig();
-    this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
   }
 

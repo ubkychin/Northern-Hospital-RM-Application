@@ -12,10 +12,12 @@
     <div class="restricted box" [ngClass]="{'selected': this.status == 1}">Activity Restricted</div>
     <p id="res">1</p>
     <input type="radio" name="ecog" (click)="ecogStatus(1)">
-    <div class="capable box" [ngClass]="{'selected': this.status == 2}">Capable of Self-care, Active over 50% of time awake</div>
+    <div class="capable box" [ngClass]="{'selected': this.status == 2}">Capable of Self-care, Active over 50% of time
+        awake</div>
     <p id="cap">2</p>
     <input type="radio" name="ecog" (click)="ecogStatus(2)">
-    <div class="limited box" [ngClass]="{'selected': this.status == 3}">Limited Self-care, Confined over 50% of time awake</div>
+    <div class="limited box" [ngClass]="{'selected': this.status == 3}">Limited Self-care, Confined over 50% of time
+        awake</div>
     <p id="lim">3</p>
     <input type="radio" name="ecog" (click)="ecogStatus(3)">
     <div class="disabled box" [ngClass]="{'selected': this.status == 4}">Completely Disabled</div>

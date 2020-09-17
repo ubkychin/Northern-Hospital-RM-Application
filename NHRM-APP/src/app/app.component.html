@@ -2,9 +2,7 @@
 <div *ngIf="this.authorised">
     <header>
         <div class="blue-bar top"></div>
-        <div class="nh-logo">
-            <!--  <img src="assets/svg/logo.svg" alt="Northern Health"> -->
-        </div>
+        <div class="nh-logo"></div>
         <nav role="navigation" class="navbar">
             <ul>
                 <li>
@@ -20,15 +18,13 @@
                         <li><a routerLink="patient-details">Contact Us</a></li>
                     </ul>
                 </li>
-                <li class="access"><a id="logout">Logout</a></li>
+            <!--     <li class="access"><a id="logout">Logout</a></li> -->
             </ul>
         </nav>
     </header>
-
     <div class="middle-space">
         <router-outlet></router-outlet>
     </div>
-
     <footer class="blue-bar bottom"></footer>
 
 </div>

@@ -8,13 +8,14 @@ a {
     color: blue;
     text-decoration: underline;
 }
+
 .logo {
     width: 300px;
 }
 
 p.description {
     font-weight: bold;
-    color: var(--nh-grey);  
+    color: var(--nh-grey);
     font-size: 20px;
 }
 
@@ -41,12 +42,12 @@ p.warning {
 }
 
 input#terms-and-conditions {
-    font-size:25px;
+    font-size: 25px;
     padding: 10px;
 }
 
 input#privacy-message {
-    font-size:35px;
+    font-size: 35px;
 }
 
 .input#privacy-message, input.submit-button {
@@ -54,62 +55,52 @@ input#privacy-message {
 }
 
 /* Mobile Landscape/Tablets Screens*/
+
 @media only screen and (min-width: 800px) {
     .logo {
         width: 50%;
     }
-
     .main-heading {
         padding: 1em;
         font-size: 4em;
     }
-
     p.description, p.warning {
         max-width: 75%;
         margin: auto;
-
         font-size: 2em;
     }
-
     .condition {
         padding: 20px;
     }
-
     .condition label {
         font-size: 2em;
     }
-
     .condition input {
         width: 30px;
         height: 30px;
     }
-
 }
 
-
 /* Laptop/Tablet Screens */
+
 @media only screen and (min-width: 1200px) {
     .logo {
         width: 550px;
     }
-
     .main-heading {
         font-size: 3.5em;
     }
-
     p.description, p.warning {
         max-width: 800px;
         font-size: 1em;
     }
-
-    .condition, a{
+    .condition, a {
         font-size: 15px;
     }
     .condition {
         font-size: 0.5em;
         padding: 10px;
     }
-
     .condition input {
         width: 20px;
         height: 20px;

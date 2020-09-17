@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -7,7 +8,7 @@
 
 :root {
     --nh-blue: #005CB9;
-    --nh-grey:  #707070;
+    --nh-grey: #707070;
 }
 
 body {
@@ -20,7 +21,7 @@ body {
     flex-direction: column;
 }
 
-.nh-logo{
+.nh-logo {
     background-image: url(../src/assets/svg/logo.svg);
     margin: 10px;
     height: 50px;
@@ -35,7 +36,7 @@ header {
     text-align: center;
 }
 
-.heading{
+.heading {
     text-align: center;
     padding: 5px;
     margin-top: 20px;
@@ -52,7 +53,7 @@ header {
     color: #707070;
 }
 
-label[for="formly_1_radio_score_0"]{
+label[for="formly_1_radio_score_0"] {
     color: #0459bd;
     font-size: 40px;
     font-weight: bold;
@@ -60,7 +61,7 @@ label[for="formly_1_radio_score_0"]{
     padding-bottom: 10px;
 }
 
-.custom-control-input{
+.custom-control-input {
     width: 10px;
     height: 10px;
 }
@@ -81,23 +82,19 @@ input[type=radio]:checked {
     background-color: var(--nh-blue);
 }
 
-
 .custom-radio {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
     justify-content: space-between;
     margin-top: 20px;
-
 }
 
-.custom-radio  .custom-control-label{
+.custom-radio .custom-control-label {
     font-size: 20px;
     font-weight: bold;
     margin: 20px 20px 0px 0px;
-
 }
-
 
 @media (min-width: 550px) {
     .custom-radio .custom-control-label {
@@ -112,11 +109,11 @@ input[type=radio]:checked {
     border-radius: 17px;
 }
 
-.main-btn{
+.main-btn {
     cursor: pointer;
 }
 
-.submit-button{
+.submit-button {
     cursor: pointer;
     margin: 30px auto 100px auto;
     justify-self: center;
@@ -136,3 +133,32 @@ input[type=radio]:checked {
     float: right;
 }
 
+.btn1 {
+    background: linear-gradient(180deg, #75BFE7, #4d8ab8);
+    /* background: #75BFE7; */
+}
+
+.btn2 {
+    /* background: #8AD999; */
+    background: linear-gradient(180deg, #8AD999, #478a53);
+}
+
+.btn3 {
+    /* background: #AA6DB4; */
+    background: linear-gradient(180deg, #AA6DB4, #862F93);
+}
+
+.btn4 {
+    /* background: #EBA563; */
+    background: linear-gradient(180deg, #EBA563, #DB834D);
+}
+
+.btn5 {
+    /* background: #D67AAF; */
+    background: linear-gradient(180deg, #D67AAF, #C43984);
+}
+
+.btn6 {
+    /* background: #749ACE; */
+    background: linear-gradient(180deg, #749ACE, #3468B8);
+}
