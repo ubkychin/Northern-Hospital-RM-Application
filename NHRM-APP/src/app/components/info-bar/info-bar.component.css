@@ -1,6 +1,7 @@
 .info{
     display: flex;
     gap: 15px;
+    grid-gap: 15px;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -15,4 +16,6 @@
 
 fa-icon {
     cursor: pointer;
+    position: relative;
+    left: -10px;
 }

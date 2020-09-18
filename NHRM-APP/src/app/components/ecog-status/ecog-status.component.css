@@ -4,7 +4,8 @@
     margin-top: 45px;
     display: grid;
     gap: 5px;
-    grid-template: repeat(5, 1fr) / 230px 55px 35px;
+    grid-gap: 5px;
+    grid-template: repeat(5, 1fr) / 240px 55px 35px;
 }
 
 .container p {
@@ -22,9 +23,10 @@
     font-weight: bold;
     text-align: center;
     border: solid 1px black;
-    width: 230px;
+    width: 240px;
     height: 50px;
     opacity: .5;
+    font-size: 1em;
 }
 
 .selected {

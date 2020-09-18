@@ -3,6 +3,7 @@
     align-items: center;
     display: grid;
     gap: 5px;
+    grid-gap: 5px;
     grid-template: repeat(7, 50px) / 160px 160px;
 }
 
