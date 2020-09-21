@@ -3,6 +3,13 @@
     background: var(--nh-blue);
 }
 
+.blue-bar p{
+    color: whitesmoke;
+    padding: 15px;
+    float: left;
+    cursor: pointer;
+}
+
 .top {
     width: 100%;
 }
