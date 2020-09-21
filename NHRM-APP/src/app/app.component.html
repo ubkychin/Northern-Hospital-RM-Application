@@ -1,12 +1,12 @@
 <app-welcome *ngIf="!this.authorised"></app-welcome>
 <div *ngIf="this.authorised">
     <header>
-        <div class="blue-bar top"><p>< Back</p></div>
+        <div class="blue-bar top"><p *ngIf="!isRoot" (click)="goBack()">< Back</p></div>
         <div class="nh-logo"></div>
         <nav role="navigation" class="navbar">
             <ul>
                 <li>
-                    <a routerLink="navigation"><fa-icon id="home" class="dropdown" [icon]="['fas', 'home']" transform="grow-15"></fa-icon></a>
+                    <a routerLink="home"><fa-icon id="home" class="dropdown" [icon]="['fas', 'home']" transform="grow-15"></fa-icon></a>
                 </li>
                 <li><a hid="bars"><fa-icon class="dropdown" [icon]="['fas', 'bars']" transform="grow-15"></fa-icon></a>
                     <ul class="dropdown-content">

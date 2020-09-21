@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
-import { WelcomeComponent } from './components/welcome/welcome.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { SurveyNavComponent } from './components/survey-nav/survey-nav.component';
 import { EcogStatusComponent } from './components/ecog-status/ecog-status.component';
@@ -18,12 +17,11 @@ import { IPCSheetComponent } from './components/patient-resources/resources/ipc-
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/navigation',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   {path: 'login', component: LoginComponent},
-  {path: 'welcome', component: WelcomeComponent},
-  {path: 'navigation', component: NavigationComponent},
+  {path: 'home', component: NavigationComponent},
   {path: 'survey-nav', component: SurveyNavComponent},
   {path: 'ecog-status', component: EcogStatusComponent},
   {path: 'likert', component: LikertComponent},
@@ -33,7 +31,11 @@ const routes: Routes = [
   {path: 'qol', component: QolComponent},
   {path: 'patient-resources', component: PatientResourcesComponent},
   {path: 'patient-details', component: PatientDetailsComponent},
-  {path: 'ipc-sheet', component: IPCSheetComponent}
+  {path: 'ipc-sheet', component: IPCSheetComponent},
+  {
+    path: '**',
+    redirectTo: '/home'
+  }
 ];
 
 @NgModule({
