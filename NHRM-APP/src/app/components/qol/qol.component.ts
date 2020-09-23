@@ -49,7 +49,6 @@ export class QolComponent implements OnInit {
       key: this.survey[this.currentCategory].categoryName,
       type: 'radio',
       templateOptions: {
-        label: this.survey[this.currentCategory].categoryName,
         options: [
             { value: 1, label: this.survey[this.currentCategory].questions[0] },
             { value: 2, label: this.survey[this.currentCategory].questions[1] },

@@ -1,9 +1,10 @@
 <form [formGroup]="form" class="form" (ngSubmit)="submit()">
+    <h2 class="category-name">{{this.survey[this.currentCategory].categoryName}}</h2>
     <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
   
-    <button type="submit" class="btn submit-btn" *ngIf="this.currentCategory < this.survey.length - 1">Next</button>
+    <button type="submit" class="btn submit-button" *ngIf="this.currentCategory < this.survey.length - 1">Next</button>
 
-    <button type="submit" class="btn submit-btn" *ngIf="this.currentCategory === this.survey.length - 1">Submit</button>
+    <button type="submit" class="btn submit-button" *ngIf="this.currentCategory === this.survey.length - 1">Submit</button>
 
 
 </form>

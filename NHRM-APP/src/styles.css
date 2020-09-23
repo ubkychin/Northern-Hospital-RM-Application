@@ -53,13 +53,15 @@ header {
     color: #707070;
 }
 
-label[for="formly_1_radio_score_0"] {
+.category-name {
     color: #0459bd;
     font-size: 40px;
     font-weight: bold;
     border-bottom: 4px solid var(--nh-blue);
     padding-bottom: 10px;
 }
+
+label[for*="formly"]
 
 .custom-control-input {
     width: 10px;
