@@ -2,3 +2,27 @@
     <h1 class="main-heading">Fluid drain</h1>
     <h3 class="sub-heading">Enter Level of Fluid Drained</h3>
 </div>
+
+<app-info-bar (click)="infoDialog()"></app-info-bar>
+
+<div class="container">
+    <input min="10" max="600" maxlength="3" type="number" class="fluid-input" [(ngModel)]="this.fluid">
+    <div class="slider-and-ticks">
+        <input type="range" id="slider" disabled="disabled" name="fluid-drained" step=".1" min="10" max="600" #slider
+            value="{{this.fluid}}">
+        <datalist id="steplist">
+            <option>|</option><option>I</option><option>I</option><option>I</option>
+            <option>|</option><option>I</option><option>I</option><option>I</option>
+            <option>|</option><option>I</option><option>I</option><option>I</option>
+            <option>|</option><option>I</option><option>I</option><option>I</option>
+            <option>|</option><option>I</option><option>I</option><option>I</option>
+            <option>|</option><option>I</option><option>I</option><option>I</option>
+            <option>|</option>
+        </datalist>
+    </div>
+    <label class="lower-lim">10ml</label>
+    <label class="upper-lim">600ml</label>
+</div>
+<div class="submit">
+    <app-submit-button (click)="fluidDrained()"></app-submit-button>
+</div>

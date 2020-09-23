@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { FluidDrainVideoComponent } from '../patient-resources/resources/fluid-drain-video/fluid-drain-video.component';
 
 @Component({
   selector: 'app-fluid-drain',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FluidDrainComponent implements OnInit {
 
-  constructor() { }
+  dialogConfig: MatDialogConfig;
+  fluid: number = 10;
+
+  constructor(public dialog: MatDialog) {
+    this.dialogConfig = new MatDialogConfig();
+    this.dialogConfig.autoFocus = true;
+  }
 
   ngOnInit(): void {
   }
+  
+  fluidDrained() {
+    console.log(this.fluid);
+  }
 
+  infoDialog() {
+    this.dialog.open(FluidDrainVideoComponent, this.dialogConfig);
+  }
 }
