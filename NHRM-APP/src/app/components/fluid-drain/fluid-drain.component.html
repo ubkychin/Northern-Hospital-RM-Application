@@ -1,14 +1,14 @@
 <div class="heading">
-    <h1 class="main-heading">Fluid drain</h1>
-    <h3 class="sub-heading">Enter Level of Fluid Drained</h3>
+    <h1 class="main-heading">Fluid Drained</h1>
+    <h3 class="sub-heading">Enter Amount of Fluid Drained in mL</h3>
 </div>
 
 <app-info-bar (click)="infoDialog()"></app-info-bar>
 
 <div class="container">
-    <input min="10" max="600" maxlength="3" type="number" class="fluid-input" [(ngModel)]="this.fluid">
+    <input placeholder="mL" min="10" max="600" maxlength="3" type="number" class="fluid-input" [(ngModel)]="this.fluid">
     <div class="slider-and-ticks">
-        <input type="range" id="slider" disabled="disabled" name="fluid-drained" step=".1" min="1" max="600" #slider
+        <input type="range" id="slider" disabled="disabled" name="fluid-drained" step=".1" min="10" max="600" #slider
             value="{{this.fluid}}">
         <datalist id="steplist">
             <option>|</option>

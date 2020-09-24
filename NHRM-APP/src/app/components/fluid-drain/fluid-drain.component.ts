@@ -10,7 +10,7 @@ import { FluidDrainVideoComponent } from '../patient-resources/resources/fluid-d
 export class FluidDrainComponent implements OnInit {
 
   dialogConfig: MatDialogConfig;
-  fluid: number = 10;
+  fluid: number;
 
   constructor(public dialog: MatDialog) {
     this.dialogConfig = new MatDialogConfig();
