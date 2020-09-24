@@ -19,7 +19,7 @@ export class FluidDrainComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+
   fluidDrained() {
     console.log(this.fluid);
   }
