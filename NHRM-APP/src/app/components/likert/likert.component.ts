@@ -27,5 +27,4 @@ export class LikertComponent implements OnInit {
   onSubmit() {
     
   }
-
 }

@@ -74,4 +74,8 @@ export class QolComponent implements OnInit {
     this.displayQuestions();
   }
 
+  infoDialog(){
+    
+  }
+
 }

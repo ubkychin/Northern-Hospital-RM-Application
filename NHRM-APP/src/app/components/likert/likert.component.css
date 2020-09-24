@@ -6,6 +6,10 @@ article {
     margin: 30px auto 10px auto;
 }
 
+.sub-heading {
+    margin-bottom: 30px;
+}
+
 .form {
     display: flex;
     flex-direction: column;
@@ -44,3 +48,8 @@ article {
     border: none;
 }
 
+@media (min-width: 650px) {
+    .form {
+        padding: 80px;
+    }
+}

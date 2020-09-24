@@ -1,6 +1,13 @@
 .main-heading, .sub-heading{
     text-align: center;
 }
+.heading {
+    min-height: 0px;
+}
+
+.sub-heading {
+    margin-bottom: 30px;
+}
 .form {
     display: flex;
     flex-direction: column;
