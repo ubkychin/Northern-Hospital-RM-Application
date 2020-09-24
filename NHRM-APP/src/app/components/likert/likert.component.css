@@ -1,11 +1,15 @@
-form {
-    display: flex;
-    padding: 1em;
-    flex-direction: column;
+article {
+    text-align: center;
 }
 
-form .submit-btn{
-    margin: 2.5em auto;
+.main-heading {
+    margin: 30px auto 10px auto;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 15px;
 }
 
 .user-feeling {
@@ -31,12 +35,12 @@ form .submit-btn{
     align-items: center;
 }
 
-#likert-scale {
-    border: none;
+.emotion img {
+    width: 70px;
+    height: 70px;
 }
 
-/* Landscape mode for mobile */
-@media only screen and (min-width: 400px) {
-
+#likert-scale {
+    border: none;
 }
 

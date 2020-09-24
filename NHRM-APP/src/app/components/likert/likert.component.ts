@@ -17,6 +17,8 @@ export class LikertComponent implements OnInit {
     this.form = fb.group({
       feeling: ['', Validators.required]
     });
+
+    console.log(this.form);
   }
 
   ngOnInit(): void {

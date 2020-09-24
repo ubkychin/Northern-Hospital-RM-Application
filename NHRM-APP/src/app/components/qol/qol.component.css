@@ -1,6 +1,10 @@
+.main-heading, .sub-heading{
+    text-align: center;
+}
 .form {
     display: flex;
     flex-direction: column;
+    padding: 50px 15px;
 }
 
 .form .submit-btn {
@@ -18,8 +22,7 @@ label[for="formly_1_radio_score_0"]{
 }
 
 
-
-@media (min-width: 850px) {
+@media (min-width: 650px) {
     .form {
         padding: 30px 30px 0px 30px;
     }
