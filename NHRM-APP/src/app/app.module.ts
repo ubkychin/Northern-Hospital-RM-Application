@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
@@ -52,7 +52,7 @@ import { FluidDrainVideoComponent } from './components/patient-resources/resourc
     VasInfoDialogComponent,
     FluidDrainVideoComponent
   ],
-    imports: [
+  imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
@@ -69,5 +69,5 @@ import { FluidDrainVideoComponent } from './components/patient-resources/resourc
 export class AppModule {
   constructor(library: FaIconLibrary) {
     library.addIconPacks(fas);
-  } 
- }
+  }
+}

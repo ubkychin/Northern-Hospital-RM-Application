@@ -6,8 +6,8 @@
 <app-info-bar (click)="infoDialog()"></app-info-bar>
 
 <div class="container">
-    <input placeholder="mL" min="10" max="600" maxlength="3" type="number" class="fluid-input" [(ngModel)]="this.fluid" 
-    oninput="javascript: if(this.value > 600) this.value = 600 ; else if(this.value < 0) this.value = 0">
+    <input placeholder="mL" min="10" max="600" maxlength="3" type="number" class="fluid-input" [(ngModel)]="this.fluid"
+        oninput="if(this.value < 0) this.value = 0; if(this.value > 600) this.value = 600;">
     <div class="slider-and-ticks">
         <input type="range" id="slider" disabled="disabled" name="fluid-drained" step=".1" min="10" max="600" #slider
             value="{{this.fluid}}">
@@ -43,5 +43,5 @@
     <p class="upper-lim">600ml</p>
 </div>
 <div class="submit">
-    <app-submit-button (click)="fluidDrained()"></app-submit-button>
+    <app-submit-button (click)="fluidDrained()" name="Submit" ></app-submit-button>
 </div>

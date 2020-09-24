@@ -61,9 +61,7 @@ header {
     padding-bottom: 10px;
 }
 
-label[for*="formly"]
-
-.custom-control-input {
+label[for*="formly"] .custom-control-input {
     width: 10px;
     height: 10px;
 }
@@ -210,9 +208,18 @@ input[type=radio]:checked {
 
 .main-btn {
     border-radius: 10px;
+    border-top: 2px solid silver;
+    border-left: 2px solid silver;
+    border-bottom: 2px solid rgb(80, 80, 80);
+    border-right: 2px solid rgb(80, 80, 80);
     color: #f5f5f5;
     font-weight: bold;
     font-size: 25px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
 }
 
 .btn1 {
