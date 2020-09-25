@@ -128,11 +128,6 @@ input[type=radio]:checked {
     border: none;
 }
 
-.dialog-close-btn {
-    cursor: pointer;
-    float: right;
-}
-
 /* Both Nav Screens */
 
 @media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
@@ -250,4 +245,11 @@ input[type=radio]:checked {
 .btn6 {
     /* background: #749ACE; */
     background: linear-gradient(180deg, #749ACE, #3468B8);
+}
+
+.dialog-style {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4vh;
+    text-align: center;
 }

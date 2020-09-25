@@ -29,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PrivacyStatementComponent } from './components/dialog-box/privacy-statement/privacy-statement.component';
 import { VasInfoDialogComponent } from './components/dialog-box/vas-info-dialog/vas-info-dialog.component';
 import { FluidDrainVideoComponent } from './components/patient-resources/resources/fluid-drain-video/fluid-drain-video.component';
+import { EcogStatusDialogComponent } from './components/dialog-box/ecog-status-dialog/ecog-status-dialog.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { FluidDrainVideoComponent } from './components/patient-resources/resourc
     TermsAndConditionsComponent,
     PrivacyStatementComponent,
     VasInfoDialogComponent,
-    FluidDrainVideoComponent
+    FluidDrainVideoComponent,
+    EcogStatusDialogComponent
   ],
   imports: [
     BrowserModule,

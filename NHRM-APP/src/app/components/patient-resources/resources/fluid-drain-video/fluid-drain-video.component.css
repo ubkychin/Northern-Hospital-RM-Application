@@ -1,5 +1,9 @@
 .video {
     display: flex;
     justify-content: center;
-    padding-top: 10%;;
+    padding-top: 5%;
+}
+
+h2 {
+    text-align: center;
 }
