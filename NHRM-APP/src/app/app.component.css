@@ -14,6 +14,11 @@
     width: 100%;
 }
 
+#back{
+    position: relative;
+    right: 5px;
+}
+
 .bottom {
     position: fixed;
     bottom: 0;
