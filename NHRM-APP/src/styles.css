@@ -109,10 +109,6 @@ input[type=radio]:checked {
     border-radius: 17px;
 }
 
-.main-btn {
-    cursor: pointer;
-}
-
 .submit-button {
     cursor: pointer;
     margin: 30px auto 100px auto;
@@ -208,6 +204,7 @@ input[type=radio]:checked {
     border-bottom: 2px solid rgb(80, 80, 80);
     border-right: 2px solid rgb(80, 80, 80);
     color: #f5f5f5;
+    cursor: pointer;
     font-weight: bold;
     font-size: 25px;
     -webkit-appearance: none;
