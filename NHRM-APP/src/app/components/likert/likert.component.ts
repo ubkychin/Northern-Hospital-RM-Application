@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FormlyFieldConfig, FormlyFormOptions} from '@ngx-formly/core';
+
 
 @Component({
   selector: 'app-likert',
@@ -22,6 +23,7 @@ export class LikertComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   onSubmit() {

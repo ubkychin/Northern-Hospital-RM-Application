@@ -30,6 +30,7 @@ import { PrivacyStatementComponent } from './components/dialog-box/privacy-state
 import { VasInfoDialogComponent } from './components/dialog-box/vas-info-dialog/vas-info-dialog.component';
 import { FluidDrainVideoComponent } from './components/patient-resources/resources/fluid-drain-video/fluid-drain-video.component';
 import { EcogStatusDialogComponent } from './components/dialog-box/ecog-status-dialog/ecog-status-dialog.component';
+import { QolVasComponent } from './components/qol-vas/qol-vas.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { EcogStatusDialogComponent } from './components/dialog-box/ecog-status-d
     PrivacyStatementComponent,
     VasInfoDialogComponent,
     FluidDrainVideoComponent,
-    EcogStatusDialogComponent
+    EcogStatusDialogComponent,
+    QolVasComponent
   ],
   imports: [
     BrowserModule,

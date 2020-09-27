@@ -78,4 +78,9 @@ export class QolComponent implements OnInit {
     
   }
 
+  submitSurvey() {
+
+    //Submit the data 
+  }
+
 }
