@@ -10,7 +10,7 @@
       
         <button type="submit" class="btn submit-button" *ngIf="this.currentCategory < this.survey.length - 1">Next</button>
     
-        <button type="button" class="btn submit-button" *ngIf="this.currentCategory === this.survey.length - 1" (click)="submitSurvey" routerLink="/qol/qol-vas">Submit</button>
+        <button type="button" class="btn submit-button" *ngIf="this.currentCategory === this.survey.length - 1" (click)="submitSurvey">Submit</button>
 
         <router-outlet></router-outlet>
     </form>

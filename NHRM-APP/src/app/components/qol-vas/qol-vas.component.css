@@ -1,6 +1,16 @@
 @import "~nouislider/distribute/nouislider.min.css";
 
+.wrapper {
+    text-align: center;
+}
+
+.sub-heading{
+    max-width: 600px;
+    margin: 30px auto;
+}
 
 .vas-slider {
-    height: 500px;
+    text-align: center;
+    margin: 10% auto;
+    width: 80%;
 }

@@ -29,11 +29,8 @@ const routes: Routes = [
   {path: 'vas-breath', component: VasBreathComponent},
   {path: 'vas-pain', component: VasPainComponent},
   {path: 'fluid-drain', component: FluidDrainComponent},
-  {path: 'qol', component: QolComponent, 
-          children: [{
-              path:'qol-vas', component: QolVasComponent
-          }]},
-            
+  {path: 'qol', component: QolComponent},
+  {path: 'qol-vas', component: QolVasComponent},
   {path: 'patient-resources', component: PatientResourcesComponent},
   {path: 'patient-details', component: PatientDetailsComponent},
   {path: 'ipc-sheet', component: IPCSheetComponent},

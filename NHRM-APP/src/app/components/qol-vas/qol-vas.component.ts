@@ -11,28 +11,35 @@ import 'nouislider/distribute/nouislider.css';
 })
 export class QolVasComponent implements OnInit {
 
+
+  currentHealthScore: Number;
+  vasSlider: noUiSlider.Instance;
+
+
   constructor() { }
 
   ngOnInit(): void {
+    
+    var range_all_sliders = {
+      'min': [0],
+      'max': [100]
+    };
+    
+    this.vasSlider = document.querySelector('.vas-slider') as noUiSlider.Instance;
 
-    let vasSlider = document.querySelector('.vas-slider');
+      noUiSlider.create(this.vasSlider, {
+        start: 0,
+        range: range_all_sliders,
+        pips: {
+          mode: 'range',
+          density: 1
+        },
+      });
+  }
 
-  var range_all_sliders = {
-    'min': [0],
-    'max': [100]
-  };
-
-
-    noUiSlider.create(vasSlider, {
-      orientation: "vertical",
-      start: 0,
-      range: range_all_sliders,
-      pips: {
-        mode: 'range',
-        density: 3
-      },
-      direction: 'rtl'
-    });
+ 
+  updateSlider(event) {
+    this.vasSlider.noUiSlider.set(event.target.value);
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormArray, FormGroup} from '@angular/forms';
 import {FormlyFieldConfig, FormlyFormOptions} from '@ngx-formly/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-qol',
@@ -44,6 +45,10 @@ export class QolComponent implements OnInit {
   form = new FormGroup({});
   currentCategory: number;
 
+  constructor(private router: Router) {
+
+  }
+
   displayQuestions() {
     this.fields = [ {
       key: this.survey[this.currentCategory].categoryName,
@@ -81,6 +86,9 @@ export class QolComponent implements OnInit {
   submitSurvey() {
 
     //Submit the data 
+
+    this.router.navigateByUrl('/qol-vas');
+
   }
 
 }
