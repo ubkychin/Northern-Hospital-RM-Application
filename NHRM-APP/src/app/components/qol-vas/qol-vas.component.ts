@@ -14,6 +14,9 @@ export class QolVasComponent implements OnInit {
 
   currentHealthScore: Number;
   vasSlider: noUiSlider.Instance;
+  public min: Number;
+  public max: Number;
+
 
 
   constructor() { }
@@ -22,9 +25,12 @@ export class QolVasComponent implements OnInit {
     
     var range_all_sliders = {
       'min': [0],
+      '25%': [25],
+      '50%': [50],
+      '75%': [75],
       'max': [100]
     };
-    
+
     this.vasSlider = document.querySelector('.vas-slider') as noUiSlider.Instance;
 
       noUiSlider.create(this.vasSlider, {
@@ -35,6 +41,9 @@ export class QolVasComponent implements OnInit {
           density: 1
         },
       });
+
+
+      this.vasSlider.setAttribute('disabled', true);
   }
 
  
