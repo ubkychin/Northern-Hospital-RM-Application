@@ -9,11 +9,11 @@
     <p id="good">No Pain</p>
     <p id="bad">Worst Possible Pain</p>
     <input type="range" id="slider" (input)="painStatus(slider.value)" name="vas-pain" step=".1" min="0" max="10" #slider value="5">
-    <div class="none box" [ngClass]="{'selected': this.status >= 8.1 && this.status <= 10}">None</div>
-    <div class="mild box" [ngClass]="{'selected': this.status >= 6.1 && this.status <= 8}">Mild</div>
+    <div class="none box" [ngClass]="{'selected': this.status >= 0 && this.status <= 2}"> None</div>
+    <div class="mild box" [ngClass]="{'selected': this.status >= 2.1 && this.status <= 4}">Mild</div>
     <div class="moderate box" [ngClass]="{'selected': this.status >= 4.1 && this.status <= 6}">Moderate</div>
-    <div class="severe box" [ngClass]="{'selected': this.status >= 2.1 && this.status <= 4}">Severe</div>
-    <div class="worst box" [ngClass]="{'selected': this.status >= 0 && this.status <= 2}">Worst Possible</div>
+    <div class="severe box" [ngClass]="{'selected': this.status >= 6.1 && this.status <= 8}">Severe</div>
+    <div class="worst box" [ngClass]="{'selected': this.status >= 8.1 && this.status <= 10}">Worst Possible</div>
 </div>
 <div class="submit">
     <app-submit-button name="Submit"></app-submit-button>
