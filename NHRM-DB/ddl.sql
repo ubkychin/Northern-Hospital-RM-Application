@@ -34,7 +34,7 @@ GO
 
 CREATE TABLE Category
 (
-    categoryID INT NOT NULL,
+    categoryID INT IDENTITY(1,1) NOT NULL,
     categoryName NVARCHAR(50) NOT NULL,
     CONSTRAINT PK_Category PRIMARY KEY (categoryID)
 )
@@ -43,7 +43,7 @@ GO
 
 CREATE TABLE Measurement
 (
-    measurementID INT NOT NULL,
+    measurementID INT IDENTITY(1,1) NOT NULL,
     measurementName VARCHAR(50),
     CONSTRAINT PK_Measurement PRIMARY KEY (measurementID)
 )
