@@ -3,37 +3,29 @@ USE NORTHERNHEALTH;
 
 GO
 
-IF OBJECT_ID('User') IS NOT NULL
-DROP TABLE [User];
+DROP TABLE IF EXISTS [User];
 
-IF OBJECT_ID('MeasurmentResult') IS NOT NULL
-DROP TABLE MeasurementResult;
+DROP TABLE IF EXISTS MeasurementResult;
 
-IF OBJECT_ID('PatientCategory') IS NOT NULL
-DROP TABLE PatientCategory;
+DROP TABLE IF EXISTS PatientCategory;
 
-IF OBJECT_ID('MeasurementDataPoint') IS NOT NULL
-DROP TABLE MeasurementDataPoint;
+DROP TABLE IF EXISTS MeasurementDataPoint;
 
-IF OBJECT_ID('CategoryMeasurement') IS NOT NULL
-DROP TABLE CategoryMeasurement;
+DROP TABLE IF EXISTS CategoryMeasurement;
 
-IF OBJECT_ID('Category') IS NOT NULL
-DROP TABLE Category;
+DROP TABLE IF EXISTS Category;
 
-IF OBJECT_ID('Measurement') IS NOT NULL
-DROP TABLE Measurement;
+DROP TABLE IF EXISTS Measurement;
 
-IF OBJECT_ID('Patient') IS NOT NULL
-DROP TABLE Patient;
+DROP TABLE IF EXISTS Patient;
 
 GO
 
 CREATE TABLE [User]
 (
     username VARCHAR(50) NOT NULL,
-    [password] VARCHAR(50) NOT NULL,
-    salt VARCHAR(50) NOT NULL,
+    [password] BINARY(64) NOT NULL,
+    salt NVARCHAR(max) NOT NULL,
     userType VARCHAR(50) NOT NULL,
     CONSTRAINT PK_Admin PRIMARY KEY (username)
 );
@@ -74,7 +66,7 @@ CREATE TABLE MeasurementDataPoint
     dataPointnumber INT NOT NULL,
     upperLimit INT NOT NULL,
     lowerLimit INT NOT NULL,
-    description NVARCHAR(50),
+    [description] VARCHAR(50),
     CONSTRAINT FK_MeasurementDataPoint_Measurement FOREIGN KEY (measurementID) REFERENCES dbo.Measurement,
     CONSTRAINT PK_MeasurementDataPoint PRIMARY KEY (measurementID,dataPointnumber)
 )
@@ -98,8 +90,8 @@ CREATE TABLE Patient
     homeNumber VARCHAR(10),
     countryOfBirth VARCHAR(100) NOT NULL,
     preferredLanguage VARCHAR(100) NOT NULL,
-    [password] VARCHAR(50) NOT NULL,
-    salt VARCHAR(50) NOT NULL,
+    [password] BINARY(64) NOT NULL,
+    salt NVARCHAR(max) NOT NULL,
     livesAlone BIT NOT NULL,
     CONSTRAINT PK_Patient PRIMARY KEY (hospitalNumber)
 )
