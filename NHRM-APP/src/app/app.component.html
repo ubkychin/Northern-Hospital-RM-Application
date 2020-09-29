@@ -2,34 +2,33 @@
 <div *ngIf="this.authorised">
     <header>
         <div class="blue-bar top">
-            
-            <p  *ngIf="!isRoot" (click)="goBack()">
-               <fa-icon id="back" class="dropdown" [icon]="['fas', 'chevron-left']" transform="grow-5"></fa-icon>Back
+            <p *ngIf="!isRoot" (click)="goBack()">
+                <fa-icon id="back" [icon]="['fas', 'chevron-left']" transform="grow-5"></fa-icon>Back
             </p>
         </div>
+
         <div class="nh-logo"></div>
-        <nav role="navigation" class="navbar">
-            <ul>
-                <li>
-                    <a routerLink="home">
-                        <fa-icon id="home" class="dropdown" [icon]="['fas', 'home']" transform="grow-15"></fa-icon>
-                    </a>
-                </li>
-                <li><a id="bars">
-                        <fa-icon class="dropdown" [icon]="['fas', 'bars']" transform="grow-15"></fa-icon>
-                    </a>
-                    <ul class="dropdown-content">
-                        <li><a routerLink="patient-resources">Patient Resources</a></li>
-                        <li><a routerLink="patient-details">Patient Details</a></li>
-                        <li><a routerLink="survey-nav">Record Status</a></li>
-                        <li><a routerLink="patient-details">Account Settings</a></li>
-                        <li><a routerLink="patient-details">Patient Surveys</a></li>
-                        <li><a routerLink="patient-details">Contact Us</a></li>
-                    </ul>
-                </li>
-                <!--     <li class="access"><a id="logout">Logout</a></li> -->
-            </ul>
+        <!-- Navbar -->
+        <nav  class="navbar">
+                <a id="home" routerLink="home">
+                    <fa-icon  [icon]="['fas', 'home']" transform="grow-15"></fa-icon>
+                </a>
+
+                <a  id="bars" (click)="dropdown()">
+                    <i #bars class="fa fa-bars"></i>
+                    <!-- <fa-icon [icon]="['fas', 'bars']" transform="grow-15"></fa-icon> -->
+                </a>
+                
+                <div class="dropdown" [ngStyle]=" {'display' : this.toggle ? 'none' : 'block'}">
+                    <div routerLink="patient-resources">Patient Resources</div>
+                    <div routerLink="patient-details">Patient Details</div>
+                    <div routerLink="survey-nav">Record Status</div>
+                    <div routerLink="patient-details">Account Settings</div>
+                    <div routerLink="patient-details">Patient Surveys</div>
+                    <div routerLink="patient-details">Contact Us</div>
+                </div>
         </nav>
+
     </header>
     <div class="middle-space">
         <router-outlet></router-outlet>
