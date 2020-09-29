@@ -12,6 +12,7 @@ export class AppComponent {
   title = 'NHRM-APP';
 
   @ViewChild('bars') toggleNav: ElementRef;
+  unlistener: () => void;
   toggle: boolean = true;
   authorised: boolean;
   isRoot: boolean;
@@ -28,21 +29,6 @@ export class AppComponent {
       else
         this.isRoot = true;
     })
-
-    //Dropdown Nav
-    this.renderer.listen('window', 'click', (e: Event) => {
-      console.log("Clicked")
-
-      console.log(e.target)
-      console.log(this.toggleNav.nativeElement)
-
-      if (e.target !== this.toggleNav.nativeElement) {
-        this.toggle = true
-      } else if (this.toggle == true) {
-        this.toggle = false
-      }
-    })
-
   }
 
   goBack() {
@@ -50,6 +36,14 @@ export class AppComponent {
   }
 
   dropdown() {
-
+    //Dropdown Nav
+    this.toggle = false
+    this.unlistener = this.renderer.listen('window', 'click', (e: Event) => {
+      console.log("Clicked")
+      if (e.target != this.toggleNav.nativeElement) {
+        this.toggle = true
+        this.unlistener();
+      } 
+    })
   }
 }
