@@ -14,8 +14,7 @@ export class QolVasComponent implements OnInit {
 
   currentHealthScore: Number;
   vasSlider: noUiSlider.Instance;
-  public min: Number;
-  public max: Number;
+
 
 
 
@@ -47,8 +46,12 @@ export class QolVasComponent implements OnInit {
   }
 
  
-  updateSlider(event) {
-    this.vasSlider.noUiSlider.set(event.target.value);
+  updateSlider(score) {
+    if(score <= 100 && score >= 0) {
+      this.vasSlider.noUiSlider.set(score);
+    } else {
+      this.vasSlider.noUiSlider.set(0);
+    }
   }
 
 }

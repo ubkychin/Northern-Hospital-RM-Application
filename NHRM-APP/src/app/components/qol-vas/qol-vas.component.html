@@ -6,7 +6,7 @@
     <app-info-bar></app-info-bar>
 
     <label for="health-score">Your Health Today: </label>
-    <input type="number" id="health-score" (keyup)="updateSlider($event)"/>
+    <input type="number" #score id="health-score" (keyup)="updateSlider(score.value)" onkeypress="return event.charCode >= 48 && event.charCode <= 57 && console.log(event)"/>
     
 
 
