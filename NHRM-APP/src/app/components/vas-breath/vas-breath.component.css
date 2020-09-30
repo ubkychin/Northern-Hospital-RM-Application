@@ -4,7 +4,7 @@
     display: grid;
     gap: 5px;
     grid-gap: 5px;
-    grid-template: repeat(7, 50px) / 160px 160px;
+    grid-template: repeat(7, 50px) / 130px 70px 150px;
 }
 
 .box {
@@ -17,7 +17,6 @@
     width: 150px;
     height: 50px;
     opacity: .5;
-    
 }
 
 input[type=range] {
@@ -60,7 +59,7 @@ input[type=range]::-webkit-slider-thumb {
     margin-top: -7px;
 }
 
-input[type=range]:-moz-focusring{
+input[type=range]:-moz-focusring {
     outline: none;
 }
 
@@ -74,6 +73,19 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 
 input[type=range]:focus::-moz-range-track {
     background: #005CB9;
+}
+
+/* Chrome, Safari, Edge, Opera */
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+
+input[type=number] {
+    -moz-appearance: textfield;
 }
 
 #good {
@@ -93,39 +105,50 @@ input[type=range]:focus::-moz-range-track {
     grid-area: 4 / 1;
 }
 
+.vas-level {
+    margin-right: 50px;
+    justify-self: center;
+    background-color: #D2E8F2;
+    width: 70px;
+    height: 40px;
+    border: 1px solid #707070;
+    border-radius: 5px;
+    font-size: xx-large;
+    text-align: center;
+    grid-area: 4 / 2;
+}
+
 .submit {
     display: grid;
     justify-items: center;
 }
 
-.none {
-    background-color: #1FC752;
-    grid-area: 2 / 2;
-}
-
-.selected{
+.selected {
     opacity: 1;
     box-shadow: -2px 2px 5px black;
 }
 
+.none {
+    background-color: #1FC752;
+    grid-area: 2 / 3;
+}
+
 .mild {
     background-color: #97E265;
-    grid-area: 3 / 2;
+    grid-area: 3 / 3;
 }
 
 .moderate {
     background-color: #E2EC53;
-    grid-area: 4 / 2;
+    grid-area: 4 / 3;
 }
 
 .severe {
     background-color: #ECA451;
-    grid-area: 5 / 2;
+    grid-area: 5 / 3;
 }
 
 .worst {
     background-color: #EE4B4B;
-    grid-area: 6 / 2;
+    grid-area: 6 / 3;
 }
-
-

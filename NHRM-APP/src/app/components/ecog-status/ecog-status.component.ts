@@ -47,7 +47,7 @@ export class EcogStatusComponent implements OnInit {
       'value': this.status
     }
 
-    this.dataService.postMeasurementResult(measurementResult).catch((err) => console.log(err + " My ERR"));
+    this.dataService.postMeasurementResult(measurementResult).catch((err) => console.error(err + " ECOG ERR"));
   }
 
 }
