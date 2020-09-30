@@ -11,7 +11,7 @@ namespace NorthernHealthAPI.Models
         }
 
         public int MeasurementId { get; set; }
-        public int DataPointnumber { get; set; }
+        public int DataPointNumber { get; set; }
         public int UpperLimit { get; set; }
         public int LowerLimit { get; set; }
         public string Description { get; set; }

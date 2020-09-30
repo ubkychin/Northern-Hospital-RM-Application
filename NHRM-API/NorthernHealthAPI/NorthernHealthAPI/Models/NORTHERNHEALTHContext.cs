@@ -79,11 +79,11 @@ namespace NorthernHealthAPI.Models
 
             modelBuilder.Entity<MeasurementDataPoint>(entity =>
             {
-                entity.HasKey(e => new { e.MeasurementId, e.DataPointnumber });
+                entity.HasKey(e => new { e.MeasurementId, e.DataPointNumber });
 
                 entity.Property(e => e.MeasurementId).HasColumnName("measurementID");
 
-                entity.Property(e => e.DataPointnumber).HasColumnName("dataPointnumber");
+                entity.Property(e => e.DataPointNumber).HasColumnName("dataPointnumber");
 
                 entity.Property(e => e.Description)
                     .HasColumnName("description")
@@ -103,11 +103,11 @@ namespace NorthernHealthAPI.Models
 
             modelBuilder.Entity<MeasurementResult>(entity =>
             {
-                entity.HasKey(e => new { e.MeasurementId, e.DataPointnumber, e.HospitalNumber, e.CategoryId, e.DateTime });
+                entity.HasKey(e => new { e.MeasurementId, e.DataPointNumber, e.HospitalNumber, e.CategoryId, e.TimeStamp });
 
                 entity.Property(e => e.MeasurementId).HasColumnName("measurementID");
 
-                entity.Property(e => e.DataPointnumber).HasColumnName("dataPointnumber");
+                entity.Property(e => e.DataPointNumber).HasColumnName("dataPointnumber");
 
                 entity.Property(e => e.HospitalNumber)
                     .HasColumnName("hospitalNumber")
@@ -116,7 +116,7 @@ namespace NorthernHealthAPI.Models
 
                 entity.Property(e => e.CategoryId).HasColumnName("categoryID");
 
-                entity.Property(e => e.DateTime)
+                entity.Property(e => e.TimeStamp)
                     .HasColumnName("dateTime")
                     .HasColumnType("datetime");
 
@@ -130,7 +130,7 @@ namespace NorthernHealthAPI.Models
 
                 entity.HasOne(d => d.MeasurementDataPoint)
                     .WithMany(p => p.MeasurementResult)
-                    .HasForeignKey(d => new { d.MeasurementId, d.DataPointnumber })
+                    .HasForeignKey(d => new { d.MeasurementId, d.DataPointNumber })
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MeasurementResult_MeasurementDataPoint");
             });

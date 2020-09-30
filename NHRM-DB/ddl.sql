@@ -63,12 +63,12 @@ GO
 CREATE TABLE MeasurementDataPoint
 (
     measurementID INT NOT NULL,
-    dataPointnumber INT NOT NULL,
+    dataPointNumber INT NOT NULL,
     upperLimit INT NOT NULL,
     lowerLimit INT NOT NULL,
     [description] VARCHAR(50),
     CONSTRAINT FK_MeasurementDataPoint_Measurement FOREIGN KEY (measurementID) REFERENCES dbo.Measurement,
-    CONSTRAINT PK_MeasurementDataPoint PRIMARY KEY (measurementID,dataPointnumber)
+    CONSTRAINT PK_MeasurementDataPoint PRIMARY KEY (measurementID,dataPointNumber)
 )
 
 GO
@@ -114,10 +114,10 @@ CREATE TABLE MeasurementResult
     hospitalNumber VARCHAR(50) NOT NULL,
     categoryID INT NOT NULL,
     measurementID INT NOT NULL,
-    dataPointnumber INT NOT NULL,
-    [dateTime] DATETIME NOT NULL,
+    dataPointNumber INT NOT NULL,
+    [timeStamp] DATETIME NOT NULL,
     [value] INT NOT NULL,
-    CONSTRAINT FK_MeasurementResult_MeasurementDataPoint FOREIGN KEY (measurementID,dataPointnumber) REFERENCES dbo.MeasurementDataPoint,
+    CONSTRAINT FK_MeasurementResult_MeasurementDataPoint FOREIGN KEY (measurementID,dataPointNumber) REFERENCES dbo.MeasurementDataPoint,
     CONSTRAINT FK_MeasurementResult_PatientCategory FOREIGN KEY (categoryID,hospitalNumber) REFERENCES dbo.PatientCategory,
-    CONSTRAINT PK_MeasurementResult PRIMARY KEY (measurementID,dataPointnumber,hospitalNumber,categoryID,[dateTime])
+    CONSTRAINT PK_MeasurementResult PRIMARY KEY (measurementID,dataPointNumber,hospitalNumber,categoryID,[timeStamp])
 ) 
