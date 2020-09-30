@@ -13,9 +13,9 @@ namespace NorthernHealthAPI.Controllers
     [ApiController]
     public class MeasurementResultsController : ControllerBase
     {
-        private readonly NORTHERNHEALTHContext _context;
+        private readonly NHRMDBContext _context;
 
-        public MeasurementResultsController(NORTHERNHEALTHContext context)
+        public MeasurementResultsController(NHRMDBContext context)
         {
             _context = context;
         }

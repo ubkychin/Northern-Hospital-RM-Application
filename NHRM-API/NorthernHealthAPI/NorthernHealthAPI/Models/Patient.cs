@@ -25,7 +25,7 @@ namespace NorthernHealthAPI.Models
         public string HomeNumber { get; set; }
         public string CountryOfBirth { get; set; }
         public string PreferredLanguage { get; set; }
-        public string Password { get; set; }
+        public byte[] Password { get; set; }
         public string Salt { get; set; }
         public bool LivesAlone { get; set; }
 

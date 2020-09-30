@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace NorthernHealthAPI.Models
 {
-    public partial class NORTHERNHEALTHContext : DbContext
+    public partial class NHRMDBContext : DbContext
     {
-        public NORTHERNHEALTHContext()
+        public NHRMDBContext()
         {
         }
 
-        public NORTHERNHEALTHContext(DbContextOptions<NORTHERNHEALTHContext> options)
+        public NHRMDBContext(DbContextOptions<NHRMDBContext> options)
             : base(options)
         {
         }
@@ -36,9 +36,7 @@ namespace NorthernHealthAPI.Models
         {
             modelBuilder.Entity<Category>(entity =>
             {
-                entity.Property(e => e.CategoryId)
-                    .HasColumnName("categoryID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.CategoryId).HasColumnName("categoryID");
 
                 entity.Property(e => e.CategoryName)
                     .IsRequired()
@@ -67,9 +65,7 @@ namespace NorthernHealthAPI.Models
 
             modelBuilder.Entity<Measurement>(entity =>
             {
-                entity.Property(e => e.MeasurementId)
-                    .HasColumnName("measurementID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.MeasurementId).HasColumnName("measurementID");
 
                 entity.Property(e => e.MeasurementName)
                     .HasColumnName("measurementName")
@@ -83,7 +79,7 @@ namespace NorthernHealthAPI.Models
 
                 entity.Property(e => e.MeasurementId).HasColumnName("measurementID");
 
-                entity.Property(e => e.DataPointNumber).HasColumnName("dataPointnumber");
+                entity.Property(e => e.DataPointNumber).HasColumnName("dataPointNumber");
 
                 entity.Property(e => e.Description)
                     .HasColumnName("description")
@@ -107,7 +103,7 @@ namespace NorthernHealthAPI.Models
 
                 entity.Property(e => e.MeasurementId).HasColumnName("measurementID");
 
-                entity.Property(e => e.DataPointNumber).HasColumnName("dataPointnumber");
+                entity.Property(e => e.DataPointNumber).HasColumnName("dataPointNumber");
 
                 entity.Property(e => e.HospitalNumber)
                     .HasColumnName("hospitalNumber")
@@ -117,7 +113,7 @@ namespace NorthernHealthAPI.Models
                 entity.Property(e => e.CategoryId).HasColumnName("categoryID");
 
                 entity.Property(e => e.TimeStamp)
-                    .HasColumnName("dateTime")
+                    .HasColumnName("timeStamp")
                     .HasColumnType("datetime");
 
                 entity.Property(e => e.Value).HasColumnName("value");
@@ -190,7 +186,9 @@ namespace NorthernHealthAPI.Models
 
                 entity.Property(e => e.Password)
                     .IsRequired()
-                    .HasColumnName("password");
+                    .HasColumnName("password")
+                    .HasMaxLength(64)
+                    .IsFixedLength();
 
                 entity.Property(e => e.Postcode)
                     .IsRequired()
@@ -269,7 +267,9 @@ namespace NorthernHealthAPI.Models
 
                 entity.Property(e => e.Password)
                     .IsRequired()
-                    .HasColumnName("password");
+                    .HasColumnName("password")
+                    .HasMaxLength(64)
+                    .IsFixedLength();
 
                 entity.Property(e => e.Salt)
                     .IsRequired()
