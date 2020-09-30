@@ -18,7 +18,7 @@ namespace NorthernHealthAPI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<NORTHERNHEALTHContext>(opt => opt.UseSqlServer("Server=ALIENWARE\\MSSQLSERVER01;Database=NORTHERNHEALTH;Trusted_Connection=True;"));
+            services.AddDbContext<NORTHERNHEALTHContext>(opt => opt.UseSqlServer("Server=nhrmdb.cl06hulbojtt.us-east-1.rds.amazonaws.com,1433;Database=NHRMDB;User=admin;Password=heyletmein05;"));
             services.AddControllers();
             services.AddCors(options =>
             {
@@ -41,6 +41,7 @@ namespace NorthernHealthAPI
 
             app.UseCors();
 
+            //May need to configure middleware
             app.UseHttpsRedirection();
 
             app.UseRouting();
