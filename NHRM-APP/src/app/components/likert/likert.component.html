@@ -17,7 +17,7 @@
                         <figcaption>(Very Poor)</figcaption>
                     </div>
                 </figure>
-                <input type="radio" name="feeling" value="Very poor" formControlName="feeling"/>
+                <input type="radio" name="feeling" value="1" formControlName="feeling"/>
             </div>
     
             <div class="user-feeling">
@@ -27,7 +27,7 @@
                         <figcaption>(Poor)</figcaption>
                     </div>
                 </figure>
-                <input type="radio" name="feeling" value="Poor" formControlName="feeling"/>
+                <input type="radio" name="feeling" value="2" formControlName="feeling"/>
             </div>
     
             <div class="user-feeling">
@@ -37,7 +37,7 @@
                         <figcaption>(Average)</figcaption>
                     </div>
                 </figure>
-                <input type="radio" name="feeling" value="Average" formControlName="feeling"/>
+                <input type="radio" name="feeling" value="3" formControlName="feeling"/>
             </div>
     
     
@@ -48,7 +48,7 @@
                         <figcaption>(Good)</figcaption>
                     </div>
                 </figure>
-                <input type="radio" name="feeling" value="Good" formControlName="feeling" />
+                <input type="radio" name="feeling" value="4" formControlName="feeling" />
             </div>
     
             <div class="user-feeling">
@@ -58,14 +58,11 @@
                         <figcaption>(Excellent)</figcaption>
                     </div>
                 </figure>  
-                <input type="radio" name="feeling" value="Excellent" formControlName="feeling" />
+                <input type="radio" name="feeling" value="5" formControlName="feeling" />
             </div>
         </fieldset>
-    
-    
+
         <button type="submit" class="btn submit-button">Submit</button>
-    
-        <pre>{{form.value | json}}</pre>  
-    
+
     </form>
 </article>

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
+
 import noUiSlider from 'nouislider';
 import 'nouislider/distribute/nouislider.css';
 
@@ -14,11 +15,11 @@ export class QolVasComponent implements OnInit {
 
   currentHealthScore: Number;
   vasSlider: noUiSlider.Instance;
+  isValid: Boolean = true;
 
 
 
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     
@@ -47,11 +48,24 @@ export class QolVasComponent implements OnInit {
 
  
   updateSlider(score) {
+
+    var submitButton = document.querySelector('.submit-button');
+
     if(score <= 100 && score >= 0) {
       this.vasSlider.noUiSlider.set(score);
+
+      (<HTMLInputElement> submitButton).disabled = false;
+      submitButton.classList.remove("disable-button");
+      this.isValid = true;
+
     } else {
       this.vasSlider.noUiSlider.set(0);
+
+      this.isValid = false;
+      (<HTMLInputElement> submitButton).disabled = true;
+      submitButton.classList.add("disable-button");
+
+      console.log(submitButton);
     }
   }
-
 }

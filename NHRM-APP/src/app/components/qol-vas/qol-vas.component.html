@@ -9,6 +9,7 @@
     <input type="number" #score id="health-score" (keyup)="updateSlider(score.value)" onkeypress="return event.charCode >= 48 && event.charCode <= 57 && console.log(event)"/>
     
 
+    <p class="alert" *ngIf="!isValid">Please enter in a number between 0 - 100.</p>
 
     <div class="vas-slider"></div> 
 

@@ -5,14 +5,12 @@
 }
 
 .main-heading {
-
     margin: 30px auto;
 }
 
 .sub-heading{
     max-width: 600px;
     margin: 30px auto;
-
     padding: 0px 40px;
 }
 
@@ -41,6 +39,13 @@ input[type="number"] {
     font-weight: bold;
 }
 
+
+.alert {
+    font-weight: bold;
+    color: red;
+    margin: 20px 0px;
+}
+
 /* Remove the arrows/spinners */
 
 
@@ -61,4 +66,9 @@ input[type="number"] {
 
 @media screen and (min-width: 650px) {
 
+}
+
+.disable-button {
+    opacity: 0.7;
+    cursor: no-drop;
 }
