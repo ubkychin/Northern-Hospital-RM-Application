@@ -15,14 +15,18 @@ export class AppComponent {
   unlistener: () => void;
   toggle: boolean = true;
   authorised: boolean;
+  logedIn: boolean;
   isRoot: boolean;
 
   constructor(private dataService: DataService, private router: Router,
     private location: Location, private renderer: Renderer2) {
     this.dataService.termsAcceptance.subscribe(data => {
-      this.authorised = /* data; */true;
+      this.authorised = data;
     })
-
+    this.dataService.logedIn.subscribe(data => {
+      this.logedIn = data;
+    })
+    
     this.router.events.subscribe(event => {
       if (this.location.path() !== '/home')
         this.isRoot = false;

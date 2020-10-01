@@ -11,10 +11,12 @@ export class DataService {
 
   apiURL = "https://localhost:5001/api";;
   termsAcceptance: BehaviorSubject<boolean>;
+  logedIn: BehaviorSubject<boolean>;
   patient: BehaviorSubject<Patient>;
 
   constructor(private _http: HttpClient) {
     this.termsAcceptance = new BehaviorSubject(null);
+    this.logedIn = new BehaviorSubject(null);
 
     this.getPatientDetails();
 

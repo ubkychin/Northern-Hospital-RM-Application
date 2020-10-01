@@ -1,5 +1,7 @@
-<app-welcome *ngIf="!this.authorised"></app-welcome>
-<div *ngIf="this.authorised">
+<app-login *ngIf="!this.logedIn && this.authorised"></app-login>
+<app-welcome *ngIf="!this.authorised && !this.logedIn"></app-welcome> 
+
+<div *ngIf="this.authorised && this.logedIn">
     <header>
         <div class="blue-bar top">
             <p *ngIf="!isRoot" (click)="goBack()">

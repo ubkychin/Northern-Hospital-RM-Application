@@ -76,6 +76,7 @@ input[type=range]::-moz-range-thumb {
     font-size: xx-large;
     text-align: center;
     grid-area: 4/1;
+    padding: 0;
 }
 
 .slider-and-ticks {

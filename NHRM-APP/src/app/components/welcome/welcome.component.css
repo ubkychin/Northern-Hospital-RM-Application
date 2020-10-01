@@ -41,15 +41,6 @@ p.warning {
     margin-left: 10px;
 }
 
-input#terms-and-conditions {
-    font-size: 25px;
-    padding: 10px;
-}
-
-input#privacy-message {
-    font-size: 35px;
-}
-
 .input#privacy-message, input.submit-button {
     padding: 10px;
 }
