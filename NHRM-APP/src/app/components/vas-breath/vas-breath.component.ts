@@ -44,9 +44,9 @@ export class VasBreathComponent implements OnInit {
       'dataPointNumber': 1,
       'measurementId': 3,
       'timeStamp': new Date(),
-      'value': this.status
+      'value': this.status * 10
     }
-    console.log(measurementResult)
+    
     this.dataService.postMeasurementResult(measurementResult).catch((err) => console.error(err + " Breath ERR"));
   }
 }

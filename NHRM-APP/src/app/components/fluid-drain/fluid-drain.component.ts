@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MeasurementResult } from 'src/app/models/measurement-result';
+import { Patient } from 'src/app/models/patient';
+import { DataService } from 'src/app/services/data.service';
 import { FluidDrainVideoComponent } from '../patient-resources/resources/fluid-drain-video/fluid-drain-video.component';
 
 @Component({
@@ -11,20 +14,37 @@ export class FluidDrainComponent implements OnInit {
 
   dialogConfig: MatDialogConfig;
   fluid: number;
+  patient: Patient;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private dataService: DataService) {
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
+    dataService.patient.subscribe(data => { this.patient = data});
   }
 
   ngOnInit(): void {
   }
 
-  fluidDrained() {
-    console.log(this.fluid);
-  }
-
   infoDialog() {
     this.dialog.open(FluidDrainVideoComponent, this.dialogConfig);
+  }
+
+  recordFluid(){
+    console.log(this.patient)
+    console.log(this.fluid);
+
+    let measurementResult: MeasurementResult = {
+      'hospitalNumber': this.patient.hospitalNumber,
+      'categoryId': this.patient.categoryId,
+      'dataPointNumber': 1,
+      'measurementId': 5,
+      'timeStamp': new Date(),
+      'value': this.fluid
+    }
+
+    this.dataService.postMeasurementResult(measurementResult).catch((err) => console.error(err + " Fluid ERR"));
+  }
+  status(status: any) {
+    throw new Error('Method not implemented.');
   }
 }

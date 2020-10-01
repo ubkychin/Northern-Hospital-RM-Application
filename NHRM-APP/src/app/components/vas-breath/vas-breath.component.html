@@ -8,13 +8,13 @@
 <div class="container">
     <p id="good">No Breathlessness</p>
     <p id="bad">Worst Possible Breathlessness</p>
-    <input type="range" id="slider" (input)="breathStatus(slider.value)" name="vas-breath" step=".1" min="0" max="10" #slider value="5">
+    <input type="range" id="slider" (input)="breathStatus(slider.value)" name="vas-breath" step="1" min="0" max="100" #slider value="5">
     <input placeholder="0" min="0" max="10" maxlength="2" type="number" class="vas-level" [(ngModel)]="this.status">
-    <div class="none box" [ngClass]="{'selected': this.status >= 0 && this.status <= 2}"> None</div>
-    <div class="mild box" [ngClass]="{'selected': this.status >= 2.1 && this.status <= 4}">Mild</div>
-    <div class="moderate box" [ngClass]="{'selected': this.status >= 4.1 && this.status <= 6}">Moderate</div>
-    <div class="severe box" [ngClass]="{'selected': this.status >= 6.1 && this.status <= 8}">Severe</div>
-    <div class="worst box" [ngClass]="{'selected': this.status >= 8.1 && this.status <= 10}">Worst Possible</div>
+    <div class="none box" [ngClass]="{'selected': this.status >= 0 && this.status <= 20}"> None</div>
+    <div class="mild box" [ngClass]="{'selected': this.status >= 21 && this.status <= 40}">Mild</div>
+    <div class="moderate box" [ngClass]="{'selected': this.status >= 41 && this.status <= 60}">Moderate</div>
+    <div class="severe box" [ngClass]="{'selected': this.status >= 61 && this.status <= 80}">Severe</div>
+    <div class="worst box" [ngClass]="{'selected': this.status >= 81 && this.status <= 100}">Worst Possible</div>
 </div>
 <div class="submit">
     <app-submit-button name="Submit" (click)="recordVASBreath()"></app-submit-button>

@@ -2,7 +2,7 @@
     display: grid;
     justify-content: center;
     align-items: center;
-    grid-template: repeat(5, 65px) / 150px 150px;
+    grid-template: repeat(7, 50px) / 150px 150px;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -22,7 +22,7 @@ input[type=number] {
 
 input[type='range'] {
     overflow: hidden;
-    width: 250px;
+    width: 280px;
     height: 53px;
     -webkit-appearance: none;
     background-color: #c7c7c7;
@@ -40,7 +40,7 @@ input[type='range']::-webkit-slider-thumb {
     -webkit-appearance: none;
     cursor: pointer;
     background: #D7374B;
-    box-shadow: -125px 0 0 125px #005cb986;
+    box-shadow: -140px 0 0 140px #005cb986;
 }
 
 /** Firefox*/
@@ -69,22 +69,22 @@ input[type=range]::-moz-range-thumb {
 .fluid-input {
     justify-self: center;
     background-color: #D2E8F2;
-    width: 120px;
+    width: 100px;
     height: 60px;
     border: 1px solid #707070;
     border-radius: 5px;
     font-size: xx-large;
     text-align: center;
-    grid-area: 3/1;
+    grid-area: 4/1;
 }
 
 .slider-and-ticks {
     justify-self: center;
-    grid-area: 3/2;
+    grid-area: 4/2;
     transform: rotate(270deg);
     border: 1px solid black;
     height: 55px;
-    width: 252px;
+    width: 282px;
 }
 
 datalist {
@@ -96,7 +96,7 @@ datalist {
 
 .upper-lim {
     font-weight: bold;
-    align-self: start;
+    align-self: flex-start;
     justify-self: center;
     grid-area: 1 / 2;
 }
@@ -105,5 +105,5 @@ datalist {
     font-weight: bold;
     justify-self: center;
     align-self: flex-end;
-    grid-area: 5 / 2;
+    grid-area: 7 / 2;
 }

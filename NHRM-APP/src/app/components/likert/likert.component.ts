@@ -35,12 +35,12 @@ export class LikertComponent implements OnInit {
     let measurementResult = {
       'hospitalNumber': this.patient.hospitalNumber,
       'categoryId': this.patient.categoryId,
-      'measurementId': 2,
       'dataPointNumber': 1,
+      'measurementId': 2,
       'timeStamp': new Date(),
       'value': Number(this.form.value["feeling"])
     };
 
-    this.dataService.postMeasurementResult(measurementResult);
+    this.dataService.postMeasurementResult(measurementResult).catch((err) => console.error(err + " Likert ERR"));
   }
 }

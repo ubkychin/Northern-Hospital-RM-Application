@@ -23,7 +23,7 @@ input[type=range] {
     -webkit-appearance: none;
     touch-action: none;
     transform: rotate(90deg);
-    width: 250px;
+    width: 280px;
 }
 
 input[type=range]::-moz-range-track {
@@ -75,14 +75,14 @@ input[type=range]:focus::-moz-range-track {
     background: #005CB9;
 }
 
-/* Chrome, Safari, Edge, Opera */
+/* Remove Spinners Chrome, Safari, Edge, Opera */
 
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
-/* Firefox */
+/* Remove Spinners Firefox */
 
 input[type=number] {
     -moz-appearance: textfield;
