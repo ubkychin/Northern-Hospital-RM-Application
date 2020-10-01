@@ -26,7 +26,7 @@ export class EcogStatusComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ecogStatus(value: any) {
+  ecogStatus(value: number) {
     this.status = value;
   }
 

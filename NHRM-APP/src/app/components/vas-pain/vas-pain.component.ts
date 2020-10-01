@@ -19,6 +19,7 @@ export class VasPainComponent implements OnInit {
   constructor(public dialog: MatDialog, private dataService: DataService) { 
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
+    dataService.patient.subscribe(data => { this.patient = data });
   }
 
   ngOnInit(): void {

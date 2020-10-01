@@ -26,8 +26,8 @@ export class VasBreathComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  breathStatus(value: number) {
-    this.status = value;
+  breathStatus(value: string) {
+    this.status = parseInt(value) ;
   }
 
   infoDialog() {
@@ -35,7 +35,7 @@ export class VasBreathComponent implements OnInit {
   }
 
   recordVASBreath() {
-    console.log(this.status)
+    console.log(this.status )
     console.log(this.patient)
 
     let measurementResult: MeasurementResult = {
@@ -44,7 +44,7 @@ export class VasBreathComponent implements OnInit {
       'dataPointNumber': 1,
       'measurementId': 3,
       'timeStamp': new Date(),
-      'value': this.status * 10
+      'value': this.status
     }
     
     this.dataService.postMeasurementResult(measurementResult).catch((err) => console.error(err + " Breath ERR"));

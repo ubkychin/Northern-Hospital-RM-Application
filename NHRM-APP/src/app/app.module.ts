@@ -20,7 +20,6 @@ import { LikertComponent } from './components/likert/likert.component';
 import { EcogStatusComponent } from './components/ecog-status/ecog-status.component';
 import { PatientResourcesComponent } from './components/patient-resources/patient-resources.component';
 import { InfoBarComponent } from './components/info-bar/info-bar.component';
-import { SubmitButtonComponent } from './components/submit-button/submit-button.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
@@ -48,7 +47,6 @@ import { QolVasComponent } from './components/qol-vas/qol-vas.component';
     EcogStatusComponent,
     PatientResourcesComponent,
     InfoBarComponent,
-    SubmitButtonComponent,
     PatientDetailsComponent,
     TermsAndConditionsComponent,
     PrivacyStatementComponent,

@@ -25,5 +25,5 @@
     <input type="radio" name="ecog" (click)="ecogStatus(4)">
 </div>
 <div class="submit">
-    <app-submit-button name="Submit" (click)="recordECOG()"></app-submit-button>
+    <button class="submit-button disabled-btn" [ngClass]="{'disabled-btn': !this.status}" (click)="recordECOG()" [disabled]="!this.status">Submit</button>
 </div>
