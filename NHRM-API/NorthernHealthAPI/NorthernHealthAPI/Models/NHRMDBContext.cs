@@ -28,7 +28,7 @@ namespace NorthernHealthAPI.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=nhrmdb.cl06hulbojtt.us-east-1.rds.amazonaws.com,1433;Database=NHRMDB;User=admin;Password=heyletmein05;");
+                optionsBuilder.UseSqlServer(Environment.GetEnvironmentVariable("NHRMConnection"));
             }
         }
 

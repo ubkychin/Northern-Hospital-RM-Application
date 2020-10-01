@@ -72,6 +72,7 @@ namespace NorthernHealthAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<MeasurementResult>> PostMeasurementResult(MeasurementResult measurementResult)
         {
+
             _context.MeasurementResult.Add(measurementResult);
             try
             {

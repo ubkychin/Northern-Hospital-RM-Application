@@ -9,16 +9,18 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NorthernHealthAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace NorthernHealthAPI
 {
     public class Startup
     {
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<NHRMDBContext>(opt => opt.UseSqlServer("Server=nhrmdb.cl06hulbojtt.us-east-1.rds.amazonaws.com,1433;Database=NHRMDB;User=admin;Password=heyletmein05;"));
+            services.AddDbContext<NHRMDBContext>(opt => opt.UseSqlServer(Environment.GetEnvironmentVariable("NHRMConnection")));
             services.AddControllers();
             services.AddCors(options =>
             {
