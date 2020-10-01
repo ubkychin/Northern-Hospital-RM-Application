@@ -1,15 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NorthernHealthAPI.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace NorthernHealthAPI
 {
@@ -20,6 +15,8 @@ namespace NorthernHealthAPI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            //Add JWT Middleware when ready
+
             services.AddDbContext<NHRMDBContext>(opt => opt.UseSqlServer(Environment.GetEnvironmentVariable("NHRMConnection")));
             services.AddControllers();
             services.AddCors(options =>
@@ -43,7 +40,7 @@ namespace NorthernHealthAPI
 
             app.UseCors();
 
-            //May need to configure middleware
+            //May need to configure middleware for HTTPS redirection
             app.UseHttpsRedirection();
 
             app.UseRouting();
