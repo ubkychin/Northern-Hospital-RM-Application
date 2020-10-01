@@ -16,8 +16,10 @@ namespace NorthernHealthAPI
         public void ConfigureServices(IServiceCollection services)
         {
             //Add JWT Middleware when ready
+            JWT.JWTMiddleware.ConfigureJWT(services);
 
             services.AddDbContext<NHRMDBContext>(opt => opt.UseSqlServer(Environment.GetEnvironmentVariable("NHRMConnection")));
+
             services.AddControllers();
             services.AddCors(options =>
             {
