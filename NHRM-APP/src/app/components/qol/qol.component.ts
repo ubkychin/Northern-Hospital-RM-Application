@@ -76,7 +76,7 @@ export class QolComponent implements OnInit {
   }
 
   submit() {
-    alert(JSON.stringify(this.model));
+    //alert(JSON.stringify(this.model));
 
     this.currentCategory += 1;
     this.displayQuestions();
@@ -101,12 +101,13 @@ export class QolComponent implements OnInit {
         'value': this.form.value[categories[i]]
       };
 
-      this.dataService.postMeasurementResult(patientMeasurement).catch((err) => console.log(err + "Quality of Life Error"));
+      this.dataService.postMeasurementResult(patientMeasurement)
+      .then(() => this.router.navigate(['/qol-vas']))
+      .catch((err) => console.log(err + "Quality of Life Error"));
     }
 
-
     //Submit the data 
-    this.router.navigateByUrl('/qol-vas');
+    //this.router.navigateByUrl('/qol-vas');
 
   }
 

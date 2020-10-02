@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import noUiSlider from 'nouislider';
 import 'nouislider/distribute/nouislider.css';
 import {Patient} from 'src/app/models/patient';
@@ -20,7 +21,7 @@ export class QolVasComponent implements OnInit {
 
   patient: Patient;
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private router: Router) {
     dataService.patient.subscribe(data => {this.patient = data});
   }
 
@@ -79,6 +80,8 @@ export class QolVasComponent implements OnInit {
       'value': Number(this.vasSlider.noUiSlider.get())
     };
 
-    this.dataService.postMeasurementResult(measurementResult).catch((err) => console.log(err + "Quality of Life VAS Scale Error"));
+    this.dataService.postMeasurementResult(measurementResult)
+    .then(() => this.router.navigate(['/survey-nav']))
+    .catch((err) => console.log(err + "Quality of Life VAS Scale Error"));
   }
 }

@@ -4,6 +4,7 @@ import {FormlyFieldConfig, FormlyFormOptions} from '@ngx-formly/core';
 import {DataService} from 'src/app/services/data.service';
 import {Patient} from 'src/app/models/patient';
 import { throwMatDialogContentAlreadyAttachedError } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class LikertComponent implements OnInit {
 
   patient: Patient;
 
-  constructor(fb: FormBuilder, private dataService: DataService) {
+  constructor(fb: FormBuilder, private dataService: DataService, private router: Router) {
     this.form = fb.group({
       feeling: ['', Validators.required]
     });
@@ -41,6 +42,8 @@ export class LikertComponent implements OnInit {
       'value': Number(this.form.value["feeling"])
     };
 
-    this.dataService.postMeasurementResult(measurementResult).catch((err) => console.error(err + " Likert ERR"));
+    this.dataService.postMeasurementResult(measurementResult)
+    .then(() => this.router.navigate(['/survey-nav']))
+    .catch((err) => console.error(err + " Likert ERR"));
   }
 }

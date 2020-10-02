@@ -4,6 +4,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Patient } from 'src/app/models/patient';
 import { DataService } from 'src/app/services/data.service';
 import { MeasurementResult } from 'src/app/models/measurement-result';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vas-breath',
@@ -16,7 +17,7 @@ export class VasBreathComponent implements OnInit {
   status: number;
   patient: Patient;
 
-  constructor(public dialog: MatDialog, private dataService: DataService) {
+  constructor(public dialog: MatDialog, private dataService: DataService, private router: Router) {
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
     dataService.patient.subscribe(data => { this.patient = data });
@@ -47,6 +48,8 @@ export class VasBreathComponent implements OnInit {
       'value': this.status
     }
     
-    this.dataService.postMeasurementResult(measurementResult).catch((err) => console.error(err + " Breath ERR"));
+    this.dataService.postMeasurementResult(measurementResult)
+    .then(() => this.router.navigate(['/survey-nav']))
+    .catch((err) => console.error(err + " Breath ERR"));
   }
 }

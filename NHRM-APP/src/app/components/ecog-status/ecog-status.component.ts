@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { MeasurementResult } from 'src/app/models/measurement-result';
 import { Patient } from 'src/app/models/patient';
 import { DataService } from 'src/app/services/data.service';
@@ -17,10 +18,10 @@ export class EcogStatusComponent implements OnInit {
   patient: Patient;
 
 
-  constructor(public dialog: MatDialog, private dataService: DataService) { 
+  constructor(public dialog: MatDialog, private dataService: DataService, private router: Router) {
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
-    dataService.patient.subscribe(data => { this.patient = data});
+    dataService.patient.subscribe(data => { this.patient = data });
   }
 
   ngOnInit(): void {
@@ -30,11 +31,11 @@ export class EcogStatusComponent implements OnInit {
     this.status = value;
   }
 
-  openDialog(){
+  openDialog() {
     this.dialog.open(EcogStatusDialogComponent, this.dialogConfig);
   }
 
-  recordECOG(){
+  recordECOG() {
     console.log(this.patient)
     console.log(this.status);
 
@@ -47,7 +48,9 @@ export class EcogStatusComponent implements OnInit {
       'value': this.status
     }
 
-    this.dataService.postMeasurementResult(measurementResult).catch((err) => console.error(err + " ECOG ERR"));
+    this.dataService.postMeasurementResult(measurementResult)
+    .then(() => this.router.navigate(['/survey-nav']))
+    .catch((err) => console.error(err + " ECOG ERR"));
   }
 
 }

@@ -21,10 +21,10 @@ export class AppComponent {
   constructor(private dataService: DataService, private router: Router,
     private location: Location, private renderer: Renderer2) {
     this.dataService.termsAcceptance.subscribe(data => {
-      this.authorised = data;
+      this.authorised = true; //data;
     })
     this.dataService.logedIn.subscribe(data => {
-      this.logedIn = data;
+      this.logedIn = true; //data;
     })
     
     this.router.events.subscribe(event => {

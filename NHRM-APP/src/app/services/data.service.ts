@@ -28,11 +28,11 @@ export class DataService {
       this._http.post(this.apiURL + "/MeasurementResults",
         measurementResult).subscribe(
           res => {
-            console.log("Resolved")
+            console.log("MR Resolved")
             resolve(res);
           },
           err => {
-            console.log("Error")
+            console.error("MR Error")
             reject(err);
           });
     })
