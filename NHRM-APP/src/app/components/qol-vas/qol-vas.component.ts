@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-
-
 import noUiSlider from 'nouislider';
 import 'nouislider/distribute/nouislider.css';
+import {Patient} from 'src/app/models/patient';
+import {DataService} from 'src/app/services/data.service';
+
 
 @Component({
   selector: 'app-qol-vas',
@@ -17,9 +18,11 @@ export class QolVasComponent implements OnInit {
   vasSlider: noUiSlider.Instance;
   isValid: Boolean = true;
 
+  patient: Patient;
 
-
-  constructor() {}
+  constructor(private dataService: DataService) {
+    dataService.patient.subscribe(data => {this.patient = data});
+  }
 
   ngOnInit(): void {
     
@@ -42,8 +45,7 @@ export class QolVasComponent implements OnInit {
         },
       });
 
-
-      this.vasSlider.setAttribute('disabled', true);
+      this.vasSlider.setAttribute('disabled', true);      
   }
 
  
@@ -64,8 +66,19 @@ export class QolVasComponent implements OnInit {
       this.isValid = false;
       (<HTMLInputElement> submitButton).disabled = true;
       submitButton.classList.add("disable-button");
-
-      console.log(submitButton);
     }
+  }
+
+  submitData() {
+    let measurementResult = {
+      'hospitalNumber': this.patient.hospitalNumber,
+      'categoryId': this.patient.categoryId,
+      'dataPointNumber': 6,
+      'measurementId': 6,
+      'timeStamp': new Date(),
+      'value': Number(this.vasSlider.noUiSlider.get())
+    };
+
+    this.dataService.postMeasurementResult(measurementResult).catch((err) => console.log(err + "Quality of Life VAS Scale Error"));
   }
 }

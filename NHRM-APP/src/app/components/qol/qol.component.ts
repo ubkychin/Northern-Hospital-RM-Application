@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormArray, FormGroup} from '@angular/forms';
 import {FormlyFieldConfig, FormlyFormOptions} from '@ngx-formly/core';
 import {Router} from '@angular/router';
+import {Patient} from 'src/app/models/patient';
+import {DataService} from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-qol',
@@ -11,6 +13,7 @@ import {Router} from '@angular/router';
 export class QolComponent implements OnInit {
 
 
+  public patient: Patient;
 
   model: any = {};
   
@@ -45,8 +48,8 @@ export class QolComponent implements OnInit {
   form = new FormGroup({});
   currentCategory: number;
 
-  constructor(private router: Router) {
-
+  constructor(private router: Router, private dataService: DataService) {
+    dataService.patient.subscribe(data => {this.patient = data});
   }
 
   displayQuestions() {
@@ -85,8 +88,24 @@ export class QolComponent implements OnInit {
 
   submitSurvey() {
 
-    //Submit the data 
+    let categories = Object.keys(this.form.value);
+    
+    for(let i = 0; i < categories.length; i++) {
 
+      let patientMeasurement = {
+        'hospitalNumber': this.patient.hospitalNumber,
+        'categoryId': this.patient.categoryId,
+        'dataPointNumber': i + 1,
+        'measurementId': 6,
+        'timeStamp': new Date(),
+        'value': this.form.value[categories[i]]
+      };
+
+      this.dataService.postMeasurementResult(patientMeasurement).catch((err) => console.log(err + "Quality of Life Error"));
+    }
+
+
+    //Submit the data 
     this.router.navigateByUrl('/qol-vas');
 
   }
