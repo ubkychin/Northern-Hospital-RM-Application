@@ -17,6 +17,7 @@ namespace NorthernHealthAPI.Models
 
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<CategoryMeasurement> CategoryMeasurement { get; set; }
+        public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<Measurement> Measurement { get; set; }
         public virtual DbSet<MeasurementDataPoint> MeasurementDataPoint { get; set; }
         public virtual DbSet<MeasurementResult> MeasurementResult { get; set; }
@@ -61,6 +62,11 @@ namespace NorthernHealthAPI.Models
                     .WithMany()
                     .HasForeignKey(d => d.MeasurementId)
                     .HasConstraintName("FK_CategoryMeasurement_Measurement");
+            });
+
+            modelBuilder.Entity<Login>(entity =>
+            {
+                entity.HasNoKey();
             });
 
             modelBuilder.Entity<Measurement>(entity =>
