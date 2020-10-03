@@ -16,6 +16,8 @@ article {
     display: flex;
     flex-direction: column;
     padding: 50px 15px;
+
+    max-width: 1400px;
 }
 
 .user-feeling {
@@ -54,4 +56,17 @@ article {
     .form {
         padding: 80px;
     }
+}
+
+
+@media screen and (min-width: 800px) {
+    .user-feeling{
+        display: inline-block;
+        padding: 30px;
+    }
+
+    .user-feeling figure {
+        padding: 20px;
+    }
+
 }
