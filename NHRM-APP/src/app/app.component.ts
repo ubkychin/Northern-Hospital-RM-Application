@@ -2,6 +2,7 @@ import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { DataService } from './services/data.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
@@ -19,20 +20,22 @@ export class AppComponent {
   isRoot: boolean;
 
   constructor(private dataService: DataService, private router: Router,
-    private location: Location, private renderer: Renderer2) {
+    private location: Location, private renderer: Renderer2,
+    private spinner: NgxSpinnerService) {
     this.dataService.termsAcceptance.subscribe(data => {
       this.authorised = true; //data;
     })
     this.dataService.logedIn.subscribe(data => {
       this.logedIn = true; //data;
     })
-    
     this.router.events.subscribe(event => {
       if (this.location.path() !== '/home')
         this.isRoot = false;
       else
         this.isRoot = true;
     })
+
+    this.loadingSpinner();
   }
 
   goBack() {
@@ -47,7 +50,17 @@ export class AppComponent {
       if (e.target != this.toggleNav.nativeElement) {
         this.toggle = true
         this.unlistener();
-      } 
+      }
     })
+  }
+
+  loadingSpinner() {
+    this.dataService.loading.subscribe((value) => {
+      if (value) {
+        this.spinner.show();
+      } else {
+        this.spinner.hide();
+      }
+    });
   }
 }

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +8,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClient, HttpClientModule, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { LoginComponent } from './components/login/login.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
@@ -69,6 +70,7 @@ export function tokenGetter() {
     FormsModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    NgxSpinnerModule,
     HttpClientModule,
     JwtModule.forRoot({
       config: {
@@ -78,7 +80,8 @@ export function tokenGetter() {
     })
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {
   constructor(library: FaIconLibrary) {

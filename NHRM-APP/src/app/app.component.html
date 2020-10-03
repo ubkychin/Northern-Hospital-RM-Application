@@ -1,5 +1,5 @@
 <app-login *ngIf="!this.logedIn && this.authorised"></app-login>
-<app-welcome *ngIf="!this.authorised && !this.logedIn"></app-welcome> 
+<app-welcome *ngIf="!this.authorised && !this.logedIn"></app-welcome>
 
 <div *ngIf="this.authorised && this.logedIn">
     <header>
@@ -11,29 +11,32 @@
 
         <div class="nh-logo"></div>
         <!-- Navbar -->
-        <nav  class="navbar">
-                <a id="home" routerLink="home">
-                    <fa-icon  [icon]="['fas', 'home']" transform="grow-15"></fa-icon>
-                </a>
+        <nav class="navbar">
+            <a id="home" routerLink="home">
+                <fa-icon [icon]="['fas', 'home']" transform="grow-15"></fa-icon>
+            </a>
 
-                <a  id="bars" (click)="dropdown()">
-                    <i #bars class="fa fa-bars"></i>
-                    <!-- <fa-icon [icon]="['fas', 'bars']" transform="grow-15"></fa-icon> -->
-                </a>
-                
-                <div class="dropdown" [ngStyle]=" {'display' : this.toggle ? 'none' : 'block'}">
-                    <div routerLink="patient-resources">Patient Resources</div>
-                    <div routerLink="patient-details">Patient Details</div>
-                    <div routerLink="survey-nav">Record Status</div>
-                    <div routerLink="patient-details">Account Settings</div>
-                    <div routerLink="patient-details">Patient Surveys</div>
-                    <div routerLink="patient-details">Contact Us</div>
-                </div>
+            <a id="bars" (click)="dropdown()">
+                <i #bars class="fa fa-bars"></i>
+                <!-- <fa-icon [icon]="['fas', 'bars']" transform="grow-15"></fa-icon> -->
+            </a>
+
+            <div class="dropdown" [ngStyle]=" {'display' : this.toggle ? 'none' : 'block'}">
+                <div routerLink="patient-resources">Patient Resources</div>
+                <div routerLink="patient-details">Patient Details</div>
+                <div routerLink="survey-nav">Record Status</div>
+                <div routerLink="patient-details">Account Settings</div>
+                <div routerLink="patient-details">Patient Surveys</div>
+                <div routerLink="patient-details">Contact Us</div>
+            </div>
         </nav>
 
     </header>
     <div class="middle-space">
-        <router-outlet></router-outlet>
+        <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#005CB9" type="ball-clip-rotate-multiple" [fullScreen]="true">
+            <p style="color: white"> Waiting ... </p>
+            </ngx-spinner>
+            <router-outlet></router-outlet>
     </div>
     <div class="space"></div>
     <footer class="blue-bar bottom"></footer>

@@ -28,7 +28,7 @@ export class VasBreathComponent implements OnInit {
   }
 
   breathStatus(value: string) {
-    this.status = parseInt(value) ;
+    this.status = parseInt(value);
   }
 
   infoDialog() {
@@ -36,7 +36,7 @@ export class VasBreathComponent implements OnInit {
   }
 
   recordVASBreath() {
-    console.log(this.status )
+    console.log(this.status)
     console.log(this.patient)
 
     let measurementResult: MeasurementResult = {
@@ -47,9 +47,13 @@ export class VasBreathComponent implements OnInit {
       'timeStamp': new Date(),
       'value': this.status
     }
-    
+
     this.dataService.postMeasurementResult(measurementResult)
-    .then(() => this.router.navigate(['/survey-nav']))
-    .catch((err) => console.error(err + " Breath ERR"));
+      .then(() => this.router.navigate(['/survey-nav']))
+      .catch((err) => console.error(err + " Breath ERR"))
+      .finally(() => {
+        console.log("Finalized");
+        this.dataService.loading.next(false);
+      });
   }
 }

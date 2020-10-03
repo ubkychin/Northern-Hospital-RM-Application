@@ -1,11 +1,10 @@
 import { AfterContentInit, AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {FormlyFieldConfig, FormlyFormOptions} from '@ngx-formly/core';
-import {DataService} from 'src/app/services/data.service';
-import {Patient} from 'src/app/models/patient';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
+import { DataService } from 'src/app/services/data.service';
+import { Patient } from 'src/app/models/patient';
 import { throwMatDialogContentAlreadyAttachedError } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-likert',
@@ -15,9 +14,7 @@ import { Router } from '@angular/router';
 export class LikertComponent implements OnInit {
 
   model: any = {};
-
   form: FormGroup;
-
   patient: Patient;
 
   constructor(fb: FormBuilder, private dataService: DataService, private router: Router) {
@@ -25,7 +22,7 @@ export class LikertComponent implements OnInit {
       feeling: ['', Validators.required]
     });
 
-    dataService.patient.subscribe(data => {this.patient = data});
+    dataService.patient.subscribe(data => { this.patient = data });
   }
 
   ngOnInit(): void {
@@ -43,7 +40,11 @@ export class LikertComponent implements OnInit {
     };
 
     this.dataService.postMeasurementResult(measurementResult)
-    .then(() => this.router.navigate(['/survey-nav']))
-    .catch((err) => console.error(err + " Likert ERR"));
+      .then(() => this.router.navigate(['/survey-nav']))
+      .catch((err) => console.error(err + " Likert ERR"))
+      .finally(() => {
+        console.log("Finalized");
+        this.dataService.loading.next(false);
+      });
   }
 }

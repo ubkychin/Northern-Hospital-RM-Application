@@ -20,7 +20,7 @@ export class FluidDrainComponent implements OnInit {
   constructor(public dialog: MatDialog, private dataService: DataService, private router: Router) {
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
-    dataService.patient.subscribe(data => { this.patient = data});
+    dataService.patient.subscribe(data => { this.patient = data });
   }
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class FluidDrainComponent implements OnInit {
     this.dialog.open(FluidDrainVideoComponent, this.dialogConfig);
   }
 
-  recordFluid(){
+  recordFluid() {
     console.log(this.patient)
     console.log(this.fluid);
 
@@ -44,10 +44,11 @@ export class FluidDrainComponent implements OnInit {
     }
 
     this.dataService.postMeasurementResult(measurementResult)
-    .then(() => this.router.navigate(['/survey-nav']))
-    .catch((err) => console.error(err + " Fluid ERR"));
-  }
-  status(status: any) {
-    throw new Error('Method not implemented.');
+      .then(() => this.router.navigate(['/survey-nav']))
+      .catch((err) => console.error(err + " Fluid ERR"))
+      .finally(() => {
+        console.log("Finalized");
+        this.dataService.loading.next(false);
+      });
   }
 }

@@ -17,7 +17,7 @@ export class VasPainComponent implements OnInit {
   status: number;
   patient: Patient;
 
-  constructor(public dialog: MatDialog, private dataService: DataService, private router: Router) { 
+  constructor(public dialog: MatDialog, private dataService: DataService, private router: Router) {
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
     dataService.patient.subscribe(data => { this.patient = data });
@@ -26,11 +26,11 @@ export class VasPainComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  painStatus(value: number){
+  painStatus(value: number) {
     this.status = value;
   }
 
-  infoDialog(){
+  infoDialog() {
     this.dialog.open(VasInfoDialogComponent, this.dialogConfig);
   }
 
@@ -46,10 +46,13 @@ export class VasPainComponent implements OnInit {
       'timeStamp': new Date(),
       'value': this.status * 10
     }
-    
+
     this.dataService.postMeasurementResult(measurementResult)
-    .then(() => this.router.navigate(['/survey-nav']))
-    .catch((err) => console.error(err + " Pain ERR"));
+      .then(() => this.router.navigate(['/survey-nav']))
+      .catch((err) => console.error(err + " Pain ERR"))
+      .finally(() => {
+        console.log("Finalized");
+        this.dataService.loading.next(false);
+      });
   }
-  
 }

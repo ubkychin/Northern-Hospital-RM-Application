@@ -17,7 +17,6 @@ export class EcogStatusComponent implements OnInit {
   dialogConfig: MatDialogConfig;
   patient: Patient;
 
-
   constructor(public dialog: MatDialog, private dataService: DataService, private router: Router) {
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
@@ -49,8 +48,12 @@ export class EcogStatusComponent implements OnInit {
     }
 
     this.dataService.postMeasurementResult(measurementResult)
-    .then(() => this.router.navigate(['/survey-nav']))
-    .catch((err) => console.error(err + " ECOG ERR"));
+      .then(() => this.router.navigate(['/survey-nav']))
+      .catch((err) => console.error(err + " ECOG ERR"))
+      .finally(() => {
+        console.log("Finalized");
+        this.dataService.loading.next(false);
+      });
   }
 
 }
