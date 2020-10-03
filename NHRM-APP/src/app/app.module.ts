@@ -7,6 +7,7 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClient, HttpClientModule, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { LoginComponent } from './components/login/login.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
@@ -32,6 +33,9 @@ import { FluidDrainVideoComponent } from './components/patient-resources/resourc
 import { EcogStatusDialogComponent } from './components/dialog-box/ecog-status-dialog/ecog-status-dialog.component';
 import { QolVasComponent } from './components/qol-vas/qol-vas.component';
 
+export function tokenGetter() {
+  return JSON.parse(localStorage.getItem('Authorization'));
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +69,13 @@ import { QolVasComponent } from './components/qol-vas/qol-vas.component';
     FormsModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['localhost:5001']
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
