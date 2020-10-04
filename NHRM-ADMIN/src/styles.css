@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --light-text: #F9F9FA;
+    --active-link: #F9F9FA;
+    --nav-background: #003F7E;
+    --dark-text: #384048;
+
+}
