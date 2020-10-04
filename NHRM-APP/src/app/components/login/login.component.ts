@@ -17,7 +17,14 @@ export class LoginComponent implements OnInit {
 
   login(form) {
     console.log(form.value)
-    this.authService.login(form.value).then().catch().finally(() => this.dataService.loading.next(false));
+    this.authService.login(form.value).then()
+    .catch((err) => {
+      console.error("Login Fail Msg Required")
+    })
+    .finally(() => {
+      this.dataService.loading.next(false);
+      this.router.navigate(['/home']);
+    });
     form.reset();
   }
 
