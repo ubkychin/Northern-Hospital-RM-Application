@@ -16,7 +16,7 @@ article {
     display: flex;
     flex-direction: column;
     padding: 50px 15px;
-
+    margin: auto;
     max-width: 1400px;
 }
 
@@ -41,6 +41,7 @@ article {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 95px;
 }
 
 .emotion img {

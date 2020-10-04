@@ -26,7 +26,7 @@ export class AppComponent {
       this.authorised = true; //data;
     })
     this.dataService.logedIn.subscribe(data => {
-      this.logedIn = true; //data;
+      this.logedIn = data;
     })
     this.router.events.subscribe(event => {
       if (this.location.path() !== '/home')
