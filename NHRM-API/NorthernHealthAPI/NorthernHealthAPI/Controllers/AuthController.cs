@@ -45,12 +45,11 @@ namespace NorthernHealthAPI.Controllers
 
             if (patient.Count() != 0)
             {
-                var userId = patient.Select(p => p.UserId).ToList();
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("secret")));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
                 var claims = new[] {
-                    new Claim("userId", userId[0].ToString())
+                    new Claim(ClaimTypes.Role, "Patient")
                 };
 
                 var tokenOptions = new JwtSecurityToken(
@@ -70,5 +69,7 @@ namespace NorthernHealthAPI.Controllers
                 return Unauthorized();
             }
         }
+
+        //Create another Login endpoint for Admin/Clinician
     }
 }
