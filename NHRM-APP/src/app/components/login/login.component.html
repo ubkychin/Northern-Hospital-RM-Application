@@ -2,9 +2,9 @@
 <div class="container">
     <h1 class="login-title">Login</h1>
     <form class="inputs" #loginForm="ngForm" (ngSubmit)="login(loginForm.form);">
-        <input type="text" id="userId" placeholder="Hospital Number" name="hospitalNuber" ngModel #nameField="ngModel"
+        <input type="text" id="userId" placeholder="Hospital Number" name="userId" ngModel #nameField="ngModel"
             required>
-        <input type="password" id="pinNumber" placeholder="Pin Number" name="pinNumber" ngModel #pinField="ngModel"
+        <input type="password" id="pinNumber" placeholder="Pin Number" name="password" ngModel #pinField="ngModel"
             required>
         <button type="submit" class="submit-button" [disabled]="!loginForm.valid"
             [ngClass]="{'disabled-btn': !loginForm.valid}">Login</button>

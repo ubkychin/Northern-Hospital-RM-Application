@@ -12,13 +12,11 @@ export class DataService {
 
   apiURL = "https://localhost:5001/api";;
   termsAcceptance: BehaviorSubject<boolean>;
-  logedIn: BehaviorSubject<boolean>;
   patient: BehaviorSubject<Patient>;
   loading: BehaviorSubject<boolean>;
 
   constructor(private _http: HttpClient, private spinner: NgxSpinnerService) {
     this.termsAcceptance = new BehaviorSubject(null);
-    this.logedIn = new BehaviorSubject(null);
     this.loading = new BehaviorSubject(false);
 
     this.getPatientDetails();
@@ -27,7 +25,7 @@ export class DataService {
   }
 
   postMeasurementResult(measurementResult: MeasurementResult) {
-    this.spinner.show();
+    this.loading.next(true);
     return new Promise((resolve, reject) => {
       this._http.post(this.apiURL + "/MeasurementResults",
         measurementResult).subscribe(

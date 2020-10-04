@@ -1,11 +1,16 @@
-<app-login *ngIf="!this.logedIn && this.authorised"></app-login>
-<app-welcome *ngIf="!this.authorised && !this.logedIn"></app-welcome>
-
-<div *ngIf="this.authorised && this.logedIn">
+<app-login *ngIf="!this.loggedIn && this.authorised"></app-login>
+<app-welcome *ngIf="!this.authorised && !this.loggedIn"></app-welcome>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#005CB9" type="ball-clip-rotate-multiple" [fullScreen]="true">
+    <p style="color: white"> Waiting ... </p>
+    </ngx-spinner>
+<div *ngIf="this.authorised && this.loggedIn">
     <header>
         <div class="blue-bar top">
             <p *ngIf="!isRoot" (click)="goBack()">
                 <fa-icon id="back" [icon]="['fas', 'chevron-left']" transform="grow-5"></fa-icon>Back
+            </p>
+            <p id="logout" (click)="logout()">
+                Logout
             </p>
         </div>
 
@@ -33,9 +38,6 @@
 
     </header>
     <div class="middle-space">
-        <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#005CB9" type="ball-clip-rotate-multiple" [fullScreen]="true">
-            <p style="color: white"> Waiting ... </p>
-            </ngx-spinner>
             <router-outlet></router-outlet>
     </div>
     <div class="space"></div>

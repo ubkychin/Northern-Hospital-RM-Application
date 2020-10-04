@@ -13,6 +13,7 @@ import { PatientResourcesComponent } from './components/patient-resources/patien
 import { PatientDetailsComponent } from './patient-details/patient-details.component';
 import { IPCSheetComponent } from './components/patient-resources/resources/ipc-sheet/ipc-sheet.component';
 import {QolVasComponent} from './components/qol-vas/qol-vas.component';
+import { AuthGuard } from './guard/auth.guard';
 
 
 const routes: Routes = [
@@ -22,21 +23,21 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {path: 'login', component: LoginComponent},
-  {path: 'home', component: NavigationComponent},
-  {path: 'survey-nav', component: SurveyNavComponent},
-  {path: 'ecog-status', component: EcogStatusComponent},
-  {path: 'likert', component: LikertComponent},
-  {path: 'vas-breath', component: VasBreathComponent},
-  {path: 'vas-pain', component: VasPainComponent},
-  {path: 'fluid-drain', component: FluidDrainComponent},
-  {path: 'qol', component: QolComponent,
+  {path: 'home', component: NavigationComponent, canActivate: [AuthGuard]},
+  {path: 'survey-nav', component: SurveyNavComponent, canActivate: [AuthGuard]},
+  {path: 'ecog-status', component: EcogStatusComponent, canActivate: [AuthGuard]},
+  {path: 'likert', component: LikertComponent, canActivate: [AuthGuard]},
+  {path: 'vas-breath', component: VasBreathComponent, canActivate: [AuthGuard]},
+  {path: 'vas-pain', component: VasPainComponent, canActivate: [AuthGuard]},
+  {path: 'fluid-drain', component: FluidDrainComponent, canActivate: [AuthGuard]},
+  {path: 'qol', component: QolComponent, canActivate: [AuthGuard],
   children: [
-    {path: 'qol-vas', component: QolVasComponent}
+    {path: 'qol-vas', component: QolVasComponent, canActivate: [AuthGuard]}
   ]},
-  {path: 'qol-vas', component: QolVasComponent},
-  {path: 'patient-resources', component: PatientResourcesComponent},
-  {path: 'patient-details', component: PatientDetailsComponent},
-  {path: 'ipc-sheet', component: IPCSheetComponent},
+  {path: 'qol-vas', component: QolVasComponent, canActivate: [AuthGuard]},
+  {path: 'patient-resources', component: PatientResourcesComponent, canActivate: [AuthGuard]},
+  {path: 'patient-details', component: PatientDetailsComponent, canActivate: [AuthGuard]},
+  {path: 'ipc-sheet', component: IPCSheetComponent, canActivate: [AuthGuard]},
   {
     path: '**',
     redirectTo: '/home'

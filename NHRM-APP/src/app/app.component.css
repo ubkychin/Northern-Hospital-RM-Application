@@ -19,6 +19,11 @@
     right: 5px;
 }
 
+#logout {
+    cursor: pointer;
+    float: right;
+}
+
 .access {
     flex-grow: 1;
 }
