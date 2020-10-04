@@ -28,6 +28,7 @@ export class EcogStatusComponent implements OnInit {
 
   ecogStatus(value: number) {
     this.status = value;
+    console.log(this.status)
   }
 
   openDialog() {
