@@ -1,4 +1,3 @@
-USE NORTHERNHEALTH
 
 SELECT categoryName,M.measurementName FROM CategoryMeasurement CM
 INNER JOIN Category C ON CM.categoryID = C.categoryID

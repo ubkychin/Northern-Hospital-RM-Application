@@ -130,7 +130,8 @@ CREATE TABLE PatientResource
   heading VARCHAR(100) NOT NULL,
   [type] VARCHAR(100) NOT NULL,
   prompt VARCHAR NOT NULL,
-  pdfFileName VARCHAR NOT NULL,
+  pdfFileName VARCHAR,
+  hyperLink VARCHAR,
   CONSTRAINT PK_PatientResource PRIMARY KEY (PatientResourceID)
 )
 
@@ -142,7 +143,7 @@ CREATE TABLE ResourceDialog
   heading VARCHAR(100) NOT NULL,
   content VARCHAR NOT NULL,
   video VARCHAR,
-  PatientResourceID INT NOT NULL,
+  PatientResourceID INT,
   CONSTRAINT FK_ResourceDialog_PatientResource FOREIGN KEY (PatientResourceID) REFERENCES dbo.PatientResource,
-  CONSTRAINT PK_ResourceDialog PRIMARY KEY (ResourceDialogID,PatientResourceID)
+  CONSTRAINT PK_ResourceDialog PRIMARY KEY (ResourceDialogID)
 )

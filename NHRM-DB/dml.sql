@@ -1,4 +1,3 @@
-USE NORTHERNHEALTH
 
 INSERT INTO Category
     (categoryName)
