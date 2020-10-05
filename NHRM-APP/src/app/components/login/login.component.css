@@ -31,12 +31,14 @@
     color: crimson;
     font-weight: bold;
     text-align: center;
+    width: 300px;
     height: 15px;
 }
 
 .inputs {
     align-content: center;
     display: grid;
+    justify-content: center;
     grid-template-rows: repeat(3, 1fr);
     gap: 15px;
 }

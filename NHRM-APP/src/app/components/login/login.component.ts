@@ -11,6 +11,7 @@ import { DataService } from 'src/app/services/data.service';
 export class LoginComponent implements OnInit {
 
   failed: boolean;
+  err: string;
 
   constructor(private router: Router, private dataService: DataService, private authService: AuthService) { }
 
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(form.value).then()
       .catch((err) => {
         this.failed = true;
+        this.err = err['status'];
       })
       .finally(() => {
         this.dataService.loading.next(false);
