@@ -8,7 +8,7 @@
         <div>
             <div class="error" *ngIf="this.failed">
                 <p *ngIf="this.err != '401'">Somthing went wrong<br>Please try again</p>
-                <p *ngIf="this.err == '401'">Login Failed<br>UserId or Password</p>
+                <p *ngIf="this.err == '401'">Login Failed<br>Check UserId or Password</p>
             </div>
         </div>
         <button type="submit" class="submit-button" [disabled]="!loginForm.valid"
