@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EcogStatusDialogComponent } from './ecog-status-dialog.component';
+import { DialogBoxComponent } from './dialog-box.component';
 
-describe('EcogStatusDialogComponent', () => {
-  let component: EcogStatusDialogComponent;
-  let fixture: ComponentFixture<EcogStatusDialogComponent>;
+describe('DialogBoxComponent', () => {
+  let component: DialogBoxComponent;
+  let fixture: ComponentFixture<DialogBoxComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EcogStatusDialogComponent ]
+      declarations: [ DialogBoxComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EcogStatusDialogComponent);
+    fixture = TestBed.createComponent(DialogBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

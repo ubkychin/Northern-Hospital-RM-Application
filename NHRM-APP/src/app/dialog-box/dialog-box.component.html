@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>{{this.data.heading}}</h2>
+<mat-dialog-content>
+    <div class="dialog-style" [innerHtml]="this.data.content">
+    </div>
+    <div *ngIf="this.data.video" class="video">
+        <iframe class="video" [src]="this.data.video | safe: 'resourceUrl'" frameborder="0" allow="autoplay; fullscreen"
+            allowfullscreen>
+        </iframe>
+    </div>
+</mat-dialog-content>

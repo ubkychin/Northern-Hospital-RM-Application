@@ -1,0 +1,9 @@
+h2 {
+    font-weight: bold;
+    text-align: center;
+}
+
+.video {
+    display: flex;
+    justify-content: center;
+}

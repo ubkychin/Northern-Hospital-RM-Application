@@ -31,8 +31,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PrivacyStatementComponent } from './components/dialog-box/privacy-statement/privacy-statement.component';
 import { VasInfoDialogComponent } from './components/dialog-box/vas-info-dialog/vas-info-dialog.component';
 import { FluidDrainVideoComponent } from './components/patient-resources/resources/fluid-drain-video/fluid-drain-video.component';
-import { EcogStatusDialogComponent } from './components/dialog-box/ecog-status-dialog/ecog-status-dialog.component';
 import { QolVasComponent } from './components/qol-vas/qol-vas.component';
+import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+import { SafePipe } from './safe.pipe';
 
 export function tokenGetter() {
   return JSON.parse(localStorage.getItem('Authorization'));
@@ -57,8 +58,9 @@ export function tokenGetter() {
     PrivacyStatementComponent,
     VasInfoDialogComponent,
     FluidDrainVideoComponent,
-    EcogStatusDialogComponent,
-    QolVasComponent
+    QolVasComponent,
+    DialogBoxComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
