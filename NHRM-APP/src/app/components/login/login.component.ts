@@ -10,6 +10,8 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class LoginComponent implements OnInit {
 
+  failed: boolean;
+
   constructor(private router: Router, private dataService: DataService, private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -18,13 +20,13 @@ export class LoginComponent implements OnInit {
   login(form) {
     console.log(form.value)
     this.authService.login(form.value).then()
-    .catch((err) => {
-      console.error("Login Fail Msg Required")
-    })
-    .finally(() => {
-      this.dataService.loading.next(false);
-      this.router.navigate(['/home']);
-    });
+      .catch((err) => {
+        this.failed = true;
+      })
+      .finally(() => {
+        this.dataService.loading.next(false);
+        this.router.navigate(['/home']);
+      });
     form.reset();
   }
 

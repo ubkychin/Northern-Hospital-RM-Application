@@ -2,6 +2,7 @@ export class PatientResource {
     heading: string;
     type: string;
     prompt: string;
-    pdfFileName: string;
-    dialog: Object;
+    pdfFileName?: string;
+    hyperlink?: string;
+    dialog?: Object;
 }

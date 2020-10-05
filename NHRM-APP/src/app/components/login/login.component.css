@@ -2,10 +2,9 @@
     justify-items: center;
     align-items: center;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(max-content, 1fr))
 }
 
-.nh-logo{
+.nh-logo {
     margin: 50px;
     height: 80px;
     background-repeat: no-repeat;
@@ -13,7 +12,7 @@
     background-size: 100% 100%;
 }
 
-.login-title{
+.login-title {
     margin: 40px;
     font-size: 55px;
     color: var(--nh-blue);
@@ -23,15 +22,23 @@
     .login-title {
         font-size: 35px;
     }
-    .nh-logo{
+    .nh-logo {
         margin: 20px;
     }
-  }
+}
+
+.error {
+    color: crimson;
+    font-weight: bold;
+    text-align: center;
+    height: 15px;
+}
 
 .inputs {
     align-content: center;
     display: grid;
-    gap: 25px;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 15px;
 }
 
 input {
@@ -40,4 +47,12 @@ input {
     height: 30px;
     width: 300px;
     padding-left: 10px;
+}
+
+.ng-valid[required], .ng-valid.required {
+    border-left: 5px solid #42A948;
+}
+
+.ng-invalid:not(form) {
+    border-left: 5px solid #a94442;
 }

@@ -2,10 +2,14 @@
 <div class="container">
     <h1 class="login-title">Login</h1>
     <form class="inputs" #loginForm="ngForm" (ngSubmit)="login(loginForm.form);">
-        <input type="text" id="userId" placeholder="User Id" name="userId" ngModel #nameField="ngModel"
+        <input type="text" id="userId" placeholder="User Id" name="userId" ngModel #userIdField="ngModel" required>
+        <input type="password" id="password" placeholder="Pin Number" name="password" ngModel #passwordField="ngModel"
             required>
-        <input type="password" id="password" placeholder="Pin Number" name="password" ngModel #pinField="ngModel"
-            required>
+        <div>
+            <div class="error" *ngIf="this.failed">
+                User Id or Password Incorrect
+            </div>
+        </div>
         <button type="submit" class="submit-button" [disabled]="!loginForm.valid"
             [ngClass]="{'disabled-btn': !loginForm.valid}">Login</button>
     </form>
