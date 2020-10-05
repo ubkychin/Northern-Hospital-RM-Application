@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { PatientResource } from 'src/app/models/patient-resource';
+import { ResourceDialog } from 'src/app/models/resource-dialog';
 import { VasInfoDialogComponent } from '../dialog-box/vas-info-dialog/vas-info-dialog.component';
 import { FluidDrainVideoComponent } from '../patient-resources/resources/fluid-drain-video/fluid-drain-video.component';
 
@@ -11,6 +13,9 @@ import { FluidDrainVideoComponent } from '../patient-resources/resources/fluid-d
 export class PatientResourcesComponent implements OnInit {
 
   dialogConfig: MatDialogConfig;
+
+  resource: PatientResource;
+  resourceDialog: ResourceDialog;
 
   constructor(public dialog: MatDialog) {
     this.dialogConfig = new MatDialogConfig();
