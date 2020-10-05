@@ -1,7 +1,3 @@
-USE master;
-USE NORTHERNHEALTH;
-
-GO
 
 DROP TABLE IF EXISTS [User];
 
@@ -18,6 +14,10 @@ DROP TABLE IF EXISTS Category;
 DROP TABLE IF EXISTS Measurement;
 
 DROP TABLE IF EXISTS Patient;
+
+DROP TABLE IF EXISTS ResourceDialog;
+
+DROP TABLE IF EXISTS PatientResource;
 
 GO
 
@@ -121,3 +121,28 @@ CREATE TABLE MeasurementResult
     CONSTRAINT FK_MeasurementResult_PatientCategory FOREIGN KEY (categoryID,hospitalNumber) REFERENCES dbo.PatientCategory,
     CONSTRAINT PK_MeasurementResult PRIMARY KEY (measurementID,dataPointNumber,hospitalNumber,categoryID,[timeStamp])
 ) 
+
+GO
+
+CREATE TABLE PatientResource
+(
+  PatientResourceID INT NOT NULL,
+  heading VARCHAR(100) NOT NULL,
+  [type] VARCHAR(100) NOT NULL,
+  prompt VARCHAR NOT NULL,
+  pdfFileName VARCHAR NOT NULL,
+  CONSTRAINT PK_PatientResource PRIMARY KEY (PatientResourceID)
+)
+
+GO
+
+CREATE TABLE ResourceDialog
+(
+  ResourceDialogID INT NOT NULL,
+  heading VARCHAR(100) NOT NULL,
+  content VARCHAR NOT NULL,
+  video VARCHAR,
+  PatientResourceID INT NOT NULL,
+  CONSTRAINT FK_ResourceDialog_PatientResource FOREIGN KEY (PatientResourceID) REFERENCES dbo.PatientResource,
+  CONSTRAINT PK_ResourceDialog PRIMARY KEY (ResourceDialogID,PatientResourceID)
+)
