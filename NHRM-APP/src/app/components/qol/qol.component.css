@@ -16,14 +16,15 @@ article {
 .sub-heading {
     margin-bottom: 30px;
 }
+
 .form {
     display: flex;
     flex-direction: column;
     padding: 50px 15px;
 }
 
-.form .submit-btn {
-    margin: 2.5em auto;
+.form .submit-button {
+    margin: auto;
 }
 
 label[for="formly_1_radio_score_0"]{
@@ -34,6 +35,17 @@ label[for="formly_1_radio_score_0"]{
     border-bottom: 4px solid var(--nh-blue);
 
     padding-bottom: 10px;
+}
+
+.alert {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+
+.error-message {
+    height: 30px;
+    margin: 20px auto;
 }
 
 

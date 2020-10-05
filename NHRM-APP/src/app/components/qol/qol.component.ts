@@ -14,6 +14,7 @@ export class QolComponent implements OnInit {
 
   public patient: Patient;
   model: any = {};
+  isValid: boolean = true;
 
   // The survey categories and questions retrieved from the API
   survey: any = [{
@@ -63,9 +64,12 @@ export class QolComponent implements OnInit {
           { value: 5, label: this.survey[this.currentCategory].questions[4] },
         ],
         required: true
-      }
-    },
-    ];
+      },
+
+    }
+  
+  ];
+
   }
 
   ngOnInit(): void {
@@ -75,9 +79,16 @@ export class QolComponent implements OnInit {
 
   submit() {
     //alert(JSON.stringify(this.model));
+    let categories = Object.keys(this.form.value);
 
-    this.currentCategory += 1;
-    this.displayQuestions();
+    this.isValid = true;
+    
+    if(this.form.value[categories[this.currentCategory]] !== null) {
+      this.currentCategory += 1;
+      this.displayQuestions();
+    } else {
+      this.isValid = false;
+    }
   }
 
   infoDialog() {

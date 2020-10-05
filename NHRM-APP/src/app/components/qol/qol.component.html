@@ -7,7 +7,12 @@
     <form [formGroup]="form" class="form" (ngSubmit)="submit()">
         <h2 class="category-name">{{this.survey[this.currentCategory].categoryName}}</h2>
         <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
-      
+
+        <div class="error-message">
+            <p class="alert" *ngIf="!isValid">Please tick the box more appropriate before moving to the next section</p>
+        </div>
+
+
         <button type="submit" class="btn submit-button" *ngIf="this.currentCategory < this.survey.length - 1">Next</button>
     
         <button type="button" class="btn submit-button" *ngIf="this.currentCategory === this.survey.length - 1" (click)="submitSurvey()" routerLink="/qol-vas ">Submit</button>
