@@ -84,6 +84,10 @@ export class QolComponent implements OnInit {
     this.isValid = true;
     
     if(this.form.value[categories[this.currentCategory]] !== null) {
+      if(this.currentCategory === this.survey.length - 1) {
+        this.submitSurvey();
+        this.router.navigateByUrl('/qol-vas');
+      }
       this.currentCategory += 1;
       this.displayQuestions();
     } else {
