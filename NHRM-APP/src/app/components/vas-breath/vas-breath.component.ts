@@ -5,7 +5,7 @@ import { DataService } from 'src/app/services/data.service';
 import { MeasurementResult } from 'src/app/models/measurement-result';
 import { Router } from '@angular/router';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
-import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
+import { DialogBoxComponent } from 'src/app/components/dialog-box/dialog-box.component';
 
 @Component({
   selector: 'app-vas-breath',

@@ -28,7 +28,7 @@ import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { PatientDetailsComponent } from './patient-details/patient-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QolVasComponent } from './components/qol-vas/qol-vas.component';
-import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+import { DialogBoxComponent } from './components/dialog-box/dialog-box.component';
 import { SafePipe } from './safe.pipe';
 
 export function tokenGetter() {

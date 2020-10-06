@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
+import { DialogBoxComponent } from 'src/app/components/dialog-box/dialog-box.component';
 import { PatientResource } from 'src/app/models/patient-resource';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
 

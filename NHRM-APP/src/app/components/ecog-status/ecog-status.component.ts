@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MeasurementResult } from 'src/app/models/measurement-result';
 import { Patient } from 'src/app/models/patient';
 import { DataService } from 'src/app/services/data.service';
-import { DialogBoxComponent } from '../../dialog-box/dialog-box.component';
+import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
 
 @Component({

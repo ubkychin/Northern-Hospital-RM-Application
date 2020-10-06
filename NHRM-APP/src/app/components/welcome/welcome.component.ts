@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DataService} from '../../services/data.service';
 import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
-import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
+import { DialogBoxComponent } from 'src/app/components/dialog-box/dialog-box.component';
 
 @Component({
   selector: 'app-welcome',
