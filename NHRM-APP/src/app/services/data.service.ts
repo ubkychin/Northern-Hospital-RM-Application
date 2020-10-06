@@ -4,6 +4,8 @@ import { BehaviorSubject } from 'rxjs';
 import { MeasurementResult } from '../models/measurement-result';
 import { Patient } from '../models/patient';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ResourceDialog } from '../models/resource-dialog';
+import { PatientResource } from '../models/patient-resource';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +16,14 @@ export class DataService {
   termsAcceptance: BehaviorSubject<boolean>;
   patient: BehaviorSubject<Patient>;
   loading: BehaviorSubject<boolean>;
+  patientResources: PatientResource [];
 
   constructor(private _http: HttpClient, private spinner: NgxSpinnerService) {
     this.termsAcceptance = new BehaviorSubject(null);
     this.loading = new BehaviorSubject(false);
 
     this.getPatientDetails();
+    this.getPatientResource();
 
     console.log(this.patient)
   }
@@ -47,6 +51,29 @@ export class DataService {
       'categoryId': 1
     }
     this.patient = new BehaviorSubject(patient)
+  }
+
+  getPatientResource() {
+
+    let resources: PatientResource[] = [{
+      heading: "Heading",
+      type: "Phone",
+      prompt: "0405-555-665",
+    },
+    {
+      heading: "Heading",
+      type: "Dialog",
+      prompt: "Click Here",
+      pdfFileName: "myfile.pdf",
+      hyperlink: "www.mylink.com",
+      dialog: {
+        heading: "Dialog Heading",
+        content: "Here is some content",
+        video: "www.myvideo.com"
+      }
+    }];
+
+    this.patientResources = resources;
   }
 
 }
