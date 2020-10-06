@@ -34,11 +34,23 @@ p.warning {
 
 .condition {
     display: block;
-    margin: 1.5em;
+    margin: 10px;
 }
 
 .condition label {
     margin-left: 10px;
+}
+
+.error {
+    color: crimson;
+    font-weight: bold;
+    margin: auto;
+    height: 25px;
+    max-width: 450px;
+}
+
+.error-message {
+    height: 40px; 
 }
 
 .input#privacy-message, input.submit-button {

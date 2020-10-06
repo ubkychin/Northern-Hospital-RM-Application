@@ -21,5 +21,10 @@
         <br>
         <a (click)="openPrivacy()">Privacy Statement.</a>
     </div>
+    <div class="error-message">
+        <div class="error" *ngIf="this.terms == false || this.privacy == false">
+            <p>You must agree to both the Terms & Conditions and the Privacy Statement in order to proceed</p>
+        </div>
+    </div>
     <button type="submit" class="submit-button" (click)="submit()" value="Accept">Submit</button>
 </div>

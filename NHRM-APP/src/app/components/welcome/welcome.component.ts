@@ -36,7 +36,8 @@ export class WelcomeComponent implements OnInit {
       this.dataService.termsAcceptance.next(true);
     }
     else{
-      alert("You must agree to both the Terms & Conditions and the Privacy Statement in order to proceed");
+      this.terms = false;
+      this.privacy = false;
     }
   }
 
