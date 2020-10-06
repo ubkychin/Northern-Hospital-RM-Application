@@ -24,7 +24,7 @@ export class AppComponent {
     private location: Location, private renderer: Renderer2,
     private spinner: NgxSpinnerService) {
     this.dataService.termsAcceptance.subscribe(data => {
-      this.authorised = true; //data;
+      this.authorised = data; //true;
     })
     this.authService.loggedIn.subscribe(data => {
       this.loggedIn = data;

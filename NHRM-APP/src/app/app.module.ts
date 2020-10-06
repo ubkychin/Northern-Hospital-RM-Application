@@ -26,9 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { PatientDetailsComponent } from './patient-details/patient-details.component';
-import { TermsAndConditionsComponent } from './components/dialog-box/terms-and-conditions/terms-and-conditions.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PrivacyStatementComponent } from './components/dialog-box/privacy-statement/privacy-statement.component';
 import { QolVasComponent } from './components/qol-vas/qol-vas.component';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { SafePipe } from './safe.pipe';
@@ -52,8 +50,6 @@ export function tokenGetter() {
     PatientResourcesComponent,
     InfoBarComponent,
     PatientDetailsComponent,
-    TermsAndConditionsComponent,
-    PrivacyStatementComponent,
     QolVasComponent,
     DialogBoxComponent,
     SafePipe

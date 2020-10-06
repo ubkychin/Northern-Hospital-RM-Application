@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from '../../services/data.service';
 import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
-import { TermsAndConditionsComponent } from '../dialog-box/terms-and-conditions/terms-and-conditions.component';
-import { PrivacyStatementComponent } from '../dialog-box/privacy-statement/privacy-statement.component';
+import { ResourceDialog } from 'src/app/models/resource-dialog';
+import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
 
 @Component({
   selector: 'app-welcome',
@@ -14,6 +14,14 @@ export class WelcomeComponent implements OnInit {
   terms: boolean;
   privacy: boolean;
   dialogConfig: MatDialogConfig;
+  termsDialog: ResourceDialog = {
+    heading: "Terms & Conditions",
+    content: "Awaiting Northern Hospital to supply statement"
+  }
+  privacyDialog: ResourceDialog = {
+    heading: "Privacy Statement",
+    content: "Awaiting Northern Hospital to supply statement"
+  }
   
   constructor(private dataService: DataService, public dialog: MatDialog) {
     this.dialogConfig = new MatDialogConfig();
@@ -33,10 +41,18 @@ export class WelcomeComponent implements OnInit {
   }
 
   openTerms(){
-    this.dialog.open(TermsAndConditionsComponent, this.dialogConfig);
+    this.dialogConfig.data = {
+      content: this.termsDialog.content,
+      heading: this.termsDialog.heading
+    }
+    this.dialog.open(DialogBoxComponent, this.dialogConfig);
   }
 
   openPrivacy(){
-    this.dialog.open(PrivacyStatementComponent, this.dialogConfig);
+    this.dialogConfig.data = {
+      content: this.privacyDialog.content,
+      heading: this.privacyDialog.heading
+    }
+    this.dialog.open(DialogBoxComponent, this.dialogConfig);
   }
 }
