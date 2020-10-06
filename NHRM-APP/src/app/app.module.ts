@@ -30,6 +30,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QolVasComponent } from './components/qol-vas/qol-vas.component';
 import { DialogBoxComponent } from './components/dialog-box/dialog-box.component';
 import { SafePipe } from './safe.pipe';
+import { PatientResourcesOgComponent } from './components/patient-resources-og/patient-resources-og.component';
+import { IpcSheetOgComponent } from './components/patient-resources-og/ipc-sheet-og/ipc-sheet-og.component';
 
 export function tokenGetter() {
   return JSON.parse(localStorage.getItem('Authorization'));
@@ -52,7 +54,9 @@ export function tokenGetter() {
     PatientDetailsComponent,
     QolVasComponent,
     DialogBoxComponent,
-    SafePipe
+    SafePipe,
+    PatientResourcesOgComponent,
+    IpcSheetOgComponent
   ],
   imports: [
     BrowserModule,
