@@ -18,8 +18,8 @@ export class EcogStatusComponent implements OnInit {
   dialogConfig: MatDialogConfig;
   patient: Patient;
   dialogInfo: ResourceDialog = {
-    'heading': "How to record ECOG status",
-    'content': "To track how well you are able to take care of yourself, we have developed grades(from 0 to 4) that best describe how you feel physically.<p>Instruction: Click the check-box next to the number that best describes how you feel physically.From 0 - fully active - to 4 - completely disabled.</p>"
+    heading: "How to record ECOG status",
+    content: "To track how well you are able to take care of yourself, we have developed grades(from 0 to 4) that best describe how you feel physically.<p>Instruction: Click the check-box next to the number that best describes how you feel physically.From 0 - fully active - to 4 - completely disabled.</p>"
   }
 
   constructor(public dialog: MatDialog, private dataService: DataService, private router: Router) {

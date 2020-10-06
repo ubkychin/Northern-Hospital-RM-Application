@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
 import { MeasurementResult } from 'src/app/models/measurement-result';
 import { Patient } from 'src/app/models/patient';
+import { ResourceDialog } from 'src/app/models/resource-dialog';
 import { DataService } from 'src/app/services/data.service';
-import { FluidDrainVideoComponent } from '../patient-resources/resources/fluid-drain-video/fluid-drain-video.component';
 
 @Component({
   selector: 'app-fluid-drain',
@@ -16,6 +17,11 @@ export class FluidDrainComponent implements OnInit {
   dialogConfig: MatDialogConfig;
   fluid: number;
   patient: Patient;
+  dialogInfo: ResourceDialog = {
+    heading: "How to drain your Indwelling Pleural Catheter",
+    content: "Please enter the amount of fluid you have drained today in millilitres. Enter the value in the box. <p>Below is a video which details how to perform a fluid drainage of an Indwelling Pleural Catheter.</p>",
+    video: "https://player.vimeo.com/video/270685188"
+  }
 
   constructor(public dialog: MatDialog, private dataService: DataService, private router: Router) {
     this.dialogConfig = new MatDialogConfig();
@@ -27,7 +33,12 @@ export class FluidDrainComponent implements OnInit {
   }
 
   infoDialog() {
-    this.dialog.open(FluidDrainVideoComponent, this.dialogConfig);
+    this.dialogConfig.data = {
+      content: this.dialogInfo.content,
+      heading: this.dialogInfo.heading,
+      video: this.dialogInfo.video
+    }
+    this.dialog.open(DialogBoxComponent, this.dialogConfig);
   }
 
   recordFluid() {

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
 import { PatientResource } from 'src/app/models/patient-resource';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
-import { VasInfoDialogComponent } from '../dialog-box/vas-info-dialog/vas-info-dialog.component';
-import { FluidDrainVideoComponent } from '../patient-resources/resources/fluid-drain-video/fluid-drain-video.component';
 
 @Component({
   selector: 'app-patient-resources',
@@ -13,6 +12,17 @@ import { FluidDrainVideoComponent } from '../patient-resources/resources/fluid-d
 export class PatientResourcesComponent implements OnInit {
 
   dialogConfig: MatDialogConfig;
+  fluidDialog: ResourceDialog = {
+    heading: "How to drain your Indwelling Pleural Catheter",
+    content: "Please enter the amount of fluid you have drained today in millilitres. Enter the value in the box. <p>Below is a video which details how to perform a fluid drainage of an Indwelling Pleural Catheter.</p>",
+    video: "https://player.vimeo.com/video/270685188"
+  }
+  vasDialog: ResourceDialog = {
+    heading: "How to perform VAS score",
+    content: "Instruction: To help you to best describe how good or bad you feel on a given day," 
+    + "we have drawn a scale from Best on the top of the slider to Worst on the bottom of the slider."
+    + "Please position the slider at the point that describes how you feel today."
+  }
 
   resource: PatientResource;
   resourceDialog: ResourceDialog;
@@ -26,11 +36,21 @@ export class PatientResourcesComponent implements OnInit {
   }
 
   vasInfoDialog(){
-    this.dialog.open(VasInfoDialogComponent, this.dialogConfig);
+    this.dialogConfig.data = {
+      content: this.vasDialog.content,
+      heading: this.vasDialog.heading,
+      video: this.vasDialog.video
+    }
+    this.dialog.open(DialogBoxComponent, this.dialogConfig);
   }
 
   fluidDrainDialog(){
-    this.dialog.open(FluidDrainVideoComponent, this.dialogConfig);
+    this.dialogConfig.data = {
+      content: this.fluidDialog.content,
+      heading: this.fluidDialog.heading,
+      video: this.fluidDialog.video
+    }
+    this.dialog.open(DialogBoxComponent, this.dialogConfig);
   }
 
 }

@@ -29,8 +29,6 @@ import { PatientDetailsComponent } from './patient-details/patient-details.compo
 import { TermsAndConditionsComponent } from './components/dialog-box/terms-and-conditions/terms-and-conditions.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PrivacyStatementComponent } from './components/dialog-box/privacy-statement/privacy-statement.component';
-import { VasInfoDialogComponent } from './components/dialog-box/vas-info-dialog/vas-info-dialog.component';
-import { FluidDrainVideoComponent } from './components/patient-resources/resources/fluid-drain-video/fluid-drain-video.component';
 import { QolVasComponent } from './components/qol-vas/qol-vas.component';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { SafePipe } from './safe.pipe';
@@ -56,8 +54,6 @@ export function tokenGetter() {
     PatientDetailsComponent,
     TermsAndConditionsComponent,
     PrivacyStatementComponent,
-    VasInfoDialogComponent,
-    FluidDrainVideoComponent,
     QolVasComponent,
     DialogBoxComponent,
     SafePipe
