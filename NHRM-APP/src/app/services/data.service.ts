@@ -21,7 +21,7 @@ export class DataService {
   constructor(private _http: HttpClient, private spinner: NgxSpinnerService) {
     this.termsAcceptance = new BehaviorSubject(null);
     this.loading = new BehaviorSubject(false);
-
+    this.termsAcceptance.next(JSON.parse(localStorage.getItem('TermsAccepted')));
     this.getPatientDetails();
     this.getPatientResource();
 

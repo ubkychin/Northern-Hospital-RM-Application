@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {DataService} from '../../services/data.service';
-import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { DataService } from '../../services/data.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
 import { DialogBoxComponent } from 'src/app/components/dialog-box/dialog-box.component';
 
@@ -22,26 +22,27 @@ export class WelcomeComponent implements OnInit {
     heading: "Privacy Statement",
     content: "Awaiting Northern Hospital to supply statement"
   }
-  
+
   constructor(private dataService: DataService, public dialog: MatDialog) {
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
-   }
+  }
 
   ngOnInit(): void {
   }
 
-  submit(){
-    if(this.terms && this.privacy){
+  submit() {
+    if (this.terms && this.privacy) {
       this.dataService.termsAcceptance.next(true);
+      localStorage.setItem('TermsAccepted', 'true');
     }
-    else{
+    else {
       this.terms = false;
       this.privacy = false;
     }
   }
 
-  openTerms(){
+  openTerms() {
     this.dialogConfig.data = {
       content: this.termsDialog.content,
       heading: this.termsDialog.heading
@@ -49,7 +50,7 @@ export class WelcomeComponent implements OnInit {
     this.dialog.open(DialogBoxComponent, this.dialogConfig);
   }
 
-  openPrivacy(){
+  openPrivacy() {
     this.dialogConfig.data = {
       content: this.privacyDialog.content,
       heading: this.privacyDialog.heading
