@@ -6,4 +6,9 @@ h2 {
 .video {
     display: flex;
     justify-content: center;
+    margin-top: 10px;
+}
+
+mat-dialog-content {
+    max-width: 700px;
 }
