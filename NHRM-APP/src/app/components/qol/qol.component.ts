@@ -39,6 +39,12 @@ export class QolComponent implements OnInit {
     questions: ["I have no pain or discomfort", "I have slight pain or discomfort",
       "I have moderate pain or discomfort", "I have severe pain or discomfort",
       "I have extreme pain or discomfort"]
+  },
+  {
+    categoryName: "Anxiety/Depression",
+    questions: ["I am not anxious or depressed", "I am slightly anxious or depressed",
+      "I am moderately anxious or depressed", "I severely am anxious or depressed",
+      "I am extremely anxious or depressed"]
   }
   ];
 
