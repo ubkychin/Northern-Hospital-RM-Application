@@ -28,9 +28,6 @@ export class QolVasComponent implements OnInit {
 
     var range_all_sliders = {
       'min': [0],
-      '25%': [25],
-      '50%': [50],
-      '75%': [75],
       'max': [100]
     };
 

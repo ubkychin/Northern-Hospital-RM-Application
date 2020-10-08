@@ -24,10 +24,10 @@ export class AppComponent {
     private location: Location, private renderer: Renderer2,
     private spinner: NgxSpinnerService) {
     this.dataService.termsAcceptance.subscribe(data => {
-      this.authorised = data;
+      this.authorised = true;
     })
     this.authService.loggedIn.subscribe(data => {
-      this.loggedIn = data;
+      this.loggedIn = true;
     })
     this.router.events.subscribe(event => {
       if (this.location.path() !== '/home')
