@@ -14,8 +14,7 @@ import { PatientDetailsComponent } from './patient-details/patient-details.compo
 import { IPCSheetComponent } from './components/patient-resources/resources/ipc-sheet/ipc-sheet.component';
 import {QolVasComponent} from './components/qol-vas/qol-vas.component';
 import { AuthGuard } from './guard/auth.guard';
-import { PatientResourcesOgComponent } from './components/patient-resources-og/patient-resources-og.component';
-import { IpcSheetOgComponent } from './components/patient-resources-og/ipc-sheet-og/ipc-sheet-og.component';
+import { PdfResourceComponent } from './components/pdf-resource/pdf-resource.component';
 
 
 const routes: Routes = [
@@ -40,8 +39,7 @@ const routes: Routes = [
   {path: 'qol-vas', component: QolVasComponent, canActivate: [AuthGuard]},
   {path: 'patient-resources', component: PatientResourcesComponent, canActivate: [AuthGuard]},
   {path: 'ipc-sheet', component: IPCSheetComponent, canActivate: [AuthGuard]},
-  {path: 'patient-resources-og', component: PatientResourcesOgComponent, canActivate: [AuthGuard]},
-  {path: 'ipc-sheet-og', component: IpcSheetOgComponent, canActivate: [AuthGuard]},
+  {path: 'pdf-resource', component: PdfResourceComponent, canActivate: [AuthGuard]},
   {
     path: '**',
     redirectTo: '/home'
