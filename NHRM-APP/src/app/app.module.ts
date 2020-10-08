@@ -9,6 +9,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClient, HttpClientModule, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { LoginComponent } from './components/login/login.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
@@ -72,6 +73,7 @@ export function tokenGetter() {
     MatDialogModule,
     NgxSpinnerModule,
     HttpClientModule,
+    PdfViewerModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
