@@ -50,5 +50,4 @@ export class PatientResourcesComponent implements OnInit {
     }
     this.dialog.open(DialogBoxComponent, this.dialogConfig);
   }
-
 }

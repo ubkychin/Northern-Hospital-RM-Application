@@ -16,7 +16,7 @@ export class DataService {
   termsAcceptance: BehaviorSubject<boolean>;
   patient: BehaviorSubject<Patient>;
   loading: BehaviorSubject<boolean>;
-  patientResources: PatientResource [];
+  patientResources: PatientResource[];
 
   constructor(private _http: HttpClient, private spinner: NgxSpinnerService) {
     this.termsAcceptance = new BehaviorSubject(null);
@@ -56,20 +56,47 @@ export class DataService {
   getPatientResource() {
 
     let resources: PatientResource[] = [{
-      heading: "Heading",
-      type: "Phone",
-      prompt: "0405-555-665",
+      title: "Pleural Nurse Clinical Consultant",
+      type: "phone",
+      prompt: "0428-167-972",
     },
     {
-      heading: "Heading",
-      type: "Dialog",
+      title: "Indwelling Pleural Catheter Information Sheet",
+      type: "pdf",
       prompt: "Click Here",
-      pdfFileName: "myfile.pdf",
-      hyperlink: "www.mylink.com",
-      dialog: {
-        heading: "Dialog Heading",
-        content: "Here is some content",
-        video: "www.myvideo.com"
+      action: {
+        value: '../assets/IPC.pdf'
+      }
+    },
+    {
+      title: "How to perform a Visual Analogue Score",
+      type: "dialog",
+      prompt: "Click Here",
+      action: {
+        value: {
+          heading: "How to perform VAS score",
+          content: "Instruction: To help you to best describe how good or bad you feel on a given day, we have drawn a scale from Best on the top of the slider to Worst on the bottom of the slider. Please position the slider at the point that describes how you feel today."
+        }
+      }
+    },
+    {
+      title: "How to drain your Indwelling Pleural Catheter",
+      type: "dialog",
+      prompt: "Click Here",
+      action: {
+        value: {
+          heading: "How to drain your Indwelling Pleural Catheter",
+          content: "Please enter the amount of fluid you have drained today in millilitres. Enter the value in the box. <p>Below is a video which details how to perform a fluid drainage of an Indwelling Pleural Catheter.</p>",
+          video: "https://player.vimeo.com/video/270685188"
+        }
+      }
+    },
+    {
+      title: "Northern Health Respiratory Medicine",
+      type: "link",
+      prompt: "Click here to be redirected to the Northern Health Respiratory Medicine website",
+      action: {
+        value: "https://www.nh.org.au/service/respiratory-medicine/"
       }
     }];
 

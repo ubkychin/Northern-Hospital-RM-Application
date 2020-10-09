@@ -11,7 +11,6 @@ import { FluidDrainComponent } from './components/fluid-drain/fluid-drain.compon
 import { QolComponent } from './components/qol/qol.component';
 import { PatientResourcesComponent } from './components/patient-resources/patient-resources.component';
 import { PatientDetailsComponent } from './patient-details/patient-details.component';
-import { IPCSheetComponent } from './components/patient-resources/resources/ipc-sheet/ipc-sheet.component';
 import {QolVasComponent} from './components/qol-vas/qol-vas.component';
 import { AuthGuard } from './guard/auth.guard';
 import { PdfResourceComponent } from './components/pdf-resource/pdf-resource.component';
@@ -38,7 +37,6 @@ const routes: Routes = [
   ]},
   {path: 'qol-vas', component: QolVasComponent, canActivate: [AuthGuard]},
   {path: 'patient-resources', component: PatientResourcesComponent, canActivate: [AuthGuard]},
-  {path: 'ipc-sheet', component: IPCSheetComponent, canActivate: [AuthGuard]},
   {path: 'pdf-resource', component: PdfResourceComponent, canActivate: [AuthGuard]},
   {
     path: '**',

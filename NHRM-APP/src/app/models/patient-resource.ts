@@ -1,10 +1,12 @@
 import { ResourceDialog } from './resource-dialog';
 
 export class PatientResource {
-    heading: string;
+    title: string;
     type: string;
     prompt: string;
-    pdfFileName?: string;
-    hyperlink?: string;
-    dialog?: ResourceDialog;
+    action?: Action;
+}
+
+export class Action {
+    value: any;
 }
