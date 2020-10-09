@@ -34,6 +34,7 @@ import { SafePipe } from './safe.pipe';
 import { PatientResourcesOgComponent } from './components/patient-resources-og/patient-resources-og.component';
 import { IpcSheetOgComponent } from './components/patient-resources-og/ipc-sheet-og/ipc-sheet-og.component';
 import { PdfResourceComponent } from './components/pdf-resource/pdf-resource.component';
+import { Call000Component } from './components/call000/call000.component';
 
 export function tokenGetter() {
   return JSON.parse(localStorage.getItem('Authorization'));
@@ -59,7 +60,8 @@ export function tokenGetter() {
     SafePipe,
     PatientResourcesOgComponent,
     IpcSheetOgComponent,
-    PdfResourceComponent
+    PdfResourceComponent,
+    Call000Component
   ],
   imports: [
     BrowserModule,

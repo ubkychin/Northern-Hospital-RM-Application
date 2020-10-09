@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { MeasurementResult } from '../models/measurement-result';
 import { Patient } from '../models/patient';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ResourceDialog } from '../models/resource-dialog';
 import { PatientResource } from '../models/patient-resource';
 
 @Injectable({
@@ -14,12 +13,14 @@ export class DataService {
 
   apiURL = "https://localhost:5001/api";;
   termsAcceptance: BehaviorSubject<boolean>;
+  emergancyAgreement: BehaviorSubject<boolean>;
   patient: BehaviorSubject<Patient>;
   loading: BehaviorSubject<boolean>;
   patientResources: PatientResource[];
 
   constructor(private _http: HttpClient, private spinner: NgxSpinnerService) {
     this.termsAcceptance = new BehaviorSubject(null);
+    this.emergancyAgreement = new BehaviorSubject(null);
     this.loading = new BehaviorSubject(false);
     this.termsAcceptance.next(JSON.parse(localStorage.getItem('TermsAccepted')));
     this.getPatientDetails();

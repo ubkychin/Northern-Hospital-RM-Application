@@ -1,9 +1,10 @@
-<app-login *ngIf="!this.loggedIn && this.authorised"></app-login>
-<app-welcome *ngIf="!this.authorised && !this.loggedIn"></app-welcome>
+<app-login *ngIf="!this.loggedIn"></app-login>
+<app-call000 *ngIf="!this.emergancy && this.loggedIn"></app-call000>
+<app-welcome *ngIf="!this.authorised && this.loggedIn && this.emergancy"></app-welcome>
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#005CB9" type="ball-clip-rotate-multiple" [fullScreen]="true">
     <p style="color: white"> Waiting ... </p>
     </ngx-spinner>
- <div *ngIf="this.authorised && this.loggedIn">
+ <div *ngIf="this.authorised && this.loggedIn && this.emergancy">
     <header>
         <div class="blue-bar top">
             <p *ngIf="!isRoot" (click)="goBack()">
@@ -15,7 +16,7 @@
         </div>
 
         <div class="nh-logo"></div>
-        <!-- Navbar -->
+        
         <nav class="navbar">
             <a id="home" routerLink="home">
                 <fa-icon [icon]="['fas', 'home']" transform="grow-15"></fa-icon>
@@ -23,7 +24,6 @@
 
             <a id="bars" (click)="dropdown()">
                 <i #bars class="fa fa-bars"></i>
-                <!-- <fa-icon [icon]="['fas', 'bars']" transform="grow-15"></fa-icon> -->
             </a>
 
             <div class="dropdown" [ngStyle]=" {'display' : this.toggle ? 'none' : 'block'}">
@@ -42,4 +42,3 @@
     </div>
     <div class="space"></div>
     <footer class="blue-bar bottom"></footer>
-<!-- </div> -->

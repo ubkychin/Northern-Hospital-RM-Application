@@ -3,7 +3,7 @@ import { DataService } from './services/data.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { AuthService} from './services/auth.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -17,18 +17,25 @@ export class AppComponent {
   unlistener: () => void;
   toggle: boolean = true;
   authorised: boolean;
+  emergancy: boolean;
   loggedIn: boolean;
   isRoot: boolean;
 
   constructor(private dataService: DataService, private authService: AuthService, private router: Router,
     private location: Location, private renderer: Renderer2,
     private spinner: NgxSpinnerService) {
+
+    //Change all these to True to bypass all Login and Agreement screens
     this.dataService.termsAcceptance.subscribe(data => {
-      this.authorised = true;
+      this.authorised = data; //true
     })
     this.authService.loggedIn.subscribe(data => {
-      this.loggedIn = true;
+      this.loggedIn = data; //true
     })
+    this.dataService.emergancyAgreement.subscribe(data => {
+      this.emergancy = data; //true
+    })
+
     this.router.events.subscribe(event => {
       if (this.location.path() !== '/home')
         this.isRoot = false;
@@ -45,8 +52,9 @@ export class AppComponent {
 
   logout() {
     this.authService.logout();
+    this.dataService.emergancyAgreement.next(false);
   }
-  
+
   dropdown() {
     //Dropdown Nav
     this.toggle = false
