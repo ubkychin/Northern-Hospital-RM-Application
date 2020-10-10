@@ -4,6 +4,8 @@ import { DialogBoxComponent } from 'src/app/components/dialog-box/dialog-box.com
 import { PatientResource } from 'src/app/models/patient-resource';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
 
+import {DataService} from 'src/app/services/data.service';
+
 @Component({
   selector: 'app-patient-resources',
   templateUrl: './patient-resources.component.html',
@@ -25,9 +27,14 @@ export class PatientResourcesComponent implements OnInit {
   resource: PatientResource;
   resourceDialog: ResourceDialog;
 
-  constructor(public dialog: MatDialog) {
+  listOfResources: PatientResource[];
+
+  constructor(public dialog: MatDialog, private dataService: DataService) {
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
+
+    this.listOfResources = this.dataService.patientResources;
+
    }
 
   ngOnInit(): void {
@@ -40,6 +47,8 @@ export class PatientResourcesComponent implements OnInit {
       video: this.vasDialog.video
     }
     this.dialog.open(DialogBoxComponent, this.dialogConfig);
+
+
   }
 
   fluidDrainDialog(){
@@ -50,4 +59,17 @@ export class PatientResourcesComponent implements OnInit {
     }
     this.dialog.open(DialogBoxComponent, this.dialogConfig);
   }
+
+  showDialog(resource) {
+
+    this.dialogConfig.data = {
+      content: resource.content.content,
+      heading: resource.content.heading,
+      video: resource.content.video
+    }
+
+    this.dialog.open(DialogBoxComponent, this.dialogConfig);
+  }
+
+
 }

@@ -91,6 +91,24 @@ export class DataService {
         content: "Please enter the amount of fluid you have drained today in millilitres. Enter the value in the box. <p>Below is a video which details how to perform a fluid drainage of an Indwelling Pleural Catheter.</p>",
         video: "https://player.vimeo.com/video/270685188"
       }
+    }, {
+      title: "How to drain your Indwelling Pleural Catheter",
+      type: "dialog",
+      prompt: "Click Here",
+      content: {
+        heading: "How to drain your Indwelling Pleural Catheter",
+        content: "Please enter the amount of fluid you have drained today in millilitres. Enter the value in the box. <p>Below is a video which details how to perform a fluid drainage of an Indwelling Pleural Catheter.</p>",
+        video: "https://player.vimeo.com/video/270685188"
+      }
+    },
+    {
+      title: "How to perform a Visual Analogue Score",
+      type: "dialog",
+      prompt: "Click Here",
+      content: {
+        heading: "How to perform VAS score",
+        content: "Instruction: To help you to best describe how good or bad you feel on a given day, we have drawn a scale from Best on the top of the slider to Worst on the bottom of the slider. Please position the slider at the point that describes how you feel today."
+      }
     }];
 
     this.patientResources = resources;
