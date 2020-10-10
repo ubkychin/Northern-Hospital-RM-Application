@@ -65,39 +65,31 @@ export class DataService {
       title: "Indwelling Pleural Catheter Information Sheet",
       type: "pdf",
       prompt: "Click Here",
-      action: {
-        value: '../assets/IPC.pdf'
-      }
+      content: '../assets/IPC.pdf'
+    },
+    {
+      title: "Northern Health Respiratory Medicine",
+      type: "link",
+      prompt: "Click here to be redirected to the Northern Health Respiratory Medicine website",
+      content: "https://www.nh.org.au/service/respiratory-medicine/"
     },
     {
       title: "How to perform a Visual Analogue Score",
       type: "dialog",
       prompt: "Click Here",
-      action: {
-        value: {
-          heading: "How to perform VAS score",
-          content: "Instruction: To help you to best describe how good or bad you feel on a given day, we have drawn a scale from Best on the top of the slider to Worst on the bottom of the slider. Please position the slider at the point that describes how you feel today."
-        }
+      content: {
+        heading: "How to perform VAS score",
+        content: "Instruction: To help you to best describe how good or bad you feel on a given day, we have drawn a scale from Best on the top of the slider to Worst on the bottom of the slider. Please position the slider at the point that describes how you feel today."
       }
     },
     {
       title: "How to drain your Indwelling Pleural Catheter",
       type: "dialog",
       prompt: "Click Here",
-      action: {
-        value: {
-          heading: "How to drain your Indwelling Pleural Catheter",
-          content: "Please enter the amount of fluid you have drained today in millilitres. Enter the value in the box. <p>Below is a video which details how to perform a fluid drainage of an Indwelling Pleural Catheter.</p>",
-          video: "https://player.vimeo.com/video/270685188"
-        }
-      }
-    },
-    {
-      title: "Northern Health Respiratory Medicine",
-      type: "link",
-      prompt: "Click here to be redirected to the Northern Health Respiratory Medicine website",
-      action: {
-        value: "https://www.nh.org.au/service/respiratory-medicine/"
+      content: {
+        heading: "How to drain your Indwelling Pleural Catheter",
+        content: "Please enter the amount of fluid you have drained today in millilitres. Enter the value in the box. <p>Below is a video which details how to perform a fluid drainage of an Indwelling Pleural Catheter.</p>",
+        video: "https://player.vimeo.com/video/270685188"
       }
     }];
 
