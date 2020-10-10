@@ -1,8 +1,19 @@
 <div class="container">
     <div class="heading">
-        <h1 class="main-heading">Record Patient Status for IPC</h1>
-        <h3 class="sub-heading">Select from the following to update your current condition</h3>
+        <h1 class="main-heading">My IPC Surveys</h1>
     </div>
+
+    <div class="main-buttons">
+        <button *ngFor="let btn of surveys; let i = index" class="main-btn btn{{i + 1}}">
+            <fa-icon [icon]="['fas', 'align-left']"></fa-icon>
+            <p>{{btn}}{{i + 1}}</p>
+        </button>
+    </div>
+
+    <div class="heading">
+        <h1 class="main-heading">My IPC Measurements</h1>
+    </div>
+    
     <div class="main-buttons">
         <button class="main-btn btn1" [routerLink]="['/ecog-status']">
             <fa-icon [icon]="['fas', 'running']" transform="grow-5"></fa-icon>

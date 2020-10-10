@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SurveyNavComponent implements OnInit {
 
-  constructor() { }
+  surveys: string [];
+
+  constructor() {
+    this.surveys = ["Survey ", "Survey "] 
+   }
 
   ngOnInit(): void {
+    
   }
 
 }
