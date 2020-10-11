@@ -20,11 +20,11 @@
             <fa-icon [icon]="['fas', 'phone-square-alt']" transform="grow-5"></fa-icon>
             <p>Contact Us</p>
         </button>
-        <button class="main-btn btn5" [routerLink]="['/survey-nav']">
+        <button (click)="selectCategory(1)" class="main-btn btn5" [routerLink]="['/survey-nav']">
             <fa-icon [icon]="['fas', 'edit']" transform="grow-2"></fa-icon>
             <p>My IPC</p>
         </button>
-        <button class="main-btn btn6" [routerLink]="['/patient-details']">
+        <button (click)="selectCategory(2)" class="main-btn btn6" [routerLink]="['/survey-nav']">
             <fa-icon [icon]="['fas', 'edit']"></fa-icon>
             <p>My Asthma</p>
         </button>

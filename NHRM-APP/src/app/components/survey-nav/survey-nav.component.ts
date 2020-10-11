@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-survey-nav',
@@ -8,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class SurveyNavComponent implements OnInit {
 
   surveys: string [];
+  category: number = 0;
 
-  constructor() {
+  constructor(private dataService: DataService) {
     this.surveys = ["Survey ", "Survey "] 
+    this.category = this.dataService.categoryChosen;
    }
 
   ngOnInit(): void {

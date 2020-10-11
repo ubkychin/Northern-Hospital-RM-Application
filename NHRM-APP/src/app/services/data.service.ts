@@ -18,6 +18,7 @@ export class DataService {
   loading: BehaviorSubject<boolean>;
   patientResources: PatientResource[];
   pdfResource: string;
+  categoryChosen: number; 
 
   constructor(private _http: HttpClient, private spinner: NgxSpinnerService) {
     this.termsAcceptance = new BehaviorSubject(null);
