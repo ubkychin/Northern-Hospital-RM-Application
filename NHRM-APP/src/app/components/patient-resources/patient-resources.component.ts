@@ -26,8 +26,8 @@ export class PatientResourcesComponent implements OnInit {
 
   resource: PatientResource;
   resourceDialog: ResourceDialog;
-
   listOfResources: PatientResource[];
+  filePath: string = "../assets/";
 
   constructor(public dialog: MatDialog, private dataService: DataService) {
     this.dialogConfig = new MatDialogConfig();
@@ -69,6 +69,10 @@ export class PatientResourcesComponent implements OnInit {
     }
 
     this.dialog.open(DialogBoxComponent, this.dialogConfig);
+  }
+
+  setPdfResource(resource){
+    this.dataService.pdfResource = this.filePath + resource.content;
   }
 
 

@@ -17,6 +17,7 @@ export class DataService {
   patient: BehaviorSubject<Patient>;
   loading: BehaviorSubject<boolean>;
   patientResources: PatientResource[];
+  pdfResource: string;
 
   constructor(private _http: HttpClient, private spinner: NgxSpinnerService) {
     this.termsAcceptance = new BehaviorSubject(null);
@@ -65,7 +66,7 @@ export class DataService {
       title: "Indwelling Pleural Catheter Information Sheet",
       type: "pdf",
       prompt: "Click Here",
-      content: '../assets/IPC.pdf'
+      content: 'IPC.pdf'
     },
     {
       title: "Northern Health Respiratory Medicine",

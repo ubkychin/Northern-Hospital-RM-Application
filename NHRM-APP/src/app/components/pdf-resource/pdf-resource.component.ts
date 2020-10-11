@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PDFSource } from 'ng2-pdf-viewer';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-pdf-resource',
@@ -8,9 +9,11 @@ import { PDFSource } from 'ng2-pdf-viewer';
 })
 export class PdfResourceComponent implements OnInit {
 
-  pdfSrc: string | PDFSource | ArrayBuffer = '../assets/IPC.pdf';
+  pdfSrc: string | PDFSource | ArrayBuffer;
 
-  constructor() { }
+  constructor(private dataService: DataService) { 
+    this.pdfSrc = this.dataService.pdfResource;
+  }
 
   ngOnInit(): void {
   }

@@ -4,7 +4,7 @@
     </div>
 
     <div class="main-buttons">
-        <button *ngFor="let btn of surveys; let i = index" class="main-btn btn{{i + 1}}">
+        <button *ngFor="let btn of surveys; let i = index;" class="main-btn btn{{i + 1}}">
             <fa-icon [icon]="['fas', 'align-left']"></fa-icon>
             <p>{{btn}}{{i + 1}}</p>
         </button>

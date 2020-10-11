@@ -12,7 +12,7 @@
             </p>
         </div>
 
-        <div class="resource-tile t-2" (click)="showDialog(resource)" *ngIf="resource.type == 'pdf' ">
+        <div class="resource-tile t-2" [routerLink]="['/pdf-resource']" (click)="setPdfResource(resource)" *ngIf="resource.type == 'pdf' ">
             <h3 class="res-title">{{resource.title}}</h3>
             <p class="res-info">
                 <fa-icon [icon]="['fas', 'info-circle']" transform="grow-5"></fa-icon>
