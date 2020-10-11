@@ -38,11 +38,9 @@ export class QolVasComponent implements OnInit {
       range: range_all_sliders,
       pips: {
         mode: 'range',
-        density: 1
+        density: 100
       },
     });
-
-    this.vasSlider.setAttribute('disabled', true);
   }
 
 
