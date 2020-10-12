@@ -30,13 +30,12 @@ import { PatientDetailsComponent } from './patient-details/patient-details.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QolVasComponent } from './components/qol-vas/qol-vas.component';
 import { DialogBoxComponent } from './components/dialog-box/dialog-box.component';
-import { SafePipe } from './safe.pipe';
-import { PatientResourcesOgComponent } from './components/patient-resources-og/patient-resources-og.component';
-import { IpcSheetOgComponent } from './components/patient-resources-og/ipc-sheet-og/ipc-sheet-og.component';
+import { SafePipe } from './pipes/safe.pipe';
 import { PdfResourceComponent } from './components/pdf-resource/pdf-resource.component';
 import { Call000Component } from './components/call000/call000.component';
 import { VasSliderComponent } from './components/vas-slider/vas-slider.component';
 import { Error404Component } from './components/error404/error404.component';
+import { ResourceFilterPipe } from './pipes/resource-filter.pipe';
 
 export function tokenGetter() {
   return JSON.parse(localStorage.getItem('Authorization'));
@@ -60,12 +59,11 @@ export function tokenGetter() {
     QolVasComponent,
     DialogBoxComponent,
     SafePipe,
-    PatientResourcesOgComponent,
-    IpcSheetOgComponent,
     PdfResourceComponent,
     Call000Component,
     VasSliderComponent,
-    Error404Component
+    Error404Component,
+    ResourceFilterPipe
   ],
   imports: [
     BrowserModule,

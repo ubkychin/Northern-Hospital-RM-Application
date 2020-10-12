@@ -27,11 +27,11 @@
             </a>
 
             <div class="dropdown" [ngStyle]=" {'display' : this.toggle ? 'none' : 'block'}">
-                <div routerLink="patient-resources">Patient Resources</div>
-                <div routerLink="patient-details">Patient Details</div>
-                <div routerLink="survey-nav">Record Status</div>
+                <div routerLink="patient-resources">My Resources</div>
+                <div routerLink="patient-details">My Details</div>
+                <div routerLink="survey-nav" (click)="selectCategory(1)">My IPC</div>
+                <div routerLink="survey-nav" (click)="selectCategory(2)">My Asthma</div>
                 <div routerLink="patient-details">Help Info</div>
-                <div routerLink="patient-details">Patient Surveys</div>
                 <div routerLink="patient-details">Contact Us</div>
             </div>
         </nav>

@@ -46,6 +46,10 @@ export class AppComponent {
     this.loadingSpinner();
   }
 
+  selectCategory(value){
+    this.dataService.categoryChosen = value;
+  }
+
   goBack() {
     this.location.back();
   }

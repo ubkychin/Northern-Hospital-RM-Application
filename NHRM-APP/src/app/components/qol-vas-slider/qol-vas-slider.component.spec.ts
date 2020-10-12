@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PatientResourcesOgComponent } from './patient-resources-og.component';
+import { QolVasSliderComponent } from './qol-vas-slider.component';
 
-describe('PatientResourcesOgComponent', () => {
-  let component: PatientResourcesOgComponent;
-  let fixture: ComponentFixture<PatientResourcesOgComponent>;
+describe('QolVasSliderComponent', () => {
+  let component: QolVasSliderComponent;
+  let fixture: ComponentFixture<QolVasSliderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PatientResourcesOgComponent ]
+      declarations: [ QolVasSliderComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PatientResourcesOgComponent);
+    fixture = TestBed.createComponent(QolVasSliderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
