@@ -31,8 +31,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QolVasComponent } from './components/qol-vas/qol-vas.component';
 import { DialogBoxComponent } from './components/dialog-box/dialog-box.component';
 import { SafePipe } from './pipes/safe.pipe';
-import { PatientResourcesOgComponent } from './components/patient-resources-og/patient-resources-og.component';
-import { IpcSheetOgComponent } from './components/patient-resources-og/ipc-sheet-og/ipc-sheet-og.component';
 import { PdfResourceComponent } from './components/pdf-resource/pdf-resource.component';
 import { Call000Component } from './components/call000/call000.component';
 import { Error404Component } from './components/error404/error404.component';
@@ -60,8 +58,6 @@ export function tokenGetter() {
     QolVasComponent,
     DialogBoxComponent,
     SafePipe,
-    PatientResourcesOgComponent,
-    IpcSheetOgComponent,
     PdfResourceComponent,
     Call000Component,
     Error404Component,
