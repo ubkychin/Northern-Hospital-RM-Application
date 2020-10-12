@@ -14,6 +14,7 @@ import { PatientDetailsComponent } from './patient-details/patient-details.compo
 import {QolVasComponent} from './components/qol-vas/qol-vas.component';
 import { AuthGuard } from './guard/auth.guard';
 import { PdfResourceComponent } from './components/pdf-resource/pdf-resource.component';
+import { Error404Component } from './components/error404/error404.component';
 
 
 const routes: Routes = [
@@ -38,9 +39,10 @@ const routes: Routes = [
   {path: 'qol-vas', component: QolVasComponent, canActivate: [AuthGuard]},
   {path: 'patient-resources', component: PatientResourcesComponent, canActivate: [AuthGuard]},
   {path: 'pdf-resource', component: PdfResourceComponent, canActivate: [AuthGuard]},
+  {path:  '404-error', component: Error404Component},
   {
     path: '**',
-    redirectTo: '/home'
+    redirectTo: '/404-error'
   }
 ];
 
