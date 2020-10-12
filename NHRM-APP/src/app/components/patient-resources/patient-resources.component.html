@@ -1,42 +1,41 @@
 <div class="heading">
     <h1 class="main-heading">Patient Resources</h1>
 </div>
-<div class="container" >
+<div class="container">
 
-    <div *ngFor="let resource of listOfResources">
-        <div class="resource-tile t-1" *ngIf="resource.type == 'phone' ">
-            <h3 class="res-title">{{resource.title}}</h3>
-            <p class="res-info">
-                <fa-icon [icon]="['fas', 'phone']" transform="rotate-130 grow-5"></fa-icon>
-                <strong>{{resource.prompt}}</strong>
-            </p>
-        </div>
-
-        <div class="resource-tile t-2" [routerLink]="['/pdf-resource']" (click)="setPdfResource(resource)" *ngIf="resource.type == 'pdf' ">
-            <h3 class="res-title">{{resource.title}}</h3>
-            <p class="res-info">
-                <fa-icon [icon]="['fas', 'info-circle']" transform="grow-5"></fa-icon>
-                <strong>{{resource.prompt}}</strong>
-            </p>
-        </div>
-        
-        <div class="resource-tile t-3" (click)="showDialog(resource)" *ngIf="resource.type == 'dialog' ">
-            <h3 class="res-title">{{resource.title}}</h3>
-            <p class="res-info">
-                <fa-icon [icon]="['fas', 'info-circle']" transform="grow-5"></fa-icon>
-                <strong>{{resource.prompt}}</strong>
-            </p>
-        </div>
-    
-        <div  class="resource-tile t-4" *ngIf="resource.type == 'link' ">
-            <h3 class="res-title">{{resource.title}}</h3>
-            <a class="res-info" href="{{resource.hyperlink}}" target="_blank">
-                <p>
-                    <fa-icon [icon]="['fas', 'info-circle']" transform="grow-5"></fa-icon>
-                    <strong>{{resource.prompt}}</strong>
-                </p>
-            </a>
-        </div>
+    <div id="t-1" class="resource-tile tile-one" *ngFor="let resource of phoneType">
+        <p class="res-title">{{resource.title}}</p>
+        <p class="res-info">
+            <fa-icon [icon]="['fas', 'phone']" transform="rotate-130 grow-5"></fa-icon>
+            <strong>{{resource.prompt}}</strong>
+        </p>
     </div>
-    
+    <div id="t-2" class="resource-tile tile-one resource-click" *ngFor="let resource of pdfType"
+        [routerLink]="['/pdf-resource']" (click)="setPdfResource(resource)">
+        <p class="res-title">{{resource.title}}</p>
+        <p class="res-info">
+            <fa-icon [icon]="['fas', 'info-circle']" transform="grow-5"></fa-icon>
+            <strong>{{resource.prompt}}</strong>
+        </p>
+    </div>
+
+    <div id="t-3" class="resource-tile tile-one resource-click" *ngFor="let resource of dialogType"
+        (click)="showDialog(resource)">
+        <p class="res-title">{{resource.title}}</p>
+        <p class="res-info">
+            <fa-icon [icon]="['fas', 'info-circle']" transform="grow-5"></fa-icon>
+            <strong>{{resource.prompt}}</strong>
+        </p>
+    </div>
+
+    <div id="t-4" class="resource-tile tile-one" *ngFor="let resource of linkType">
+        <p class="res-title">{{resource.title}}</p>
+        <p class="res-info">
+            <a href="{{resource.content}}" target="_blank">
+                <fa-icon [icon]="['fas', 'info-circle']" transform="grow-5"></fa-icon>
+                <strong>{{resource.prompt}}</strong>
+            </a>
+        </p>
+    </div>
+
 </div>

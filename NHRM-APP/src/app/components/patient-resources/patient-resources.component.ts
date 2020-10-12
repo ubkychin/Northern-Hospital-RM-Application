@@ -29,11 +29,23 @@ export class PatientResourcesComponent implements OnInit {
   listOfResources: PatientResource[];
   filePath: string = "../assets/";
 
+  phoneType: PatientResource[];
+  linkType: PatientResource[];
+  pdfType: PatientResource[];
+  dialogType: PatientResource[];
+
   constructor(public dialog: MatDialog, private dataService: DataService) {
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
 
     this.listOfResources = this.dataService.patientResources;
+
+    this.phoneType = this.listOfResources.filter((res) => {return res.type == 'phone'});
+    this.linkType = this.listOfResources.filter((res) => {return res.type == 'link'});
+    this.pdfType = this.listOfResources.filter((res) => {return res.type == 'pdf'});
+    this.dialogType = this.listOfResources.filter((res) => {return res.type == 'dialog'});
+
+    console.log(this.linkType[0]);
 
    }
 
