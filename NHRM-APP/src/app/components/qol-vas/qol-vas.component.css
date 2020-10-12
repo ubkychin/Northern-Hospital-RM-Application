@@ -1,4 +1,39 @@
-@import "~nouislider/distribute/nouislider.min.css";
+.form-container {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    max-width: 95%;
+}
+
+.vas-level-input {
+    margin: 40px;
+    background-color: #D2E8F2;
+    width: 90px;
+    height: 50px;
+    border: 1px solid #707070;
+    border-radius: 5px;
+    font-size: xx-large;
+    text-align: center;
+}
+
+/* Remove Spinners Chrome, Safari, Edge, Opera */
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Remove Spinners Firefox */
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+/* @import "~nouislider/distribute/nouislider.min.css";
 
 .wrapper {
     text-align: center;
@@ -46,10 +81,6 @@ input[type="number"] {
     margin: 20px 0px;
 }
 
-/* Remove the arrows/spinners */
-
-
-/* Chrome, Safari, Edge, Opera */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button { 
 
@@ -57,7 +88,6 @@ input[type="number"]::-webkit-inner-spin-button {
 
 }
 
-/* Firefox */
 input[type="number"] {
     -moz-appearance: textfield;
 }
@@ -71,4 +101,4 @@ input[type="number"] {
 .disable-button {
     opacity: 0.7;
     cursor: no-drop;
-}
+} */

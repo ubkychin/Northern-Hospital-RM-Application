@@ -16,7 +16,6 @@ export class QolVasComponent implements OnInit {
 
 
   currentHealthScore: Number;
-  // vasSlider: noUiSlider.Instance;
   isValid: Boolean = true;
   patient: Patient;
 
@@ -31,29 +30,31 @@ export class QolVasComponent implements OnInit {
     console.log("Printing numbers");
   }
 
-
-  updateSlider(score) {
-
-    var submitButton = document.querySelector('.submit-button');
+  infoDialog(){
 
   }
+  
+  recordVASHealth(form) {
+    console.log(form.value['vas-input']);
+    console.log(this.patient);
 
-  submitData() {
     let measurementResult = {
       'hospitalNumber': this.patient.hospitalNumber,
       'categoryId': this.patient.categoryId,
       'dataPointNumber': 6,
       'measurementId': 6,
       'timeStamp': new Date(),
-      // 'value': Number(this.vasSlider.noUiSlider.get())
+      'value': form.value['vas-input'] //Number(this.vasSlider.noUiSlider.get())
     };
 
-    // this.dataService.postMeasurementResult(measurementResult)
-    //   .then(() => this.router.navigate(['/survey-nav']))
-    //   .catch((err) => console.log(err + "Quality of Life VAS Scale Error"))
-    //   .finally(() => {
-    //     console.log("Finalized");
-    //     this.dataService.loading.next(false);
-    //   });
+    console.log(measurementResult);
+
+    this.dataService.postMeasurementResult(measurementResult)
+      .then(() => this.router.navigate(['/survey-nav']))
+      .catch((err) => console.log(err + "Quality of Life VAS Scale Error"))
+      .finally(() => {
+        console.log("Finalized");
+        this.dataService.loading.next(false);
+      });
   }
 }

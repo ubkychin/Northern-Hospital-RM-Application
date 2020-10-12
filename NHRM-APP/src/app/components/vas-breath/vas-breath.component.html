@@ -1,23 +1,20 @@
 <div class="heading">
     <h1 class="main-heading">Visual Analogue Scale (Breathlessness)</h1>
-    <h3 class="sub-heading">Enter Level of Breathlessness</h3>
+    <h3 class="sub-heading">Enter Level of Breathlessness from 0 to 100</h3>
+
 </div>
 
 <app-info-bar (click)="infoDialog()"></app-info-bar>
 
-<div class="container">
-    <p id="good">No Breathlessness</p>
-    <p id="bad">Worst Possible Breathlessness</p>
-    <input type="range" id="slider" (input)="breathStatus(slider.value)" name="vas-breath" step="1" min="0" max="100"
-        #slider value="50">
-    <input placeholder="0" min="0" max="10" maxlength="2" type="number" class="vas-level" [(ngModel)]="this.status">
-    <div class="none box" [ngClass]="{'selected': this.status >= 0 && this.status <= 20}"> None</div>
-    <div class="mild box" [ngClass]="{'selected': this.status >= 21 && this.status <= 40}">Mild</div>
-    <div class="moderate box" [ngClass]="{'selected': this.status >= 41 && this.status <= 60}">Moderate</div>
-    <div class="severe box" [ngClass]="{'selected': this.status >= 61 && this.status <= 80}">Severe</div>
-    <div class="worst box" [ngClass]="{'selected': this.status >= 81 && this.status <= 100}">Worst Possible</div>
-</div>
-<div class="submit">
-    <button class="submit-button disabled-btn" [ngClass]="{'disabled-btn': !this.status}" (click)="recordVASBreath()"
-        [disabled]="!this.status">Submit</button>
-</div>
+<form class="form-container" #vasInputForm="ngForm" (ngSubmit)="recordVASBreath(vasInputForm.form);">
+
+    <h3 class="sub-heading">Entering 0 meaning you have No difficulty breathing and entering 100 having Extreme
+        difficulty breathing</h3>
+
+    <input class="vas-level-input" type="number" placeholder="0" min="0" max="10" maxlength="2" name="vas-input" ngModel
+        #vasInputField="ngModel" required>
+
+    <button type="submit" class="submit-button" [disabled]="!vasInputForm.valid"
+        [ngClass]="{'disabled-btn': !vasInputForm.valid}">Next</button>
+
+</form>

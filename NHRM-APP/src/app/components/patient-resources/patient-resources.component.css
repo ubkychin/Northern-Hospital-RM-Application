@@ -3,58 +3,47 @@ h1 {
 }
 
 .container {
+    margin: auto;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-items: center;
+    max-width: 800px;
 }
 
-.t-1 {
+.container>div>div {
+    flex-grow: 1;
+}
+
+#t-1, #t-2, #t-3, #t-4, #t-5 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#t-1 {
     background: #DDAEEF;
 }
 
-.t-2 {
+#t-2 {
     background: #B7F395;
 }
 
-.t-3 {
-    background: #F2E699;
-}
-
-.t-4 {
-    background: #92f2dd;
-}
-
-.t-5 {
-    /* grid-area: span 1 / span 4; */
+#t-3 {
     background: #FDC7BF;
 }
 
-/* @media screen and (max-width: 420px) {
-    .container {
-        display: grid;
-        grid-template-columns:  170px 170px;
-    }
-
-    #t-5 {
-        grid-area:  span 1 / span 2;
-    }
+#t-4 {
+    background: #92f2dd;
 }
 
-.container {
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
-    gap: 15px;
-    grid-gap: 15px;
+#t-5 {
+    background: #F2E699;
 }
 
 .resource-tile {
     box-shadow: 0px 0px 0px 2px whitesmoke, 0px 0px 0px 4px #707070;
     border-left: solid 5px #005CB9;
     border-radius: 5px;
-
-
-    flex: 1 0 100%;
-
     display: flex;
     flex-direction: column;
 }
@@ -67,6 +56,7 @@ h1 {
 .res-title {
     font-weight: bold;
     color: #005CB9;
+    min-height: 80px;
 }
 
 .res-info {
@@ -75,7 +65,8 @@ h1 {
 }
 
 .tile-one {
-    width: 170px;
+    margin: 8px;
+    width: 165px;
     height: 140px;
 }
 
@@ -89,75 +80,13 @@ h1 {
     cursor: pointer;
 }
 
-span {
-    font-weight: bold;
-}
-
 a {
-    font-size: 0.9em;
-    text-align: center;
     color: black;
     text-decoration: none;
-    padding-bottom: 5px;
-} */
+}
 
 fa-icon {
     color: #005CB9;
+    position: relative;
     left: -10px;
-}
-
-
-.resource-tile {
-
-    box-shadow: 0px 0px 0px 2px whitesmoke, 0px 0px 0px 4px #707070;
-    border-left: solid 5px #005CB9;
-    border-radius: 5px;
-    margin: 10px;
-
-    text-align: center;
-
-}
-
-.resource-tile fa-icon {
-    padding: 10px;
-}
-
-.resource-tile .res-title {
-    padding: 20px 0px;
-}
-
-.resource-tile .res-info {
-    padding: 20px;
-}
-
-
-
-@media only screen and (min-width: 750px) {
-
-    .container {
-        flex-flow: row wrap;
-    }
-
-    .container .ng-star-inserted {
-        flex: 1 0 35%;
-    }
-}
-
-
-@media only screen and (min-width: 1200px) {
-
-    .container {
-        max-width: 800px;
-        margin: auto;
-    }
-
-    .container .ng-star-inserted{
-        flex: 1 0 30%;
-    }
-}
-
-@media only screen and (min-width: 1400px) {
-    .container {
-        max-width: 1200px;
-    }
 }

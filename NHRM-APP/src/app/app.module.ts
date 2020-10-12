@@ -36,6 +36,7 @@ import { IpcSheetOgComponent } from './components/patient-resources-og/ipc-sheet
 import { PdfResourceComponent } from './components/pdf-resource/pdf-resource.component';
 import { Call000Component } from './components/call000/call000.component';
 import { VasSliderComponent } from './components/vas-slider/vas-slider.component';
+import { Error404Component } from './components/error404/error404.component';
 
 export function tokenGetter() {
   return JSON.parse(localStorage.getItem('Authorization'));
@@ -63,7 +64,8 @@ export function tokenGetter() {
     IpcSheetOgComponent,
     PdfResourceComponent,
     Call000Component,
-    VasSliderComponent
+    VasSliderComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
