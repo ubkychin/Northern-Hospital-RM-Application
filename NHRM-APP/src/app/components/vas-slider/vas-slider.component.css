@@ -1,0 +1,74 @@
+@import "~nouislider/distribute/nouislider.min.css";
+
+.wrapper {
+    text-align: center;
+}
+
+.main-heading {
+    margin: 30px auto;
+}
+
+.sub-heading{
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 0px 40px;
+}
+
+.vas-slider {
+    text-align: center;
+    margin: 10% auto;
+    width: 80%;
+}
+
+label[for="health-score"] {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+input[type="number"] {
+    height: 30px;
+    width: 70px;
+    border-radius: 5px;
+
+    border: 1px solid black;
+
+    color: var(--nh-blue);
+    padding-left: 10px;
+
+    font-size: 17px;
+    font-weight: bold;
+}
+
+
+.alert {
+    font-weight: bold;
+    color: red;
+    margin: 20px 0px;
+}
+
+/* Remove the arrows/spinners */
+
+
+/* Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button { 
+
+    -webkit-appearance: none;
+
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+
+
+@media screen and (min-width: 650px) {
+
+}
+
+.disable-button {
+    opacity: 0.7;
+    cursor: no-drop;
+}

@@ -14,6 +14,7 @@ import { PatientDetailsComponent } from './patient-details/patient-details.compo
 import {QolVasComponent} from './components/qol-vas/qol-vas.component';
 import { AuthGuard } from './guard/auth.guard';
 import { PdfResourceComponent } from './components/pdf-resource/pdf-resource.component';
+import {VasSliderComponent} from './components/vas-slider/vas-slider.component';
 
 
 const routes: Routes = [
@@ -38,10 +39,11 @@ const routes: Routes = [
   {path: 'qol-vas', component: QolVasComponent, canActivate: [AuthGuard]},
   {path: 'patient-resources', component: PatientResourcesComponent, canActivate: [AuthGuard]},
   {path: 'pdf-resource', component: PdfResourceComponent, canActivate: [AuthGuard]},
+  {path: 'vas-slider', component: VasSliderComponent},
   {
     path: '**',
     redirectTo: '/home'
-  }
+  },
 ];
 
 @NgModule({

@@ -11,7 +11,7 @@
 
     <p class="alert" *ngIf="!isValid">Please enter in a number between 0 - 100.</p>
 
-    <div class="vas-slider"></div> 
+    <app-vas-slider (vasValue)="vasValue($event)"></app-vas-slider>
 
 
 
