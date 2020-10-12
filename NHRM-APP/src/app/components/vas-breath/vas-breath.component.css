@@ -1,78 +1,22 @@
-.container {
+.form-container {
     justify-content: center;
     align-items: center;
-    display: grid;
-    gap: 5px;
-    grid-gap: 5px;
-    grid-template: repeat(7, 50px) / 130px 70px 150px;
-}
-
-.box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
     text-align: center;
-    border: solid 1px black;
-    width: 150px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    max-width: 95%;
+}
+
+.vas-level-input {
+    margin: 40px;
+    background-color: #D2E8F2;
+    width: 90px;
     height: 50px;
-    opacity: .5;
-}
-
-input[type=range] {
-    -webkit-appearance: none;
-    touch-action: none;
-    transform: rotate(90deg);
-    width: 280px;
-}
-
-input[type=range]::-moz-range-track {
-    height: 10px;
-    background: #005CB9;
-    border: none;
+    border: 1px solid #707070;
     border-radius: 5px;
-}
-
-input[type=range]::-webkit-slider-runnable-track {
-    height: 10px;
-    background: #005CB9;
-    border: none;
-    border-radius: 5px;
-}
-
-input[type=range]::-moz-range-thumb {
-    border: none;
-    height: 35px;
-    width: 35px;
-    background: #D7374B;
-    border-radius: 15px;
-    margin-top: -13px;
-}
-
-input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    border: none;
-    height: 35px;
-    width: 35px;
-    background: #D7374B;
-    border-radius: 15px;
-    margin-top: -13px;
-}
-
-input[type=range]:-moz-focusring {
-    outline: none;
-}
-
-input[type=range]:focus {
-    outline: none;
-}
-
-input[type=range]:focus::-webkit-slider-runnable-track {
-    background: #005CB9;
-}
-
-input[type=range]:focus::-moz-range-track {
-    background: #005CB9;
+    font-size: xx-large;
+    text-align: center;
 }
 
 /* Remove Spinners Chrome, Safari, Edge, Opera */
@@ -88,67 +32,10 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-#good {
-    text-align: center;
-    grid-area: 1 / 1;
-    font-weight: bold;
+/* .ng-valid[required], .ng-valid.required {
+    border-left: 5px solid #42A948;
 }
 
-#bad {
-    text-align: center;
-    grid-area: 7 / 1;
-    font-weight: bold;
-}
-
-#slider {
-    justify-self: center;
-    grid-area: 4 / 1;
-}
-
-.vas-level {
-    margin-right: 50px;
-    justify-self: center;
-    background-color: #D2E8F2;
-    width: 70px;
-    height: 40px;
-    border: 1px solid #707070;
-    border-radius: 5px;
-    font-size: xx-large;
-    text-align: center;
-    grid-area: 4 / 2;
-}
-
-.submit {
-    display: grid;
-    justify-items: center;
-}
-
-.selected {
-    opacity: 1;
-    box-shadow: -2px 2px 5px black;
-}
-
-.none {
-    background-color: #1FC752;
-    grid-area: 2 / 3;
-}
-
-.mild {
-    background-color: #97E265;
-    grid-area: 3 / 3;
-}
-
-.moderate {
-    background-color: #E2EC53;
-    grid-area: 4 / 3;
-}
-
-.severe {
-    background-color: #ECA451;
-    grid-area: 5 / 3;
-}
-
-.worst {
-    background-color: #EE4B4B;
-    grid-area: 6 / 3;
-}
+.ng-invalid:not(form) {
+    border-left: 5px solid #a94442;
+} */

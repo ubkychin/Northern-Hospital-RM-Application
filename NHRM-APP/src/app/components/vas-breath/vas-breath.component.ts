@@ -21,8 +21,9 @@ export class VasBreathComponent implements OnInit {
     + "we have drawn a scale from Best on the top of the slider to Worst on the bottom of the slider. "
     + "Please position the slider at the point that describes how you feel today."
   }
-  status: number;
+  
   patient: Patient;
+  failed: boolean;
 
   constructor(public dialog: MatDialog, private dataService: DataService, private router: Router) {
     this.dialogConfig = new MatDialogConfig();
@@ -30,12 +31,7 @@ export class VasBreathComponent implements OnInit {
     dataService.patient.subscribe(data => { this.patient = data });
   }
 
-
   ngOnInit(): void {
-  }
-
-  breathStatus(value: string) {
-    this.status = parseInt(value);
   }
 
   infoDialog() {
@@ -47,9 +43,9 @@ export class VasBreathComponent implements OnInit {
     this.dialog.open(DialogBoxComponent, this.dialogConfig);
   }
 
-  recordVASBreath() {
-    console.log(this.status)
-    console.log(this.patient)
+  recordVASBreath(form) {
+    console.log(form.value['vas-input']);
+    console.log(this.patient);
 
     let measurementResult: MeasurementResult = {
       'hospitalNumber': this.patient.hospitalNumber,
@@ -57,9 +53,11 @@ export class VasBreathComponent implements OnInit {
       'dataPointNumber': 1,
       'measurementId': 3,
       'timeStamp': new Date(),
-      'value': this.status
+      'value': form.value['vas-input']
     }
 
+    console.log(measurementResult);
+    
     this.dataService.postMeasurementResult(measurementResult)
       .then(() => this.router.navigate(['/survey-nav']))
       .catch((err) => console.error(err + " Breath ERR"))

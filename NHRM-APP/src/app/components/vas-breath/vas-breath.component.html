@@ -1,17 +1,20 @@
 <div class="heading">
     <h1 class="main-heading">Visual Analogue Scale (Breathlessness)</h1>
-    <h3 class="sub-heading">Enter Level of Breathlessness</h3>
+    <h3 class="sub-heading">Enter Level of Breathlessness from 0 to 100</h3>
+
 </div>
 
 <app-info-bar (click)="infoDialog()"></app-info-bar>
 
-<div class="container">
-    <p id="good">Enter amount of fluid drained</p>
+<form class="form-container" #vasInputForm="ngForm" (ngSubmit)="recordVASBreath(vasInputForm.form);">
 
-    <input placeholder="0" min="0" max="10" maxlength="2" type="number" class="vas-level" [(ngModel)]="this.status">
-    
-</div>
-<div class="submit">
-    <button class="submit-button disabled-btn" [ngClass]="{'disabled-btn': !this.status}" (click)="recordVASBreath()"
-        [disabled]="!this.status">Submit</button>
-</div>
+    <h3 class="sub-heading">Entering 0 meaning you have No difficulty breathing and entering 100 having Extreme
+        difficulty breathing</h3>
+
+    <input class="vas-level-input" type="number" placeholder="0" min="0" max="10" maxlength="2" name="vas-input" ngModel
+        #vasInputField="ngModel" required>
+
+    <button type="submit" class="submit-button" [disabled]="!vasInputForm.valid"
+        [ngClass]="{'disabled-btn': !vasInputForm.valid}">Next</button>
+
+</form>

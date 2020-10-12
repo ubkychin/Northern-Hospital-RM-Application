@@ -5,19 +5,14 @@
 
 <app-info-bar (click)="infoDialog()"></app-info-bar>
 
-<div class="container">
-    <p id="good">No Pain</p>
-    <p id="bad">Worst Possible Pain</p>
-    <input type="range" id="slider" (input)="painStatus(slider.value)" name="vas-pain" step=".1" min="0" max="10"
-        #slider value="5">
-    <input placeholder="0" min="0" max="10" maxlength="2" type="number" class="vas-level" [(ngModel)]="this.status">
-    <div class="none box" [ngClass]="{'selected': this.status >= 0 && this.status <= 2}"> None</div>
-    <div class="mild box" [ngClass]="{'selected': this.status >= 2.1 && this.status <= 4}">Mild</div>
-    <div class="moderate box" [ngClass]="{'selected': this.status >= 4.1 && this.status <= 6}">Moderate</div>
-    <div class="severe box" [ngClass]="{'selected': this.status >= 6.1 && this.status <= 8}">Severe</div>
-    <div class="worst box" [ngClass]="{'selected': this.status >= 8.1 && this.status <= 10}">Worst Possible</div>
-</div>
-<div class="submit">
-    <button class="submit-button disabled-btn" [ngClass]="{'disabled-btn': !this.status}" (click)="recordVASPain()"
-        [disabled]="!this.status">Submit</button>
-</div>
+<form class="form-container" #vasInputForm="ngForm" (ngSubmit)="recordVASPain(vasInputForm.form);">
+
+    <h3 class="sub-heading">Entering 0 meaning you have No Pain and entering 100 having Worst Possible Pain</h3>
+    
+    <input class="vas-level-input" type="number" placeholder="0" min="0" max="10" maxlength="2" name="vas-input" ngModel
+        #vasInputField="ngModel" required>
+
+    <button type="submit" class="submit-button" [disabled]="!vasInputForm.valid"
+        [ngClass]="{'disabled-btn': !vasInputForm.valid}">Next</button>
+
+</form>

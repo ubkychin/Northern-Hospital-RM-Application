@@ -26,7 +26,7 @@ export class QolVasComponent implements OnInit {
 
   ngOnInit(): void {
 
-    var range_all_sliders = {
+/*     var range_all_sliders = {
       'min': [0],
       'max': [100]
     };
@@ -40,11 +40,11 @@ export class QolVasComponent implements OnInit {
         mode: 'range',
         density: 100
       },
-    });
+    }); */
   }
 
 
-  updateSlider(score) {
+ /*  updateSlider(score) {
 
     var submitButton = document.querySelector('.submit-button');
 
@@ -62,17 +62,26 @@ export class QolVasComponent implements OnInit {
       (<HTMLInputElement>submitButton).disabled = true;
       submitButton.classList.add("disable-button");
     }
-  }
+  } */
 
-  submitData() {
+  infoDialog(){
+
+  }
+  
+  recordVASHealth(form) {
+    console.log(form.value['vas-input']);
+    console.log(this.patient);
+
     let measurementResult = {
       'hospitalNumber': this.patient.hospitalNumber,
       'categoryId': this.patient.categoryId,
       'dataPointNumber': 6,
       'measurementId': 6,
       'timeStamp': new Date(),
-      'value': Number(this.vasSlider.noUiSlider.get())
+      'value': form.value['vas-input'] //Number(this.vasSlider.noUiSlider.get())
     };
+
+    console.log(measurementResult);
 
     this.dataService.postMeasurementResult(measurementResult)
       .then(() => this.router.navigate(['/survey-nav']))
