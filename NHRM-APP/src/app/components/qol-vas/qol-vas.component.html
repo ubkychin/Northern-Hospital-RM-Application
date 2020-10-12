@@ -1,6 +1,6 @@
 <div class="heading">
     <h1 class="main-heading">Part 2: VAS scale</h1>
-    <h3 class="sub-heading">Enter Level of Breathlessness from 0 to 100</h3>
+    <h3 class="sub-heading">We would like to know how good or bad your health is today. </h3>
 
 </div>
 
@@ -8,7 +8,7 @@
 
 <form class="form-container" #vasInputForm="ngForm" (ngSubmit)="recordVASHealth(vasInputForm.form);">
 
-    <h3 class="sub-heading">We would like to know how good or bad your health is today. Enter in a number between 0 to 100 below, 100 means the best health you can imagine and 0 means the worst health you can imagine.</h3>
+    <h3 class="sub-heading">Enter in a number between 0 to 100 below, 100 means the best health you can imagine and 0 means the worst health you can imagine.</h3>
 
     <input class="vas-level-input" type="number" placeholder="0" min="0" max="10" maxlength="2" name="vas-input" ngModel
         #vasInputField="ngModel" required>
