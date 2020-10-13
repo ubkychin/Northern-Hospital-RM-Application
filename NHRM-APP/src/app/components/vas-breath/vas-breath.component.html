@@ -1,15 +1,13 @@
 <div class="heading">
     <h1 class="main-heading">Visual Analogue Scale (Breathlessness)</h1>
-    <h3 class="sub-heading">Enter Level of Breathlessness from 0 to 100</h3>
+    <h3 class="sub-heading">Enter Level of Breathlessness from 0 to 100. Entering 0 meaning you have No difficulty breathing and entering 100 having Extreme
+        difficulty breathing</h3>
 
 </div>
 
 <app-info-bar (click)="infoDialog()"></app-info-bar>
 
 <form class="form-container" #vasInputForm="ngForm" (ngSubmit)="recordVASBreath(vasInputForm.form);">
-
-    <h3 class="sub-heading">Entering 0 meaning you have No difficulty breathing and entering 100 having Extreme
-        difficulty breathing</h3>
 
     <input class="vas-level-input" type="number" placeholder="0" min="0" max="10" maxlength="2" name="vas-input" ngModel
         #vasInputField="ngModel" required>

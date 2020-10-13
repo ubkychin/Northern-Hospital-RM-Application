@@ -15,7 +15,7 @@
     </div>
     
     <div class="main-buttons">
-        <button *ngIf="category == 1" class="main-btn btn1" [routerLink]="['/ecog-status']">
+        <button *ngIf="category == 1 || category ==  2" class="main-btn btn1" [routerLink]="['/ecog-status']">
             <fa-icon *ngIf="false" [icon]="['fas', 'running']" transform="grow-5"></fa-icon>
             <fa-icon *ngIf="true" id="done" [icon]="['fas', 'check-circle']" transform="grow-5"></fa-icon>
             <p>Ecog Status</p>
