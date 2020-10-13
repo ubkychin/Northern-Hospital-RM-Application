@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QolVasSliderComponent implements OnInit {
 
+  currentHealthScore: number;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+
+  getHealthScore(event) {
+    this.currentHealthScore = event;
+
+    console.log(this.currentHealthScore);
+  }
+
+
+  submitHealthScore() {
+
+  }
 }

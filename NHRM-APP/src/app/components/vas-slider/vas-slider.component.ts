@@ -18,10 +18,7 @@ export class VasSliderComponent implements OnInit {
   isValid: Boolean = true;
   patient: Patient;
 
-  
-
   @Output() vasValue: EventEmitter<Number> = new EventEmitter<Number>();
-
 
   constructor(private dataService: DataService, private router: Router) {
     dataService.patient.subscribe(data => { this.patient = data });
@@ -53,7 +50,6 @@ export class VasSliderComponent implements OnInit {
 
       this.vasValue.emit(this.currentHealthScore);
     });
-
   }
 
   

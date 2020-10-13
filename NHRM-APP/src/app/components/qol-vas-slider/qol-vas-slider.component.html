@@ -1,1 +1,13 @@
-<app-vas-slider></app-vas-slider>
+<div class="container">
+    <div class="heading">
+        <h1 class="main-heading">Part 2: Vas Scale</h1>
+        <h3 class="sub-heading">We would like to know your health today</h3>
+    </div>
+    
+    <app-info-bar></app-info-bar>
+    
+    <app-vas-slider (vasValue)="getHealthScore($event)"></app-vas-slider>
+    
+    <button type="submit" class="submit-button">Submit</button>
+</div>
+

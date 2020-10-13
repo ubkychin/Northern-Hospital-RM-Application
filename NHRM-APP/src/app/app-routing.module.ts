@@ -14,11 +14,9 @@ import { PatientDetailsComponent } from './patient-details/patient-details.compo
 import {QolVasComponent} from './components/qol-vas/qol-vas.component';
 import { AuthGuard } from './guard/auth.guard';
 import { PdfResourceComponent } from './components/pdf-resource/pdf-resource.component';
-<<<<<<< HEAD
 import {VasSliderComponent} from './components/vas-slider/vas-slider.component';
-=======
 import { Error404Component } from './components/error404/error404.component';
->>>>>>> 06ed4667aae811348f37f86fd46e0d7397342159
+import {QolVasSliderComponent} from './components/qol-vas-slider/qol-vas-slider.component';
 
 
 const routes: Routes = [
@@ -43,19 +41,16 @@ const routes: Routes = [
   {path: 'qol-vas', component: QolVasComponent, canActivate: [AuthGuard]},
   {path: 'patient-resources', component: PatientResourcesComponent, canActivate: [AuthGuard]},
   {path: 'pdf-resource', component: PdfResourceComponent, canActivate: [AuthGuard]},
-<<<<<<< HEAD
-  {path: 'vas-slider', component: VasSliderComponent},
+  {path: 'qol-vas-slider', component: QolVasSliderComponent},
   {
     path: '**',
     redirectTo: '/home'
   },
-=======
   {path:  '404-error', component: Error404Component},
   {
     path: '**',
     redirectTo: '/404-error'
   }
->>>>>>> 06ed4667aae811348f37f86fd46e0d7397342159
 ];
 
 @NgModule({
