@@ -40,7 +40,7 @@ namespace NorthernHealthAPI.Controllers
 
             var patient = (from p in _context.Patient
                            where p.UserId == login.UserId && p.Password == passwordHash.Hash
-                           select new Patient { UserId = p.UserId });
+                           select new Patient { HospitalNumber = p.HospitalNumber });
 
             if (patient.Count() != 0)
             {
