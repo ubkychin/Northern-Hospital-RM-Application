@@ -41,11 +41,7 @@ const routes: Routes = [
   {path: 'qol-vas', component: QolVasComponent, canActivate: [AuthGuard]},
   {path: 'patient-resources', component: PatientResourcesComponent, canActivate: [AuthGuard]},
   {path: 'pdf-resource', component: PdfResourceComponent, canActivate: [AuthGuard]},
-  {path: 'qol-vas-slider', component: QolVasSliderComponent},
-  {
-    path: '**',
-    redirectTo: '/home'
-  },
+  {path: 'qol-vas-slider', component: QolVasSliderComponent, canActivate: [AuthGuard]},
   {path:  '404-error', component: Error404Component},
   {
     path: '**',
