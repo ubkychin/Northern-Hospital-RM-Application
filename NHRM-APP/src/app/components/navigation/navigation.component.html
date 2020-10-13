@@ -3,6 +3,20 @@
         <h1 class="main-heading">Department of Respiratory Medicine</h1>
         <h3 class="sub-heading">Outpatient Status Reporter</h3>
     </div>
+    <div class="heading">
+        <h1 class="main-heading">My Categories</h1>
+    </div>
+    <button (click)="selectCategory(1)" class="main-btn btn5" [routerLink]="['/survey-nav']">
+        <fa-icon [icon]="['fas', 'edit']" transform="grow-2"></fa-icon>
+        <p>My IPC</p>
+    </button>
+    <button (click)="selectCategory(2)" class="main-btn btn6" [routerLink]="['/survey-nav']">
+        <fa-icon [icon]="['fas', 'edit']"></fa-icon>
+        <p>My Asthma</p>
+    </button>
+    <div class="heading">
+        <h1 class="main-heading">Resources</h1>
+    </div>
     <div class="main-buttons">
         <button class="main-btn btn1" [routerLink]="['/patient-resources']">
             <fa-icon [icon]="['fas', 'photo-video']"></fa-icon>
@@ -19,14 +33,6 @@
         <button class="main-btn btn4" [routerLink]="['/patient-details']">
             <fa-icon [icon]="['fas', 'phone-square-alt']" transform="grow-5"></fa-icon>
             <p>Contact Us</p>
-        </button>
-        <button (click)="selectCategory(1)" class="main-btn btn5" [routerLink]="['/survey-nav']">
-            <fa-icon [icon]="['fas', 'edit']" transform="grow-2"></fa-icon>
-            <p>My IPC</p>
-        </button>
-        <button (click)="selectCategory(2)" class="main-btn btn6" [routerLink]="['/survey-nav']">
-            <fa-icon [icon]="['fas', 'edit']"></fa-icon>
-            <p>My Asthma</p>
         </button>
     </div>
 </div>

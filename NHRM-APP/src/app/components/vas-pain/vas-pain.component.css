@@ -19,6 +19,10 @@
     text-align: center;
 }
 
+.heading h3{
+    margin: auto;
+    max-width: 500px;
+}
 /* Remove Spinners Chrome, Safari, Edge, Opera */
 
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {

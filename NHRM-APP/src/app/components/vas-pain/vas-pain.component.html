@@ -1,13 +1,11 @@
 <div class="heading">
     <h1 class="main-heading">Visual Analogue Scale (Pain)</h1>
-    <h3 class="sub-heading">Enter Level of Pain</h3>
+    <h3 class="sub-heading">Enter Level of Pain from 0 to 100. Entering 0 meaning you have No Pain and entering 100 having Worst Possible Pain</h3>
 </div>
 
 <app-info-bar (click)="infoDialog()"></app-info-bar>
 
 <form class="form-container" #vasInputForm="ngForm" (ngSubmit)="recordVASPain(vasInputForm.form);">
-
-    <h3 class="sub-heading">Entering 0 meaning you have No Pain and entering 100 having Worst Possible Pain</h3>
     
     <input class="vas-level-input" type="number" placeholder="0" min="0" max="10" maxlength="2" name="vas-input" ngModel
         #vasInputField="ngModel" required>
