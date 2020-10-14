@@ -3,7 +3,7 @@
     background: var(--nh-blue);
 }
 
-.blue-bar p{
+.blue-bar a{
     color: whitesmoke;
     padding: 15px;
     float: left;

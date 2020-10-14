@@ -7,12 +7,12 @@
  <div *ngIf="this.authorised && this.loggedIn && this.emergancy">
     <header>
         <div class="blue-bar top">
-            <p *ngIf="!isRoot" (click)="goBack()">
+            <a *ngIf="!isRoot" (click)="goBack()">
                 <fa-icon id="back" [icon]="['fas', 'chevron-left']" transform="grow-5"></fa-icon>Back
-            </p>
-            <p id="logout" (click)="logout()">
+            </a>
+            <a id="logout" (click)="logout()">
                 Logout
-            </p>
+            </a>
         </div>
 
         <div class="nh-logo"></div>

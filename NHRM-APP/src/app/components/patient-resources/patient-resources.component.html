@@ -14,7 +14,7 @@
         [routerLink]="['/pdf-resource']" (click)="setPdfResource(resource)">
         <p class="res-title">{{resource.title}}</p>
         <p class="res-info">
-            <fa-icon [icon]="['fas', 'info-circle']" transform="grow-5"></fa-icon>
+            <fa-icon [icon]="['fas', 'file-pdf']" transform="grow-5"></fa-icon>
             <strong>{{resource.prompt}}</strong>
         </p>
     </div>
@@ -23,7 +23,8 @@
         (click)="showDialog(resource)">
         <p class="res-title">{{resource.title}}</p>
         <p class="res-info">
-            <fa-icon [icon]="['fas', 'info-circle']" transform="grow-5"></fa-icon>
+            <fa-icon *ngIf="!resource.content.video" [icon]="['fas', 'comment-alt']" transform="grow-5"></fa-icon>
+            <fa-icon *ngIf="resource.content.video" [icon]="['fas', 'film']" transform="grow-5"></fa-icon>
             <strong>{{resource.prompt}}</strong>
         </p>
     </div>
@@ -32,7 +33,7 @@
         <p class="res-title">{{resource.title}}</p>
         <p class="res-info">
             <a href="{{resource.content}}" target="_blank">
-                <fa-icon [icon]="['fas', 'info-circle']" transform="grow-5"></fa-icon>
+                <fa-icon [icon]="['fas', 'globe']" transform="grow-5"></fa-icon>
                 <strong>{{resource.prompt}}</strong>
             </a>
         </p>
