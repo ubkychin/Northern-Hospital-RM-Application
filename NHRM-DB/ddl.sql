@@ -115,6 +115,7 @@ CREATE TABLE Patient(
     salt NVARCHAR(50) NOT NULL,
     livesAlone BIT NOT NULL,
     registeredBy NVARCHAR(50),
+    active BIT NOT NULL,
     CONSTRAINT PK_Patient PRIMARY KEY (hospitalNumber),
     CONSTRAINT FK_Patient_Staff FOREIGN KEY (registeredBy) REFERENCES Staff
 )
