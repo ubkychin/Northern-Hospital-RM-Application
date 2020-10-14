@@ -48,6 +48,10 @@ label[for="formly_1_radio_score_0"]{
     margin: 20px auto;
 }
 
+.category-name {
+    font-size: 2em;
+}
+
 
 @media (min-width: 650px) {
     .form {

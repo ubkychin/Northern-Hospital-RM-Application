@@ -27,13 +27,13 @@ export class AppComponent {
 
     //Change all these to True to bypass all Login and Agreement screens
     this.dataService.termsAcceptance.subscribe(data => {
-      this.authorised = data; //true
+      this.authorised = true; //true
     })
     this.authService.loggedIn.subscribe(data => {
-      this.loggedIn = data; //true
+      this.loggedIn = true; //true
     })
     this.dataService.emergancyAgreement.subscribe(data => {
-      this.emergancy = data; //true
+      this.emergancy = true; //true
     })
 
     this.router.events.subscribe(event => {

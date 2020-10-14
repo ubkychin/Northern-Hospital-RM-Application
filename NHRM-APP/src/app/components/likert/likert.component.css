@@ -9,13 +9,13 @@ article {
 }
 
 .sub-heading {
-    margin-bottom: 30px;
+    max-width: 80%;
+    margin: 0px auto 30px auto;
 }
 
 .form {
     display: flex;
     flex-direction: column;
-    padding: 50px 15px;
     margin: auto;
     max-width: 1400px;
 }
@@ -28,9 +28,11 @@ article {
 }
 
 .user-feeling figure {
-    flex: 1 0 90%;
+    flex: 0 0 75%;
     display: flex;
     align-items: center;
+
+    margin-left: 20px;
 }
 
 .user-feeling figure figcaption {
@@ -53,14 +55,29 @@ article {
     border: none;
 }
 
+.submit-button {
+    margin-bottom: 0px;
+}
+
 @media (min-width: 650px) {
     .form {
-        padding: 80px;
+        margin: auto;
+
+        max-width: 70%;
+    }
+
+    .user-feeling figure {
+        flex: 1 0 auto;
+        margin-left: 0px;
     }
 }
 
 
 @media screen and (min-width: 800px) {
+
+    .form {
+        max-width: 80%;
+    }
     .user-feeling{
         display: inline-block;
         padding: 30px;
