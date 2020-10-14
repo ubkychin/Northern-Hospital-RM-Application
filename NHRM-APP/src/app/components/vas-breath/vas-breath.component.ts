@@ -57,7 +57,7 @@ export class VasBreathComponent implements OnInit {
     console.log(measurementResult);
     
     this.dataService.postMeasurementResult(measurementResult)
-      .then(() => this.router.navigate(['/survey-nav']))
+      .then(() => this.router.navigate(['/vas-slider']))
       .catch((err) => console.error(err + " Breath ERR"))
       .finally(() => {
         console.log("Finalized");

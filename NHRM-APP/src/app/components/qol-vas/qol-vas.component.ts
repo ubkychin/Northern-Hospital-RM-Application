@@ -50,7 +50,7 @@ export class QolVasComponent implements OnInit {
     console.log(measurementResult);
 
     this.dataService.postMeasurementResult(measurementResult)
-      .then(() => this.router.navigate(['/survey-nav']))
+      .then(() => this.router.navigate(['/qol-vas-slider']))
       .catch((err) => console.log(err + "Quality of Life VAS Scale Error"))
       .finally(() => {
         console.log("Finalized");

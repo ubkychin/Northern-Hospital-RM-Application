@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { FaLayersTextComponent } from '@fortawesome/angular-fontawesome';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
@@ -14,7 +15,7 @@ export class AuthGuard implements CanActivate {
     if(this.authService.loggedIn.getValue())
       return true;
     else
-      return true;
+      return false;
   }
   
 }
