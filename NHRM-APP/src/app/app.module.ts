@@ -37,6 +37,7 @@ import { VasSliderComponent } from './components/vas-slider/vas-slider.component
 import {QolVasSliderComponent} from './components/qol-vas-slider/qol-vas-slider.component';
 import { Error404Component } from './components/error404/error404.component';
 import { ResourceFilterPipe } from './pipes/resource-filter.pipe';
+import { HadsComponent } from './components/hads/hads.component';
 
 export function tokenGetter() {
   return JSON.parse(localStorage.getItem('Authorization'));
@@ -65,7 +66,8 @@ export function tokenGetter() {
     VasSliderComponent,
     Error404Component,
     ResourceFilterPipe,
-    QolVasSliderComponent
+    QolVasSliderComponent,
+    HadsComponent
   ],
   imports: [
     BrowserModule,

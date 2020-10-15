@@ -17,6 +17,7 @@ import { PdfResourceComponent } from './components/pdf-resource/pdf-resource.com
 import {VasSliderComponent} from './components/vas-slider/vas-slider.component';
 import { Error404Component } from './components/error404/error404.component';
 import {QolVasSliderComponent} from './components/qol-vas-slider/qol-vas-slider.component';
+import {HadsComponent} from './components/hads/hads.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,7 @@ const routes: Routes = [
   {path: 'pdf-resource', component: PdfResourceComponent, canActivate: [AuthGuard]},
   {path: 'qol-vas-slider', component: QolVasSliderComponent, canActivate: [AuthGuard]},
   {path:  '404-error', component: Error404Component},
+  {path: 'hads', component: HadsComponent},
   {
     path: '**',
     redirectTo: '/404-error'

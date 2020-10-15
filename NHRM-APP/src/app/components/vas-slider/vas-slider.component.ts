@@ -1,9 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
 import noUiSlider from 'nouislider';
 import 'nouislider/distribute/nouislider.css';
-import { Patient } from 'src/app/models/patient';
-import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-vas-slider',
@@ -16,12 +13,11 @@ export class VasSliderComponent implements OnInit {
   currentHealthScore: Number;
   vasSlider: noUiSlider.Instance;
   isValid: Boolean = true;
-  patient: Patient;
 
   @Output() vasValue: EventEmitter<Number> = new EventEmitter<Number>();
 
-  constructor(private dataService: DataService, private router: Router) {
-    dataService.patient.subscribe(data => { this.patient = data });
+  constructor() {
+    
   }
 
   ngOnInit(): void {
@@ -38,7 +34,7 @@ export class VasSliderComponent implements OnInit {
       range: range_all_sliders,
       pips: {
         mode: 'range',
-        density: 100
+        density: 1,
       },
     });
 
@@ -59,21 +55,5 @@ export class VasSliderComponent implements OnInit {
   }
 
   submitData() {
-    let measurementResult = {
-      'hospitalNumber': this.patient.hospitalNumber,
-      'categoryId': this.patient.categoryId,
-      'dataPointNumber': 6,
-      'measurementId': 6,
-      'timeStamp': new Date(),
-      'value': Number(this.vasSlider.noUiSlider.get())
-    };
-
-    this.dataService.postMeasurementResult(measurementResult)
-      .then(() => this.router.navigate(['/survey-nav']))
-      .catch((err) => console.log(err + "Quality of Life VAS Scale Error"))
-      .finally(() => {
-        console.log("Finalized");
-        this.dataService.loading.next(false);
-      });
   }
 }

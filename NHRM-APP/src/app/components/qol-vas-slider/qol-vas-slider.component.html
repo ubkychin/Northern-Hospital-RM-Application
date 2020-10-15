@@ -1,13 +1,13 @@
 <div class="container">
     <div class="heading">
         <h1 class="main-heading">Part 2: Vas Scale</h1>
-        <h3 class="sub-heading">We would like to know your health today</h3>
+        <h3 class="sub-heading">We would like to know your health today. Touch the slider between 0 to 100 below, 100 means the best health you can imagine and 0 means the worst health you can imagine. </h3>
     </div>
     
     <app-info-bar></app-info-bar>
     
     <app-vas-slider (vasValue)="getHealthScore($event)"></app-vas-slider>
     
-    <button type="submit" class="submit-button">Submit</button>
+    <button type="submit" class="submit-button" (click)="submitHealthScore()">Submit</button>
 </div>
 

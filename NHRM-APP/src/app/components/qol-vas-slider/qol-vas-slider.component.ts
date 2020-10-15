@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
+import { Patient } from 'src/app/models/patient';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-qol-vas-slider',
@@ -8,7 +12,11 @@ import { Component, OnInit } from '@angular/core';
 export class QolVasSliderComponent implements OnInit {
 
   currentHealthScore: number;
-  constructor() { }
+  patient: Patient;
+
+  constructor(private dataService: DataService, private router: Router) {
+    dataService.patient.subscribe(data => { this.patient = data });
+   }
 
   ngOnInit(): void {
   }
@@ -16,12 +24,28 @@ export class QolVasSliderComponent implements OnInit {
 
   getHealthScore(event) {
     this.currentHealthScore = event;
-
-    console.log(this.currentHealthScore);
   }
 
 
   submitHealthScore() {
+    let measurementResult = {
+      'hospitalNumber': this.patient.hospitalNumber,
+      'categoryId': this.patient.categoryId,
+      'dataPointNumber': 6,
+      'measurementId': 6,
+      'timeStamp': new Date(),
+      'value': this.currentHealthScore
+    };
+
+
+    this.dataService.postMeasurementResult(measurementResult)
+    .then(() => this.router.navigate(['/survey-nav']))
+    .catch((err) => console.log(err + "Quality of Life VAS Scale Error"))
+    .finally(() => {
+      console.log("Finalized");
+      this.dataService.loading.next(false);
+      this.router.navigate(['/survey-nav']);
+    });
 
   }
 }

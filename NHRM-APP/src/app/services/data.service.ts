@@ -120,4 +120,30 @@ export class DataService {
     this.patientResources = resources;
   }
 
+
+  getHadsQuestions() {
+    let list: any = [
+      {
+        categoryName: "Anxiety",
+        prompt: "I feel tense or 'wound up': ",
+        options: ["Most of the time", "A lot of time", "From time to time, occasionally", "Not at all"] // 3, 2, 1, 0
+      },
+      {
+        categoryName: "Depression",
+        prompt: "I still enjoy the things I used to enjoy:",
+        options: ["Definitely as much", "Not quite so much", "Only a little", "Hardly at all"] // 0, 1, 2, 3
+      },
+      {
+        categoryName: "Anxiety",
+        prompt: "I get a sort of frightened feeling as if something awful is about to happen",
+        options: ["Very definitely and quite badly ", "Yes, but not too badly ", "A little, but it doesn't worry me", "Not at all"] // 3, 2, 1, 0
+      },
+      {
+        
+      }
+
+    
+    ];
+  }
+
 }
