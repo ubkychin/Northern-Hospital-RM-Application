@@ -2,7 +2,9 @@ DROP TABLE IF EXISTS DataPointRecord;
 
 DROP TABLE IF EXISTS DataPoint
 
-DROP TABLE IF EXISTS CategoryMeasurement;
+DROP TABLE IF EXISTS PatientMeasurement;
+
+DROP TABLE IF EXISTS MeasurementRecord;
 
 DROP TABLE IF EXISTS TemplateMeasurement;
 
@@ -41,229 +43,234 @@ DROP TABLE IF EXISTS ResourceType;
 GO
 
 CREATE TABLE Measurement(
-    MeasurementID INT NOT NULL,
-    measurementName NVARCHAR(50) NOT NULL,
-    frequency INT NOT NULL,
-    CONSTRAINT PK_Measurement PRIMARY KEY (MeasurementID),
-    CONSTRAINT UNIQUE_measurementName UNIQUE (measurementName)
-);
-
-GO
-
-CREATE TABLE DataPointType(
-    TypeID INT NOT NULL,
-    typeName NVARCHAR(50),
-    CONSTRAINT PK_DataPointType PRIMARY KEY (TypeID),
-    CONSTRAINT UNIQUE_typeName UNIQUE (typeName)
+    MeasurementID INT IDENTITY(1,1) NOT NULL,
+    MeasurementName NVARCHAR(50) NOT NULL,
+    Frequency INT NOT NULL,
+    CONSTRAINT PK_MeasurementID PRIMARY KEY (MeasurementID),
+    CONSTRAINT UNIQUE_MeasurementName UNIQUE (MeasurementName)
 );
 
 GO
 
 CREATE TABLE DataPoint(
-   measurementID INT NOT NULL,
-   dataPointNumber INT NOT NULL,
-   upperLimit INT NOT NULL,
-   lowerLimit INT NOT NULL,
-   [description] NVARCHAR(50),
-   typeID INT NOT NULL,
-   CONSTRAINT PK_MeasurementDataPoint PRIMARY KEY (MeasurementID,dataPointNumber),
-   CONSTRAINT FK_DataPoint_DataPointType FOREIGN KEY (typeID) REFERENCES DataPointType,
-   CONSTRAINT FK_DataPoint_Measurement FOREIGN KEY (measurementID) REFERENCES Measurement
+   MeasurementID INT NOT NULL,
+   DataPointNumber INT NOT NULL,
+   UpperLimit INT NOT NULL,
+   LowerLimit INT NOT NULL,
+   [Name] NVARCHAR(50),
+   CONSTRAINT PK_DataPoint PRIMARY KEY (MeasurementID, DataPointNumber),
+   CONSTRAINT FK_DataPoint_Measurement FOREIGN KEY (MeasurementID) REFERENCES Measurement
 );
 
 GO
 
 CREATE TABLE StaffRole(
-      roleID INT NOT NULL,
-      staffType NVARCHAR(50) NOT NULL,
-      CONSTRAINT PK_StaffRole PRIMARY KEY (roleID),
-      CONSTRAINT UNIQUE_staffType UNIQUE (staffType)
+      RoleID INT IDENTITY(1,1) NOT NULL,
+      StaffType NVARCHAR(50) NOT NULL,
+      CONSTRAINT PK_StaffRole PRIMARY KEY (RoleID),
+      CONSTRAINT UNIQUE_StaffType UNIQUE (StaffType)
 )
 
 GO
 
 CREATE TABLE Staff(
     StaffID NVARCHAR(50) NOT NULL,
-    firstName NVARCHAR(50) NOT NULL,
-    lastName NVARCHAR(50) NOT NULL,
-    surName NVARCHAR(50) NOT NULL,
-    [password] BINARY(64) NOT NULL,
-    salt NVARCHAR(50) NOT NULL,
-    roleID INT NOT NULL,
-    CONSTRAINT PK_Admin PRIMARY KEY (StaffID),
-    CONSTRAINT FK_Staff_StaffRole FOREIGN KEY (roleID) REFERENCES StaffRole
+    FirstName NVARCHAR(50) NOT NULL,
+    SurName NVARCHAR(50) NOT NULL,
+    [Password] BINARY(64) NOT NULL,
+    Salt NVARCHAR(MAX) NOT NULL,
+    RoleID INT NOT NULL,
+    CONSTRAINT PK_Staff PRIMARY KEY (StaffID),
+    CONSTRAINT FK_Staff_StaffRole FOREIGN KEY (RoleID) REFERENCES StaffRole
 )
 
 GO 
 
 CREATE TABLE Patient(
-    hospitalNumber NVARCHAR(50) NOT NULL,
-    email NVARCHAR(256) NOT NULL,
-    title NVARCHAR(50) NOT NULL,
-    surName NVARCHAR(50) NOT NULL,
-    firstName NVARCHAR(50) NOT NULL,
-    gender NVARCHAR(50) NOT NULL,
+    HospitalNumber NVARCHAR(50) NOT NULL,
+    Email NVARCHAR(256) NOT NULL,
+    Title NVARCHAR(50) NOT NULL,
+    FirstName NVARCHAR(50) NOT NULL,
+    SurName NVARCHAR(50) NOT NULL,
+    Gender NVARCHAR(50) NOT NULL,
     DOB DATE NOT NULL,
-    [address] NVARCHAR(MAX) NOT NULL,
-    suburb NVARCHAR(50) NOT NULL,
-    postCode NVARCHAR(10) NOT NULL,
-    mobileNumber NVARCHAR(50),
-    homeNumber NVARCHAR(50),
-    countryOfBirth NVARCHAR(50) NOT NULL,
-    prefferedLanguage NVARCHAR(50) NOT NULL,
-    [password] BINARY(64) NOT NULL,
-    salt NVARCHAR(50) NOT NULL,
-    livesAlone BIT NOT NULL,
-    registeredBy NVARCHAR(50),
-    active BIT NOT NULL,
-    CONSTRAINT PK_Patient PRIMARY KEY (hospitalNumber),
-    CONSTRAINT FK_Patient_Staff FOREIGN KEY (registeredBy) REFERENCES Staff,
-    CONSTRAINT UNIQUE_email UNIQUE (email)
+    [Address] NVARCHAR(MAX) NOT NULL,
+    Suburb NVARCHAR(50) NOT NULL,
+    PostCode NVARCHAR(4) NOT NULL,
+    MobileNumber NVARCHAR(10),
+    HomeNumber NVARCHAR(10),
+    CountryOfBirth NVARCHAR(50) NOT NULL,
+    PreferredLanguage NVARCHAR(50) NOT NULL,
+    [Password] BINARY(64) NOT NULL,
+    Salt NVARCHAR(MAX) NOT NULL,
+    LivesAlone BIT NOT NULL,
+    RegisteredBy NVARCHAR(50) NOT NULL,
+    Active BIT NOT NULL,
+    CONSTRAINT PK_Patient PRIMARY KEY (HospitalNumber),
+    CONSTRAINT FK_Patient_Staff FOREIGN KEY (RegisteredBy) REFERENCES Staff,
+    CONSTRAINT UNIQUE_Email UNIQUE (Email),
+    CONSTRAINT CHK_Gender CHECK (Gender = 'Male' OR Gender = 'Female' OR Gender = 'Other')
 )
 
 GO
 
 CREATE TABLE Treating(
-    startDate DATETIME NOT NULL,
-    endDate DATETIME,
-    hospitalNumber NVARCHAR(50) NOT NULL,
-    staffID NVARCHAR(50) NOT NULL,
-    CONSTRAINT PK_Treating PRIMARY KEY (startDate,hospitalNumber,staffID),
-    CONSTRAINT FK_Treating_Patient FOREIGN KEY (hospitalNumber) REFERENCES Patient,
-    CONSTRAINT FK_Treating_Staff FOREIGN KEY (staffID) REFERENCES Staff
+    StartDate DATETIME NOT NULL,
+    EndDate DATETIME,
+    HospitalNumber NVARCHAR(50) NOT NULL,
+    StaffID NVARCHAR(50) NOT NULL,
+    CONSTRAINT PK_Treating PRIMARY KEY (StartDate, HospitalNumber, StaffID),
+    CONSTRAINT FK_Treating_Patient FOREIGN KEY (HospitalNumber) REFERENCES Patient,
+    CONSTRAINT FK_Treating_Staff FOREIGN KEY (StaffID) REFERENCES Staff
 )
 
 GO
 
 CREATE TABLE RecordCategory(
-    recordCategoryID INT NOT NULL,
-    category NVARCHAR(50) NOT NULL,
-    CONSTRAINT PK_RecordCategory PRIMARY KEY (recordCategoryID)
+    RecordCategoryID INT IDENTITY(1,1) NOT NULL,
+    Category NVARCHAR(50) NOT NULL,
+    CONSTRAINT PK_RecordCategory PRIMARY KEY (RecordCategoryID),
+    CONSTRAINT UNIQUE_Category UNIQUE (Category)
 )
 
 GO
 
 CREATE TABLE RecordType(
-    recordTypeID INT NOT NULL,
-    recordType NVARCHAR(50) NOT NULL,
-    recordCategoryID INT NOT NULL,
-    CONSTRAINT PK_RecordType PRIMARY KEY (recordTypeID),
-    CONSTRAINT FK_RecordType_RecordCategory FOREIGN KEY (recordCategoryID) REFERENCES RecordCategory,
-    CONSTRAINT UNIQUE_recordType UNIQUE (recordType)
+    RecordTypeID INT IDENTITY(1,1) NOT NULL,
+    RecordType NVARCHAR(50) NOT NULL,
+    RecordCategoryID INT NOT NULL,
+    CONSTRAINT PK_RecordType PRIMARY KEY (RecordTypeID),
+    CONSTRAINT FK_RecordType_RecordCategory FOREIGN KEY (RecordCategoryID) REFERENCES RecordCategory,
+    CONSTRAINT UNIQUE_RecordType UNIQUE (RecordType)
 )
 
 CREATE TABLE PatientRecord(
-    dateTimeRecorded DATETIME NOT NULL,
-    notes NVARCHAR(MAX),
-    hospitalNumber NVARCHAR(50) NOT NULL,
-    recordTypeID INT NOT NULL,
-    CONSTRAINT PK_PatientRecord PRIMARY KEY (dateTimeRecorded,hospitalNumber,recordTypeID),
-    CONSTRAINT FK_PatientRecord_RecordType FOREIGN KEY (recordTypeID) REFERENCES RecordType,
-    CONSTRAINT FK_PatientRecord_Patient FOREIGN KEY (hospitalNumber) REFERENCES Patient
+    DateTimeRecorded DATETIME NOT NULL,
+    Notes NVARCHAR(MAX),
+    HospitalNumber NVARCHAR(50) NOT NULL,
+    RecordTypeID INT NOT NULL,
+    CONSTRAINT PK_PatientRecord PRIMARY KEY (DateTimeRecorded, HospitalNumber, RecordTypeID),
+    CONSTRAINT FK_PatientRecord_RecordType FOREIGN KEY (RecordTypeID) REFERENCES RecordType,
+    CONSTRAINT FK_PatientRecord_Patient FOREIGN KEY (HospitalNumber) REFERENCES Patient
 )
 
 GO
 
 CREATE TABLE TemplateCategory(
-    categoryID INT NOT NULL,
-    categoryName NVARCHAR(50) NOT NULL,
-    CONSTRAINT PK_TemplateCategory PRIMARY KEY (categoryID),
-    CONSTRAINT UNIQUE_categoryName UNIQUE (categoryName)
+    CategoryID INT IDENTITY(1,1) NOT NULL,
+    CategoryName NVARCHAR(50) NOT NULL,
+    CONSTRAINT PK_TemplateCategory PRIMARY KEY (CategoryID),
+    CONSTRAINT UNIQUE_CategoryName UNIQUE (CategoryName)
 )
 
 GO
 
 CREATE TABLE PatientCategory(
-    categoryID INT NOT NULL,
-    hospitalNumber NVARCHAR(50),
-    CONSTRAINT PK_PatientCategory PRIMARY KEY (categoryID,hospitalNumber),
-    CONSTRAINT FK_PatientCategory_Patient FOREIGN KEY (hospitalNumber) REFERENCES Patient,
-    CONSTRAINT FK_PatientCategory_TemplateCategory FOREIGN KEY (categoryID) REFERENCES TemplateCategory
+    CategoryID INT NOT NULL,
+    HospitalNumber NVARCHAR(50),
+    CONSTRAINT PK_PatientCategory PRIMARY KEY (CategoryID, HospitalNumber),
+    CONSTRAINT FK_PatientCategory_Patient FOREIGN KEY (HospitalNumber) REFERENCES Patient,
+    CONSTRAINT FK_PatientCategory_TemplateCategory FOREIGN KEY (CategoryID) REFERENCES TemplateCategory
 )
 
 GO 
 
-CREATE TABLE CategoryMeasurement(
-    measurementID INT NOT NULL,
-    categoryID INT NOT NULL,
-    hospitalNumber NVARCHAR(50) NOT NULL,
-    CONSTRAINT PK_CategoryMeasurement PRIMARY KEY (measurementID,categoryID,hospitalNumber),
-    CONSTRAINT FK_CategoryMeasurement_Measurement FOREIGN KEY (measurementID) REFERENCES Measurement,
-    CONSTRAINT FK_CategoryMeasurement_PatientCategory FOREIGN KEY (categoryID,hospitalNumber) REFERENCES PatientCategory
+CREATE TABLE PatientMeasurement(
+    MeasurementID INT NOT NULL,
+    CategoryID INT NOT NULL,
+    HospitalNumber NVARCHAR(50) NOT NULL,
+    CONSTRAINT PK_PatientMeasurement PRIMARY KEY (MeasurementID, CategoryID, HospitalNumber),
+    CONSTRAINT FK_PatientMeasurement_Measurement FOREIGN KEY (MeasurementID) REFERENCES Measurement,
+    CONSTRAINT FK_PatientMeasurement_PatientCategory FOREIGN KEY (CategoryID, HospitalNumber) REFERENCES PatientCategory(CategoryID, HospitalNumber)
 )
 
 GO 
+
+CREATE TABLE MeasurementRecord(
+    MeasurementRecordID INT IDENTITY(1,1) NOT NULL,
+    DateTimeRecorded DATETIME NOT NULL,
+    MeasurementID INT NOT NULL,
+    CategoryID INT NOT NULL,
+    HospitalNumber NVARCHAR(50) NOT NULL,
+    CONSTRAINT PK_MeasurementRecord PRIMARY KEY (MeasurementRecordID),
+    CONSTRAINT FK_MeasurementRecord_PatientMeasurement FOREIGN KEY (MeasurementID, CategoryID, HospitalNumber) REFERENCES PatientMeasurement (MeasurementID, CategoryID, HospitalNumber)
+)
+
+GO
 
 CREATE TABLE DataPointRecord(
-    hospitalNumber NVARCHAR(50) NOT NULL,
-    categoryID INT NOT NULL,
-    measurementID INT NOT NULL,
-    dataPointNumber INT NOT NULL,
-    [datetime] DATETIME NOT NULL,
-    [value] INT NOT NULL,
-    CONSTRAINT PK_DataPointRecord PRIMARY KEY (hospitalNumber,categoryID,measurementID,dataPointNumber,[datetime]),
-    CONSTRAINT FK_DataPointRecord_CategoryMeasurement FOREIGN KEY (measurementID,categoryID,hospitalNumber) REFERENCES CategoryMeasurement,
-    CONSTRAINT FK_DataPointRecord_DataPoint FOREIGN KEY (dataPointNumber,measurementID) REFERENCES DataPoint
+    HospitalNumber NVARCHAR(50) NOT NULL,
+    CategoryID INT NOT NULL,
+    MeasurementID INT NOT NULL,
+    DataPointNumber INT NOT NULL,
+    [Value] INT NOT NULL,
+    MeasurementRecordID INT NOT NULL,
+    CONSTRAINT PK_DataPointRecord PRIMARY KEY (HospitalNumber, CategoryID, MeasurementID, DataPointNumber),
+    CONSTRAINT FK_DataPointRecord_DataPoint FOREIGN KEY (DataPointNumber, MeasurementID) REFERENCES DataPoint (DataPointNumber, MeasurementID),
+    CONSTRAINT FK_DataPointRecord_MeasurementRecord FOREIGN KEY (HospitalNumber, CategoryID, MeasurementRecordID) REFERENCES MeasurementRecord (HospitalNumber, CategoryID, MeasurementRecordID)
 )
 
 GO
 
 CREATE TABLE TemplateMeasurement(
-    measurementID INT,
-    categoryID INT,
-    CONSTRAINT FK_TemplateMeasurement_Measurement FOREIGN KEY (measurementID) REFERENCES Measurement,
-    CONSTRAINT FK__TemplateMeasurement_TemplateCategory FOREIGN KEY (categoryID) REFERENCES TemplateCategory
+    MeasurementID INT NOT NULL,
+    CategoryID INT NOT NULL,
+    CONSTRAINT PK_TemplateMeasurement PRIMARY KEY (MeasurementID, CategoryID),
+    CONSTRAINT FK_TemplateMeasurement_Measurement FOREIGN KEY (MeasurementID) REFERENCES Measurement,
+    CONSTRAINT FK__TemplateMeasurement_TemplateCategory FOREIGN KEY (CategoryID) REFERENCES TemplateCategory
 )
 
 GO
 
 CREATE TABLE ResourceType(
-    typeID INT NOT NULL,
-    typeName NVARCHAR(50) NOT NULL,
-    CONSTRAINT PK_ResourceType PRIMARY KEY (typeID),
-    CONSTRAINT UNIQUE_ResourceType_typeName UNIQUE (typeName)
+    ResourceTypeID INT IDENTITY(1,1) NOT NULL,
+    TypeName NVARCHAR(50) NOT NULL,
+    CONSTRAINT PK_ResourceType PRIMARY KEY (ResourceTypeID),
+    CONSTRAINT UNIQUE_ResourceType_TypeName UNIQUE (TypeName)
 )
 
 GO 
 
 CREATE TABLE [Resource](
-    resourceID INT NOT NULL,
-    title NVARCHAR(65),
-    prompt NVARCHAR(12),
-    categoryID INT NOT NULL,
-    content NVARCHAR(MAX),
-    typeID INT NOT NULL,
-    CONSTRAINT PK_Resource PRIMARY KEY (resourceID),
-    CONSTRAINT FK_Resource_ResourceType FOREIGN KEY (typeID) REFERENCES ResourceType
+    ResourceID INT IDENTITY(1,1) NOT NULL,
+    Title NVARCHAR(65) NOT NULL,
+    Prompt NVARCHAR(12) NOT NULL,
+    CategoryID INT NOT NULL,
+    Content NVARCHAR(MAX) NOT NULL,
+    TypeID INT NOT NULL,
+    CONSTRAINT PK_Resource PRIMARY KEY (ResourceID),
+    CONSTRAINT FK_Resource_ResourceType FOREIGN KEY (TypeID) REFERENCES ResourceType
 )
 
 GO 
 
 CREATE TABLE PatientResource(
-    categoryID INT,
-    hospitalNumber NVARCHAR(50),
-    resourceID INT,
-    CONSTRAINT FK_PatientResource_PatientCategory FOREIGN KEY (categoryID,hospitalNumber) REFERENCES PatientCategory,
-    CONSTRAINT FK_PatientResource_Resource FOREIGN KEY (resourceID) REFERENCES [Resource]
+    CategoryID INT NOT NULL,
+    HospitalNumber NVARCHAR(50),
+    ResourceID INT NOT NULL,
+    CONSTRAINT PK_PatientResource PRIMARY KEY (CategoryID, HospitalNumber, ResourceID),
+    CONSTRAINT FK_PatientResource_PatientCategory FOREIGN KEY (CategoryID, HospitalNumber) REFERENCES PatientCategory (CategoryID, HospitalNumber),
+    CONSTRAINT FK_PatientResource_Resource FOREIGN KEY (ResourceID) REFERENCES [Resource]
 )
 
 GO
 
 CREATE TABLE TemplateResource(
-    categoryID INT NOT NULL,
-    resourceID INT NOT NULL,
-    CONSTRAINT FK_TemplateResource_Resource FOREIGN KEY (resourceID) REFERENCES [Resource],
-    CONSTRAINT FK_TemplateResource_TemplateCategory FOREIGN KEY (categoryID) REFERENCES TemplateCategory
+    CategoryID INT NOT NULL,
+    ResourceID INT NOT NULL,
+    CONSTRAINT PK_TemplateResource PRIMARY KEY (CategoryID, ResourceID),
+    CONSTRAINT FK_TemplateResource_Resource FOREIGN KEY (ResourceID) REFERENCES [Resource],
+    CONSTRAINT FK_TemplateResource_TemplateCategory FOREIGN KEY (CategoryID) REFERENCES TemplateCategory
 )
 
 GO
 
 CREATE TABLE ResourceDialog(
-    resourceDialogID INT NOT NULL,
-    heading NVARCHAR(60) NOT NULL,
-    content NVARCHAR(250) NOT NULL,
-    video NVARCHAR(MAX),
-    resourceID INT NOT NULL,
-    CONSTRAINT PK_ResourceDialog PRIMARY KEY (resourceDialogID),
-    CONSTRAINT FK_ResourceDialog_Resource FOREIGN KEY (resourceID) REFERENCES [Resource]
+    ResourceDialogID INT IDENTITY(1,1) NOT NULL,
+    Heading NVARCHAR(60) NOT NULL,
+    Content NVARCHAR(250) NOT NULL,
+    Video NVARCHAR(MAX),
+    ResourceID INT NOT NULL,
+    CONSTRAINT PK_ResourceDialog PRIMARY KEY (ResourceDialogID),
+    CONSTRAINT FK_ResourceDialog_Resource FOREIGN KEY (ResourceID) REFERENCES [Resource]
 )
