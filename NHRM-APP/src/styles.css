@@ -209,3 +209,47 @@ input[type=radio]:checked {
     row-gap: 4vh;
     text-align: center;
 }
+
+mat-dialog-content, h2 {
+    text-align: center;
+}
+
+.alert-dialog-container .mat-dialog-container {
+    border-top: 20px#C4393C solid;
+    box-shadow: none;
+    background: #F9EAEA;
+    color: black;
+    min-height: fit-content;
+    max-width: 650px;
+    padding: 10px;
+}
+
+.disclaimer-dialog-container .mat-dialog-container {
+    border-top: 20px#C4393C solid;
+    box-shadow: none;
+    background: #F9EAEA;
+    color: black;
+    min-height: fit-content;
+    max-width: 650px;
+    padding: 10px;
+}
+
+.information-dialog-container .mat-dialog-container {
+    border-top: 20px #005CB9 solid;
+    box-shadow: none;
+    background: #d8e9fa;
+    color: black;
+    min-height: fit-content;
+    width: fit-content;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.success-dialog-container .mat-dialog-container {
+    box-shadow: none;
+    background: white;
+    border-radius: 30px;
+    color: black;
+    min-height: fit-content;
+    min-width: fit-content;
+}

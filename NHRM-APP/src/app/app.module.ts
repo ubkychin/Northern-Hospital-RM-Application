@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { MatDialogModule } from '@angular/material/dialog';
-import { HttpClient, HttpClientModule, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
@@ -29,7 +29,6 @@ import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { PatientDetailsComponent } from './patient-details/patient-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QolVasComponent } from './components/qol-vas/qol-vas.component';
-import { DialogBoxComponent } from './components/dialog-box/dialog-box.component';
 import { SafePipe } from './pipes/safe.pipe';
 import { PdfResourceComponent } from './components/pdf-resource/pdf-resource.component';
 import { Call000Component } from './components/call000/call000.component';
@@ -39,6 +38,10 @@ import { Error404Component } from './components/error404/error404.component';
 import { ResourceFilterPipe } from './pipes/resource-filter.pipe';
 import { HadsComponent } from './components/hads/hads.component';
 import { VasInputComponent } from './components/vas-input/vas-input.component';
+import { ResourceDialogComponent } from './components/dialogs/resource-dialog/resource-dialog.component';
+import { SuccessDialogComponent } from './components/dialogs/success-dialog/success-dialog.component';
+import { DisclaimerDialogComponent } from './components/dialogs/disclaimer-dialog/disclaimer-dialog.component';
+import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-dialog.component';
 
 export function tokenGetter() {
   return JSON.parse(localStorage.getItem('Authorization'));
@@ -60,7 +63,6 @@ export function tokenGetter() {
     InfoBarComponent,
     PatientDetailsComponent,
     QolVasComponent,
-    DialogBoxComponent,
     SafePipe,
     PdfResourceComponent,
     Call000Component,
@@ -69,7 +71,11 @@ export function tokenGetter() {
     ResourceFilterPipe,
     QolVasSliderComponent,
     HadsComponent,
-    VasInputComponent
+    VasInputComponent,
+    ResourceDialogComponent,
+    SuccessDialogComponent,
+    DisclaimerDialogComponent,
+    AlertDialogComponent
   ],
   imports: [
     BrowserModule,

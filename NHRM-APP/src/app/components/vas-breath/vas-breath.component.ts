@@ -5,7 +5,7 @@ import { DataService } from 'src/app/services/data.service';
 import { MeasurementResult } from 'src/app/models/measurement-result';
 import { Router } from '@angular/router';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
-import { DialogBoxComponent } from 'src/app/components/dialog-box/dialog-box.component';
+import { ResourceDialogComponent } from '../dialogs/resource-dialog/resource-dialog.component';
 
 @Component({
   selector: 'app-vas-breath',
@@ -29,6 +29,7 @@ export class VasBreathComponent implements OnInit {
   constructor(public dialog: MatDialog, private dataService: DataService, private router: Router) {
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
+    this.dialogConfig.panelClass = 'information-dialog-container';
     dataService.patient.subscribe(data => { this.patient = data });
   }
 
@@ -41,7 +42,7 @@ export class VasBreathComponent implements OnInit {
       heading: this.dialogInfo.heading,
       video: this.dialogInfo.video
     }
-    this.dialog.open(DialogBoxComponent, this.dialogConfig);
+    this.dialog.open(ResourceDialogComponent, this.dialogConfig);
   }
 
   getVasInputScore(event) {

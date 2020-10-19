@@ -6,8 +6,8 @@ import { Patient } from 'src/app/models/patient';
 import { MatDialog, MatDialogConfig, throwMatDialogContentAlreadyAttachedError } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
-import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 import { MeasurementResult } from 'src/app/models/measurement-result';
+import { ResourceDialogComponent } from '../dialogs/resource-dialog/resource-dialog.component';
 
 @Component({
   selector: 'app-likert',
@@ -31,6 +31,7 @@ export class LikertComponent implements OnInit {
     });
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
+    this.dialogConfig.panelClass = 'information-dialog-container';
 
     dataService.patient.subscribe(data => { this.patient = data });
   }
@@ -65,6 +66,6 @@ export class LikertComponent implements OnInit {
       content: this.dialogInfo.content,
       heading: this.dialogInfo.heading
     }
-    this.dialog.open(DialogBoxComponent, this.dialogConfig);
+    this.dialog.open(ResourceDialogComponent, this.dialogConfig);
   }
 }

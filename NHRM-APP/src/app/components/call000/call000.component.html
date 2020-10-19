@@ -1,13 +1,13 @@
 <div class="agreement-container">
     <div class="nh-logo logo-space"></div>
 
-    <p class="warning">If you are currently in an Emergancy or in need of Imediate Medical Assistant please Dial 000</p>
+    <p class="warning">If you are currently in an Emergency or in need of Immediate Medical Assistance please dial 000</p>
     <br>
     <p class="warning">This Application is not monitored and you will not be able to get assistance</p>
     <br>
     <div class="condition">
         <input type="checkbox" id="emergancy-agreement" [(ngModel)]="this.agreement">
-        <label for="emergancy-agreement">You must agree to that your are currently not having a Medical Emergancy to proceed</label>
+        <label for="emergancy-agreement">You must agree to that you are currently not having a Medical Emergency to proceed</label>
     </div>
 
     <button type="submit" class="submit-button" [disabled]="!this.agreement" (click)="submit()" value="Accept">Continue</button>

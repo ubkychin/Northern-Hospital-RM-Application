@@ -1,10 +1,12 @@
 <app-login *ngIf="!this.loggedIn"></app-login>
-<app-call000 *ngIf="!this.emergancy && this.loggedIn"></app-call000>
-<app-welcome *ngIf="!this.authorised && this.loggedIn && this.emergancy"></app-welcome>
+<!-- <app-call000 *ngIf="!this.emergancy && this.loggedIn"></app-call000> -->
+<!-- <app-welcome *ngIf="!this.authorised && this.loggedIn && this.emergancy"></app-welcome> -->
+<app-welcome *ngIf="!this.authorised && this.loggedIn"></app-welcome>
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#005CB9" type="ball-clip-rotate-multiple" [fullScreen]="true">
     <p style="color: white"> Waiting ... </p>
     </ngx-spinner>
- <div *ngIf="this.authorised && this.loggedIn && this.emergancy">
+ <div *ngIf="this.authorised && this.loggedIn">
+    <!-- <div *ngIf="this.authorised && this.loggedIn && this.emergancy"> -->
     <header>
         <div class="blue-bar top">
             <a *ngIf="!isRoot" (click)="goBack()">

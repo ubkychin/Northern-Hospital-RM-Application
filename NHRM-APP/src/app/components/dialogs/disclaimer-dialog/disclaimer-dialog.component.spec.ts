@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DialogBoxComponent } from './dialog-box.component';
+import { DisclaimerDialogComponent } from './disclaimer-dialog.component';
 
-describe('DialogBoxComponent', () => {
-  let component: DialogBoxComponent;
-  let fixture: ComponentFixture<DialogBoxComponent>;
+describe('DisclaimerDialogComponent', () => {
+  let component: DisclaimerDialogComponent;
+  let fixture: ComponentFixture<DisclaimerDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DialogBoxComponent ]
+      declarations: [ DisclaimerDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DialogBoxComponent);
+    fixture = TestBed.createComponent(DisclaimerDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

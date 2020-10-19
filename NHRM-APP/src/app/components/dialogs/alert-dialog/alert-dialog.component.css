@@ -1,0 +1,31 @@
+fa-icon {
+    color: #C4393C;
+    justify-self: right;
+    font-size: 10vh;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.text {
+    font-family: 'Arial Black';
+    width: 80%;
+}
+
+button {
+    cursor: pointer;
+    font-size: 14px bold;
+    font-weight: bold;
+    color: white;
+    background: #C4393C;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    margin: 15px;
+    padding: 15px;
+}

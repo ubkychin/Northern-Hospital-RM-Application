@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { DialogBoxComponent } from 'src/app/components/dialog-box/dialog-box.component';
 import { MeasurementResult } from 'src/app/models/measurement-result';
 import { Patient } from 'src/app/models/patient';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
 import { DataService } from 'src/app/services/data.service';
+import { ResourceDialogComponent } from '../dialogs/resource-dialog/resource-dialog.component';
 
 @Component({
   selector: 'app-fluid-drain',
@@ -26,6 +26,7 @@ export class FluidDrainComponent implements OnInit {
   constructor(public dialog: MatDialog, private dataService: DataService, private router: Router) {
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
+    this.dialogConfig.panelClass = 'information-dialog-container';
     dataService.patient.subscribe(data => { this.patient = data });
   }
 
@@ -38,7 +39,7 @@ export class FluidDrainComponent implements OnInit {
       heading: this.dialogInfo.heading,
       video: this.dialogInfo.video
     }
-    this.dialog.open(DialogBoxComponent, this.dialogConfig);
+    this.dialog.open(ResourceDialogComponent, this.dialogConfig);
   }
 
   recordFluid() {

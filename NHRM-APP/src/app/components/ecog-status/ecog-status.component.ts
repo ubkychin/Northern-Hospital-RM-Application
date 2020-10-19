@@ -3,9 +3,10 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { MeasurementResult } from 'src/app/models/measurement-result';
 import { Patient } from 'src/app/models/patient';
-import { DataService } from 'src/app/services/data.service';
-import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
+import { DataService } from 'src/app/services/data.service';
+import { ResourceDialogComponent } from '../dialogs/resource-dialog/resource-dialog.component';
+import { SuccessDialogComponent } from '../dialogs/success-dialog/success-dialog.component';
 
 @Component({
   selector: 'app-ecog-status',
@@ -25,6 +26,7 @@ export class EcogStatusComponent implements OnInit {
   constructor(public dialog: MatDialog, private dataService: DataService, private router: Router) {
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
+    this.dialogConfig.panelClass = 'information-dialog-container';
     dataService.patient.subscribe(data => { this.patient = data });
   }
 
@@ -42,7 +44,7 @@ export class EcogStatusComponent implements OnInit {
       heading: this.dialogInfo.heading,
       video: this.dialogInfo.video
     }
-    this.dialog.open(DialogBoxComponent, this.dialogConfig);
+    this.dialog.open(ResourceDialogComponent, this.dialogConfig);
   }
 
   recordECOG() {
@@ -61,6 +63,10 @@ export class EcogStatusComponent implements OnInit {
     this.dataService.postMeasurementResult(measurementResult)
       .then(() => {
         this.router.navigate(['/survey-nav']);
+        /*         this.dialogConfig.panelClass = 'success-dialog-container';
+                this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
+                  this.router.navigate(['survey-nav']);
+                }); */
       })
       .catch((err) => console.error(err + " ECOG ERR"))
       .finally(() => {

@@ -45,6 +45,7 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem('Authorization');
+    sessionStorage.removeItem('disclaimer');
     this.loggedIn.next(false);
   }
 }
