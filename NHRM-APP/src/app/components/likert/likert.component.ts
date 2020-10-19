@@ -7,6 +7,7 @@ import { MatDialog, MatDialogConfig, throwMatDialogContentAlreadyAttachedError }
 import { Router } from '@angular/router';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
+import { MeasurementResult } from 'src/app/models/measurement-result';
 
 @Component({
   selector: 'app-likert',
@@ -39,17 +40,19 @@ export class LikertComponent implements OnInit {
   }
 
   onSubmit() {
-    let measurementResult = {
+    let measurementResult: MeasurementResult[] = [{
       'hospitalNumber': this.patient.hospitalNumber,
       'categoryId': this.patient.categoryId,
       'dataPointNumber': 1,
       'measurementId': 2,
       'timeStamp': new Date(),
       'value': Number(this.form.value["feeling"])
-    };
+    }];
 
     this.dataService.postMeasurementResult(measurementResult)
-      .then(() => this.router.navigate(['/survey-nav']))
+      .then(() => {
+        this.router.navigate(['/survey-nav']);
+      })
       .catch((err) => console.error(err + " Likert ERR"))
       .finally(() => {
         console.log("Finalized");

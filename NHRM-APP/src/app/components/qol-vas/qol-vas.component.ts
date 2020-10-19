@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import noUiSlider from 'nouislider';
 import 'nouislider/distribute/nouislider.css';
+import { MeasurementResult } from 'src/app/models/measurement-result';
 import { Patient } from 'src/app/models/patient';
 import { DataService } from 'src/app/services/data.service';
 
@@ -14,10 +15,11 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class QolVasComponent implements OnInit {
 
-
-  currentHealthScore: Number;
   isValid: Boolean = true;
+  vasScore: number[] = [];
   patient: Patient;
+  partA: boolean = true;
+  measurementResult: MeasurementResult[] = [];
 
   constructor(private dataService: DataService, private router: Router) {
     dataService.patient.subscribe(data => { this.patient = data });
@@ -26,35 +28,49 @@ export class QolVasComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  vasValue(event: Number) {
-    console.log("Printing numbers");
-  }
-
-  infoDialog(){
+  infoDialog() {
 
   }
-  
-  recordVASHealth(form) {
-    console.log(form.value['vas-input']);
-    console.log(this.patient);
 
-    let measurementResult = {
+  getVasInputScore(event) {
+    this.vasScore.push(event);
+    console.log("Pain Vas Input = " + this.vasScore[0])
+    this.measurementResult.push({
       'hospitalNumber': this.patient.hospitalNumber,
       'categoryId': this.patient.categoryId,
-      'dataPointNumber': 6,
-      'measurementId': 6,
+      'dataPointNumber': 1,
+      'measurementId': 4,
       'timeStamp': new Date(),
-      'value': form.value['vas-input'] //Number(this.vasSlider.noUiSlider.get())
-    };
+      'value': this.vasScore[0]
+    });
+    this.partA = false;
+  }
 
-    console.log(measurementResult);
+  getVasSliderScore(event) {
+    this.vasScore.push(parseInt(event));
+    console.log("Pain Vas Slider = " + this.vasScore[1])
+    this.measurementResult.push({
+      'hospitalNumber': this.patient.hospitalNumber,
+      'categoryId': this.patient.categoryId,
+      'dataPointNumber': 2,
+      'measurementId': 4,
+      'timeStamp': new Date(),
+      'value': this.vasScore[1]
+    });
 
-    this.dataService.postMeasurementResult(measurementResult)
+    this.recordVASHealth();
+  }
+
+  recordVASHealth() {
+    console.log(this.patient);
+    console.log(this.measurementResult);
+
+    this.dataService.postMeasurementResult(this.measurementResult)
       .then(() => {
-        console.log("In Then");
-        this.router.navigate(['/qol-vas-slider'])
+        console.log("Qol Vas Recorded");
+        this.router.navigate(['/survey-nav']);
       })
-      .catch((err) => console.log(err + "Quality of Life VAS Scale Error"))
+      .catch((err) => console.log(err + "Qol VAS ERR"))
       .finally(() => {
         console.log("Finalized");
         this.dataService.loading.next(false);

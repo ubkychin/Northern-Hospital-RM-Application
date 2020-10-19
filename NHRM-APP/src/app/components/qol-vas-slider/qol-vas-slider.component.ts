@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Patient } from 'src/app/models/patient';
 import { Router } from '@angular/router';
+import { MeasurementResult } from 'src/app/models/measurement-result';
 
 
 @Component({
@@ -28,14 +29,14 @@ export class QolVasSliderComponent implements OnInit {
 
 
   submitHealthScore() {
-    let measurementResult = {
+    let measurementResult: MeasurementResult[] = [{
       'hospitalNumber': this.patient.hospitalNumber,
       'categoryId': this.patient.categoryId,
       'dataPointNumber': 6,
       'measurementId': 6,
       'timeStamp': new Date(),
       'value': this.currentHealthScore
-    };
+    }];
 
 
     this.dataService.postMeasurementResult(measurementResult)

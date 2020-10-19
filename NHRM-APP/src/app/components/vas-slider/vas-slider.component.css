@@ -1,5 +1,12 @@
 @import "~nouislider/distribute/nouislider.min.css";
 
+.container{
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: auto;
+}
+
 .vas-slider {
     text-align: center;
     margin: 10% auto;

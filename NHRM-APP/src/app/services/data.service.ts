@@ -31,7 +31,7 @@ export class DataService {
     console.log(this.patient)
   }
 
-  postMeasurementResult(measurementResult: MeasurementResult) {
+  postMeasurementResult(measurementResult: MeasurementResult[]) {
     this.loading.next(true);
     return new Promise((resolve, reject) => {
       this._http.post(this.apiURL + "/MeasurementResults",

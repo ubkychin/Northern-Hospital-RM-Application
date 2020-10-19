@@ -1,16 +1,13 @@
 <div class="heading">
     <h1 class="main-heading">Visual Analogue Scale (Pain)</h1>
-    <h3 class="sub-heading">Enter Level of Pain from 0 to 100. Entering 0 meaning you have No Pain and entering 100 having Worst Possible Pain</h3>
+    <h3 *ngIf="partA" class="sub-heading">Enter Level of Pain from 0 to 100. Entering 0 meaning you have No Pain and
+        entering 100 having Worst Possible Pain</h3>
+    <h3 *ngIf="!partA" class="sub-heading">Touch the slider between 0 to 100 below, Touching 0 meaning you have No
+        Pain and touching 100 having Extreme Pain</h3>
 </div>
 
 <app-info-bar (click)="infoDialog()"></app-info-bar>
 
-<form class="form-container" #vasInputForm="ngForm" (ngSubmit)="recordVASPain(vasInputForm.form);">
-    
-    <input class="vas-level-input" type="number" placeholder="0" min="0" max="10" maxlength="2" name="vas-input" ngModel
-        #vasInputField="ngModel" required>
+<app-vas-input *ngIf="partA" (vasValue)="getVasInputScore($event)"></app-vas-input>
 
-    <button type="submit" class="submit-button" [disabled]="!vasInputForm.valid"
-        [ngClass]="{'disabled-btn': !vasInputForm.valid}">Next</button>
-
-</form>
+<app-vas-slider *ngIf="!partA" (vasValue)="getVasSliderScore($event)"></app-vas-slider>

@@ -49,17 +49,19 @@ export class EcogStatusComponent implements OnInit {
     console.log(this.patient)
     console.log(this.status);
 
-    let measurementResult: MeasurementResult = {
+    let measurementResult: MeasurementResult[] = [{
       'hospitalNumber': this.patient.hospitalNumber,
       'categoryId': this.patient.categoryId,
       'dataPointNumber': 1,
       'measurementId': 1,
       'timeStamp': new Date(),
       'value': this.status
-    }
+    }];
 
     this.dataService.postMeasurementResult(measurementResult)
-      .then(() => this.router.navigate(['/survey-nav']))
+      .then(() => {
+        this.router.navigate(['/survey-nav']);
+      })
       .catch((err) => console.error(err + " ECOG ERR"))
       .finally(() => {
         console.log("Finalized");

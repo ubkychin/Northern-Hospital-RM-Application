@@ -20,7 +20,9 @@ export class VasPainComponent implements OnInit {
     content: "Instruction - To help you to best describe how good or bad you feel on a given day, we have drawn a scale from Best on the top of the slider to Worst on the bottom of the slider. Please position the slider at the point that describes how you feel today."
   }
   patient: Patient;
-  failed: boolean;
+  vasScore: number[] = [];
+  partA: boolean = true;
+  measurementResult: MeasurementResult[] = [];
 
   constructor(public dialog: MatDialog, private dataService: DataService, private router: Router) {
     this.dialogConfig = new MatDialogConfig();
@@ -40,23 +42,44 @@ export class VasPainComponent implements OnInit {
     this.dialog.open(DialogBoxComponent, this.dialogConfig);
   }
 
-  recordVASPain(form) {
-    console.log(form.value['vas-input']);
-    console.log(this.patient);
-
-    let measurementResult: MeasurementResult = {
+  getVasInputScore(event) {
+    this.vasScore.push(event);
+    console.log("Pain Vas Input = " + this.vasScore[0])
+    this.measurementResult.push({
       'hospitalNumber': this.patient.hospitalNumber,
       'categoryId': this.patient.categoryId,
       'dataPointNumber': 1,
       'measurementId': 4,
       'timeStamp': new Date(),
-      'value': form.value['vas-input']
-    }
+      'value': this.vasScore[0]
+    });
+    this.partA = false;
+  }
 
-    console.log(measurementResult);
+  getVasSliderScore(event) {
+    this.vasScore.push(parseInt(event));
+    console.log("Pain Vas Slider = " + this.vasScore[1])
+    this.measurementResult.push({
+      'hospitalNumber': this.patient.hospitalNumber,
+      'categoryId': this.patient.categoryId,
+      'dataPointNumber': 2,
+      'measurementId': 4,
+      'timeStamp': new Date(),
+      'value': this.vasScore[1]
+    });
 
-    this.dataService.postMeasurementResult(measurementResult)
-      .then(() => this.router.navigate(['/survey-nav']))
+    this.recordVASPain();
+  }
+
+  recordVASPain() {
+    console.log(this.patient);
+    console.log(this.measurementResult);
+
+    this.dataService.postMeasurementResult(this.measurementResult)
+      .then(() => {
+        console.log("Pain Recorded");
+        this.router.navigate(['/survey-nav']);
+      })
       .catch((err) => console.error(err + " Pain ERR"))
       .finally(() => {
         console.log("Finalized");

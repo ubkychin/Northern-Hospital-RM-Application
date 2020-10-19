@@ -1,22 +1,6 @@
-.form-container {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+.heading h3{
     margin: auto;
-    display: flex;
-    flex-direction: column;
-    max-width: 95%;
-}
-
-.vas-level-input {
-    margin: 40px;
-    background-color: #D2E8F2;
-    width: 90px;
-    height: 50px;
-    border: 1px solid #707070;
-    border-radius: 5px;
-    font-size: xx-large;
-    text-align: center;
+    max-width: 550px;
 }
 
 /* Remove Spinners Chrome, Safari, Edge, Opera */

@@ -4,6 +4,7 @@ import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { Router } from '@angular/router';
 import { Patient } from 'src/app/models/patient';
 import { DataService } from 'src/app/services/data.service';
+import { MeasurementResult } from 'src/app/models/measurement-result';
 
 @Component({
   selector: 'app-qol',
@@ -15,6 +16,7 @@ export class QolComponent implements OnInit {
   public patient: Patient;
   model: any = {};
   isValid: boolean = true;
+  measurementResult: MeasurementResult[] = [];
 
   // The survey categories and questions retrieved from the API
   survey: any = [{
@@ -73,8 +75,8 @@ export class QolComponent implements OnInit {
       },
 
     }
-  
-  ];
+
+    ];
 
   }
 
@@ -88,9 +90,9 @@ export class QolComponent implements OnInit {
     let categories = Object.keys(this.form.value);
 
     this.isValid = true;
-    
-    if(this.form.value[categories[this.currentCategory]] !== null) {
-      if(this.currentCategory === this.survey.length - 1) {
+
+    if (this.form.value[categories[this.currentCategory]] !== null) {
+      if (this.currentCategory === this.survey.length - 1) {
         this.submitSurvey();
         this.router.navigateByUrl('/qol-vas');
       }
@@ -108,25 +110,28 @@ export class QolComponent implements OnInit {
   submitSurvey() {
 
     let categories = Object.keys(this.form.value);
-
+    let date = new Date();
+    
     for (let i = 0; i < categories.length; i++) {
 
-      let patientMeasurement = {
+      this.measurementResult[i] = {
         'hospitalNumber': this.patient.hospitalNumber,
         'categoryId': this.patient.categoryId,
         'dataPointNumber': i + 1,
         'measurementId': 6,
-        'timeStamp': new Date(),
+        'timeStamp': date,
         'value': this.form.value[categories[i]]
       };
-
-      this.dataService.postMeasurementResult(patientMeasurement)
-        .then(() => this.router.navigate(['/qol-vas']))
-        .catch((err) => console.log(err + "Quality of Life Error"))
-        .finally(() => {
-          console.log("Finalized");
-          this.dataService.loading.next(false);
-        });
     }
+
+    this.dataService.postMeasurementResult(this.measurementResult)
+      .then(() => {
+        this.router.navigate(['/qol-vas']);
+      })
+      .catch((err) => console.log(err + "Quality of Life Error"))
+      .finally(() => {
+        console.log("Finalized");
+        this.dataService.loading.next(false);
+      });
   }
 }

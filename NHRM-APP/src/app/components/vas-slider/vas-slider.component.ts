@@ -39,21 +39,12 @@ export class VasSliderComponent implements OnInit {
     });
 
     this.vasSlider.noUiSlider.on('update.one', (values) => {  
-
-      // console.log(values[0]);
       
       this.currentHealthScore = values[0];
-
-      this.vasValue.emit(this.currentHealthScore);
     });
   }
 
-  
-
-  submitValueUpdated() {
-    console.log(this.vasSlider)
-  }
-
-  submitData() {
+  submitVasScore() {
+    this.vasValue.emit(this.currentHealthScore);
   }
 }

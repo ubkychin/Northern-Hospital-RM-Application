@@ -45,17 +45,19 @@ export class FluidDrainComponent implements OnInit {
     console.log(this.patient)
     console.log(this.fluid);
 
-    let measurementResult: MeasurementResult = {
+    let measurementResult: MeasurementResult[] = [{
       'hospitalNumber': this.patient.hospitalNumber,
       'categoryId': this.patient.categoryId,
       'dataPointNumber': 1,
       'measurementId': 5,
       'timeStamp': new Date(),
       'value': this.fluid
-    }
+    }];
 
     this.dataService.postMeasurementResult(measurementResult)
-      .then(() => this.router.navigate(['/survey-nav']))
+      .then(() => {
+        this.router.navigate(['/survey-nav']);
+      })
       .catch((err) => console.error(err + " Fluid ERR"))
       .finally(() => {
         console.log("Finalized");
