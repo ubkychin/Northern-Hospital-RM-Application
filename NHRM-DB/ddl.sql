@@ -2,19 +2,19 @@ DROP TABLE IF EXISTS DataPointRecord;
 
 DROP TABLE IF EXISTS DataPoint
 
-DROP TABLE IF EXISTS PatientMeasurement;
-
-DROP TABLE IF EXISTS MeasurementRecord;
+DROP TABLE IF EXISTS CategoryMeasurement;
 
 DROP TABLE IF EXISTS TemplateMeasurement;
-
-DROP TABLE IF EXISTS Measurement;
 
 DROP TABLE IF EXISTS DataPointType;
 
 DROP TABLE IF EXISTS PatientRecord;
 
 DROP TABLE IF EXISTS PatientResource;
+
+DROP TABLE IF EXISTS MeasurementRecord;
+
+DROP TABLE IF EXISTS PatientMeasurement;
 
 DROP TABLE IF EXISTS PatientCategory;
 
@@ -39,6 +39,8 @@ DROP TABLE IF EXISTS ResourceDialog;
 DROP TABLE IF EXISTS [Resource];
 
 DROP TABLE IF EXISTS ResourceType;
+
+DROP TABLE IF EXISTS Measurement;
 
 GO
 
@@ -192,7 +194,7 @@ CREATE TABLE MeasurementRecord(
     MeasurementID INT NOT NULL,
     CategoryID INT NOT NULL,
     HospitalNumber NVARCHAR(50) NOT NULL,
-    CONSTRAINT PK_MeasurementRecord PRIMARY KEY (MeasurementRecordID),
+    CONSTRAINT PK_MeasurementRecord PRIMARY KEY (MeasurementRecordID, MeasurementID, CategoryID, HospitalNumber),
     CONSTRAINT FK_MeasurementRecord_PatientMeasurement FOREIGN KEY (MeasurementID, CategoryID, HospitalNumber) REFERENCES PatientMeasurement (MeasurementID, CategoryID, HospitalNumber)
 )
 
@@ -203,11 +205,11 @@ CREATE TABLE DataPointRecord(
     CategoryID INT NOT NULL,
     MeasurementID INT NOT NULL,
     DataPointNumber INT NOT NULL,
-    [Value] INT NOT NULL,
+    [Value] FLOAT NOT NULL,
     MeasurementRecordID INT NOT NULL,
     CONSTRAINT PK_DataPointRecord PRIMARY KEY (HospitalNumber, CategoryID, MeasurementID, DataPointNumber),
-    CONSTRAINT FK_DataPointRecord_DataPoint FOREIGN KEY (DataPointNumber, MeasurementID) REFERENCES DataPoint (DataPointNumber, MeasurementID),
-    CONSTRAINT FK_DataPointRecord_MeasurementRecord FOREIGN KEY (HospitalNumber, CategoryID, MeasurementRecordID) REFERENCES MeasurementRecord (HospitalNumber, CategoryID, MeasurementRecordID)
+    CONSTRAINT FK_DataPointRecord_DataPoint FOREIGN KEY (MeasurementID, DataPointNumber) REFERENCES DataPoint (MeasurementID, DataPointNumber),
+    CONSTRAINT FK_DataPointRecord_MeasurementRecord FOREIGN KEY (MeasurementRecordID, MeasurementID, CategoryID, HospitalNumber) REFERENCES MeasurementRecord (MeasurementRecordID, MeasurementID, CategoryID, HospitalNumber)
 )
 
 GO
@@ -235,7 +237,6 @@ CREATE TABLE [Resource](
     ResourceID INT IDENTITY(1,1) NOT NULL,
     Title NVARCHAR(65) NOT NULL,
     Prompt NVARCHAR(12) NOT NULL,
-    CategoryID INT NOT NULL,
     Content NVARCHAR(MAX) NOT NULL,
     TypeID INT NOT NULL,
     CONSTRAINT PK_Resource PRIMARY KEY (ResourceID),
@@ -268,7 +269,7 @@ GO
 CREATE TABLE ResourceDialog(
     ResourceDialogID INT IDENTITY(1,1) NOT NULL,
     Heading NVARCHAR(60) NOT NULL,
-    Content NVARCHAR(250) NOT NULL,
+    Content NVARCHAR(MAX) NOT NULL,
     Video NVARCHAR(MAX),
     ResourceID INT NOT NULL,
     CONSTRAINT PK_ResourceDialog PRIMARY KEY (ResourceDialogID),
