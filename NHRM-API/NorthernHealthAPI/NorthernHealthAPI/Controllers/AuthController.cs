@@ -40,7 +40,7 @@ namespace NorthernHealthAPI.Controllers
 
             var patient = (from p in _context.Patient
                            where p.UserId == login.UserId && p.Password == passwordHash.Hash
-                           select new Patient { HospitalNumber = p.HospitalNumber });
+                           select new Patient { HospitalNumber = p.HospitalNumber }).ToList();
 
             if (patient.Count() != 0)
             {
@@ -48,7 +48,8 @@ namespace NorthernHealthAPI.Controllers
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
                 var claims = new[] {
-                    new Claim(ClaimTypes.Role, "Patient")
+                    new Claim(ClaimTypes.Role, "Patient"),
+                    new Claim("Hospital Number", patient.FirstOrDefault().HospitalNumber)
                 };
 
                 var tokenOptions = new JwtSecurityToken(
