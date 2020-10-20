@@ -10,7 +10,7 @@ VALUES('STAFFID', 'Stephen', 'Grouios', HASHBYTES('SHA2_512','password'), 'salt'
 
 INSERT INTO Patient
     (HospitalNumber,Email,Title,SurName,FirstName,Gender,DOB,[Address],Suburb,PostCode,MobileNumber,HomeNumber,CountryOfBirth,PreferredLanguage,[Password],Salt,LivesAlone,RegisteredBy,Active)
-VALUES('123456789', '102661522@student.swin.edu.au', 'Mr', 'Henry', 'Mitchell', 'Male', GETDATE(), '123trump St', 'Cheltenham', '1234', '0123456789', '0123456789', 'Australia', 'English', HASHBYTES('SHA2_512','password'), 'salt', 0, 'STAFFID2', 1);
+VALUES('123456789', 'patient@patient.com', 'Mr', 'Henry', 'Mitchell', 'Male', GETDATE(), '123trump St', 'Cheltenham', '1234', '0123456789', '0123456789', 'Australia', 'English', HASHBYTES('SHA2_512','password'), 'salt', 0, 'STAFFID2', 1);
 
 INSERT INTO Measurement
     (MeasurementName, Frequency)
@@ -19,7 +19,8 @@ VALUES('ECOG Status', 1),
     ('Breathlessness', 1),
     ('Level of Pain', 1),
     ('Fluid Drain', 1),
-    ('Quality of Life', 1);
+    ('Quality of Life', 1),
+    ('HADS',1);
 
 INSERT INTO DataPoint
     (MeasurementID,DataPointNumber,UpperLimit,LowerLimit,[Name])
@@ -34,7 +35,9 @@ VALUES(1, 1, 4, 0, 'ECOG Status'),
     (6, 3, 5, 1, 'Usual-Activies'),
     (6, 4, 5, 1, 'Pain/Discomfort'),
     (6, 5, 5, 1, 'Anxiety/Depression'),
-    (6, 6, 100, 0, 'Vas Health');
+    (6, 6, 100, 0, 'Vas Health'),
+    (7,1,8,1,'Depression'),
+    (7,2,8,1,'Anxiety');
 
 INSERT INTO ResourceType
     (TypeName)
@@ -66,7 +69,7 @@ VALUES('MMR', 1);
 
 INSERT INTO PatientRecord
     (DateTimeRecorded,Notes,HospitalNumber,RecordTypeID)
-VALUES(GETDATE(), 'No Notes', '1234456789', 1);
+VALUES(GETDATE(), 'No Notes', '123456789', 1);
 
 INSERT INTO Treating
     (StartDate,EndDate,HospitalNumber,StaffID)
