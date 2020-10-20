@@ -20,24 +20,38 @@ VALUES('ECOG Status', 1),
     ('Level of Pain', 1),
     ('Fluid Drain', 1),
     ('Quality of Life', 1),
-    ('HADS',1);
+    ('HADS', 1);
 
 INSERT INTO DataPoint
     (MeasurementID,DataPointNumber,UpperLimit,LowerLimit,[Name])
 VALUES(1, 1, 4, 0, 'ECOG Status'),
     (2, 1, 5, 1, 'Likert Scale'),
-    (3, 1, 10, 0, 'Breathlessness'),
-    (4, 1, 10, 0, 'Vas Pain Input'),
-    (4, 2, 10, 0, 'Vas Pain Slider'),
-    (5, 1, 600, 1, 'Fluid Drain'),
+    (3, 1, 100, 0, 'Breathlessness Input'),
+    (3, 2, 100, 0, 'Breathlessness Slider'),
+    (4, 1, 100, 0, 'Level of Pain Input'),
+    (4, 2, 100, 0, 'Level of Pain Slider'),
+    (5, 1, 600, 0, 'Fluid Drain'),
     (6, 1, 5, 1, 'Mobility'),
     (6, 2, 5, 1, 'Self-Care'),
     (6, 3, 5, 1, 'Usual-Activies'),
     (6, 4, 5, 1, 'Pain/Discomfort'),
     (6, 5, 5, 1, 'Anxiety/Depression'),
-    (6, 6, 100, 0, 'Vas Health'),
-    (7,1,8,1,'Depression'),
-    (7,2,8,1,'Anxiety');
+    (6, 6, 100, 0, 'QoL Vas Health Input'),
+    (6, 7, 100, 0, 'QoL Vas Health Slider'),
+    (7, 1, 3, 0, 'Anxiety - Tense'),
+    (7, 2, 3, 0, 'Depression - Enjoyment'),
+    (7, 3, 3, 0, 'Anxiety - Frightened awful'),
+    (7, 4, 3, 0, 'Depression - Laugh'),
+    (7, 5, 3, 0, 'Anxiety - Worrying thoughts'),
+    (7, 6, 3, 0, 'Depression - Cheerful'),
+    (7, 7, 3, 0, 'Anxiety - Relaxed'),
+    (7, 8, 3, 0, 'Depression - Slowed'),
+    (7, 9, 3, 0, 'Anxiety - Frightened butterflies'),
+    (7, 10, 3, 0, 'Depression - Appearance'),
+    (7, 11, 3, 0, 'Anxiety - Restless'),
+    (7, 12, 3, 0, 'Depression - Looking forward'),
+    (7, 13, 3, 0, 'Anxiety - Panic'),
+    (7, 14, 3, 0, 'Depression - Book/Radio/TV')
 
 INSERT INTO ResourceType
     (TypeName)
