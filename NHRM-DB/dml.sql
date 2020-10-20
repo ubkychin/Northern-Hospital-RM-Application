@@ -5,12 +5,12 @@ VALUES('Admin'),
 
 INSERT INTO Staff
     (StaffID,FirstName,SurName,[Password],Salt,RoleID)
-VALUES('STAFFID', 'Stephen', 'Grouios', HASHBYTES('SHA2_512','password'), 'salt', 1),
-    ('STAFFID2', 'John', 'Konstantinou', HASHBYTES('SHA2_512','password'), 'salt', 2);
+VALUES('STAFFID', 'Stephen', 'Grouios', HASHBYTES('SHA2_512', CONCAT('password', 'salt', 'this15myp3pper')), 'salt', 1),
+    ('STAFFID2', 'John', 'Konstantinou', HASHBYTES('SHA2_512', CONCAT('password', 'salt', 'this15myp3pper')), 'salt', 2);
 
 INSERT INTO Patient
     (HospitalNumber,Email,Title,SurName,FirstName,Gender,DOB,[Address],Suburb,PostCode,MobileNumber,HomeNumber,CountryOfBirth,PreferredLanguage,[Password],Salt,LivesAlone,RegisteredBy,Active)
-VALUES('123456789', 'patient@patient.com', 'Mr', 'Henry', 'Mitchell', 'Male', GETDATE(), '123trump St', 'Cheltenham', '1234', '0123456789', '0123456789', 'Australia', 'English', HASHBYTES('SHA2_512','password'), 'salt', 0, 'STAFFID2', 1);
+VALUES('123456789', 'patient@patient.com', 'Mr', 'Henry', 'Mitchell', 'Male', GETDATE(), '123trump St', 'Cheltenham', '1234', '0123456789', '0123456789', 'Australia', 'English', HASHBYTES('SHA2_512', CONCAT('password', 'salt', 'this15myp3pper')), 'salt', 0, 'STAFFID2', 1);
 
 INSERT INTO Measurement
     (MeasurementName, Frequency)
