@@ -1,6 +1,10 @@
 DROP TABLE IF EXISTS DataPointRecord;
 
-DROP TABLE IF EXISTS DataPoint
+DROP TABLE IF EXISTS SurveyAnswer;
+
+DROP TABLE IF EXISTS SurveyQuestion;
+
+DROP TABLE IF EXISTS DataPoint;
 
 DROP TABLE IF EXISTS CategoryMeasurement;
 
@@ -63,6 +67,29 @@ CREATE TABLE DataPoint(
    CONSTRAINT PK_DataPoint PRIMARY KEY (MeasurementID, DataPointNumber),
    CONSTRAINT FK_DataPoint_Measurement FOREIGN KEY (MeasurementID) REFERENCES Measurement
 );
+
+GO
+
+CREATE TABLE SurveyQuestion(
+    MeasurementID INT NOT NULL,
+    DataPointNumber INT NOT NULL, 
+    CategpryName NVARCHAR(MAX),
+    Question NVARCHAR(MAX) NOT NULL,
+    CONSTRAINT PK_SurveyQuestion PRIMARY KEY (MeasurementID, DataPointNumber),
+    CONSTRAINT FK_SurveyQuestion_DataPoint FOREIGN KEY (MeasurementID, DataPointNumber) REFERENCES DataPoint (MeasurementID, DataPointNumber)
+)
+
+GO
+
+CREATE TABLE SurveyAnswer(
+    MeasurementID INT NOT NULL,
+    DataPointNumber INT NOT NULL, 
+    AnswerNumber INT NOT NULL,
+    AnswerText NVARCHAR(MAX) NOT NULL,
+    [Value] INT NOT NULL, 
+    CONSTRAINT PK_SurveyAnswer PRIMARY KEY (MeasurementID, DataPointNumber, AnswerNumber),
+    CONSTRAINT FK_SurveyAnswer_SurveyQuestion FOREIGN KEY (MeasurementID, DataPointNumber) REFERENCES SurveyQuestion (MeasurementID, DataPointNumber)
+)
 
 GO
 
