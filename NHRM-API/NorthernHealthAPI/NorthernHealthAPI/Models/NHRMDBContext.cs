@@ -15,15 +15,28 @@ namespace NorthernHealthAPI.Models
         {
         }
 
-        public virtual DbSet<Category> Category { get; set; }
-        public virtual DbSet<CategoryMeasurement> CategoryMeasurement { get; set; }
-        public virtual DbSet<Login> Login { get; set; }
+        public virtual DbSet<DataPoint> DataPoint { get; set; }
+        public virtual DbSet<DataPointRecord> DataPointRecord { get; set; }
         public virtual DbSet<Measurement> Measurement { get; set; }
-        public virtual DbSet<MeasurementDataPoint> MeasurementDataPoint { get; set; }
-        public virtual DbSet<MeasurementResult> MeasurementResult { get; set; }
+        public virtual DbSet<MeasurementRecord> MeasurementRecord { get; set; }
         public virtual DbSet<Patient> Patient { get; set; }
         public virtual DbSet<PatientCategory> PatientCategory { get; set; }
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<PatientMeasurement> PatientMeasurement { get; set; }
+        public virtual DbSet<PatientRecord> PatientRecord { get; set; }
+        public virtual DbSet<PatientResource> PatientResource { get; set; }
+        public virtual DbSet<RecordCategory> RecordCategory { get; set; }
+        public virtual DbSet<RecordType> RecordType { get; set; }
+        public virtual DbSet<Resource> Resource { get; set; }
+        public virtual DbSet<ResourceDialog> ResourceDialog { get; set; }
+        public virtual DbSet<ResourceType> ResourceType { get; set; }
+        public virtual DbSet<Staff> Staff { get; set; }
+        public virtual DbSet<StaffRole> StaffRole { get; set; }
+        public virtual DbSet<SurveyAnswer> SurveyAnswer { get; set; }
+        public virtual DbSet<SurveyQuestion> SurveyQuestion { get; set; }
+        public virtual DbSet<TemplateCategory> TemplateCategory { get; set; }
+        public virtual DbSet<TemplateMeasurement> TemplateMeasurement { get; set; }
+        public virtual DbSet<TemplateResource> TemplateResource { get; set; }
+        public virtual DbSet<Treating> Treating { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -35,224 +48,169 @@ namespace NorthernHealthAPI.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Category>(entity =>
+            modelBuilder.Entity<DataPoint>(entity =>
             {
-                entity.Property(e => e.CategoryId).HasColumnName("categoryID");
+                entity.HasKey(e => new { e.MeasurementId, e.DataPointNumber });
 
-                entity.Property(e => e.CategoryName)
-                    .IsRequired()
-                    .HasColumnName("categoryName")
-                    .HasMaxLength(50);
-            });
+                entity.Property(e => e.MeasurementId).HasColumnName("MeasurementID");
 
-            modelBuilder.Entity<CategoryMeasurement>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.Property(e => e.CategoryId).HasColumnName("categoryID");
-
-                entity.Property(e => e.MeasurementId).HasColumnName("measurementID");
-
-                entity.HasOne(d => d.Category)
-                    .WithMany()
-                    .HasForeignKey(d => d.CategoryId)
-                    .HasConstraintName("FK_CategoryMeasurement_Category");
+                entity.Property(e => e.Name).HasMaxLength(50);
 
                 entity.HasOne(d => d.Measurement)
-                    .WithMany()
+                    .WithMany(p => p.DataPoint)
                     .HasForeignKey(d => d.MeasurementId)
-                    .HasConstraintName("FK_CategoryMeasurement_Measurement");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DataPoint_Measurement");
             });
 
-            modelBuilder.Entity<Login>(entity =>
+            modelBuilder.Entity<DataPointRecord>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => new { e.HospitalNumber, e.CategoryId, e.MeasurementId, e.DataPointNumber });
+
+                entity.Property(e => e.HospitalNumber).HasMaxLength(50);
+
+                entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
+
+                entity.Property(e => e.MeasurementId).HasColumnName("MeasurementID");
+
+                entity.Property(e => e.MeasurementRecordId).HasColumnName("MeasurementRecordID");
+
+                entity.HasOne(d => d.DataPoint)
+                    .WithMany(p => p.DataPointRecord)
+                    .HasForeignKey(d => new { d.MeasurementId, d.DataPointNumber })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DataPointRecord_DataPoint");
+
+                entity.HasOne(d => d.MeasurementRecord)
+                    .WithMany(p => p.DataPointRecord)
+                    .HasForeignKey(d => new { d.MeasurementRecordId, d.MeasurementId, d.CategoryId, d.HospitalNumber })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DataPointRecord_MeasurementRecord");
             });
 
             modelBuilder.Entity<Measurement>(entity =>
             {
-                entity.Property(e => e.MeasurementId).HasColumnName("measurementID");
+                entity.HasIndex(e => e.MeasurementName)
+                    .HasName("UNIQUE_MeasurementName")
+                    .IsUnique();
+
+                entity.Property(e => e.MeasurementId).HasColumnName("MeasurementID");
 
                 entity.Property(e => e.MeasurementName)
-                    .HasColumnName("measurementName")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .IsRequired()
+                    .HasMaxLength(50);
             });
 
-            modelBuilder.Entity<MeasurementDataPoint>(entity =>
+            modelBuilder.Entity<MeasurementRecord>(entity =>
             {
-                entity.HasKey(e => new { e.MeasurementId, e.DataPointNumber });
+                entity.HasKey(e => new { e.MeasurementRecordId, e.MeasurementId, e.CategoryId, e.HospitalNumber });
 
-                entity.Property(e => e.MeasurementId).HasColumnName("measurementID");
+                entity.Property(e => e.MeasurementRecordId)
+                    .HasColumnName("MeasurementRecordID")
+                    .ValueGeneratedOnAdd();
 
-                entity.Property(e => e.DataPointNumber).HasColumnName("dataPointNumber");
+                entity.Property(e => e.MeasurementId).HasColumnName("MeasurementID");
 
-                entity.Property(e => e.Description)
-                    .HasColumnName("description")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
 
-                entity.Property(e => e.LowerLimit).HasColumnName("lowerLimit");
+                entity.Property(e => e.HospitalNumber).HasMaxLength(50);
 
-                entity.Property(e => e.UpperLimit).HasColumnName("upperLimit");
+                entity.Property(e => e.DateTimeRecorded).HasColumnType("datetime");
 
-                entity.HasOne(d => d.Measurement)
-                    .WithMany(p => p.MeasurementDataPoint)
-                    .HasForeignKey(d => d.MeasurementId)
+                entity.HasOne(d => d.PatientMeasurement)
+                    .WithMany(p => p.MeasurementRecord)
+                    .HasForeignKey(d => new { d.MeasurementId, d.CategoryId, d.HospitalNumber })
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_MeasurementDataPoint_Measurement");
-            });
-
-            modelBuilder.Entity<MeasurementResult>(entity =>
-            {
-                entity.HasKey(e => new { e.MeasurementId, e.DataPointNumber, e.HospitalNumber, e.CategoryId, e.TimeStamp });
-
-                entity.Property(e => e.MeasurementId).HasColumnName("measurementID");
-
-                entity.Property(e => e.DataPointNumber).HasColumnName("dataPointNumber");
-
-                entity.Property(e => e.HospitalNumber)
-                    .HasColumnName("hospitalNumber")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CategoryId).HasColumnName("categoryID");
-
-                entity.Property(e => e.TimeStamp)
-                    .HasColumnName("timeStamp")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.Value).HasColumnName("value");
-
-                entity.HasOne(d => d.PatientCategory)
-                    .WithMany(p => p.MeasurementResult)
-                    .HasForeignKey(d => new { d.CategoryId, d.HospitalNumber })
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_MeasurementResult_PatientCategory");
-
-                entity.HasOne(d => d.MeasurementDataPoint)
-                    .WithMany(p => p.MeasurementResult)
-                    .HasForeignKey(d => new { d.MeasurementId, d.DataPointNumber })
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_MeasurementResult_MeasurementDataPoint");
+                    .HasConstraintName("FK_MeasurementRecord_PatientMeasurement");
             });
 
             modelBuilder.Entity<Patient>(entity =>
             {
                 entity.HasKey(e => e.HospitalNumber);
 
-                entity.Property(e => e.HospitalNumber)
-                    .HasColumnName("hospitalNumber")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.HasIndex(e => e.Email)
+                    .HasName("UNIQUE_Email")
+                    .IsUnique();
 
-                entity.Property(e => e.Address)
-                    .IsRequired()
-                    .HasColumnName("address")
-                    .HasMaxLength(50);
+                entity.Property(e => e.HospitalNumber).HasMaxLength(50);
+
+                entity.Property(e => e.Address).IsRequired();
 
                 entity.Property(e => e.CountryOfBirth)
                     .IsRequired()
-                    .HasColumnName("countryOfBirth")
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.Dob)
                     .HasColumnName("DOB")
                     .HasColumnType("date");
 
                 entity.Property(e => e.Email)
-                    .HasColumnName("email")
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
+                    .IsRequired()
+                    .HasMaxLength(256);
 
                 entity.Property(e => e.FirstName)
                     .IsRequired()
-                    .HasColumnName("firstName")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.Gender)
                     .IsRequired()
-                    .HasColumnName("gender")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .HasMaxLength(50);
 
-                entity.Property(e => e.HomeNumber)
-                    .HasColumnName("homeNumber")
-                    .HasMaxLength(10)
-                    .IsUnicode(false);
+                entity.Property(e => e.HomeNumber).HasMaxLength(10);
 
-                entity.Property(e => e.LivesAlone).HasColumnName("livesAlone");
-
-                entity.Property(e => e.MobileNumber)
-                    .HasColumnName("mobileNumber")
-                    .HasMaxLength(10)
-                    .IsUnicode(false);
+                entity.Property(e => e.MobileNumber).HasMaxLength(10);
 
                 entity.Property(e => e.Password)
                     .IsRequired()
-                    .HasColumnName("password")
                     .HasMaxLength(64)
                     .IsFixedLength();
 
-                entity.Property(e => e.Postcode)
+                entity.Property(e => e.PostCode)
                     .IsRequired()
-                    .HasColumnName("postcode")
-                    .HasMaxLength(4)
-                    .IsUnicode(false);
+                    .HasMaxLength(4);
 
                 entity.Property(e => e.PreferredLanguage)
                     .IsRequired()
-                    .HasColumnName("preferredLanguage")
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
+                    .HasMaxLength(50);
 
-                entity.Property(e => e.Salt)
+                entity.Property(e => e.RegisteredBy)
                     .IsRequired()
-                    .HasColumnName("salt");
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Salt).IsRequired();
 
                 entity.Property(e => e.Suburb)
                     .IsRequired()
-                    .HasColumnName("suburb")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .HasMaxLength(50);
 
-                entity.Property(e => e.Surname)
+                entity.Property(e => e.SurName)
                     .IsRequired()
-                    .HasColumnName("surname")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.Title)
                     .IsRequired()
-                    .HasColumnName("title")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .HasMaxLength(50);
 
-                entity.Property(e => e.UserId)
-                    .IsRequired()
-                    .HasColumnName("userID")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.HasOne(d => d.RegisteredByNavigation)
+                    .WithMany(p => p.Patient)
+                    .HasForeignKey(d => d.RegisteredBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Patient_Staff");
             });
 
             modelBuilder.Entity<PatientCategory>(entity =>
             {
                 entity.HasKey(e => new { e.CategoryId, e.HospitalNumber });
 
-                entity.Property(e => e.CategoryId).HasColumnName("categoryID");
+                entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
 
-                entity.Property(e => e.HospitalNumber)
-                    .HasColumnName("hospitalNumber")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.HospitalNumber).HasMaxLength(50);
 
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.PatientCategory)
                     .HasForeignKey(d => d.CategoryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_PatientCategory_Category");
+                    .HasConstraintName("FK_PatientCategory_TemplateCategory");
 
                 entity.HasOne(d => d.HospitalNumberNavigation)
                     .WithMany(p => p.PatientCategory)
@@ -261,31 +219,322 @@ namespace NorthernHealthAPI.Models
                     .HasConstraintName("FK_PatientCategory_Patient");
             });
 
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<PatientMeasurement>(entity =>
             {
-                entity.HasKey(e => e.Username)
-                    .HasName("PK_Admin");
+                entity.HasKey(e => new { e.MeasurementId, e.CategoryId, e.HospitalNumber });
 
-                entity.Property(e => e.Username)
-                    .HasColumnName("username")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.MeasurementId).HasColumnName("MeasurementID");
+
+                entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
+
+                entity.Property(e => e.HospitalNumber).HasMaxLength(50);
+
+                entity.HasOne(d => d.Measurement)
+                    .WithMany(p => p.PatientMeasurement)
+                    .HasForeignKey(d => d.MeasurementId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PatientMeasurement_Measurement");
+
+                entity.HasOne(d => d.PatientCategory)
+                    .WithMany(p => p.PatientMeasurement)
+                    .HasForeignKey(d => new { d.CategoryId, d.HospitalNumber })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PatientMeasurement_PatientCategory");
+            });
+
+            modelBuilder.Entity<PatientRecord>(entity =>
+            {
+                entity.HasKey(e => new { e.DateTimeRecorded, e.HospitalNumber, e.RecordTypeId });
+
+                entity.Property(e => e.DateTimeRecorded).HasColumnType("datetime");
+
+                entity.Property(e => e.HospitalNumber).HasMaxLength(50);
+
+                entity.Property(e => e.RecordTypeId).HasColumnName("RecordTypeID");
+
+                entity.HasOne(d => d.HospitalNumberNavigation)
+                    .WithMany(p => p.PatientRecord)
+                    .HasForeignKey(d => d.HospitalNumber)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PatientRecord_Patient");
+
+                entity.HasOne(d => d.RecordType)
+                    .WithMany(p => p.PatientRecord)
+                    .HasForeignKey(d => d.RecordTypeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PatientRecord_RecordType");
+            });
+
+            modelBuilder.Entity<PatientResource>(entity =>
+            {
+                entity.HasKey(e => new { e.CategoryId, e.HospitalNumber, e.ResourceId });
+
+                entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
+
+                entity.Property(e => e.HospitalNumber).HasMaxLength(50);
+
+                entity.Property(e => e.ResourceId).HasColumnName("ResourceID");
+
+                entity.HasOne(d => d.Resource)
+                    .WithMany(p => p.PatientResource)
+                    .HasForeignKey(d => d.ResourceId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PatientResource_Resource");
+
+                entity.HasOne(d => d.PatientCategory)
+                    .WithMany(p => p.PatientResource)
+                    .HasForeignKey(d => new { d.CategoryId, d.HospitalNumber })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PatientResource_PatientCategory");
+            });
+
+            modelBuilder.Entity<RecordCategory>(entity =>
+            {
+                entity.HasIndex(e => e.Category)
+                    .HasName("UNIQUE_Category")
+                    .IsUnique();
+
+                entity.Property(e => e.RecordCategoryId).HasColumnName("RecordCategoryID");
+
+                entity.Property(e => e.Category)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<RecordType>(entity =>
+            {
+                entity.HasIndex(e => e.RecordType1)
+                    .HasName("UNIQUE_RecordType")
+                    .IsUnique();
+
+                entity.Property(e => e.RecordTypeId).HasColumnName("RecordTypeID");
+
+                entity.Property(e => e.RecordCategoryId).HasColumnName("RecordCategoryID");
+
+                entity.Property(e => e.RecordType1)
+                    .IsRequired()
+                    .HasColumnName("RecordType")
+                    .HasMaxLength(50);
+
+                entity.HasOne(d => d.RecordCategory)
+                    .WithMany(p => p.RecordType)
+                    .HasForeignKey(d => d.RecordCategoryId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_RecordType_RecordCategory");
+            });
+
+            modelBuilder.Entity<Resource>(entity =>
+            {
+                entity.Property(e => e.ResourceId).HasColumnName("ResourceID");
+
+                entity.Property(e => e.Content).IsRequired();
+
+                entity.Property(e => e.Prompt)
+                    .IsRequired()
+                    .HasMaxLength(12);
+
+                entity.Property(e => e.Title)
+                    .IsRequired()
+                    .HasMaxLength(65);
+
+                entity.Property(e => e.TypeId).HasColumnName("TypeID");
+
+                entity.HasOne(d => d.Type)
+                    .WithMany(p => p.Resource)
+                    .HasForeignKey(d => d.TypeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Resource_ResourceType");
+            });
+
+            modelBuilder.Entity<ResourceDialog>(entity =>
+            {
+                entity.Property(e => e.ResourceDialogId).HasColumnName("ResourceDialogID");
+
+                entity.Property(e => e.Content).IsRequired();
+
+                entity.Property(e => e.Heading)
+                    .IsRequired()
+                    .HasMaxLength(60);
+
+                entity.Property(e => e.ResourceId).HasColumnName("ResourceID");
+
+                entity.HasOne(d => d.Resource)
+                    .WithMany(p => p.ResourceDialog)
+                    .HasForeignKey(d => d.ResourceId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ResourceDialog_Resource");
+            });
+
+            modelBuilder.Entity<ResourceType>(entity =>
+            {
+                entity.HasIndex(e => e.TypeName)
+                    .HasName("UNIQUE_ResourceType_TypeName")
+                    .IsUnique();
+
+                entity.Property(e => e.ResourceTypeId).HasColumnName("ResourceTypeID");
+
+                entity.Property(e => e.TypeName)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<Staff>(entity =>
+            {
+                entity.Property(e => e.StaffId)
+                    .HasColumnName("StaffID")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.FirstName)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.Password)
                     .IsRequired()
-                    .HasColumnName("password")
                     .HasMaxLength(64)
                     .IsFixedLength();
 
-                entity.Property(e => e.Salt)
-                    .IsRequired()
-                    .HasColumnName("salt");
+                entity.Property(e => e.RoleId).HasColumnName("RoleID");
 
-                entity.Property(e => e.UserType)
+                entity.Property(e => e.Salt).IsRequired();
+
+                entity.Property(e => e.SurName)
                     .IsRequired()
-                    .HasColumnName("userType")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .HasMaxLength(50);
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.Staff)
+                    .HasForeignKey(d => d.RoleId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Staff_StaffRole");
+            });
+
+            modelBuilder.Entity<StaffRole>(entity =>
+            {
+                entity.HasKey(e => e.RoleId);
+
+                entity.HasIndex(e => e.StaffType)
+                    .HasName("UNIQUE_StaffType")
+                    .IsUnique();
+
+                entity.Property(e => e.RoleId).HasColumnName("RoleID");
+
+                entity.Property(e => e.StaffType)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<SurveyAnswer>(entity =>
+            {
+                entity.HasKey(e => new { e.MeasurementId, e.DataPointNumber, e.AnswerNumber });
+
+                entity.Property(e => e.MeasurementId).HasColumnName("MeasurementID");
+
+                entity.Property(e => e.AnswerText).IsRequired();
+
+                entity.HasOne(d => d.SurveyQuestion)
+                    .WithMany(p => p.SurveyAnswer)
+                    .HasForeignKey(d => new { d.MeasurementId, d.DataPointNumber })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_SurveyAnswer_SurveyQuestion");
+            });
+
+            modelBuilder.Entity<SurveyQuestion>(entity =>
+            {
+                entity.HasKey(e => new { e.MeasurementId, e.DataPointNumber });
+
+                entity.Property(e => e.MeasurementId).HasColumnName("MeasurementID");
+
+                entity.Property(e => e.Question).IsRequired();
+
+                entity.HasOne(d => d.DataPoint)
+                    .WithOne(p => p.SurveyQuestion)
+                    .HasForeignKey<SurveyQuestion>(d => new { d.MeasurementId, d.DataPointNumber })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_SurveyQuestion_DataPoint");
+            });
+
+            modelBuilder.Entity<TemplateCategory>(entity =>
+            {
+                entity.HasKey(e => e.CategoryId);
+
+                entity.HasIndex(e => e.CategoryName)
+                    .HasName("UNIQUE_CategoryName")
+                    .IsUnique();
+
+                entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
+
+                entity.Property(e => e.CategoryName)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<TemplateMeasurement>(entity =>
+            {
+                entity.HasKey(e => new { e.MeasurementId, e.CategoryId });
+
+                entity.Property(e => e.MeasurementId).HasColumnName("MeasurementID");
+
+                entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
+
+                entity.HasOne(d => d.Category)
+                    .WithMany(p => p.TemplateMeasurement)
+                    .HasForeignKey(d => d.CategoryId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__TemplateMeasurement_TemplateCategory");
+
+                entity.HasOne(d => d.Measurement)
+                    .WithMany(p => p.TemplateMeasurement)
+                    .HasForeignKey(d => d.MeasurementId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TemplateMeasurement_Measurement");
+            });
+
+            modelBuilder.Entity<TemplateResource>(entity =>
+            {
+                entity.HasKey(e => new { e.CategoryId, e.ResourceId });
+
+                entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
+
+                entity.Property(e => e.ResourceId).HasColumnName("ResourceID");
+
+                entity.HasOne(d => d.Category)
+                    .WithMany(p => p.TemplateResource)
+                    .HasForeignKey(d => d.CategoryId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TemplateResource_TemplateCategory");
+
+                entity.HasOne(d => d.Resource)
+                    .WithMany(p => p.TemplateResource)
+                    .HasForeignKey(d => d.ResourceId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TemplateResource_Resource");
+            });
+
+            modelBuilder.Entity<Treating>(entity =>
+            {
+                entity.HasKey(e => new { e.StartDate, e.HospitalNumber, e.StaffId });
+
+                entity.Property(e => e.StartDate).HasColumnType("datetime");
+
+                entity.Property(e => e.HospitalNumber).HasMaxLength(50);
+
+                entity.Property(e => e.StaffId)
+                    .HasColumnName("StaffID")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.EndDate).HasColumnType("datetime");
+
+                entity.HasOne(d => d.HospitalNumberNavigation)
+                    .WithMany(p => p.Treating)
+                    .HasForeignKey(d => d.HospitalNumber)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Treating_Patient");
+
+                entity.HasOne(d => d.Staff)
+                    .WithMany(p => p.Treating)
+                    .HasForeignKey(d => d.StaffId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Treating_Staff");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -24,25 +24,32 @@ namespace NorthernHealthAPI.Controllers
             _context = context;
         }
 
-        // GET api/auth/login
-        // Accepts a Login object - parameters userId (string) and password (string). If the model values match a user login in the database it
-        // returns a JWT, otherwise Unauthorized result if details invalid, BadRequest if login details improper
-        [HttpPost, Route("patient")]
+      //  GET api/auth/patient
+      //  Accepts a Login object - parameters userId(string) and password(string). If the model values match a user login in the database it
+      //returns a JWT, otherwise Unauthorized result if details invalid, BadRequest if login details improper
+     [HttpPost, Route("patient")]
         public IActionResult Login(Login login)
         {
+           
             if (login == null)
             {
                 return BadRequest(new { message = "Invalid client request" });
             }
 
-            var passwordHash = SHA512.Create();
-            passwordHash.ComputeHash(Encoding.UTF8.GetBytes(login.Password));
-
             var patient = (from p in _context.Patient
-                           where p.UserId == login.UserId && p.Password == passwordHash.Hash
-                           select new Patient { HospitalNumber = p.HospitalNumber }).ToList();
+                           where p.Email == login.Email
+                           select new Patient
+                           {
+                               HospitalNumber = p.HospitalNumber,
+                               Salt = p.Salt,
+                               Password = p.Password
+                           }).ToList();
 
-            if (patient.Count() != 0)
+            var passwordHash = SHA512.Create();
+
+            passwordHash.ComputeHash(Encoding.UTF8.GetBytes(login.Password + patient.FirstOrDefault().Salt + Environment.GetEnvironmentVariable("pepper")));
+
+            if (passwordHash.Hash.SequenceEqual(patient.FirstOrDefault().Password))
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("secret")));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
@@ -69,7 +76,5 @@ namespace NorthernHealthAPI.Controllers
                 return Unauthorized();
             }
         }
-
-        //Create another Login endpoint for Admin/Clinician
     }
 }
