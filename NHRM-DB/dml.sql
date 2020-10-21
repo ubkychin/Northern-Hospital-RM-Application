@@ -99,24 +99,44 @@ VALUES(1, '123456789');
 
 INSERT INTO PatientResource
     (CategoryID,HospitalNumber,ResourceID)
-VALUES(1, '123456789', 1);
+VALUES(1, '123456789', 1),
+    (1, '123456789', 2),
+    (1, '123456789', 3),
+    (1, '123456789', 4),
+    (1, '123456789', 5);
 
 INSERT INTO TemplateResource
     (CategoryID,ResourceID)
-VALUES(1, 1);
+VALUES(1, 1),
+    (1, 2),
+    (1, 3),
+    (1, 4),
+    (1, 5);
 
 INSERT INTO TemplateMeasurement
     (MeasurementID,CategoryID)
-VALUES(1, 1);
+VALUES(1, 1),
+    (2, 1),
+    (3, 1),
+    (4, 1),
+    (5, 1),
+    (6, 1),
+    (7, 1);
 
 INSERT INTO PatientMeasurement
     (MeasurementID,CategoryID,HospitalNumber)
-VALUES(1, 1, '123456789');
+VALUES(1, 1, '123456789'),
+    (2, 1, '123456789'),
+    (3, 1, '123456789'),
+    (4, 1, '123456789'),
+    (5, 1, '123456789'),
+    (6, 1, '123456789'),
+    (7, 1, '123456789');
 
 INSERT INTO MeasurementRecord
     (DateTimeRecorded,MeasurementID,CategoryID,HospitalNumber)
 VALUES(GETDATE(), 1, 1, '123456789');
 
 INSERT INTO DataPointRecord
-    (HospitalNumber,CategoryID,MeasurementID,DataPointNumber,[value],MeasurementRecordID)
+    (HospitalNumber,CategoryID,MeasurementID,DataPointNumber,[Value],MeasurementRecordID)
 VALUES('123456789', 1, 1, 1, 1, 1);
