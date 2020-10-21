@@ -28,7 +28,7 @@ namespace NorthernHealthAPI.Controllers
       //  Accepts a Login object - parameters userId(string) and password(string). If the model values match a user login in the database it
       //returns a JWT, otherwise Unauthorized result if details invalid, BadRequest if login details improper
      [HttpPost, Route("patient")]
-        public IActionResult Login(Login login)
+        public IActionResult Login(PatientLogin login)
         {
            
             if (login == null)
@@ -36,27 +36,25 @@ namespace NorthernHealthAPI.Controllers
                 return BadRequest(new { message = "Invalid client request" });
             }
 
-            var patient = (from p in _context.Patient
-                           where p.Email == login.Email
-                           select new Patient
-                           {
-                               HospitalNumber = p.HospitalNumber,
-                               Salt = p.Salt,
-                               Password = p.Password
-                           }).ToList();
+            var patient = _context.Patient.Where(p => p.Email == login.Email).Select(p => new Patient
+            {
+                HospitalNumber = p.HospitalNumber,
+                Salt = p.Salt,
+                Password = p.Password
+            });
 
             var passwordHash = SHA512.Create();
 
-            passwordHash.ComputeHash(Encoding.UTF8.GetBytes(login.Password + patient.FirstOrDefault().Salt + Environment.GetEnvironmentVariable("pepper")));
+            passwordHash.ComputeHash(Encoding.UTF8.GetBytes(login.Password + patient.SingleOrDefault().Salt + Environment.GetEnvironmentVariable("pepper")));
 
-            if (passwordHash.Hash.SequenceEqual(patient.FirstOrDefault().Password))
+            if (passwordHash.Hash.SequenceEqual(patient.SingleOrDefault().Password))
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("secret")));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
                 var claims = new[] {
                     new Claim(ClaimTypes.Role, "Patient"),
-                    new Claim("Hospital Number", patient.FirstOrDefault().HospitalNumber)
+                    new Claim("Hospital Number", patient.SingleOrDefault().HospitalNumber)
                 };
 
                 var tokenOptions = new JwtSecurityToken(
