@@ -10,7 +10,7 @@ export class ResourceFilterPipe implements PipeTransform {
     if(!items || !filter)
       return items;
 
-    return items.filter(item => item.type == filter)
+    return items.filter(item => item.resType == filter)
   }
 
 }

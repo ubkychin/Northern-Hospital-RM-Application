@@ -2,7 +2,7 @@ import { ResourceDialog } from './resource-dialog';
 
 export class PatientResource {
     title: string;
-    type: string;
+    resType: string;
     prompt: string;
-    content?: any;
+    resContent?: any;
 }

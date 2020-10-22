@@ -60,23 +60,23 @@ export class DataService {
 
     let resources: PatientResource[] = [{
       title: "Pleural Nurse Clinical Consultant",
-      type: "phone",
+      resType: "phone",
       prompt: "0428-167-972",
     },
     {
       title: "How to perform a Visual Analogue Score",
-      type: "dialog",
+      resType: "dialog",
       prompt: "Click Here",
-      content: {
+      resContent: {
         heading: "How to perform VAS score",
         content: "Instruction: To help you to best describe how good or bad you feel on a given day, we have drawn a scale from Best on the top of the slider to Worst on the bottom of the slider. Please position the slider at the point that describes how you feel today."
       }
     },
     {
       title: "How to drain your Indwelling Pleural Catheter",
-      type: "dialog",
+      resType: "dialog",
       prompt: "Click Here",
-      content: {
+      resContent: {
         heading: "How to drain your Indwelling Pleural Catheter",
         content: "Please enter the amount of fluid you have drained today in millilitres. Enter the value in the box. <p>Below is a video which details how to perform a fluid drainage of an Indwelling Pleural Catheter.</p>",
         video: "https://player.vimeo.com/video/270685188"
@@ -84,15 +84,15 @@ export class DataService {
     },
     {
       title: "Northern Health Respiratory Medicine",
-      type: "link",
+      resType: "link",
       prompt: "Click Here",
-      content: "https://www.nh.org.au/service/respiratory-medicine/"
+      resContent: "https://www.nh.org.au/service/respiratory-medicine/"
     },
     {
       title: "How to drain your Indwelling Pleural Catheter",
-      type: "dialog",
+      resType: "dialog",
       prompt: "Click Here",
-      content: {
+      resContent: {
         heading: "How to drain your Indwelling Pleural Catheter",
         content: "Please enter the amount of fluid you have drained today in millilitres. Enter the value in the box. <p>Below is a video which details how to perform a fluid drainage of an Indwelling Pleural Catheter.</p>",
         video: "https://player.vimeo.com/video/270685188"
@@ -100,21 +100,21 @@ export class DataService {
     },
     {
       title: "Indwelling Pleural Catheter Information Sheet",
-      type: "pdf",
+      resType: "pdf",
       prompt: "Click Here",
-      content: 'IPC.pdf'
+      resContent: 'IPC.pdf'
     },
     {
       title: "Northern Health Respiratory Medicine",
-      type: "link",
+      resType: "link",
       prompt: "Click Here",
-      content: "https://www.nh.org.au/service/respiratory-medicine/"
+      resContent: "https://www.nh.org.au/service/respiratory-medicine/"
     },
     {
       title: "Northern Health Respiratory Medicine",
-      type: "link",
+      resType: "link",
       prompt: "Click Here",
-      content: "https://www.nh.org.au/service/respiratory-medicine/"
+      resContent: "https://www.nh.org.au/service/respiratory-medicine/"
     }];
 
     this.patientResources = resources;
@@ -125,146 +125,145 @@ export class DataService {
     let list: any = [
       {
         categoryName: "Anxiety",
-        prompt: "I feel tense or 'wound up':",
-        list: [
-          {option: "Most of the time", value: 3}, 
-          {option: "A lot of time", value: 2}, 
-          {option: "From time to time, occasionally", value: 1}, 
-          {option: "Not at all", value: 0}
+        question: "I feel tense or 'wound up':",
+        answersList: [
+          { answer: "Most of the time", value: 3 },
+          { answer: "A lot of time", value: 2 },
+          { answer: "From time to time, occasionally", value: 1 },
+          { answer: "Not at all", value: 0 }
         ] // 3, 2, 1, 0
       },
       {
         categoryName: "Depression",
-        prompt: "I still enjoy the things I used to enjoy:",
-        list: [
-          {option: "Definitely as much", value: 0}, 
-          {option: "Not quite so much", value: 1}, 
-          {option: "Only a little", value: 2}, 
-          {option:"Hardly at all", value: 3}
+        question: "I still enjoy the things I used to enjoy:",
+        answersList: [
+          { answer: "Definitely as much", value: 0 },
+          { answer: "Not quite so much", value: 1 },
+          { answer: "Only a little", value: 2 },
+          { answer: "Hardly at all", value: 3 }
         ] // 0, 1, 2, 3
       },
       {
         categoryName: "Anxiety",
-        prompt: "I get a sort of frightened feeling as if something awful is about to happen:",
-        list: [
-          {option: "Very definitely and quite badly", value: 3}, 
-          {option: "Yes, but not too badly", value: 2}, 
-          {option: "A little, but it doesn't worry me", value: 1},
-          {option: "Not at all", value: 0}
+        question: "I get a sort of frightened feeling as if something awful is about to happen:",
+        answersList: [
+          { answer: "Very definitely and quite badly", value: 3 },
+          { answer: "Yes, but not too badly", value: 2 },
+          { answer: "A little, but it doesn't worry me", value: 1 },
+          { answer: "Not at all", value: 0 }
         ] // 3, 2, 1, 0
       },
       {
         categoryName: "Depression",
-        prompt: "I can laugh and see the funny side of things:",
-        list: [
-          {option: "As much as I always could", value: 0}, 
-          {option: "Not quite so much now", value: 1}, 
-          {option: "Definitely not so much now", value: 2},
-          {option: "Not at all", value: 3}
+        question: "I can laugh and see the funny side of things:",
+        answersList: [
+          { answer: "As much as I always could", value: 0 },
+          { answer: "Not quite so much now", value: 1 },
+          { answer: "Definitely not so much now", value: 2 },
+          { answer: "Not at all", value: 3 }
         ] // 0 1 2 3
       },
       {
         categoryName: "Anxiety",
-        prompt: "Worrying thoughts go through my mind:",
-        list: [ 
-          {option: "A great deal of the time", value: 3}, 
-          {option: "A lot of the time", value: 2},
-          {option: "From time to time, but not too often", value: 1},
-          {option: "Only occasionally", value: 0}
+        question: "Worrying thoughts go through my mind:",
+        answersList: [
+          { answer: "A great deal of the time", value: 3 },
+          { answer: "A lot of the time", value: 2 },
+          { answer: "From time to time, but not too often", value: 1 },
+          { answer: "Only occasionally", value: 0 }
         ] // 3, 2, 1, 0
       },
       {
         categoryName: "Depression",
-        prompt: "I feel cheerful: ",
-        list: [ 
-          {option: "Not at all", value: 0}, 
-          {option: "Not often", value: 1}, 
-          {option: "Sometimes", value: 2}, 
-          {option: "Most of the time", value: 3}
+        question: "I feel cheerful: ",
+        answersList: [
+          { answer: "Not at all", value: 0 },
+          { answer: "Not often", value: 1 },
+          { answer: "Sometimes", value: 2 },
+          { answer: "Most of the time", value: 3 }
         ] // 0 1 2 3
       },
       {
         categoryName: "Anxiety",
-        prompt: "I can sit at ease and feel relaxed:",
-        list: [ 
-          {option: "Definitely", value: 0}, 
-          {option: "Usually", value: 1},
-          {option: "Not Often", value: 2},
-          {option: "Not at all", value: 3}
+        question: "I can sit at ease and feel relaxed:",
+        answersList: [
+          { answer: "Definitely", value: 0 },
+          { answer: "Usually", value: 1 },
+          { answer: "Not Often", value: 2 },
+          { answer: "Not at all", value: 3 }
         ] // 3, 2, 1, 0
       },
       {
         categoryName: "Depression",
-        prompt: "I feel as if I am slowed down:",
-        list: [ 
-          {option: "Not at all", value: 3} ,
-          {option: "Not often", value: 2},
-          {option: "Sometimes", value: 1},
-          {option: "Most of the time", value: 0}
+        question: "I feel as if I am slowed down:",
+        answersList: [
+          { answer: "Not at all", value: 3 },
+          { answer: "Not often", value: 2 },
+          { answer: "Sometimes", value: 1 },
+          { answer: "Most of the time", value: 0 }
         ] // 3 2 1 0
       },
       {
         categoryName: "Anxiety",
-        prompt: "I get a sort of frightened feeling like 'butterflies' in the stomach:",
-        list: [
-          {option: "Not at all", value: 0},
-          {option: "Occasionally", value: 1},
-          {option: "Quite Often", value: 2},
-          {option: "Very Often", value: 3}
+        question: "I get a sort of frightened feeling like 'butterflies' in the stomach:",
+        answersList: [
+          { answer: "Not at all", value: 0 },
+          { answer: "Occasionally", value: 1 },
+          { answer: "Quite Often", value: 2 },
+          { answer: "Very Often", value: 3 }
         ] // 0 1 2 3
       },
       {
         categoryName: "Depression",
-        prompt: "I have lost interest in my appearance:",
-        list: [ 
-          {option: "Definitely", value: 3} ,
-          {option: "I don't take as much care as I should", value: 2},
-          {option: "I may not take quite as much care", value: 1},
-          {option: "I take just as much care as ever", value: 0}
+        question: "I have lost interest in my appearance:",
+        answersList: [
+          { answer: "Definitely", value: 3 },
+          { answer: "I don't take as much care as I should", value: 2 },
+          { answer: "I may not take quite as much care", value: 1 },
+          { answer: "I take just as much care as ever", value: 0 }
         ] // 3 2 1 0
       },
       {
         categoryName: "Anxiety",
-        prompt: "I feel restless as I have to be on the  move:",
-        list: [ 
-          {option: "Very much indeed", value: 3} ,
-          {option: "Quite a lot", value: 2},
-          {option: "Not very much", value: 1},
-          {option: "Not at all", value: 0}
+        question: "I feel restless as I have to be on the  move:",
+        answersList: [
+          { answer: "Very much indeed", value: 3 },
+          { answer: "Quite a lot", value: 2 },
+          { answer: "Not very much", value: 1 },
+          { answer: "Not at all", value: 0 }
         ] // 3 2 1 0
       },
       {
         categoryName: "Depression",
-        prompt: "I look forward with enjoyment to things:",
-        list: [ 
-          {option: "As much as I ever did", value: 0} ,
-          {option: "Rather less than I used to", value: 1},
-          {option: "Definitely less than I used to", value: 2},
-          {option: "Hardly at all", value: 3}
+        question: "I look forward with enjoyment to things:",
+        answersList: [
+          { answer: "As much as I ever did", value: 0 },
+          { answer: "Rather less than I used to", value: 1 },
+          { answer: "Definitely less than I used to", value: 2 },
+          { answer: "Hardly at all", value: 3 }
         ] // 0 1 2 3
       },
       {
         categoryName: "Anxiety",
-        prompt: "I get sudden feelings of panic:",
-        list: [ 
-          {option: "Very often indeed", value: 3} ,
-          {option: "Quite often", value: 2},
-          {option: "Not very often", value: 1},
-          {option: "Not at all", value: 0}
+        question: "I get sudden feelings of panic:",
+        answersList: [
+          { answer: "Very often indeed", value: 3 },
+          { answer: "Quite often", value: 2 },
+          { answer: "Not very often", value: 1 },
+          { answer: "Not at all", value: 0 }
         ] // 3 2 1 0
       },
       {
         categoryName: "Depression",
-        prompt: "I can enjoy a good book or radio or TV program:",
-        list: [ 
-          {option: "Often", value: 0} ,
-          {option: "Sometimes", value: 1},
-          {option: "Not often", value: 2},
-          {option: "Very seldom", value: 3}
+        question: "I can enjoy a good book or radio or TV program:",
+        answersList: [
+          { answer: "Often", value: 0 },
+          { answer: "Sometimes", value: 1 },
+          { answer: "Not often", value: 2 },
+          { answer: "Very seldom", value: 3 }
         ] // 0 1 2 3
       },
 
-    
     ];
   }
 

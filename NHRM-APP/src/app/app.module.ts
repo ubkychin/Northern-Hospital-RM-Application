@@ -33,7 +33,7 @@ import { SafePipe } from './pipes/safe.pipe';
 import { PdfResourceComponent } from './components/pdf-resource/pdf-resource.component';
 import { Call000Component } from './components/call000/call000.component';
 import { VasSliderComponent } from './components/vas-slider/vas-slider.component';
-import {QolVasSliderComponent} from './components/qol-vas-slider/qol-vas-slider.component';
+import { QolVasSliderComponent } from './components/qol-vas-slider/qol-vas-slider.component';
 import { Error404Component } from './components/error404/error404.component';
 import { ResourceFilterPipe } from './pipes/resource-filter.pipe';
 import { HadsComponent } from './components/hads/hads.component';
