@@ -49,17 +49,17 @@ export class DataService {
   getPatientDetails() {
     //get details from API async only if authorized    
     let patient: Patient = {
-      'hospitalNumber': '123456789',
+      'URNumber': '123456789',
       'categoryId': 1
     }
     this.patient = new BehaviorSubject(patient)
   }
 
-  getPatientResource(hospitalNumber: string) {
+  getPatientResource(urNumber: string) {
     this.loading.next(true);
 
     return new Promise((resolve, reject) => {
-      this._http.get<PatientResource[]>(this.apiURL + "/patient/resources/" + hospitalNumber).subscribe(
+      this._http.get<PatientResource[]>(this.apiURL + "/patient/resources/" + urNumber).subscribe(
         res => {
           console.log(res);
           this.patientResources = res;
@@ -71,64 +71,6 @@ export class DataService {
         }
       );
     })
-    /* let resources: PatientResource[] = [{
-      title: "Pleural Nurse Clinical Consultant",
-      resType: "phone",
-      prompt: "0428-167-972",
-    },
-    {
-      title: "How to perform a Visual Analogue Score",
-      resType: "dialog",
-      prompt: "Click Here",
-      resContent: {
-        heading: "How to perform VAS score",
-        content: "Instruction: To help you to best describe how good or bad you feel on a given day, we have drawn a scale from Best on the top of the slider to Worst on the bottom of the slider. Please position the slider at the point that describes how you feel today."
-      }
-    },
-    {
-      title: "How to drain your Indwelling Pleural Catheter",
-      resType: "dialog",
-      prompt: "Click Here",
-      resContent: {
-        heading: "How to drain your Indwelling Pleural Catheter",
-        content: "Please enter the amount of fluid you have drained today in millilitres. Enter the value in the box. <p>Below is a video which details how to perform a fluid drainage of an Indwelling Pleural Catheter.</p>",
-        video: "https://player.vimeo.com/video/270685188"
-      }
-    },
-    {
-      title: "Northern Health Respiratory Medicine",
-      resType: "link",
-      prompt: "Click Here",
-      resContent: "https://www.nh.org.au/service/respiratory-medicine/"
-    },
-    {
-      title: "How to drain your Indwelling Pleural Catheter",
-      resType: "dialog",
-      prompt: "Click Here",
-      resContent: {
-        heading: "How to drain your Indwelling Pleural Catheter",
-        content: "Please enter the amount of fluid you have drained today in millilitres. Enter the value in the box. <p>Below is a video which details how to perform a fluid drainage of an Indwelling Pleural Catheter.</p>",
-        video: "https://player.vimeo.com/video/270685188"
-      }
-    },
-    {
-      title: "Indwelling Pleural Catheter Information Sheet",
-      resType: "pdf",
-      prompt: "Click Here",
-      resContent: 'IPC.pdf'
-    },
-    {
-      title: "Northern Health Respiratory Medicine",
-      resType: "link",
-      prompt: "Click Here",
-      resContent: "https://www.nh.org.au/service/respiratory-medicine/"
-    },
-    {
-      title: "Northern Health Respiratory Medicine",
-      resType: "link",
-      prompt: "Click Here",
-      resContent: "https://www.nh.org.au/service/respiratory-medicine/"
-    }]; */
   }
 
 

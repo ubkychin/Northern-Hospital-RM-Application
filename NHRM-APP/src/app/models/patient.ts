@@ -1,5 +1,5 @@
 export class Patient {
-    hospitalNumber: string;
+    URNumber: string;
     categoryId: number;
 }
 

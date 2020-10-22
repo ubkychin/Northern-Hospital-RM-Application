@@ -30,7 +30,7 @@ export class QolVasSliderComponent implements OnInit {
 
   submitHealthScore() {
     let measurementResult: MeasurementResult[] = [{
-      'hospitalNumber': this.patient.hospitalNumber,
+      'urNumber': this.patient.URNumber,
       'categoryId': this.patient.categoryId,
       'dataPointNumber': 6,
       'measurementId': 6,

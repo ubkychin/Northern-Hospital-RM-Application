@@ -1,5 +1,5 @@
 export interface MeasurementResult {
-    hospitalNumber: string;
+    urNumber: string;
     categoryId: number;
     measurementId: number;
     dataPointNumber: number;

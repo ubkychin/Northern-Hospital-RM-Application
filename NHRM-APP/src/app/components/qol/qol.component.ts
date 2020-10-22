@@ -115,7 +115,7 @@ export class QolComponent implements OnInit {
     for (let i = 0; i < categories.length; i++) {
 
       this.measurementResult[i] = {
-        'hospitalNumber': this.patient.hospitalNumber,
+        'urNumber': this.patient.URNumber,
         'categoryId': this.patient.categoryId,
         'dataPointNumber': i + 1,
         'measurementId': 6,

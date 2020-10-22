@@ -52,7 +52,7 @@ export class EcogStatusComponent implements OnInit {
     console.log(this.status);
 
     let measurementResult: MeasurementResult[] = [{
-      'hospitalNumber': this.patient.hospitalNumber,
+      'urNumber': this.patient.URNumber,
       'categoryId': this.patient.categoryId,
       'dataPointNumber': 1,
       'measurementId': 1,

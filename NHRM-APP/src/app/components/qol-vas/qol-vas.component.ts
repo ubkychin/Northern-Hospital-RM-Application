@@ -36,7 +36,7 @@ export class QolVasComponent implements OnInit {
     this.vasScore.push(event);
     console.log("Pain Vas Input = " + this.vasScore[0])
     this.measurementResult.push({
-      'hospitalNumber': this.patient.hospitalNumber,
+      'urNumber': this.patient.URNumber,
       'categoryId': this.patient.categoryId,
       'dataPointNumber': 1,
       'measurementId': 4,
@@ -50,7 +50,7 @@ export class QolVasComponent implements OnInit {
     this.vasScore.push(parseInt(event));
     console.log("Pain Vas Slider = " + this.vasScore[1])
     this.measurementResult.push({
-      'hospitalNumber': this.patient.hospitalNumber,
+      'urNumber': this.patient.URNumber,
       'categoryId': this.patient.categoryId,
       'dataPointNumber': 2,
       'measurementId': 4,
