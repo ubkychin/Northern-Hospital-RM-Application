@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NorthernHealthAPI.Models;
@@ -19,8 +20,9 @@ namespace NorthernHealthAPI.Controllers
             _context = context;
         }
 
-        //Get Patient Resources
-        [HttpGet, Route("resources")]
+        //  GET api/patient/resources
+        //  Accepts a hospitalNumber (string) and finds all Resources belonging to a Patient 
+        [HttpGet, Route("resources/{hospitalNumber}"), Authorize]
         public IActionResult GetPatientResources(string hospitalNumber)
         {
             //Get all Resources that have been assigned to a Patient
@@ -29,25 +31,30 @@ namespace NorthernHealthAPI.Controllers
                 .Select(rid => rid.ResourceId)
                 .ToList();
 
-            List<ResourceCustom> resourceList = new List<ResourceCustom>();
-
-            foreach (var res in resIdList)
+            if (resIdList.Count() != 0)
             {
-                resourceList.Add(_context.Resource.Where(r => r.ResourceId == res)
-                     .Select(r => new ResourceCustom
-                     {
-                         Title = r.Title,
-                         Prompt = r.Prompt,
-                         ResType = setResource(r.TypeId),
-                         ResContent = setResourceContent(setResource(r.TypeId), r.ResourceId, r.Content)
+                List<ResourceCustom> resourceList = new List<ResourceCustom>();
 
-                     }).SingleOrDefault());
+                foreach (var res in resIdList)
+                {
+                    resourceList.Add(_context.Resource.Where(r => r.ResourceId == res)
+                         .Select(r => new ResourceCustom
+                         {
+                             Title = r.Title,
+                             Prompt = r.Prompt,
+                             ResType = setResource(r.TypeId),
+                             ResContent = setResourceContent(setResource(r.TypeId), r.ResourceId, r.Content)
+
+                         }).SingleOrDefault());
+                }
+
+                return Ok(resourceList);
             }
-
-            return Ok(resourceList);
+            else
+                return NoContent();
         }
 
-        private static string setResource(int typeId)
+        public static string setResource(int typeId)
         {
             NHRMDBContext _con = new NHRMDBContext();
 
@@ -66,7 +73,7 @@ namespace NorthernHealthAPI.Controllers
                         Heading = rd.Heading,
                         Content = rd.Content,
                         Video = rd.Video
-                    });
+                    }).SingleOrDefault();
             }
             else
             {

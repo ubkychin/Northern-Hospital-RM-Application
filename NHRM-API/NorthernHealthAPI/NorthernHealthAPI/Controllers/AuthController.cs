@@ -24,10 +24,10 @@ namespace NorthernHealthAPI.Controllers
             _context = context;
         }
 
-      //  GET api/auth/patient
-      //  Accepts a Login object - parameters userId(string) and password(string). If the model values match a user login in the database it
+      //  GET api/auth/patientlogin
+      //  Accepts a Login object - parameters email(string) and password(string). If the model values match a Patient login in the database it
       //returns a JWT, otherwise Unauthorized result if details invalid, BadRequest if login details improper
-     [HttpPost, Route("patient")]
+     [HttpPost, Route("patientlogin")]
         public IActionResult Login(PatientLogin login)
         {
            
