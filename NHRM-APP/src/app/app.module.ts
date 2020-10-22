@@ -31,7 +31,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QolVasComponent } from './components/qol-vas/qol-vas.component';
 import { SafePipe } from './pipes/safe.pipe';
 import { PdfResourceComponent } from './components/pdf-resource/pdf-resource.component';
-import { Call000Component } from './components/call000/call000.component';
 import { VasSliderComponent } from './components/vas-slider/vas-slider.component';
 import { QolVasSliderComponent } from './components/qol-vas-slider/qol-vas-slider.component';
 import { Error404Component } from './components/error404/error404.component';
@@ -65,7 +64,6 @@ export function tokenGetter() {
     QolVasComponent,
     SafePipe,
     PdfResourceComponent,
-    Call000Component,
     VasSliderComponent,
     Error404Component,
     ResourceFilterPipe,
