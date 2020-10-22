@@ -21,7 +21,9 @@ export class PatientResourcesComponent implements OnInit {
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.panelClass = 'information-dialog-container';
-    this.dataService.getPatientResource("123456789").then(() => this.listOfResources = this.dataService.patientResources).finally(() => this.dataService.loading.next(false));
+    if(this.dataService.patientResources == null){
+      this.dataService.getPatientResource("123456789").then(() => this.listOfResources = this.dataService.patientResources).finally(() => this.dataService.loading.next(false));
+    }
 
     this.listOfResources = this.dataService.patientResources;
    }
