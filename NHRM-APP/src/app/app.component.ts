@@ -35,7 +35,7 @@ export class AppComponent {
     this.dataService.emergancyAgreement.subscribe(data => {
       this.emergancy = data; //true
     })
-
+    
     this.router.events.subscribe(event => {
       if (this.location.path() !== '/home')
         this.isRoot = false;

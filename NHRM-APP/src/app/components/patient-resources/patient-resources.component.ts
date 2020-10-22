@@ -21,6 +21,7 @@ export class PatientResourcesComponent implements OnInit {
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.panelClass = 'information-dialog-container';
+    this.dataService.getPatientResource("123456789").then(() => this.listOfResources = this.dataService.patientResources).finally(() => this.dataService.loading.next(false));
 
     this.listOfResources = this.dataService.patientResources;
    }
@@ -29,16 +30,17 @@ export class PatientResourcesComponent implements OnInit {
   }
 
   showDialog(resource) {
+    console.log(resource);
     this.dialogConfig.data = {
-      content: resource.content.content,
-      heading: resource.content.heading,
-      video: resource.content.video
+      content: resource.resContent.content,
+      heading: resource.resContent.heading,
+      video: resource.resContent.video
     }
 
     this.dialog.open(ResourceDialogComponent, this.dialogConfig);
   }
 
   setPdfResource(resource){
-    this.dataService.pdfResource = this.filePath + resource.content;
+    this.dataService.pdfResource = this.filePath + resource.resContent;
   }
 }

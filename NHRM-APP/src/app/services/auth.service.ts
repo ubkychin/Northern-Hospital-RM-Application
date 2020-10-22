@@ -24,7 +24,7 @@ export class AuthService {
   login(credentials: Login){
     this.dataService.loading.next(true);
     return new Promise((resolve, reject) => {
-      this._http.post(this.apiURL + "/Auth/patient", credentials).subscribe(
+      this._http.post(this.apiURL + "/Auth/patientlogin", credentials).subscribe(
         (token) => {
           console.log("Logged in")
           localStorage.setItem('Authorization', JSON.stringify(token['token']))

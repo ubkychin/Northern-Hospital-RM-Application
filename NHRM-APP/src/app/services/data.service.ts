@@ -26,8 +26,7 @@ export class DataService {
     this.loading = new BehaviorSubject(false);
     this.termsAcceptance.next(JSON.parse(localStorage.getItem('TermsAccepted')));
     this.getPatientDetails();
-    this.getPatientResource();
-
+    
     console.log(this.patient)
   }
 
@@ -56,9 +55,23 @@ export class DataService {
     this.patient = new BehaviorSubject(patient)
   }
 
-  getPatientResource() {
+  getPatientResource(hospitalNumber: string) {
+    this.loading.next(true);
 
-    let resources: PatientResource[] = [{
+    return new Promise((resolve, reject) => {
+      this._http.get<PatientResource[]>(this.apiURL + "/patient/resources/" + hospitalNumber).subscribe(
+        res => {
+          console.log(res);
+          this.patientResources = res;
+          resolve();
+        },
+        err => {
+          console.log(err.error);
+          reject();
+        }
+      );
+    })
+    /* let resources: PatientResource[] = [{
       title: "Pleural Nurse Clinical Consultant",
       resType: "phone",
       prompt: "0428-167-972",
@@ -115,9 +128,7 @@ export class DataService {
       resType: "link",
       prompt: "Click Here",
       resContent: "https://www.nh.org.au/service/respiratory-medicine/"
-    }];
-
-    this.patientResources = resources;
+    }]; */
   }
 
 
