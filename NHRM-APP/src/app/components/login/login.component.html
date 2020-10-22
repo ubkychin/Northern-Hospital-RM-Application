@@ -2,7 +2,7 @@
 <div class="container">
     <h1 class="login-title">Login</h1>
     <form class="inputs" #loginForm="ngForm" (ngSubmit)="login(loginForm.form);">
-        <input type="text" id="email" placeholder="E-mail" name="userId" ngModel #userIdField="ngModel" required>
+        <input type="text" id="email" placeholder="E-mail" name="email" ngModel #emailField="ngModel" required>
         <input type="password" id="password" placeholder="Password" name="password" ngModel #passwordField="ngModel"
             required>
         <div>
