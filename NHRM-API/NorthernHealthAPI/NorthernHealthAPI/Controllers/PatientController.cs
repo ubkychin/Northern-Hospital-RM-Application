@@ -22,12 +22,12 @@ namespace NorthernHealthAPI.Controllers
 
         //  GET api/patient/resources
         //  Accepts a hospitalNumber (string) and finds all Resources belonging to a Patient 
-        [HttpGet, Route("resources/{hospitalNumber}"), Authorize]
-        public IActionResult GetPatientResources(string hospitalNumber)
+        [HttpGet, Route("resources/{urNumber}"), Authorize]
+        public IActionResult GetPatientResources(string urNumber)
         {
             //Get all Resources that have been assigned to a Patient
             var resIdList = _context.PatientResource
-                .Where(pr => pr.HospitalNumber == hospitalNumber)
+                .Where(pr => pr.Urnumber == urNumber)
                 .Select(rid => rid.ResourceId)
                 .ToList();
 

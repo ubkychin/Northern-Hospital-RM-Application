@@ -4,13 +4,13 @@ VALUES('Admin'),
     ('Clinician');
 
 INSERT INTO Staff
-    (StaffID,FirstName,SurName,[Password],Salt,RoleID)
-VALUES('STAFFID', 'Stephen', 'Grouios', HASHBYTES('SHA2_512', CONCAT('password', 'salt', 'this15myp3pper')), 'salt', 1),
-    ('STAFFID2', 'John', 'Konstantinou', HASHBYTES('SHA2_512', CONCAT('password', 'salt', 'this15myp3pper')), 'salt', 2);
+    (Email,FirstName,Surname,[Password],Salt,RoleID)
+VALUES('staff@staff.com', 'Stephen', 'Grouios', HASHBYTES('SHA2_512', CONCAT('password', 'salt', 'this15myp3pper')), 'salt', 1),
+    ('staff2@staff.com', 'John', 'Konstantinou', HASHBYTES('SHA2_512', CONCAT('password', 'salt', 'this15myp3pper')), 'salt', 2);
 
 INSERT INTO Patient
-    (HospitalNumber,Email,Title,SurName,FirstName,Gender,DOB,[Address],Suburb,PostCode,MobileNumber,HomeNumber,CountryOfBirth,PreferredLanguage,[Password],Salt,LivesAlone,RegisteredBy,Active)
-VALUES('123456789', 'patient@patient.com', 'Mr', 'Henry', 'Mitchell', 'Male', GETDATE(), '123trump St', 'Cheltenham', '1234', '0123456789', '0123456789', 'Australia', 'English', HASHBYTES('SHA2_512', CONCAT('password', 'salt', 'this15myp3pper')), 'salt', 0, 'STAFFID2', 1);
+    (URNumber,Email,Title,SurName,FirstName,Gender,DOB,[Address],Suburb,PostCode,MobileNumber,HomeNumber,CountryOfBirth,PreferredLanguage,[Password],Salt,LivesAlone,RegisteredBy,Active)
+VALUES('123456789', 'patient@patient.com', 'Mr', 'Henry', 'Mitchell', 'Male', GETDATE(), '123trump St', 'Cheltenham', '1234', '0123456789', '0123456789', 'Australia', 'English', HASHBYTES('SHA2_512', CONCAT('password', 'salt', 'this15myp3pper')), 'salt', 0, 1, 1);
 
 INSERT INTO Measurement
     (MeasurementName, Frequency)
@@ -82,23 +82,23 @@ INSERT INTO RecordType
 VALUES('MMR', 1);
 
 INSERT INTO PatientRecord
-    (DateTimeRecorded,Notes,HospitalNumber,RecordTypeID)
+    (DateTimeRecorded,Notes,URNumber,RecordTypeID)
 VALUES(GETDATE(), 'No Notes', '123456789', 1);
 
 INSERT INTO Treating
-    (StartDate,EndDate,HospitalNumber,StaffID)
-VALUES(GETDATE(), GETDATE(), '123456789', 'STAFFID2');
+    (StartDate,EndDate,URNumber,StaffID)
+VALUES(GETDATE(), GETDATE(), '123456789', 1);
 
 INSERT INTO TemplateCategory
     (CategoryName)
 VALUES('Indwelling Pleural Catheter');
 
 INSERT INTO PatientCategory
-    (CategoryID,HospitalNumber)
+    (CategoryID,URNumber)
 VALUES(1, '123456789');
 
 INSERT INTO PatientResource
-    (CategoryID,HospitalNumber,ResourceID)
+    (CategoryID,URNumber,ResourceID)
 VALUES(1, '123456789', 1),
     (1, '123456789', 2),
     (1, '123456789', 3),
@@ -124,7 +124,7 @@ VALUES(1, 1),
     (7, 1);
 
 INSERT INTO PatientMeasurement
-    (MeasurementID,CategoryID,HospitalNumber)
+    (MeasurementID,CategoryID,URNumber)
 VALUES(1, 1, '123456789'),
     (2, 1, '123456789'),
     (3, 1, '123456789'),
@@ -134,9 +134,10 @@ VALUES(1, 1, '123456789'),
     (7, 1, '123456789');
 
 INSERT INTO MeasurementRecord
-    (DateTimeRecorded,MeasurementID,CategoryID,HospitalNumber)
+    (DateTimeRecorded,MeasurementID,CategoryID,URNumber)
 VALUES(GETDATE(), 1, 1, '123456789');
 
 INSERT INTO DataPointRecord
-    (HospitalNumber,CategoryID,MeasurementID,DataPointNumber,[Value],MeasurementRecordID)
-VALUES('123456789', 1, 1, 1, 1, 1);
+    (MeasurementID,DataPointNumber,[Value],MeasurementRecordID)
+VALUES(1, 1, 1, 1);
+

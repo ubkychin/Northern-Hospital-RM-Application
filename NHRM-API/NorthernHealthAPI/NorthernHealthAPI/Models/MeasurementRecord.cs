@@ -14,7 +14,7 @@ namespace NorthernHealthAPI.Models
         public DateTime DateTimeRecorded { get; set; }
         public int MeasurementId { get; set; }
         public int CategoryId { get; set; }
-        public string HospitalNumber { get; set; }
+        public string Urnumber { get; set; }
 
         public virtual PatientMeasurement PatientMeasurement { get; set; }
         public virtual ICollection<DataPointRecord> DataPointRecord { get; set; }

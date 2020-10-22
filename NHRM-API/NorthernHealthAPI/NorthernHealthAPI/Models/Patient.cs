@@ -12,7 +12,7 @@ namespace NorthernHealthAPI.Models
             Treating = new HashSet<Treating>();
         }
 
-        public string HospitalNumber { get; set; }
+        public string Urnumber { get; set; }
         public string Email { get; set; }
         public string Title { get; set; }
         public string FirstName { get; set; }
@@ -29,7 +29,7 @@ namespace NorthernHealthAPI.Models
         public byte[] Password { get; set; }
         public string Salt { get; set; }
         public bool LivesAlone { get; set; }
-        public string RegisteredBy { get; set; }
+        public int RegisteredBy { get; set; }
         public bool Active { get; set; }
 
         public virtual Staff RegisteredByNavigation { get; set; }

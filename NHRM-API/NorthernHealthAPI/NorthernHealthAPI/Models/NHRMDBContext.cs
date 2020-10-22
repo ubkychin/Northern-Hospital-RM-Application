@@ -42,7 +42,8 @@ namespace NorthernHealthAPI.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(Environment.GetEnvironmentVariable("NHRMConnection"));
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=NHRMDB;Trusted_Connection=True;");
             }
         }
 
@@ -65,33 +66,29 @@ namespace NorthernHealthAPI.Models
 
             modelBuilder.Entity<DataPointRecord>(entity =>
             {
-                entity.HasKey(e => new { e.HospitalNumber, e.CategoryId, e.MeasurementId, e.DataPointNumber });
-
-                entity.Property(e => e.HospitalNumber).HasMaxLength(50);
-
-                entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
+                entity.HasKey(e => new { e.MeasurementId, e.DataPointNumber, e.MeasurementRecordId });
 
                 entity.Property(e => e.MeasurementId).HasColumnName("MeasurementID");
 
                 entity.Property(e => e.MeasurementRecordId).HasColumnName("MeasurementRecordID");
+
+                entity.HasOne(d => d.MeasurementRecord)
+                    .WithMany(p => p.DataPointRecord)
+                    .HasForeignKey(d => d.MeasurementRecordId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DataPointRecord_MeasurementRecord");
 
                 entity.HasOne(d => d.DataPoint)
                     .WithMany(p => p.DataPointRecord)
                     .HasForeignKey(d => new { d.MeasurementId, d.DataPointNumber })
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DataPointRecord_DataPoint");
-
-                entity.HasOne(d => d.MeasurementRecord)
-                    .WithMany(p => p.DataPointRecord)
-                    .HasForeignKey(d => new { d.MeasurementRecordId, d.MeasurementId, d.CategoryId, d.HospitalNumber })
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_DataPointRecord_MeasurementRecord");
             });
 
             modelBuilder.Entity<Measurement>(entity =>
             {
                 entity.HasIndex(e => e.MeasurementName)
-                    .HasName("UNIQUE_MeasurementName")
+                    .HasName("UQ_MeasurementName")
                     .IsUnique();
 
                 entity.Property(e => e.MeasurementId).HasColumnName("MeasurementID");
@@ -103,36 +100,41 @@ namespace NorthernHealthAPI.Models
 
             modelBuilder.Entity<MeasurementRecord>(entity =>
             {
-                entity.HasKey(e => new { e.MeasurementRecordId, e.MeasurementId, e.CategoryId, e.HospitalNumber });
+                entity.HasIndex(e => new { e.DateTimeRecorded, e.MeasurementId, e.CategoryId, e.Urnumber })
+                    .HasName("UQ_MeasurementRecord")
+                    .IsUnique();
 
-                entity.Property(e => e.MeasurementRecordId)
-                    .HasColumnName("MeasurementRecordID")
-                    .ValueGeneratedOnAdd();
-
-                entity.Property(e => e.MeasurementId).HasColumnName("MeasurementID");
+                entity.Property(e => e.MeasurementRecordId).HasColumnName("MeasurementRecordID");
 
                 entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
 
-                entity.Property(e => e.HospitalNumber).HasMaxLength(50);
-
                 entity.Property(e => e.DateTimeRecorded).HasColumnType("datetime");
+
+                entity.Property(e => e.MeasurementId).HasColumnName("MeasurementID");
+
+                entity.Property(e => e.Urnumber)
+                    .IsRequired()
+                    .HasColumnName("URNumber")
+                    .HasMaxLength(50);
 
                 entity.HasOne(d => d.PatientMeasurement)
                     .WithMany(p => p.MeasurementRecord)
-                    .HasForeignKey(d => new { d.MeasurementId, d.CategoryId, d.HospitalNumber })
+                    .HasForeignKey(d => new { d.MeasurementId, d.CategoryId, d.Urnumber })
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MeasurementRecord_PatientMeasurement");
             });
 
             modelBuilder.Entity<Patient>(entity =>
             {
-                entity.HasKey(e => e.HospitalNumber);
+                entity.HasKey(e => e.Urnumber);
 
                 entity.HasIndex(e => e.Email)
-                    .HasName("UNIQUE_Email")
+                    .HasName("UQ_Email")
                     .IsUnique();
 
-                entity.Property(e => e.HospitalNumber).HasMaxLength(50);
+                entity.Property(e => e.Urnumber)
+                    .HasColumnName("URNumber")
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.Address).IsRequired();
 
@@ -173,10 +175,6 @@ namespace NorthernHealthAPI.Models
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.RegisteredBy)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
                 entity.Property(e => e.Salt).IsRequired();
 
                 entity.Property(e => e.Suburb)
@@ -200,11 +198,13 @@ namespace NorthernHealthAPI.Models
 
             modelBuilder.Entity<PatientCategory>(entity =>
             {
-                entity.HasKey(e => new { e.CategoryId, e.HospitalNumber });
+                entity.HasKey(e => new { e.CategoryId, e.Urnumber });
 
                 entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
 
-                entity.Property(e => e.HospitalNumber).HasMaxLength(50);
+                entity.Property(e => e.Urnumber)
+                    .HasColumnName("URNumber")
+                    .HasMaxLength(50);
 
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.PatientCategory)
@@ -212,22 +212,24 @@ namespace NorthernHealthAPI.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PatientCategory_TemplateCategory");
 
-                entity.HasOne(d => d.HospitalNumberNavigation)
+                entity.HasOne(d => d.UrnumberNavigation)
                     .WithMany(p => p.PatientCategory)
-                    .HasForeignKey(d => d.HospitalNumber)
+                    .HasForeignKey(d => d.Urnumber)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PatientCategory_Patient");
             });
 
             modelBuilder.Entity<PatientMeasurement>(entity =>
             {
-                entity.HasKey(e => new { e.MeasurementId, e.CategoryId, e.HospitalNumber });
+                entity.HasKey(e => new { e.MeasurementId, e.CategoryId, e.Urnumber });
 
                 entity.Property(e => e.MeasurementId).HasColumnName("MeasurementID");
 
                 entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
 
-                entity.Property(e => e.HospitalNumber).HasMaxLength(50);
+                entity.Property(e => e.Urnumber)
+                    .HasColumnName("URNumber")
+                    .HasMaxLength(50);
 
                 entity.HasOne(d => d.Measurement)
                     .WithMany(p => p.PatientMeasurement)
@@ -237,41 +239,45 @@ namespace NorthernHealthAPI.Models
 
                 entity.HasOne(d => d.PatientCategory)
                     .WithMany(p => p.PatientMeasurement)
-                    .HasForeignKey(d => new { d.CategoryId, d.HospitalNumber })
+                    .HasForeignKey(d => new { d.CategoryId, d.Urnumber })
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PatientMeasurement_PatientCategory");
             });
 
             modelBuilder.Entity<PatientRecord>(entity =>
             {
-                entity.HasKey(e => new { e.DateTimeRecorded, e.HospitalNumber, e.RecordTypeId });
+                entity.HasKey(e => new { e.DateTimeRecorded, e.Urnumber, e.RecordTypeId });
 
                 entity.Property(e => e.DateTimeRecorded).HasColumnType("datetime");
 
-                entity.Property(e => e.HospitalNumber).HasMaxLength(50);
+                entity.Property(e => e.Urnumber)
+                    .HasColumnName("URNumber")
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.RecordTypeId).HasColumnName("RecordTypeID");
-
-                entity.HasOne(d => d.HospitalNumberNavigation)
-                    .WithMany(p => p.PatientRecord)
-                    .HasForeignKey(d => d.HospitalNumber)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_PatientRecord_Patient");
 
                 entity.HasOne(d => d.RecordType)
                     .WithMany(p => p.PatientRecord)
                     .HasForeignKey(d => d.RecordTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PatientRecord_RecordType");
+
+                entity.HasOne(d => d.UrnumberNavigation)
+                    .WithMany(p => p.PatientRecord)
+                    .HasForeignKey(d => d.Urnumber)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PatientRecord_Patient");
             });
 
             modelBuilder.Entity<PatientResource>(entity =>
             {
-                entity.HasKey(e => new { e.CategoryId, e.HospitalNumber, e.ResourceId });
+                entity.HasKey(e => new { e.CategoryId, e.Urnumber, e.ResourceId });
 
                 entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
 
-                entity.Property(e => e.HospitalNumber).HasMaxLength(50);
+                entity.Property(e => e.Urnumber)
+                    .HasColumnName("URNumber")
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.ResourceId).HasColumnName("ResourceID");
 
@@ -283,7 +289,7 @@ namespace NorthernHealthAPI.Models
 
                 entity.HasOne(d => d.PatientCategory)
                     .WithMany(p => p.PatientResource)
-                    .HasForeignKey(d => new { d.CategoryId, d.HospitalNumber })
+                    .HasForeignKey(d => new { d.CategoryId, d.Urnumber })
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PatientResource_PatientCategory");
             });
@@ -291,7 +297,7 @@ namespace NorthernHealthAPI.Models
             modelBuilder.Entity<RecordCategory>(entity =>
             {
                 entity.HasIndex(e => e.Category)
-                    .HasName("UNIQUE_Category")
+                    .HasName("UQ_Category")
                     .IsUnique();
 
                 entity.Property(e => e.RecordCategoryId).HasColumnName("RecordCategoryID");
@@ -304,7 +310,7 @@ namespace NorthernHealthAPI.Models
             modelBuilder.Entity<RecordType>(entity =>
             {
                 entity.HasIndex(e => e.RecordType1)
-                    .HasName("UNIQUE_RecordType")
+                    .HasName("UQ_RecordType")
                     .IsUnique();
 
                 entity.Property(e => e.RecordTypeId).HasColumnName("RecordTypeID");
@@ -368,7 +374,7 @@ namespace NorthernHealthAPI.Models
             modelBuilder.Entity<ResourceType>(entity =>
             {
                 entity.HasIndex(e => e.TypeName)
-                    .HasName("UNIQUE_ResourceType_TypeName")
+                    .HasName("UQ_ResourceType_TypeName")
                     .IsUnique();
 
                 entity.Property(e => e.ResourceTypeId).HasColumnName("ResourceTypeID");
@@ -380,9 +386,15 @@ namespace NorthernHealthAPI.Models
 
             modelBuilder.Entity<Staff>(entity =>
             {
-                entity.Property(e => e.StaffId)
-                    .HasColumnName("StaffID")
-                    .HasMaxLength(50);
+                entity.HasIndex(e => e.Email)
+                    .HasName("UQ_Staff")
+                    .IsUnique();
+
+                entity.Property(e => e.StaffId).HasColumnName("StaffID");
+
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(256);
 
                 entity.Property(e => e.FirstName)
                     .IsRequired()
@@ -397,7 +409,7 @@ namespace NorthernHealthAPI.Models
 
                 entity.Property(e => e.Salt).IsRequired();
 
-                entity.Property(e => e.SurName)
+                entity.Property(e => e.Surname)
                     .IsRequired()
                     .HasMaxLength(50);
 
@@ -413,7 +425,7 @@ namespace NorthernHealthAPI.Models
                 entity.HasKey(e => e.RoleId);
 
                 entity.HasIndex(e => e.StaffType)
-                    .HasName("UNIQUE_StaffType")
+                    .HasName("UQ_StaffType")
                     .IsUnique();
 
                 entity.Property(e => e.RoleId).HasColumnName("RoleID");
@@ -458,7 +470,7 @@ namespace NorthernHealthAPI.Models
                 entity.HasKey(e => e.CategoryId);
 
                 entity.HasIndex(e => e.CategoryName)
-                    .HasName("UNIQUE_CategoryName")
+                    .HasName("UQ_CategoryName")
                     .IsUnique();
 
                 entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
@@ -512,29 +524,29 @@ namespace NorthernHealthAPI.Models
 
             modelBuilder.Entity<Treating>(entity =>
             {
-                entity.HasKey(e => new { e.StartDate, e.HospitalNumber, e.StaffId });
+                entity.HasKey(e => new { e.StartDate, e.Urnumber, e.StaffId });
 
                 entity.Property(e => e.StartDate).HasColumnType("datetime");
 
-                entity.Property(e => e.HospitalNumber).HasMaxLength(50);
-
-                entity.Property(e => e.StaffId)
-                    .HasColumnName("StaffID")
+                entity.Property(e => e.Urnumber)
+                    .HasColumnName("URNumber")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.EndDate).HasColumnType("datetime");
+                entity.Property(e => e.StaffId).HasColumnName("StaffID");
 
-                entity.HasOne(d => d.HospitalNumberNavigation)
-                    .WithMany(p => p.Treating)
-                    .HasForeignKey(d => d.HospitalNumber)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Treating_Patient");
+                entity.Property(e => e.EndDate).HasColumnType("datetime");
 
                 entity.HasOne(d => d.Staff)
                     .WithMany(p => p.Treating)
                     .HasForeignKey(d => d.StaffId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Treating_Staff");
+
+                entity.HasOne(d => d.UrnumberNavigation)
+                    .WithMany(p => p.Treating)
+                    .HasForeignKey(d => d.Urnumber)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Treating_Patient");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -38,7 +38,7 @@ namespace NorthernHealthAPI.Controllers
 
             var patient = _context.Patient.Where(p => p.Email == login.Email).Select(p => new Patient
             {
-                HospitalNumber = p.HospitalNumber,
+                Urnumber = p.Urnumber,
                 Salt = p.Salt,
                 Password = p.Password
             });
@@ -54,7 +54,7 @@ namespace NorthernHealthAPI.Controllers
 
                 var claims = new[] {
                     new Claim(ClaimTypes.Role, "Patient"),
-                    new Claim("Hospital Number", patient.SingleOrDefault().HospitalNumber)
+                    new Claim("UR Number", patient.SingleOrDefault().Urnumber)
                 };
 
                 var tokenOptions = new JwtSecurityToken(

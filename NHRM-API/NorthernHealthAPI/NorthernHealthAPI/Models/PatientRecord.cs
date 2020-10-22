@@ -7,10 +7,10 @@ namespace NorthernHealthAPI.Models
     {
         public DateTime DateTimeRecorded { get; set; }
         public string Notes { get; set; }
-        public string HospitalNumber { get; set; }
+        public string Urnumber { get; set; }
         public int RecordTypeId { get; set; }
 
-        public virtual Patient HospitalNumberNavigation { get; set; }
         public virtual RecordType RecordType { get; set; }
+        public virtual Patient UrnumberNavigation { get; set; }
     }
 }

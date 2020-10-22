@@ -53,7 +53,7 @@ CREATE TABLE Measurement(
     MeasurementName NVARCHAR(50) NOT NULL,
     Frequency INT NOT NULL,
     CONSTRAINT PK_MeasurementID PRIMARY KEY (MeasurementID),
-    CONSTRAINT UNIQUE_MeasurementName UNIQUE (MeasurementName)
+    CONSTRAINT UQ_MeasurementName UNIQUE (MeasurementName)
 );
 
 GO
@@ -97,26 +97,28 @@ CREATE TABLE StaffRole(
       RoleID INT IDENTITY(1,1) NOT NULL,
       StaffType NVARCHAR(50) NOT NULL,
       CONSTRAINT PK_StaffRole PRIMARY KEY (RoleID),
-      CONSTRAINT UNIQUE_StaffType UNIQUE (StaffType)
+      CONSTRAINT UQ_StaffType UNIQUE (StaffType)
 )
 
 GO
 
 CREATE TABLE Staff(
-    StaffID NVARCHAR(50) NOT NULL,
+    StaffID INT IDENTITY(1,1) NOT NULL,
+    Email NVARCHAR(256) NOT NULL,
     FirstName NVARCHAR(50) NOT NULL,
-    SurName NVARCHAR(50) NOT NULL,
+    Surname NVARCHAR(50) NOT NULL,
     [Password] BINARY(64) NOT NULL,
     Salt NVARCHAR(MAX) NOT NULL,
     RoleID INT NOT NULL,
     CONSTRAINT PK_Staff PRIMARY KEY (StaffID),
+    CONSTRAINT UQ_Staff UNIQUE (Email),
     CONSTRAINT FK_Staff_StaffRole FOREIGN KEY (RoleID) REFERENCES StaffRole
 )
 
 GO 
 
 CREATE TABLE Patient(
-    HospitalNumber NVARCHAR(50) NOT NULL,
+    URNumber NVARCHAR(50) NOT NULL,
     Email NVARCHAR(256) NOT NULL,
     Title NVARCHAR(50) NOT NULL,
     FirstName NVARCHAR(50) NOT NULL,
@@ -133,11 +135,11 @@ CREATE TABLE Patient(
     [Password] BINARY(64) NOT NULL,
     Salt NVARCHAR(MAX) NOT NULL,
     LivesAlone BIT NOT NULL,
-    RegisteredBy NVARCHAR(50) NOT NULL,
+    RegisteredBy INT NOT NULL,
     Active BIT NOT NULL,
-    CONSTRAINT PK_Patient PRIMARY KEY (HospitalNumber),
+    CONSTRAINT PK_Patient PRIMARY KEY (URNumber),
     CONSTRAINT FK_Patient_Staff FOREIGN KEY (RegisteredBy) REFERENCES Staff,
-    CONSTRAINT UNIQUE_Email UNIQUE (Email),
+    CONSTRAINT UQ_Email UNIQUE (Email),
     CONSTRAINT CHK_Gender CHECK (Gender = 'Male' OR Gender = 'Female' OR Gender = 'Other')
 )
 
@@ -146,10 +148,10 @@ GO
 CREATE TABLE Treating(
     StartDate DATETIME NOT NULL,
     EndDate DATETIME,
-    HospitalNumber NVARCHAR(50) NOT NULL,
-    StaffID NVARCHAR(50) NOT NULL,
-    CONSTRAINT PK_Treating PRIMARY KEY (StartDate, HospitalNumber, StaffID),
-    CONSTRAINT FK_Treating_Patient FOREIGN KEY (HospitalNumber) REFERENCES Patient,
+    URNumber NVARCHAR(50) NOT NULL,
+    StaffID INT NOT NULL,
+    CONSTRAINT PK_Treating PRIMARY KEY (StartDate, URNumber, StaffID),
+    CONSTRAINT FK_Treating_Patient FOREIGN KEY (URNumber) REFERENCES Patient,
     CONSTRAINT FK_Treating_Staff FOREIGN KEY (StaffID) REFERENCES Staff
 )
 
@@ -159,7 +161,7 @@ CREATE TABLE RecordCategory(
     RecordCategoryID INT IDENTITY(1,1) NOT NULL,
     Category NVARCHAR(50) NOT NULL,
     CONSTRAINT PK_RecordCategory PRIMARY KEY (RecordCategoryID),
-    CONSTRAINT UNIQUE_Category UNIQUE (Category)
+    CONSTRAINT UQ_Category UNIQUE (Category)
 )
 
 GO
@@ -170,17 +172,17 @@ CREATE TABLE RecordType(
     RecordCategoryID INT NOT NULL,
     CONSTRAINT PK_RecordType PRIMARY KEY (RecordTypeID),
     CONSTRAINT FK_RecordType_RecordCategory FOREIGN KEY (RecordCategoryID) REFERENCES RecordCategory,
-    CONSTRAINT UNIQUE_RecordType UNIQUE (RecordType)
+    CONSTRAINT UQ_RecordType UNIQUE (RecordType)
 )
 
 CREATE TABLE PatientRecord(
     DateTimeRecorded DATETIME NOT NULL,
     Notes NVARCHAR(MAX),
-    HospitalNumber NVARCHAR(50) NOT NULL,
+    URNumber NVARCHAR(50) NOT NULL,
     RecordTypeID INT NOT NULL,
-    CONSTRAINT PK_PatientRecord PRIMARY KEY (DateTimeRecorded, HospitalNumber, RecordTypeID),
+    CONSTRAINT PK_PatientRecord PRIMARY KEY (DateTimeRecorded, URNumber, RecordTypeID),
     CONSTRAINT FK_PatientRecord_RecordType FOREIGN KEY (RecordTypeID) REFERENCES RecordType,
-    CONSTRAINT FK_PatientRecord_Patient FOREIGN KEY (HospitalNumber) REFERENCES Patient
+    CONSTRAINT FK_PatientRecord_Patient FOREIGN KEY (URNumber) REFERENCES Patient
 )
 
 GO
@@ -189,16 +191,16 @@ CREATE TABLE TemplateCategory(
     CategoryID INT IDENTITY(1,1) NOT NULL,
     CategoryName NVARCHAR(50) NOT NULL,
     CONSTRAINT PK_TemplateCategory PRIMARY KEY (CategoryID),
-    CONSTRAINT UNIQUE_CategoryName UNIQUE (CategoryName)
+    CONSTRAINT UQ_CategoryName UNIQUE (CategoryName)
 )
 
 GO
 
 CREATE TABLE PatientCategory(
     CategoryID INT NOT NULL,
-    HospitalNumber NVARCHAR(50),
-    CONSTRAINT PK_PatientCategory PRIMARY KEY (CategoryID, HospitalNumber),
-    CONSTRAINT FK_PatientCategory_Patient FOREIGN KEY (HospitalNumber) REFERENCES Patient,
+    URNumber NVARCHAR(50),
+    CONSTRAINT PK_PatientCategory PRIMARY KEY (CategoryID, URNumber),
+    CONSTRAINT FK_PatientCategory_Patient FOREIGN KEY (URNumber) REFERENCES Patient,
     CONSTRAINT FK_PatientCategory_TemplateCategory FOREIGN KEY (CategoryID) REFERENCES TemplateCategory
 )
 
@@ -207,10 +209,10 @@ GO
 CREATE TABLE PatientMeasurement(
     MeasurementID INT NOT NULL,
     CategoryID INT NOT NULL,
-    HospitalNumber NVARCHAR(50) NOT NULL,
-    CONSTRAINT PK_PatientMeasurement PRIMARY KEY (MeasurementID, CategoryID, HospitalNumber),
+    URNumber NVARCHAR(50) NOT NULL,
+    CONSTRAINT PK_PatientMeasurement PRIMARY KEY (MeasurementID, CategoryID, URNumber),
     CONSTRAINT FK_PatientMeasurement_Measurement FOREIGN KEY (MeasurementID) REFERENCES Measurement,
-    CONSTRAINT FK_PatientMeasurement_PatientCategory FOREIGN KEY (CategoryID, HospitalNumber) REFERENCES PatientCategory(CategoryID, HospitalNumber)
+    CONSTRAINT FK_PatientMeasurement_PatientCategory FOREIGN KEY (CategoryID, URNumber) REFERENCES PatientCategory(CategoryID, URNumber)
 )
 
 GO 
@@ -220,23 +222,22 @@ CREATE TABLE MeasurementRecord(
     DateTimeRecorded DATETIME NOT NULL,
     MeasurementID INT NOT NULL,
     CategoryID INT NOT NULL,
-    HospitalNumber NVARCHAR(50) NOT NULL,
-    CONSTRAINT PK_MeasurementRecord PRIMARY KEY (MeasurementRecordID, MeasurementID, CategoryID, HospitalNumber),
-    CONSTRAINT FK_MeasurementRecord_PatientMeasurement FOREIGN KEY (MeasurementID, CategoryID, HospitalNumber) REFERENCES PatientMeasurement (MeasurementID, CategoryID, HospitalNumber)
+    URNumber NVARCHAR(50) NOT NULL,
+    CONSTRAINT PK_MeasurementRecord PRIMARY KEY (MeasurementRecordID),
+    CONSTRAINT UQ_MeasurementRecord UNIQUE(DateTimeRecorded, MeasurementID, CategoryID, URNumber),
+    CONSTRAINT FK_MeasurementRecord_PatientMeasurement FOREIGN KEY (MeasurementID, CategoryID, URNumber) REFERENCES PatientMeasurement (MeasurementID, CategoryID, URNumber)
 )
 
 GO
 
 CREATE TABLE DataPointRecord(
-    HospitalNumber NVARCHAR(50) NOT NULL,
-    CategoryID INT NOT NULL,
     MeasurementID INT NOT NULL,
     DataPointNumber INT NOT NULL,
     [Value] FLOAT NOT NULL,
     MeasurementRecordID INT NOT NULL,
-    CONSTRAINT PK_DataPointRecord PRIMARY KEY (HospitalNumber, CategoryID, MeasurementID, DataPointNumber),
+    CONSTRAINT PK_DataPointRecord PRIMARY KEY (MeasurementID, DataPointNumber, MeasurementRecordID),
     CONSTRAINT FK_DataPointRecord_DataPoint FOREIGN KEY (MeasurementID, DataPointNumber) REFERENCES DataPoint (MeasurementID, DataPointNumber),
-    CONSTRAINT FK_DataPointRecord_MeasurementRecord FOREIGN KEY (MeasurementRecordID, MeasurementID, CategoryID, HospitalNumber) REFERENCES MeasurementRecord (MeasurementRecordID, MeasurementID, CategoryID, HospitalNumber)
+    CONSTRAINT FK_DataPointRecord_MeasurementRecord FOREIGN KEY (MeasurementRecordID) REFERENCES MeasurementRecord (MeasurementRecordID)
 )
 
 GO
@@ -255,7 +256,7 @@ CREATE TABLE ResourceType(
     ResourceTypeID INT IDENTITY(1,1) NOT NULL,
     TypeName NVARCHAR(50) NOT NULL,
     CONSTRAINT PK_ResourceType PRIMARY KEY (ResourceTypeID),
-    CONSTRAINT UNIQUE_ResourceType_TypeName UNIQUE (TypeName)
+    CONSTRAINT UQ_ResourceType_TypeName UNIQUE (TypeName)
 )
 
 GO 
@@ -274,10 +275,10 @@ GO
 
 CREATE TABLE PatientResource(
     CategoryID INT NOT NULL,
-    HospitalNumber NVARCHAR(50),
+    URNumber NVARCHAR(50),
     ResourceID INT NOT NULL,
-    CONSTRAINT PK_PatientResource PRIMARY KEY (CategoryID, HospitalNumber, ResourceID),
-    CONSTRAINT FK_PatientResource_PatientCategory FOREIGN KEY (CategoryID, HospitalNumber) REFERENCES PatientCategory (CategoryID, HospitalNumber),
+    CONSTRAINT PK_PatientResource PRIMARY KEY (CategoryID, URNumber, ResourceID),
+    CONSTRAINT FK_PatientResource_PatientCategory FOREIGN KEY (CategoryID, URNumber) REFERENCES PatientCategory (CategoryID, URNumber),
     CONSTRAINT FK_PatientResource_Resource FOREIGN KEY (ResourceID) REFERENCES [Resource]
 )
 

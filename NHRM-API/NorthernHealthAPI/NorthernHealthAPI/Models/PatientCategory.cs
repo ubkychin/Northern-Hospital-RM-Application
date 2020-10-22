@@ -12,10 +12,10 @@ namespace NorthernHealthAPI.Models
         }
 
         public int CategoryId { get; set; }
-        public string HospitalNumber { get; set; }
+        public string Urnumber { get; set; }
 
         public virtual TemplateCategory Category { get; set; }
-        public virtual Patient HospitalNumberNavigation { get; set; }
+        public virtual Patient UrnumberNavigation { get; set; }
         public virtual ICollection<PatientMeasurement> PatientMeasurement { get; set; }
         public virtual ICollection<PatientResource> PatientResource { get; set; }
     }
