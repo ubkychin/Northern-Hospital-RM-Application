@@ -26,7 +26,7 @@ export class DataService {
     this.loading = new BehaviorSubject(false);
     this.termsAcceptance.next(JSON.parse(localStorage.getItem('TermsAccepted')));
     this.getPatientDetails();
-    
+
     console.log(this.patient)
   }
 

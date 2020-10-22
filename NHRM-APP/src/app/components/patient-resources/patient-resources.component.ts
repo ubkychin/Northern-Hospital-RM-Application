@@ -3,7 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { PatientResource } from 'src/app/models/patient-resource';
 
-import {DataService} from 'src/app/services/data.service';
+import { DataService } from 'src/app/services/data.service';
 import { ResourceDialogComponent } from '../dialogs/resource-dialog/resource-dialog.component';
 
 @Component({
@@ -21,12 +21,14 @@ export class PatientResourcesComponent implements OnInit {
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.panelClass = 'information-dialog-container';
-    if(this.dataService.patientResources == null){
-      this.dataService.getPatientResource("123456789").then(() => this.listOfResources = this.dataService.patientResources).finally(() => this.dataService.loading.next(false));
+    if (this.dataService.patientResources == null) {
+      this.dataService.getPatientResource("123456789")
+        .then(() => this.listOfResources = this.dataService.patientResources)
+        .finally(() => this.dataService.loading.next(false));
     }
 
     this.listOfResources = this.dataService.patientResources;
-   }
+  }
 
   ngOnInit(): void {
   }
@@ -42,7 +44,7 @@ export class PatientResourcesComponent implements OnInit {
     this.dialog.open(ResourceDialogComponent, this.dialogConfig);
   }
 
-  setPdfResource(resource){
+  setPdfResource(resource) {
     this.dataService.pdfResource = this.filePath + resource.resContent;
   }
 }

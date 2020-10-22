@@ -10,8 +10,9 @@
             <strong>{{resource.prompt}}</strong>
         </p>
     </div>
-    <div id="t-2" class="resource-tile tile-one resource-click" *ngFor="let resource of listOfResources | resourceFilter:'pdf'"
-        [routerLink]="['/pdf-resource']" (click)="setPdfResource(resource)">
+    <div id="t-2" class="resource-tile tile-one resource-click"
+        *ngFor="let resource of listOfResources | resourceFilter:'pdf'" [routerLink]="['/pdf-resource']"
+        (click)="setPdfResource(resource)">
         <p class="res-title">{{resource.title}}</p>
         <p class="res-info">
             <fa-icon [icon]="['fas', 'file-pdf']" transform="grow-5"></fa-icon>
@@ -19,8 +20,8 @@
         </p>
     </div>
 
-    <div id="t-3" class="resource-tile tile-one resource-click" *ngFor="let resource of listOfResources | resourceFilter:'dialog'"
-        (click)="showDialog(resource)">
+    <div id="t-3" class="resource-tile tile-one resource-click"
+        *ngFor="let resource of listOfResources | resourceFilter:'dialog'" (click)="showDialog(resource)">
         <p class="res-title">{{resource.title}}</p>
         <p class="res-info">
             <fa-icon *ngIf="!resource.resContent.video" [icon]="['fas', 'comment-alt']" transform="grow-5"></fa-icon>
