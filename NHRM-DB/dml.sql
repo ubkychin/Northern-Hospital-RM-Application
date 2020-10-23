@@ -20,7 +20,8 @@ VALUES('ECOG Status', 1),
     ('Level of Pain', 1),
     ('Fluid Drain', 1),
     ('Quality of Life', 1),
-    ('HADS', 1);
+    ('HADS', 1),
+    ('Ventolin', 1);
 
 INSERT INTO DataPoint
     (MeasurementID,DataPointNumber,UpperLimit,LowerLimit,[Name])
@@ -51,7 +52,8 @@ VALUES(1, 1, 4, 0, 'ECOG Status'),
     (7, 11, 3, 0, 'Anxiety - Restless'),
     (7, 12, 3, 0, 'Depression - Looking forward'),
     (7, 13, 3, 0, 'Anxiety - Panic'),
-    (7, 14, 3, 0, 'Depression - Book/Radio/TV')
+    (7, 14, 3, 0, 'Depression - Book/Radio/TV'),
+    (8, 1, 3, 0, 'Ventolin')
 
 INSERT INTO ResourceType
     (TypeName)
@@ -91,11 +93,13 @@ VALUES(GETDATE(), GETDATE(), '123456789', 1);
 
 INSERT INTO TemplateCategory
     (CategoryName)
-VALUES('Indwelling Pleural Catheter');
+VALUES('Indwelling Pleural Catheter'),
+    ('Asthma');
 
 INSERT INTO PatientCategory
     (CategoryID,URNumber)
-VALUES(1, '123456789');
+VALUES(1, '123456789'),
+    (2, '123456789');
 
 INSERT INTO PatientResource
     (CategoryID,URNumber,ResourceID)
@@ -121,7 +125,8 @@ VALUES(1, 1),
     (4, 1),
     (5, 1),
     (6, 1),
-    (7, 1);
+    (7, 1),
+    (8, 2);
 
 INSERT INTO PatientMeasurement
     (MeasurementID,CategoryID,URNumber)
@@ -131,7 +136,8 @@ VALUES(1, 1, '123456789'),
     (4, 1, '123456789'),
     (5, 1, '123456789'),
     (6, 1, '123456789'),
-    (7, 1, '123456789');
+    (7, 1, '123456789'),
+    (8, 2, '123456789');
 
 INSERT INTO MeasurementRecord
     (DateTimeRecorded,MeasurementID,CategoryID,URNumber)
