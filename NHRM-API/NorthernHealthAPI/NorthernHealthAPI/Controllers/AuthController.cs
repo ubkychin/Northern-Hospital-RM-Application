@@ -54,7 +54,7 @@ namespace NorthernHealthAPI.Controllers
 
                 var claims = new[] {
                     new Claim(ClaimTypes.Role, "Patient"),
-                    new Claim("UR Number", patient.SingleOrDefault().Urnumber)
+                    new Claim("URNumber", patient.SingleOrDefault().Urnumber)
                 };
 
                 var tokenOptions = new JwtSecurityToken(

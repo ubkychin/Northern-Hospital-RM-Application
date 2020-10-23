@@ -42,7 +42,7 @@ namespace NorthernHealthAPI.Controllers
                                         }).ToList()
 
                 })
-                .ToList();
+                .ToList().SingleOrDefault();
 
             return Ok(patient);
 
