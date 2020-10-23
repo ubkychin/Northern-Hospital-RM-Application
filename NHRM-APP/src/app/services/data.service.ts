@@ -5,6 +5,7 @@ import { MeasurementResult } from '../models/measurement-result';
 import { Patient } from '../models/patient';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { PatientResource } from '../models/patient-resource';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -20,14 +21,24 @@ export class DataService {
   pdfResource: string;
   categoryChosen: number;
 
-  constructor(private _http: HttpClient, private spinner: NgxSpinnerService) {
+  constructor(private _http: HttpClient, private spinner: NgxSpinnerService, private jwtHelper: JwtHelperService) {
     this.termsAcceptance = new BehaviorSubject(null);
     this.emergancyAgreement = new BehaviorSubject(null);
     this.loading = new BehaviorSubject(false);
+    this.patient = new BehaviorSubject(null);
     this.termsAcceptance.next(JSON.parse(localStorage.getItem('TermsAccepted')));
-    this.getPatientDetails("123456789");
 
-    console.log(this.patient)
+    if (localStorage.getItem('Authorization') && !this.patient.value) {
+      this.getPatientDetails(this.jwtHelper.decodeToken().URNumber)
+        .then(() => {
+          console.log("Patient returned\nURNumber: " + this.patient.value['urNumber'])
+          sessionStorage.setItem('Patient', JSON.stringify(this.patient.value));
+        })
+        .catch((err) => console.log(err.error))
+        .finally(() => {
+          this.loading.next(false)
+        });
+    }
   }
 
   postMeasurementResult(measurementResult: MeasurementResult[]) {
@@ -49,19 +60,17 @@ export class DataService {
   getPatientDetails(urNumber: string) {
     this.loading.next(true);
     return new Promise((resolve, reject) => {
-      this._http.get(this.apiURL + "/patient/patient/" + urNumber).subscribe(
-          res => {
-            console.log(res)
-            this.loading.next(false);
-            resolve(res);
-          },
-          err => {
-            console.error(err.error)
-            reject(err);
-          });
-    })   
+      this._http.get<Patient>(this.apiURL + "/patient/patient/" + urNumber).subscribe(
+        res => {
+          this.patient.next(res);
+          resolve(res);
+        },
+        err => {
+          console.error(err.error)
+          reject(err);
+        });
+    })
 
-    //this.patient = new BehaviorSubject(patient)
   }
 
   getPatientResource(urNumber: string) {

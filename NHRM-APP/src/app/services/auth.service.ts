@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { DataService } from './data.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthService {
   apiURL = "https://localhost:5001/api";
   loggedIn: BehaviorSubject<boolean>;
 
-  constructor(private _http: HttpClient, private dataService: DataService, private jwtHelper: JwtHelperService) { 
+  constructor(private _http: HttpClient, private dataService: DataService, private jwtHelper: JwtHelperService, private router: Router) { 
     this.loggedIn = new BehaviorSubject(null);
     if(this.isLoggedIn())
       this.loggedIn.next(true);
@@ -44,8 +45,10 @@ export class AuthService {
   }
 
   logout(){
+    window.location.reload();
     localStorage.removeItem('Authorization');
     sessionStorage.removeItem('disclaimer');
+    sessionStorage.removeItem('Patient');
     this.loggedIn.next(false);
     this.dataService.patientResources = null;
   }

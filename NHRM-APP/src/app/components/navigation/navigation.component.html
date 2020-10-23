@@ -6,11 +6,11 @@
     <div class="heading">
         <h1 class="main-heading">My Categories</h1>
     </div>
-    <button (click)="selectCategory(1)" class="main-btn btn5" [routerLink]="['/survey-nav']">
+    <button *ngIf="checkCategory(1)" (click)="selectCategory(1)" class="main-btn btn5" [routerLink]="['/survey-nav']">
         <fa-icon [icon]="['fas', 'edit']" transform="grow-2"></fa-icon>
         <p>My IPC</p>
     </button>
-    <button (click)="selectCategory(2)" class="main-btn btn6" [routerLink]="['/survey-nav']">
+    <button *ngIf="checkCategory(2)" (click)="selectCategory(2)" class="main-btn btn6" [routerLink]="['/survey-nav']">
         <fa-icon [icon]="['fas', 'edit']"></fa-icon>
         <p>My Asthma</p>
     </button>
