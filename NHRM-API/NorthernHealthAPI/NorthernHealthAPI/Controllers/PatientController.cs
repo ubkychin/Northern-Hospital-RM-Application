@@ -21,7 +21,35 @@ namespace NorthernHealthAPI.Controllers
         }
 
         //  GET api/patient/resources
-        //  Accepts a hospitalNumber (string) and finds all Resources belonging to a Patient 
+        //  Accepts a hospitalNumber(URNumber) (string) and returns a Patient 
+        [HttpGet, Route("patient/{urNumber}"), Authorize]
+        public IActionResult GetPatient(string urNumber)
+        {
+            //Get Patient, Categories and Measurements Assigned
+            var patient = _context.Patient
+                .Where(p => p.Urnumber == urNumber)
+                .Select(p => new
+                {
+                    UrNumber = p.Urnumber,
+                    PatientCategories = _context.PatientCategory
+                                        .Where(pc => pc.Urnumber == p.Urnumber)
+                                        .Select(pc => new
+                                        {
+                                            CategoryId = pc.CategoryId,
+                                            MeasurementIds = _context.PatientMeasurement
+                                            .Where(pm => pm.Urnumber == p.Urnumber && pm.CategoryId == pc.CategoryId)
+                                            .Select(pm => pm.MeasurementId).ToList()
+                                        }).ToList()
+
+                })
+                .ToList();
+
+            return Ok(patient);
+
+        }
+
+        //  GET api/patient/resources
+        //  Accepts a hospitalNumber(URNumber (string) and finds all Resources belonging to a Patient 
         [HttpGet, Route("resources/{urNumber}"), Authorize]
         public IActionResult GetPatientResources(string urNumber)
         {
@@ -82,3 +110,19 @@ namespace NorthernHealthAPI.Controllers
         }
     }
 }
+
+//PatientRecords = _context.PatientRecord.Where(pr => pr.Urnumber == p.Urnumber)
+//                .Select(pr => new
+//                {
+
+//                    Record = _context.RecordType.Where(rt => rt.RecordTypeId == pr.RecordTypeId)
+//                            .Select(rt => new
+//                            {
+//                                RecordCategory = _context.RecordCategory.Where(rc => rc.RecordCategoryId == rt.RecordCategoryId)
+//                                                                        .Select(rc => rc.Category).SingleOrDefault(),
+//                                RecordType = rt.RecordType1
+//                            }).SingleOrDefault(),
+
+//                    DateTimeRecorded = pr.DateTimeRecorded,
+//                    Notes = pr.Notes
+//                }).ToList()
