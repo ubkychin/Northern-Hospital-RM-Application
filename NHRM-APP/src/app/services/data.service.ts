@@ -25,7 +25,7 @@ export class DataService {
     this.emergancyAgreement = new BehaviorSubject(null);
     this.loading = new BehaviorSubject(false);
     this.termsAcceptance.next(JSON.parse(localStorage.getItem('TermsAccepted')));
-    this.getPatientDetails();
+    this.getPatientDetails("123456789");
 
     console.log(this.patient)
   }
@@ -46,13 +46,22 @@ export class DataService {
     })
   }
 
-  getPatientDetails() {
-    //get details from API async only if authorized    
-    let patient: Patient = {
-      'URNumber': '123456789',
-      'categoryId': 1
-    }
-    this.patient = new BehaviorSubject(patient)
+  getPatientDetails(urNumber: string) {
+    this.loading.next(true);
+    return new Promise((resolve, reject) => {
+      this._http.get(this.apiURL + "/patient/patient/" + urNumber).subscribe(
+          res => {
+            console.log(res)
+            this.loading.next(false);
+            resolve(res);
+          },
+          err => {
+            console.error(err.error)
+            reject(err);
+          });
+    })   
+
+    //this.patient = new BehaviorSubject(patient)
   }
 
   getPatientResource(urNumber: string) {

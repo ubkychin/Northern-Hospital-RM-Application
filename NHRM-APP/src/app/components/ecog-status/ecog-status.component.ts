@@ -15,6 +15,7 @@ import { SuccessDialogComponent } from '../dialogs/success-dialog/success-dialog
 })
 export class EcogStatusComponent implements OnInit {
 
+  readonly measurementId: number = 1;
   status: number;
   dialogConfig: MatDialogConfig;
   patient: Patient;
@@ -55,7 +56,7 @@ export class EcogStatusComponent implements OnInit {
       'urNumber': this.patient.URNumber,
       'categoryId': this.patient.categoryId,
       'dataPointNumber': 1,
-      'measurementId': 1,
+      'measurementId': this.measurementId,
       'timeStamp': new Date(),
       'value': this.status
     }];

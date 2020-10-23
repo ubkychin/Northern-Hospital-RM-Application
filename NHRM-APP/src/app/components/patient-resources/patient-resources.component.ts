@@ -22,7 +22,7 @@ export class PatientResourcesComponent implements OnInit {
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.panelClass = 'information-dialog-container';
     if (this.dataService.patientResources == null) {
-      this.dataService.getPatientResource("123456789")
+      this.dataService.getPatientResource(dataService.patient.value.URNumber)
         .then(() => this.listOfResources = this.dataService.patientResources)
         .finally(() => this.dataService.loading.next(false));
     }

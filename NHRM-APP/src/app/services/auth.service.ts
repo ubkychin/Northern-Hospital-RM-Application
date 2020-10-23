@@ -47,5 +47,6 @@ export class AuthService {
     localStorage.removeItem('Authorization');
     sessionStorage.removeItem('disclaimer');
     this.loggedIn.next(false);
+    this.dataService.patientResources = null;
   }
 }
