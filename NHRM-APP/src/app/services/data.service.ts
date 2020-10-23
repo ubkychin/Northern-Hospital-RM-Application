@@ -19,13 +19,14 @@ export class DataService {
   loading: BehaviorSubject<boolean>;
   patientResources: PatientResource[];
   pdfResource: string;
-  categoryChosen: number;
+  categoryChosen: BehaviorSubject<any>;
 
   constructor(private _http: HttpClient, private spinner: NgxSpinnerService, private jwtHelper: JwtHelperService) {
     this.termsAcceptance = new BehaviorSubject(null);
     this.emergancyAgreement = new BehaviorSubject(null);
     this.loading = new BehaviorSubject(false);
     this.patient = new BehaviorSubject(null);
+    this.categoryChosen = new BehaviorSubject(null);
     this.termsAcceptance.next(JSON.parse(localStorage.getItem('TermsAccepted')));
 
     if (localStorage.getItem('Authorization') && !this.patient.value) {

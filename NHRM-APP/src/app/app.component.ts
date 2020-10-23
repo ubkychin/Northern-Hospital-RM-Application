@@ -47,7 +47,7 @@ export class AppComponent {
   }
 
   selectCategory(value){
-    this.dataService.categoryChosen = value;
+    this.dataService.categoryChosen.next(value);
   }
 
   goBack() {

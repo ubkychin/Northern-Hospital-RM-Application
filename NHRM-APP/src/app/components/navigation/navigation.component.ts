@@ -29,7 +29,7 @@ export class NavigationComponent implements OnInit {
   }
 
   selectCategory(value) {
-    this.dataService.categoryChosen = value;
+    this.dataService.categoryChosen.next(value);
   }
 
   checkCategory(categoryId) {
