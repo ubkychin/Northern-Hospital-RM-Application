@@ -20,6 +20,11 @@ namespace NorthernHealthAPI.Controllers
             _context = context;
         }
 
+        public IActionResult HealthCheck()
+        {
+            return Content("This is the health check that will be used by the load balancer");
+        }
+
         //  GET api/patient/resources
         //  Accepts a hospitalNumber(URNumber) (string) and returns a Patient 
         [HttpGet, Route("patient/{urNumber}"), Authorize]
