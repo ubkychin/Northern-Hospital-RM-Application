@@ -5,12 +5,13 @@ VALUES('Admin'),
 
 INSERT INTO Staff
     (Email,FirstName,Surname,[Password],Salt,RoleID)
-VALUES('staff@staff.com', 'Stephen', 'Grouios', HASHBYTES('SHA2_512', CONCAT('password', 'salt', 'this15myp3pper')), 'salt', 1),
-    ('staff2@staff.com', 'John', 'Konstantinou', HASHBYTES('SHA2_512', CONCAT('password', 'salt', 'this15myp3pper')), 'salt', 2);
+VALUES('staff@staff.com', 'Staff', 'One', HASHBYTES('SHA2_512', CONCAT('password', 'salt', 'this15myp3pper')), 'salt', 1),
+    ('staff2@staff.com', 'Staff', 'Two', HASHBYTES('SHA2_512', CONCAT('password', 'salt', 'this15myp3pper')), 'salt', 2);
 
 INSERT INTO Patient
     (URNumber,Email,Title,SurName,FirstName,Gender,DOB,[Address],Suburb,PostCode,MobileNumber,HomeNumber,CountryOfBirth,PreferredLanguage,[Password],Salt,LivesAlone,RegisteredBy,Active)
-VALUES('123456789', 'patient@patient.com', 'Mr', 'Henry', 'Mitchell', 'Male', GETDATE(), '123trump St', 'Cheltenham', '1234', '0123456789', '0123456789', 'Australia', 'English', HASHBYTES('SHA2_512', CONCAT('password', 'salt', 'this15myp3pper')), 'salt', 0, 1, 1);
+VALUES('123456789', 'patient@patient.com', 'Mr', 'John', 'Doe', 'Male', GETDATE(), '123 Evergreen Terrace', 'Springfield', '1234', '0123456789', '0123456789', 'Australia', 'English', HASHBYTES('SHA2_512', CONCAT('password', 'salt', 'this15myp3pper')), 'salt', 0, 1, 1), 
+('987654321', 'patient2@patient.com', 'Mrs', 'Jane', 'Doe', 'Female', GETDATE(), '123 Evergreen Terrace', 'Springfield', '1234', '0123456789', '0123456789', 'Australia', 'English', HASHBYTES('SHA2_512', CONCAT('password', 'salt', 'this15myp3pper')), 'salt', 0, 1, 1);
 
 INSERT INTO Measurement
     (MeasurementName, Frequency)
@@ -99,7 +100,8 @@ VALUES('Indwelling Pleural Catheter'),
 INSERT INTO PatientCategory
     (CategoryID,URNumber)
 VALUES(1, '123456789'),
-    (2, '123456789');
+    (2, '123456789'), 
+    (1, '987654321');
 
 INSERT INTO PatientResource
     (CategoryID,URNumber,ResourceID)
@@ -107,7 +109,10 @@ VALUES(1, '123456789', 1),
     (1, '123456789', 2),
     (1, '123456789', 3),
     (1, '123456789', 4),
-    (1, '123456789', 5);
+    (1, '123456789', 5),
+    (2, '987654321', 1),
+    (2, '987654321', 2),
+    (2, '987654321', 3);
 
 INSERT INTO TemplateResource
     (CategoryID,ResourceID)
@@ -126,6 +131,9 @@ VALUES(1, 1),
     (5, 1),
     (6, 1),
     (7, 1),
+    (1, 2),
+    (3, 2),
+    (6, 2),
     (8, 2);
 
 INSERT INTO PatientMeasurement
@@ -137,7 +145,10 @@ VALUES(1, 1, '123456789'),
     (5, 1, '123456789'),
     (6, 1, '123456789'),
     (7, 1, '123456789'),
-    (8, 2, '123456789');
+    (1, 2, '987654321'),
+    (3, 2, '987654321'),
+    (6, 2, '987654321'),
+    (8, 2, '987654321');
 
 INSERT INTO MeasurementRecord
     (DateTimeRecorded,MeasurementID,CategoryID,URNumber)
