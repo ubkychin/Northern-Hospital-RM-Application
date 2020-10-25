@@ -40,7 +40,7 @@ namespace NorthernHealthAPI.Controllers
                                         .Where(pc => pc.Urnumber == p.Urnumber)
                                         .Select(pc => new
                                         {
-                                            CategoryId = pc.CategoryId,
+                                            pc.CategoryId,
                                             MeasurementIds = _context.PatientMeasurement
                                             .Where(pm => pm.Urnumber == p.Urnumber && pm.CategoryId == pc.CategoryId)
                                             .Select(pm => pm.MeasurementId).ToList()
@@ -103,9 +103,9 @@ namespace NorthernHealthAPI.Controllers
                 return _con.ResourceDialog.Where(rd => rd.ResourceId == resId)
                     .Select(rd => new
                     {
-                        Heading = rd.Heading,
-                        Content = rd.Content,
-                        Video = rd.Video
+                        rd.Heading,
+                        rd.Content,
+                        rd.Video
                     }).SingleOrDefault();
             }
             else
