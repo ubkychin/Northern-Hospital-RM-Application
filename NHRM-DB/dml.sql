@@ -101,7 +101,7 @@ INSERT INTO PatientCategory
     (CategoryID,URNumber)
 VALUES(1, '123456789'),
     (2, '123456789'), 
-    (1, '987654321');
+    (2, '987654321');
 
 INSERT INTO PatientResource
     (CategoryID,URNumber,ResourceID)
