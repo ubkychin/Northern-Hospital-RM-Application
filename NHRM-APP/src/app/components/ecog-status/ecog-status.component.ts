@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { DataPointRecord } from 'src/app/models/data-point-record';
 import { MeasurementResult } from 'src/app/models/measurement-result';
 import { Patient } from 'src/app/models/patient';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
@@ -49,25 +50,18 @@ export class EcogStatusComponent implements OnInit {
   }
 
   recordECOG() {
-    console.log(this.patient)
-    console.log(this.status);
-
-    let measurementResult: MeasurementResult[] = [{
-      'urNumber': this.patient.URNumber,
-      'categoryId': this.patient.categoryId,
-      'dataPointNumber': 1,
+    let measurementRecord: DataPointRecord[] = [{
       'measurementId': this.measurementId,
-      'timeStamp': new Date(),
+      'dataPointNumber': 1,
       'value': this.status
     }];
 
-    this.dataService.postMeasurementResult(measurementResult)
+    this.dataService.postMeasurementResult(measurementRecord, this.dataService.categoryChosen.getValue())
       .then(() => {
-        this.router.navigate(['/survey-nav']);
-        /*         this.dialogConfig.panelClass = 'success-dialog-container';
-                this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
-                  this.router.navigate(['survey-nav']);
-                }); */
+        this.dialogConfig.panelClass = 'success-dialog-container';
+        this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
+          this.router.navigate(['survey-nav']);
+        });
       })
       .catch((err) => console.error(err + " ECOG ERR"))
       .finally(() => {

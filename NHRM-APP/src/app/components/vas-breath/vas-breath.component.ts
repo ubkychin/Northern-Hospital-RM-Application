@@ -6,6 +6,8 @@ import { MeasurementResult } from 'src/app/models/measurement-result';
 import { Router } from '@angular/router';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
 import { ResourceDialogComponent } from '../dialogs/resource-dialog/resource-dialog.component';
+import { DataPointRecord } from 'src/app/models/data-point-record';
+import { SuccessDialogComponent } from '../dialogs/success-dialog/success-dialog.component';
 
 @Component({
   selector: 'app-vas-breath',
@@ -20,11 +22,11 @@ export class VasBreathComponent implements OnInit {
     content: "Instruction - To help you to best describe how good or bad you feel on a given day, we have drawn a scale from Best on the top of the slider to Worst on the bottom of the slider. Please position the slider at the point that describes how you feel today."
   }
 
+  readonly measurementId: number = 3;
   patient: Patient;
   failed: boolean;
-  vasScore: number[] = [];
   partA: boolean = true;
-  measurementResult: MeasurementResult[] = [];
+  measurementRecord: DataPointRecord[] = [];
 
   constructor(public dialog: MatDialog, private dataService: DataService, private router: Router) {
     this.dialogConfig = new MatDialogConfig();
@@ -46,42 +48,34 @@ export class VasBreathComponent implements OnInit {
   }
 
   getVasInputScore(event) {
-    this.vasScore.push(event);
-    console.log("Breath Vas Input = " + this.vasScore[0])
-    this.measurementResult.push({
-      'urNumber': this.patient.URNumber,
-      'categoryId': this.patient.categoryId,
+    console.log(event);
+    this.measurementRecord.push({
+      'measurementId': this.measurementId,
       'dataPointNumber': 1,
-      'measurementId': 4,
-      'timeStamp': new Date(),
-      'value': this.vasScore[0]
+      'value': event
     });
+
     this.partA = false;
   }
 
   getVasSliderScore(event) {
-    this.vasScore.push(parseInt(event));
-    console.log("Breath Vas Slider = " + this.vasScore[1])
-    this.measurementResult.push({
-      'urNumber': this.patient.URNumber,
-      'categoryId': this.patient.categoryId,
+    console.log(parseInt(event));
+    this.measurementRecord.push({
+      'measurementId': this.measurementId,
       'dataPointNumber': 2,
-      'measurementId': 4,
-      'timeStamp': new Date(),
-      'value': this.vasScore[1]
+      'value': parseInt(event)
     });
 
     this.recordVASBreath();
   }
 
   recordVASBreath() {
-    console.log(this.patient);
-    console.log(this.measurementResult);
-
-    this.dataService.postMeasurementResult(this.measurementResult)
+    this.dataService.postMeasurementResult(this.measurementRecord, this.dataService.categoryChosen.getValue())
       .then(() => {
-        console.log("Breath Recorded");
-        this.router.navigate(['/survey-nav']);
+        this.dialogConfig.panelClass = 'success-dialog-container';
+        this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
+          this.router.navigate(['survey-nav']);
+        });
       })
       .catch((err) => console.error(err + " Breath ERR"))
       .finally(() => {

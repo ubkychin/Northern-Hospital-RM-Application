@@ -29,7 +29,7 @@ export class QolVasSliderComponent implements OnInit {
 
 
   submitHealthScore() {
-    let measurementResult: MeasurementResult[] = [{
+/*     let measurementResult: MeasurementResult[] = [{
       'urNumber': this.patient.URNumber,
       'categoryId': this.patient.categoryId,
       'dataPointNumber': 6,
@@ -46,7 +46,7 @@ export class QolVasSliderComponent implements OnInit {
       console.log("Finalized");
       this.dataService.loading.next(false);
       this.router.navigate(['/survey-nav']);
-    });
+    }); */
 
   }
 }

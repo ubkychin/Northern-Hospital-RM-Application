@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
 import { MeasurementResult } from 'src/app/models/measurement-result';
 import { ResourceDialogComponent } from '../dialogs/resource-dialog/resource-dialog.component';
+import { DataPointRecord } from 'src/app/models/data-point-record';
+import { SuccessDialogComponent } from '../dialogs/success-dialog/success-dialog.component';
 
 @Component({
   selector: 'app-likert',
@@ -16,6 +18,7 @@ import { ResourceDialogComponent } from '../dialogs/resource-dialog/resource-dia
 })
 export class LikertComponent implements OnInit {
 
+  readonly measurementId: number = 2;
   model: any = {};
   form: FormGroup;
   patient: Patient;
@@ -50,9 +53,18 @@ export class LikertComponent implements OnInit {
       'value': Number(this.form.value["feeling"])
     }];
 
-    this.dataService.postMeasurementResult(measurementResult)
+    let measurementRecord: DataPointRecord[] = [{
+      'measurementId': this.measurementId,
+      'dataPointNumber': 1,
+      'value': Number(this.form.value["feeling"])
+    }];
+
+    this.dataService.postMeasurementResult(measurementRecord, this.dataService.categoryChosen.getValue())
       .then(() => {
-        this.router.navigate(['/survey-nav']);
+        this.dialogConfig.panelClass = 'success-dialog-container';
+        this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
+          this.router.navigate(['survey-nav']);
+        });
       })
       .catch((err) => console.error(err + " Likert ERR"))
       .finally(() => {

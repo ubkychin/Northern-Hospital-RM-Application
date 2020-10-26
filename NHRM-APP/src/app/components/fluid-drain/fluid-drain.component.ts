@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { DataPointRecord } from 'src/app/models/data-point-record';
 import { MeasurementResult } from 'src/app/models/measurement-result';
 import { Patient } from 'src/app/models/patient';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
 import { DataService } from 'src/app/services/data.service';
 import { ResourceDialogComponent } from '../dialogs/resource-dialog/resource-dialog.component';
+import { SuccessDialogComponent } from '../dialogs/success-dialog/success-dialog.component';
 
 @Component({
   selector: 'app-fluid-drain',
@@ -14,6 +16,7 @@ import { ResourceDialogComponent } from '../dialogs/resource-dialog/resource-dia
 })
 export class FluidDrainComponent implements OnInit {
 
+  readonly measurementId: number = 5;
   dialogConfig: MatDialogConfig;
   fluid: number;
   patient: Patient;
@@ -46,23 +49,23 @@ export class FluidDrainComponent implements OnInit {
     console.log(this.patient)
     console.log(this.fluid);
 
-    let measurementResult: MeasurementResult[] = [{
-      'urNumber': this.patient.URNumber,
-      'categoryId': this.patient.categoryId,
+    let measurementRecord: DataPointRecord[] = [{
+      'measurementId': this.measurementId,
       'dataPointNumber': 1,
-      'measurementId': 5,
-      'timeStamp': new Date(),
       'value': this.fluid
     }];
 
-    this.dataService.postMeasurementResult(measurementResult)
-      .then(() => {
-        this.router.navigate(['/survey-nav']);
-      })
-      .catch((err) => console.error(err + " Fluid ERR"))
-      .finally(() => {
-        console.log("Finalized");
-        this.dataService.loading.next(false);
-      });
+     this.dataService.postMeasurementResult(measurementRecord, this.dataService.categoryChosen.getValue())
+       .then(() => {
+        this.dialogConfig.panelClass = 'success-dialog-container';
+        this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
+          this.router.navigate(['survey-nav']);
+        });
+       })
+       .catch((err) => console.error(err + " Fluid ERR"))
+       .finally(() => {
+         console.log("Finalized");
+         this.dataService.loading.next(false);
+       });
   }
 }

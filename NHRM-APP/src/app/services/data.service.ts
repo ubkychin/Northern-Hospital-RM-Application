@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { MeasurementResult } from '../models/measurement-result';
 import { Patient } from '../models/patient';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { PatientResource } from '../models/patient-resource';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { DataPointRecord } from '../models/data-point-record';
 
 @Injectable({
   providedIn: 'root'
@@ -42,17 +43,22 @@ export class DataService {
     }
   }
 
-  postMeasurementResult(measurementResult: MeasurementResult[]) {
+  postMeasurementResult(measurementRecord: DataPointRecord[], categoryId: number) {
     this.loading.next(true);
+    console.log(measurementRecord);
+    console.log(categoryId);
     return new Promise((resolve, reject) => {
-      this._http.post(this.apiURL + "/MeasurementResults",
-        measurementResult).subscribe(
+      this._http.post(this.apiURL + "/patient/recordmeasurement",
+        measurementRecord, {
+          params: new HttpParams().append('urNumber', this.patient.value['urNumber'])
+          .append('categoryId', categoryId.toString())
+        }).subscribe(
           res => {
             console.log("MR Resolved")
             resolve(res);
           },
           err => {
-            console.error("MR Error")
+            console.error(err.error)
             reject(err);
           });
     })
