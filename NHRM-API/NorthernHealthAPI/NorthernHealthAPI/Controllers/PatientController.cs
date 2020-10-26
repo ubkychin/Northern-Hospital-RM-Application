@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NorthernHealthAPI.Models;
 
 namespace NorthernHealthAPI.Controllers
@@ -25,8 +27,8 @@ namespace NorthernHealthAPI.Controllers
             return Content("This is the health check that will be used by the load balancer");
         }
 
-        //  GET api/patient/resources
-        //  Accepts a hospitalNumber(URNumber) (string) and returns a Patient 
+        //  GET api/patient/{urNumber}
+        //  Accepts a URNumber (string) and returns a Patient and their categories
         [HttpGet, Route("patient/{urNumber}"), Authorize]
         public IActionResult GetPatient(string urNumber)
         {
@@ -53,8 +55,8 @@ namespace NorthernHealthAPI.Controllers
 
         }
 
-        //  GET api/patient/resources
-        //  Accepts a hospitalNumber(URNumber (string) and finds all Resources belonging to a Patient 
+        //  GET api/patient/resources/{urNumber}
+        //  Accepts a URNumber (string) and returns all Resources assigned to a Patient 
         [HttpGet, Route("resources/{urNumber}"), Authorize]
         public IActionResult GetPatientResources(string urNumber)
         {
@@ -87,6 +89,51 @@ namespace NorthernHealthAPI.Controllers
                 return NoContent();
         }
 
+        //  GET api/patient/recordmeasurement
+        //  Accepts a List of DataPointRecords, urNumber (string) and categoryId (int) - inserts a MeasurementRecord
+        //  and all DataPointRecords sent
+        //  If there is an error, the transaction will be rolled back
+        [HttpPost, Route("recordmeasurement"), Authorize]
+        public async Task<IActionResult> RecordMeasurement(List<DataPointRecord> records, string urNumber, int categoryId)
+        {
+
+            try
+            {
+                await _context.Database.BeginTransactionAsync();
+
+                var measurementRecord = new MeasurementRecord
+                {
+                    DateTimeRecorded = DateTime.Now,
+                    MeasurementId = records.FirstOrDefault().MeasurementId,
+                    CategoryId = categoryId,
+                    Urnumber = urNumber
+                };
+
+                _context.MeasurementRecord.Add(measurementRecord);
+                await _context.SaveChangesAsync();
+
+                foreach (DataPointRecord record in records)
+                {
+                    record.MeasurementRecordId = measurementRecord.MeasurementRecordId;
+                    _context.DataPointRecord.Add(record);
+                }
+
+                await _context.SaveChangesAsync();
+
+                _context.Database.CommitTransaction();
+
+            }
+            catch (Exception ex)
+            {
+                _context.Database.RollbackTransaction();
+                return BadRequest(ex.Message);
+            }
+
+            return Ok();
+
+        }
+
+        // Accepts a typeId (string) as a parameter and returns it's resource type, as a string
         public static string setResource(int typeId)
         {
             NHRMDBContext _con = new NHRMDBContext();
@@ -94,6 +141,8 @@ namespace NorthernHealthAPI.Controllers
             return _con.ResourceType.Where(rt => rt.ResourceTypeId == typeId).Select(t => t.TypeName).SingleOrDefault();
         }
 
+        //Accepts a type (string), resId (int) and content (string) as parameters and returns the appropriate content. If the type
+        // is a 'dialog' the content returned will be an object with Heading, Content and Video properties
         private static dynamic setResourceContent(string type, int resId, string content)
         {
             NHRMDBContext _con = new NHRMDBContext();

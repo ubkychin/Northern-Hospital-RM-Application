@@ -19,6 +19,7 @@ namespace NorthernHealthAPI
             JWT.JWTMiddleware.ConfigureJWT(services);
 
             services.AddDbContext<NHRMDBContext>(opt => opt.UseSqlServer(Environment.GetEnvironmentVariable("NHRMConnection")));
+            //services.AddDbContext<NHRMDBContext>(opt => opt.UseSqlServer("Server=.\\SQLExpress;Database=NHRMDB;Trusted_Connection=True;"));
 
             services.AddControllers();
             services.AddCors(options =>

@@ -43,6 +43,7 @@ namespace NorthernHealthAPI.Models
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer(Environment.GetEnvironmentVariable("NHRMConnection"));
+                //optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=NHRMDB;Trusted_Connection=True;");
             }
         }
 
