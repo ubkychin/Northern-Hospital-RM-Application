@@ -73,7 +73,7 @@ GO
 CREATE TABLE SurveyQuestion(
     MeasurementID INT NOT NULL,
     DataPointNumber INT NOT NULL, 
-    CategpryName NVARCHAR(MAX),
+    CategoryName NVARCHAR(MAX),
     Question NVARCHAR(MAX) NOT NULL,
     CONSTRAINT PK_SurveyQuestion PRIMARY KEY (MeasurementID, DataPointNumber),
     CONSTRAINT FK_SurveyQuestion_DataPoint FOREIGN KEY (MeasurementID, DataPointNumber) REFERENCES DataPoint (MeasurementID, DataPointNumber)
