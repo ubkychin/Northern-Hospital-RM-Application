@@ -4,12 +4,12 @@
         is closest to how you are feeling today</h2>
 
     <app-info-bar (click)="infoDialog()"></app-info-bar>
-    
+
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
 
-        
+
         <fieldset id="likert-scale">
-    
+
             <div class="user-feeling">
                 <figure>
                     <div class="emotion">
@@ -17,9 +17,9 @@
                         <figcaption>(Very Poor)</figcaption>
                     </div>
                 </figure>
-                <input type="radio" name="feeling" value="1" formControlName="feeling"/>
+                <input type="radio" name="feeling" value="1" formControlName="feeling" />
             </div>
-    
+
             <div class="user-feeling">
                 <figure>
                     <div class="emotion">
@@ -27,9 +27,9 @@
                         <figcaption>(Poor)</figcaption>
                     </div>
                 </figure>
-                <input type="radio" name="feeling" value="2" formControlName="feeling"/>
+                <input type="radio" name="feeling" value="2" formControlName="feeling" />
             </div>
-    
+
             <div class="user-feeling">
                 <figure>
                     <div class="emotion">
@@ -37,27 +37,27 @@
                         <figcaption>(Average)</figcaption>
                     </div>
                 </figure>
-                <input type="radio" name="feeling" value="3" formControlName="feeling"/>
+                <input type="radio" name="feeling" value="3" formControlName="feeling" />
             </div>
-    
-    
+
+
             <div class="user-feeling">
                 <figure>
                     <div class="emotion">
-                        <img src="assets/svg/good_face.svg" alt="Good face"/>
+                        <img src="assets/svg/good_face.svg" alt="Good face" />
                         <figcaption>(Good)</figcaption>
                     </div>
                 </figure>
                 <input type="radio" name="feeling" value="4" formControlName="feeling" />
             </div>
-    
+
             <div class="user-feeling">
                 <figure>
                     <div class="emotion">
-                        <img src="assets/svg/excellent_face.svg" alt="Excellent face"/>
+                        <img src="assets/svg/excellent_face.svg" alt="Excellent face" />
                         <figcaption>(Excellent)</figcaption>
                     </div>
-                </figure>  
+                </figure>
                 <input type="radio" name="feeling" value="5" formControlName="feeling" />
             </div>
         </fieldset>

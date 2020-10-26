@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { Patient, PatientCategory } from 'src/app/models/patient';
 import { DataService } from 'src/app/services/data.service';
 import { DisclaimerDialogComponent } from '../dialogs/disclaimer-dialog/disclaimer-dialog.component';
 
@@ -34,7 +33,7 @@ export class NavigationComponent implements OnInit {
 
   checkCategory(categoryId) {
     return JSON.parse(sessionStorage.getItem('Patient')).patientCategories
-    .find(catId => catId.categoryId == categoryId);
+      .find(catId => catId.categoryId == categoryId);
   }
 
 }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { PatientResource } from 'src/app/models/patient-resource';
-
 import { DataService } from 'src/app/services/data.service';
 import { ResourceDialogComponent } from '../dialogs/resource-dialog/resource-dialog.component';
 
@@ -26,7 +25,6 @@ export class PatientResourcesComponent implements OnInit {
         .then(() => this.listOfResources = this.dataService.patientResources)
         .finally(() => this.dataService.loading.next(false));
     }
-
     this.listOfResources = this.dataService.patientResources;
   }
 
@@ -40,11 +38,11 @@ export class PatientResourcesComponent implements OnInit {
       heading: resource.resContent.heading,
       video: resource.resContent.video
     }
-
     this.dialog.open(ResourceDialogComponent, this.dialogConfig);
   }
 
   setPdfResource(resource) {
     this.dataService.pdfResource = this.filePath + resource.resContent;
   }
+
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import noUiSlider from 'nouislider';
-import 'nouislider/distribute/nouislider.css';
+//import 'nouislider/distribute/nouislider.css';
 
 @Component({
   selector: 'app-vas-slider',
@@ -17,11 +17,10 @@ export class VasSliderComponent implements OnInit {
   @Output() vasValue: EventEmitter<Number> = new EventEmitter<Number>();
 
   constructor() {
-    
+
   }
 
   ngOnInit(): void {
-
     var range_all_sliders = {
       'min': [0],
       'max': [100]
@@ -38,8 +37,8 @@ export class VasSliderComponent implements OnInit {
       },
     });
 
-    this.vasSlider.noUiSlider.on('update.one', (values) => {  
-      
+    this.vasSlider.noUiSlider.on('update.one', (values) => {
+
       this.currentHealthScore = values[0];
     });
   }

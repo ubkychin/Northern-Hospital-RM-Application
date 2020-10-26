@@ -16,12 +16,9 @@ export class VasInputComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  submitVasScore(form){
-
+  submitVasScore(form) {
     this.vasScore = form['value']['vas-input'];
     console.log(form['value']['vas-input']);
-
     this.vasValue.emit(this.vasScore);
-    
   }
 }

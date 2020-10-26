@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DataPointRecord } from 'src/app/models/data-point-record';
-import { MeasurementResult } from 'src/app/models/measurement-result';
 import { Patient } from 'src/app/models/patient';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
 import { DataService } from 'src/app/services/data.service';
@@ -20,6 +19,7 @@ export class FluidDrainComponent implements OnInit {
   dialogConfig: MatDialogConfig;
   fluid: number;
   patient: Patient;
+
   dialogInfo: ResourceDialog = {
     heading: "How to drain your Indwelling Pleural Catheter",
     content: "Please enter the amount of fluid you have drained today in millilitres. Enter the value in the box. <p>Below is a video which details how to perform a fluid drainage of an Indwelling Pleural Catheter.</p>",
@@ -46,26 +46,23 @@ export class FluidDrainComponent implements OnInit {
   }
 
   recordFluid() {
-    console.log(this.patient)
-    console.log(this.fluid);
-
     let measurementRecord: DataPointRecord[] = [{
       'measurementId': this.measurementId,
       'dataPointNumber': 1,
       'value': this.fluid
     }];
 
-     this.dataService.postMeasurementResult(measurementRecord, this.dataService.categoryChosen.getValue())
-       .then(() => {
+    this.dataService.postMeasurementResult(measurementRecord, this.dataService.categoryChosen.getValue())
+      .then(() => {
         this.dialogConfig.panelClass = 'success-dialog-container';
         this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
           this.router.navigate(['survey-nav']);
         });
-       })
-       .catch((err) => console.error(err + " Fluid ERR"))
-       .finally(() => {
-         console.log("Finalized");
-         this.dataService.loading.next(false);
-       });
+      })
+      .catch((err) => console.error(err + " Fluid ERR"))
+      .finally(() => {
+        console.log("Finalized");
+        this.dataService.loading.next(false);
+      });
   }
 }

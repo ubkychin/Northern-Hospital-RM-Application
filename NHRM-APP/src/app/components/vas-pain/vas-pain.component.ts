@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DataPointRecord } from 'src/app/models/data-point-record';
-import { MeasurementResult } from 'src/app/models/measurement-result';
 import { Patient } from 'src/app/models/patient';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
 import { DataService } from 'src/app/services/data.service';
@@ -16,18 +15,18 @@ import { SuccessDialogComponent } from '../dialogs/success-dialog/success-dialog
 })
 export class VasPainComponent implements OnInit {
 
-  dialogConfig: MatDialogConfig;
-  dialogInfo: ResourceDialog = {
-    heading: "How to perform VAS score",
-    content: "Instruction - To help you to best describe how good or bad you feel on a given day, we have drawn a scale from Best on the top of the slider to Worst on the bottom of the slider. Please position the slider at the point that describes how you feel today."
-  }
-
   readonly measurementId: number = 4;
   patient: Patient;
   vasScore: number[] = [];
   partA: boolean = true;
   measurementRecord: DataPointRecord[] = [];
 
+  dialogConfig: MatDialogConfig;
+  dialogInfo: ResourceDialog = {
+    heading: "How to perform VAS score",
+    content: "Instruction - To help you to best describe how good or bad you feel on a given day, we have drawn a scale from Best on the top of the slider to Worst on the bottom of the slider. Please position the slider at the point that describes how you feel today."
+  }
+  
   constructor(public dialog: MatDialog, private dataService: DataService, private router: Router) {
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
@@ -54,7 +53,6 @@ export class VasPainComponent implements OnInit {
       'dataPointNumber': 1,
       'value': event
     });
-
     this.partA = false;
   }
 
@@ -65,7 +63,6 @@ export class VasPainComponent implements OnInit {
       'dataPointNumber': 2,
       'value': parseInt(event)
     });
-
     this.recordVASPain();
   }
 

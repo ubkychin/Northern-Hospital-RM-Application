@@ -4,7 +4,6 @@ import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { Router } from '@angular/router';
 import { Patient } from 'src/app/models/patient';
 import { DataService } from 'src/app/services/data.service';
-import { MeasurementResult } from 'src/app/models/measurement-result';
 import { DataPointRecord } from 'src/app/models/data-point-record';
 import { SuccessDialogComponent } from '../dialogs/success-dialog/success-dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -82,15 +81,16 @@ export class QolComponent implements OnInit {
         required: true
       },
 
-    }
-
-    ];
-
+    }];
   }
 
   ngOnInit(): void {
     this.currentCategory = 0;
     this.displayQuestions();
+  }
+
+  infoDialog() {
+
   }
 
   submit() {
@@ -100,9 +100,8 @@ export class QolComponent implements OnInit {
     if (this.form.value[categories[this.currentCategory]] !== null) {
       if (this.currentCategory === this.survey.length - 1) {
         this.submitSurvey();
-        //this.router.navigateByUrl('/qol-vas');
       }
-      else{
+      else {
         this.currentCategory += 1;
         this.displayQuestions();
       }
@@ -110,17 +109,12 @@ export class QolComponent implements OnInit {
       this.isValid = false;
     }
   }
-
-  infoDialog() {
-
-  }
-
+  
   submitSurvey() {
     let categories = Object.keys(this.form.value);
     let date = new Date();
 
     for (let i = 0; i < categories.length; i++) {
-
       this.measurementRecord[i] = ({
         'measurementId': this.measurementId,
         'dataPointNumber': i + 1,

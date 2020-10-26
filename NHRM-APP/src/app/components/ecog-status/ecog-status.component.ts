@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DataPointRecord } from 'src/app/models/data-point-record';
-import { MeasurementResult } from 'src/app/models/measurement-result';
 import { Patient } from 'src/app/models/patient';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
 import { DataService } from 'src/app/services/data.service';
@@ -20,6 +19,7 @@ export class EcogStatusComponent implements OnInit {
   status: number;
   dialogConfig: MatDialogConfig;
   patient: Patient;
+
   dialogInfo: ResourceDialog = {
     heading: "How to record ECOG status",
     content: "To track how well you are able to take care of yourself, we have developed grades (from 0 to 4) that best describe how you feel physically.<p>Instruction: Click the check-box next to the number that best describes how you feel physically. From 0 - fully active - to 4 - completely disabled.</p><p>You must select a check-box before clicking Submit.</p>"
