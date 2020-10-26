@@ -1,3 +1,4 @@
+import { CdkVirtualForOf } from '@angular/cdk/scrolling';
 import { Component, OnInit } from '@angular/core';
 import {DataService} from 'src/app/services/data.service';
 
@@ -8,11 +9,14 @@ import {DataService} from 'src/app/services/data.service';
 })
 export class HadsComponent implements OnInit {
 
-  constructor(private dataService: DataService) {
+  survey: object;
 
-   }
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
+    this.survey = this.dataService.getHadsQuestions();
+
+    console.log(this.survey);
   }
 
 }

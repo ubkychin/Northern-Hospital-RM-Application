@@ -41,6 +41,7 @@ import { ResourceDialogComponent } from './components/dialogs/resource-dialog/re
 import { SuccessDialogComponent } from './components/dialogs/success-dialog/success-dialog.component';
 import { DisclaimerDialogComponent } from './components/dialogs/disclaimer-dialog/disclaimer-dialog.component';
 import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-dialog.component';
+import { SurveyQuestionComponent } from './components/survey-question/survey-question.component';
 
 export function tokenGetter() {
   return JSON.parse(localStorage.getItem('Authorization'));
@@ -73,7 +74,8 @@ export function tokenGetter() {
     ResourceDialogComponent,
     SuccessDialogComponent,
     DisclaimerDialogComponent,
-    AlertDialogComponent
+    AlertDialogComponent,
+    SurveyQuestionComponent
   ],
   imports: [
     BrowserModule,

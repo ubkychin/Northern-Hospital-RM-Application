@@ -99,7 +99,7 @@ export class DataService {
   }
 
 
-  getHadsQuestions() {
+  getHadsQuestions():object {
     let list: any = [
       {
         categoryName: "Anxiety",
@@ -243,6 +243,8 @@ export class DataService {
       },
 
     ];
+
+    return list;
   }
 
 }

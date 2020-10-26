@@ -19,7 +19,7 @@ export class AuthService {
     if(this.isLoggedIn())
       this.loggedIn.next(true);
     else
-      this.loggedIn.next(false);
+      this.loggedIn.next(true);
   }
 
   login(credentials: Login){
