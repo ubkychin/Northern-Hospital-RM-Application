@@ -1,10 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import noUiSlider from 'nouislider';
 import 'nouislider/distribute/nouislider.css';
 import { DataPointRecord } from 'src/app/models/data-point-record';
-import { MeasurementResult } from 'src/app/models/measurement-result';
 import { Patient } from 'src/app/models/patient';
 import { DataService } from 'src/app/services/data.service';
 import { SuccessDialogComponent } from '../dialogs/success-dialog/success-dialog.component';

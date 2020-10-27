@@ -14,9 +14,7 @@ import { PatientDetailsComponent } from './patient-details/patient-details.compo
 import { QolVasComponent } from './components/qol-vas/qol-vas.component';
 import { AuthGuard } from './guard/auth.guard';
 import { PdfResourceComponent } from './components/pdf-resource/pdf-resource.component';
-import { VasSliderComponent } from './components/vas-slider/vas-slider.component';
 import { Error404Component } from './components/error404/error404.component';
-import { QolVasSliderComponent } from './components/qol-vas-slider/qol-vas-slider.component';
 import { HadsComponent } from './components/hads/hads.component';
 
 
@@ -52,7 +50,6 @@ const routes: Routes = [
   { path: 'qol-vas', component: QolVasComponent, canActivate: [AuthGuard] },
   { path: 'patient-resources', component: PatientResourcesComponent, canActivate: [AuthGuard] },
   { path: 'pdf-resource', component: PdfResourceComponent, canActivate: [AuthGuard] },
-  { path: 'qol-vas-slider', component: QolVasSliderComponent, canActivate: [AuthGuard] },
   { path: '404-error', component: Error404Component },
   { path: 'hads', component: HadsComponent },
   {
