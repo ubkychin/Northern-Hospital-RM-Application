@@ -43,6 +43,8 @@
     <p class="upper-lim">600mL</p>
 </div>
 <div class="submit">
-    <button class="submit-button disabled-btn" [ngClass]="{'disabled-btn': !this.fluid}" (click)="recordFluid()"
-        [disabled]="!this.fluid">Submit</button>
+    <div class="error">
+        <p *ngIf="!this.fluid">{{this.errorMsg}}</p>
+    </div>
+    <button class="submit-button" (click)="recordFluid()">Submit</button>
 </div>

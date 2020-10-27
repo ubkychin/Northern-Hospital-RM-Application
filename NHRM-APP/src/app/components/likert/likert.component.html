@@ -62,7 +62,11 @@
             </div>
         </fieldset>
 
+        <div class="error">
+            <p *ngIf="this.error">{{this.errorMsg}}</p>
+        </div>
+        
         <button type="submit" class="btn submit-button">Submit</button>
-
+        
     </form>
 </article>

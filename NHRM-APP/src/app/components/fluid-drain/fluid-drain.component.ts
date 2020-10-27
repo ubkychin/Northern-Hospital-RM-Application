@@ -19,6 +19,7 @@ export class FluidDrainComponent implements OnInit {
   dialogConfig: MatDialogConfig;
   fluid: number;
   patient: Patient;
+  errorMsg: string;
 
   dialogInfo: ResourceDialog = {
     heading: "How to drain your Indwelling Pleural Catheter",
@@ -46,23 +47,30 @@ export class FluidDrainComponent implements OnInit {
   }
 
   recordFluid() {
-    let measurementRecord: DataPointRecord[] = [{
-      'measurementId': this.measurementId,
-      'dataPointNumber': 1,
-      'value': this.fluid
-    }];
+    if (!this.fluid) {
+      this.errorMsg = "You must enter fluid amount before submitting";
 
-    this.dataService.postMeasurementResult(measurementRecord, this.dataService.categoryChosen.getValue())
-      .then(() => {
-        this.dialogConfig.panelClass = 'success-dialog-container';
-        this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
-          this.router.navigate(['survey-nav']);
+    }else{
+      let measurementRecord: DataPointRecord[] = [{
+        'measurementId': this.measurementId,
+        'dataPointNumber': 1,
+        'value': this.fluid
+      }];
+  
+      this.dataService.postMeasurementResult(measurementRecord, this.dataService.categoryChosen.getValue())
+        .then(() => {
+          this.dialogConfig.panelClass = 'success-dialog-container';
+          this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
+            this.router.navigate(['survey-nav']);
+          });
+        })
+        .catch((err) => {
+          this.errorMsg = "Something went wrong, please try again";
+        })
+        .finally(() => {
+          console.log("Finalized");
+          this.dataService.loading.next(false);
         });
-      })
-      .catch((err) => console.error(err + " Fluid ERR"))
-      .finally(() => {
-        console.log("Finalized");
-        this.dataService.loading.next(false);
-      });
+    }
   }
 }

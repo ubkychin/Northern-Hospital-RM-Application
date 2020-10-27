@@ -5,6 +5,15 @@
     grid-template: repeat(7, 50px) / 150px 150px;
 }
 
+.error {
+    margin: 10px;
+    color: crimson;
+    font-weight: bold;
+    text-align: center;
+    width: 300px;
+    height: 15px;
+}
+
 /* Chrome, Safari, Edge, Opera */
 
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {

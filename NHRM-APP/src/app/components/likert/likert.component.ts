@@ -21,6 +21,8 @@ export class LikertComponent implements OnInit {
   model: any = {};
   form: FormGroup;
   patient: Patient;
+  error: boolean;
+  errorMsg: string = "Hello";
   dialogConfig: MatDialogConfig;
 
   dialogInfo: ResourceDialog = {
@@ -52,24 +54,33 @@ export class LikertComponent implements OnInit {
   }
 
   onSubmit() {
-    let measurementRecord: DataPointRecord[] = [{
-      'measurementId': this.measurementId,
-      'dataPointNumber': 1,
-      'value': Number(this.form.value["feeling"])
-    }];
+    if (!Number(this.form.value["feeling"])) {
+      this.error = true;
+      this.errorMsg = "You must select a box before submitting";
 
-    this.dataService.postMeasurementResult(measurementRecord, this.dataService.categoryChosen.getValue())
-      .then(() => {
-        this.dialogConfig.panelClass = 'success-dialog-container';
-        this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
-          this.router.navigate(['survey-nav']);
+    } else{
+      let measurementRecord: DataPointRecord[] = [{
+        'measurementId': this.measurementId,
+        'dataPointNumber': 1,
+        'value': Number(this.form.value["feeling"])
+      }];
+  
+      this.dataService.postMeasurementResult(measurementRecord, this.dataService.categoryChosen.getValue())
+        .then(() => {
+          this.dialogConfig.panelClass = 'success-dialog-container';
+          this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
+            this.router.navigate(['survey-nav']);
+          });
+        })
+        .catch((err) => {
+          this.error = true;
+          this.errorMsg = "Something went wrong, please try again";
+        })
+        .finally(() => {
+          console.log("Finalized");
+          this.dataService.loading.next(false);
         });
-      })
-      .catch((err) => console.error(err + " Likert ERR"))
-      .finally(() => {
-        console.log("Finalized");
-        this.dataService.loading.next(false);
-      });
+    }
   }
 
 }
