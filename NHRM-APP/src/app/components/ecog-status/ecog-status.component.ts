@@ -19,6 +19,8 @@ export class EcogStatusComponent implements OnInit {
   status: number;
   dialogConfig: MatDialogConfig;
   patient: Patient;
+  error: boolean;
+  errorMsg: string;
 
   dialogInfo: ResourceDialog = {
     heading: "How to record ECOG status",
@@ -37,7 +39,9 @@ export class EcogStatusComponent implements OnInit {
 
   ecogStatus(value: number) {
     this.status = value;
-    console.log(this.status)
+    if (this.error) {
+      this.error = false;
+    }
   }
 
   openDialog() {
@@ -50,24 +54,33 @@ export class EcogStatusComponent implements OnInit {
   }
 
   recordECOG() {
-    let measurementRecord: DataPointRecord[] = [{
-      'measurementId': this.measurementId,
-      'dataPointNumber': 1,
-      'value': this.status
-    }];
+    if (!this.status) {
+      this.error = true;
+      this.errorMsg = "You must tick on a box";
 
-    this.dataService.postMeasurementResult(measurementRecord, this.dataService.categoryChosen.getValue())
-      .then(() => {
-        this.dialogConfig.panelClass = 'success-dialog-container';
-        this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
-          this.router.navigate(['survey-nav']);
+    } else {
+      let measurementRecord: DataPointRecord[] = [{
+        'measurementId': this.measurementId,
+        'dataPointNumber': 1,
+        'value': this.status
+      }];
+
+      this.dataService.postMeasurementResult(measurementRecord, this.dataService.categoryChosen.getValue())
+        .then(() => {
+          this.dialogConfig.panelClass = 'success-dialog-container';
+          this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
+            this.router.navigate(['survey-nav']);
+          });
+        })
+        .catch((err) => {
+          this.error = true;
+          this.errorMsg = "Something went wrong, please try again";
+        })
+        .finally(() => {
+          console.log("Finalized");
+          this.dataService.loading.next(false);
         });
-      })
-      .catch((err) => console.error(err + " ECOG ERR"))
-      .finally(() => {
-        console.log("Finalized");
-        this.dataService.loading.next(false);
-      });
+    }
   }
 
 }

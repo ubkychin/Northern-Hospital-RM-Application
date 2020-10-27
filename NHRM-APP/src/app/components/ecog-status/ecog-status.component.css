@@ -15,6 +15,15 @@
     line-height: 0%;
 }
 
+.error {
+    margin: 10px;
+    color: crimson;
+    font-weight: bold;
+    text-align: center;
+    width: 300px;
+    height: 15px;
+}
+
 .box {
     padding: 0px 5px 0px 5px;
     display: flex;
