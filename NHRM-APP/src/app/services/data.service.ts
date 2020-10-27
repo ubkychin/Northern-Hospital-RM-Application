@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { MeasurementResult } from '../models/measurement-result';
 import { Patient } from '../models/patient';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { PatientResource } from '../models/patient-resource';

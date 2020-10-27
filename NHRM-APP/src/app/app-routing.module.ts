@@ -11,13 +11,13 @@ import { FluidDrainComponent } from './components/fluid-drain/fluid-drain.compon
 import { QolComponent } from './components/qol/qol.component';
 import { PatientResourcesComponent } from './components/patient-resources/patient-resources.component';
 import { PatientDetailsComponent } from './patient-details/patient-details.component';
-import {QolVasComponent} from './components/qol-vas/qol-vas.component';
+import { QolVasComponent } from './components/qol-vas/qol-vas.component';
 import { AuthGuard } from './guard/auth.guard';
 import { PdfResourceComponent } from './components/pdf-resource/pdf-resource.component';
-import {VasSliderComponent} from './components/vas-slider/vas-slider.component';
+import { VasSliderComponent } from './components/vas-slider/vas-slider.component';
 import { Error404Component } from './components/error404/error404.component';
-import {QolVasSliderComponent} from './components/qol-vas-slider/qol-vas-slider.component';
-import {HadsComponent} from './components/hads/hads.component';
+import { QolVasSliderComponent } from './components/qol-vas-slider/qol-vas-slider.component';
+import { HadsComponent } from './components/hads/hads.component';
 
 
 const routes: Routes = [
@@ -26,25 +26,35 @@ const routes: Routes = [
     redirectTo: '/home',
     pathMatch: 'full'
   },
-  {path: 'login', component: LoginComponent},
-  {path: 'home', component: NavigationComponent, canActivate: [AuthGuard]},
-  {path: 'survey-nav', component: SurveyNavComponent, canActivate: [AuthGuard]},
-  {path: 'patient-details', component: PatientDetailsComponent, canActivate: [AuthGuard]},
-  {path: 'ecog-status', component: EcogStatusComponent, canActivate: [AuthGuard]},
-  {path: 'likert', component: LikertComponent, canActivate: [AuthGuard]},
-  {path: 'vas-breath', component: VasBreathComponent, canActivate: [AuthGuard]},
-  {path: 'vas-pain', component: VasPainComponent, canActivate: [AuthGuard]},
-  {path: 'fluid-drain', component: FluidDrainComponent, canActivate: [AuthGuard]},
-  {path: 'qol', component: QolComponent, canActivate: [AuthGuard],
-  children: [
-    {path: 'qol-vas', component: QolVasComponent, canActivate: [AuthGuard]}
-  ]},
-  {path: 'qol-vas', component: QolVasComponent, canActivate: [AuthGuard]},
-  {path: 'patient-resources', component: PatientResourcesComponent, canActivate: [AuthGuard]},
-  {path: 'pdf-resource', component: PdfResourceComponent, canActivate: [AuthGuard]},
-  {path: 'qol-vas-slider', component: QolVasSliderComponent, canActivate: [AuthGuard]},
-  {path:  '404-error', component: Error404Component},
-  {path: 'hads', component: HadsComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: NavigationComponent, canActivate: [AuthGuard] },
+  { path: 'survey-nav', component: SurveyNavComponent, canActivate: [AuthGuard] },
+  { path: 'patient-details', component: PatientDetailsComponent, canActivate: [AuthGuard] },
+  {
+    path: 'ecog-status',
+    component: EcogStatusComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: 'likert', component: LikertComponent, canActivate: [AuthGuard] },
+  {
+    path: 'vas-breath', 
+    component: VasBreathComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: 'vas-pain', component: VasPainComponent, canActivate: [AuthGuard] },
+  { path: 'fluid-drain', component: FluidDrainComponent, canActivate: [AuthGuard] },
+  {
+    path: 'qol', component: QolComponent, canActivate: [AuthGuard],
+    children: [
+      { path: 'qol-vas', component: QolVasComponent, canActivate: [AuthGuard] }
+    ]
+  },
+  { path: 'qol-vas', component: QolVasComponent, canActivate: [AuthGuard] },
+  { path: 'patient-resources', component: PatientResourcesComponent, canActivate: [AuthGuard] },
+  { path: 'pdf-resource', component: PdfResourceComponent, canActivate: [AuthGuard] },
+  { path: 'qol-vas-slider', component: QolVasSliderComponent, canActivate: [AuthGuard] },
+  { path: '404-error', component: Error404Component },
+  { path: 'hads', component: HadsComponent },
   {
     path: '**',
     redirectTo: '/404-error'

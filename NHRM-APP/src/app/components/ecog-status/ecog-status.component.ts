@@ -56,7 +56,7 @@ export class EcogStatusComponent implements OnInit {
   recordECOG() {
     if (!this.status) {
       this.error = true;
-      this.errorMsg = "You must tick on a box";
+      this.errorMsg = "You must select a box before submitting";
 
     } else {
       let measurementRecord: DataPointRecord[] = [{

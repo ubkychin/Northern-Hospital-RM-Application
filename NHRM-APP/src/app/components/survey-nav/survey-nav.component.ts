@@ -1,6 +1,4 @@
-import { identifierModuleUrl } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -32,6 +30,14 @@ export class SurveyNavComponent implements OnInit {
       case 2: this.categoryTitle = "Asthma";
         break;
     }
+  }
+
+  checkMeasurement(measurementId){
+
+    let patientCategory = JSON.parse(sessionStorage.getItem('Patient')).patientCategories
+    .find(catId => catId.categoryId == this.category);
+    
+    return patientCategory.measurementIds.find(measId => measId == measurementId);
   }
 
 }
