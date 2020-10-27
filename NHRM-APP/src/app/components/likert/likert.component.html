@@ -7,7 +7,6 @@
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
 
-
         <fieldset id="likert-scale">
 
             <div class="user-feeling">
@@ -63,7 +62,7 @@
         </fieldset>
 
         <div class="error">
-            <p *ngIf="this.error">{{this.errorMsg}}</p>
+            <p *ngIf="!this.form.value['feeling'] || this.error">{{this.errorMsg}}</p>
         </div>
         
         <button type="submit" class="btn submit-button">Submit</button>

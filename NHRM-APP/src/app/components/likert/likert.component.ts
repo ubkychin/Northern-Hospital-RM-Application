@@ -1,6 +1,5 @@
-import { AfterContentInit, AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
 import { Patient } from 'src/app/models/patient';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -22,7 +21,7 @@ export class LikertComponent implements OnInit {
   form: FormGroup;
   patient: Patient;
   error: boolean;
-  errorMsg: string = "Hello";
+  errorMsg: string;
   dialogConfig: MatDialogConfig;
 
   dialogInfo: ResourceDialog = {
@@ -54,17 +53,16 @@ export class LikertComponent implements OnInit {
   }
 
   onSubmit() {
-    if (!Number(this.form.value["feeling"])) {
-      this.error = true;
+    if (!this.form.value["feeling"]) {
       this.errorMsg = "You must select a box before submitting";
 
-    } else{
+    } else {
       let measurementRecord: DataPointRecord[] = [{
         'measurementId': this.measurementId,
         'dataPointNumber': 1,
         'value': Number(this.form.value["feeling"])
       }];
-  
+
       this.dataService.postMeasurementResult(measurementRecord, this.dataService.categoryChosen.getValue())
         .then(() => {
           this.dialogConfig.panelClass = 'success-dialog-container';
