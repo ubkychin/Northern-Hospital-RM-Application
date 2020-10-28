@@ -1,9 +1,12 @@
 <form class="form-container" #vasInputForm="ngForm" (ngSubmit)="submitVasScore(vasInputForm.form);">
 
-    <input class="vas-level-input" type="number" placeholder="0" min="0" max="10" maxlength="2" name="vas-input" ngModel
+    <input class="vas-level-input" (input)="this.error = false" type="number" placeholder="0" min="0" max="10" maxlength="2" name="vas-input" ngModel
         #vasInputField="ngModel" required>
+        
+    <div class="error">
+        <p *ngIf="this.error">{{this.errorMsg}}</p>
+    </div>
 
-    <button type="submit" class="submit-button" [disabled]="!vasInputForm.valid"
-        [ngClass]="{'disabled-btn': !vasInputForm.valid}">Next</button>
+    <button type="submit" class="submit-button">Next</button>
 
 </form>

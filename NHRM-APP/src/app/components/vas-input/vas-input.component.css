@@ -8,6 +8,15 @@
     max-width: 95%;
 }
 
+.error {
+    margin-bottom: 10px;
+    color: crimson;
+    font-weight: bold;
+    text-align: center;
+    width: 300px;
+    height: 15px;
+}
+
 .vas-level-input {
     margin: 40px;
     background-color: #D2E8F2;

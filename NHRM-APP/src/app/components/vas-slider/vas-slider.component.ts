@@ -36,14 +36,17 @@ export class VasSliderComponent implements OnInit {
         density: 1,
       },
     });
-
-    this.vasSlider.noUiSlider.on('update.one', (values) => {
-
+    this.vasSlider.noUiSlider.on('slide.one', (values) => {
       this.currentHealthScore = values[0];
     });
+/*     this.vasSlider.noUiSlider.on('update.one', (values) => {
+
+      this.currentHealthScore = values[0];
+    }); */
   }
 
   submitVasScore() {
+    console.log(this.currentHealthScore)
     this.vasValue.emit(this.currentHealthScore);
   }
 }

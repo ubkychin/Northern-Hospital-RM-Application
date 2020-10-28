@@ -78,7 +78,8 @@ export class QolComponent implements OnInit {
           { value: 4, label: this.survey[this.currentCategory].questions[3] },
           { value: 5, label: this.survey[this.currentCategory].questions[4] },
         ],
-        required: true
+        required: true,
+        change: () => this.isValid = true
       },
 
     }];
@@ -109,7 +110,7 @@ export class QolComponent implements OnInit {
       this.isValid = false;
     }
   }
-  
+
   submitSurvey() {
     let categories = Object.keys(this.form.value);
     let date = new Date();
