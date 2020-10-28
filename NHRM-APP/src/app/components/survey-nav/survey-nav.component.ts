@@ -25,8 +25,6 @@ export class SurveyNavComponent implements OnInit {
       { meas: "Hads", active: true },
       { meas: "Ventolin", active: true }
     ];
-    this.activeMeasurements[0].active = false;
-    this.activeMeasurements[5].active = false;
   }
 
   ngOnInit(): void {
