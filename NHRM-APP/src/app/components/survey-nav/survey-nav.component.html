@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" >
     <div class="heading">
         <h1 class="main-heading">My {{categoryTitle}} Surveys</h1>
     </div>
@@ -15,37 +15,44 @@
     </div>
 
     <div class="main-buttons">
-        <button *ngIf="checkMeasurement(1)" class="main-btn btn1" [routerLink]="['/ecog-status']">
+        <button *ngIf="checkMeasurement(1)" class="main-btn btn1" [routerLink]="['/ecog-status']" 
+        [ngStyle]="{'opacity': activeMeasurements[0].active ? '1': '0.7'}" [disabled]="!activeMeasurements[0].active">
             <fa-icon *ngIf="activeMeasurements[0].active" [icon]="['fas', 'running']" transform="grow-5"></fa-icon>
             <fa-icon *ngIf="!activeMeasurements[0].active" id="done" [icon]="['fas', 'check-circle']" transform="grow-5"></fa-icon>
             <p>Ecog Status</p>
         </button>
-        <button *ngIf="checkMeasurement(2)" class="main-btn btn2" [routerLink]="['/likert']">
+        <button *ngIf="checkMeasurement(2)" class="main-btn btn2" [routerLink]="['/likert']"
+        [ngStyle]="{'opacity': activeMeasurements[1].active ? '1': '0.7'}" [disabled]="!activeMeasurements[1].active">
             <fa-icon *ngIf="activeMeasurements[1].active" [icon]="['fas', 'smile-beam']" transform="grow-5"></fa-icon>
             <fa-icon *ngIf="!activeMeasurements[1].active" id="done" [icon]="['fas', 'check-circle']" transform="grow-5"></fa-icon>
             <p>Likert Scale</p>
         </button>
-        <button *ngIf="checkMeasurement(3)" class="main-btn btn3" [routerLink]="['/vas-breath']">
+        <button *ngIf="checkMeasurement(3)" class="main-btn btn3" [routerLink]="['/vas-breath']"
+        [ngStyle]="{'opacity': activeMeasurements[2].active ? '1': '0.7'}" [disabled]="!activeMeasurements[2].active">
             <fa-icon *ngIf="activeMeasurements[2].active" [icon]="['fas', 'lungs']" transform="grow-5"></fa-icon>
             <fa-icon *ngIf="!activeMeasurements[2].active" id="done" [icon]="['fas', 'check-circle']" transform="grow-5"></fa-icon>
             <p>Breathlessness</p>
         </button>
-        <button *ngIf="checkMeasurement(4)" class="main-btn btn4" [routerLink]="['/vas-pain']">
+        <button *ngIf="checkMeasurement(4)" class="main-btn btn4" [routerLink]="['/vas-pain']"
+        [ngStyle]="{'opacity': activeMeasurements[3].active ? '1': '0.7'}" [disabled]="!activeMeasurements[3].active">
             <fa-icon *ngIf="activeMeasurements[3].active" [icon]="['fas', 'user-injured']" transform="grow-5"></fa-icon>
             <fa-icon *ngIf="!activeMeasurements[3].active" id="done" [icon]="['fas', 'check-circle']" transform="grow-5"></fa-icon>
             <p>Level of Pain</p>
         </button>
-        <button *ngIf="checkMeasurement(5)" class="main-btn btn5" [routerLink]="['/fluid-drain']">
+        <button *ngIf="checkMeasurement(5)" class="main-btn btn5" [routerLink]="['/fluid-drain']"
+        [ngStyle]="{'opacity': activeMeasurements[4].active ? '1': '0.7'}" [disabled]="!activeMeasurements[4].active">
             <fa-icon *ngIf="activeMeasurements[4].active" [icon]="['fas', 'syringe']" transform="grow-5"></fa-icon>
             <fa-icon *ngIf="!activeMeasurements[4].active" id="done" [icon]="['fas', 'check-circle']" transform="grow-5"></fa-icon>
             <p>Fluid Drain</p>
         </button>
-        <button *ngIf="checkMeasurement(6)" class="main-btn btn6" [routerLink]="['/qol']">
+        <button *ngIf="checkMeasurement(6)" class="main-btn btn6" [routerLink]="['/qol']"
+        [ngStyle]="{'opacity': activeMeasurements[5].active ? '1': '0.7'}" [disabled]="!activeMeasurements[5].active">
             <fa-icon *ngIf="activeMeasurements[5].active" [icon]="['fas', 'thumbs-up']" transform="grow-5"></fa-icon>
             <fa-icon *ngIf="!activeMeasurements[5].active" id="done" [icon]="['fas', 'check-circle']" transform="grow-5"></fa-icon>
             <p>Quality of Life</p>
         </button>
-        <button *ngIf="checkMeasurement(8)" class="main-btn btn6" [routerLink]="['/404-error']">
+        <button *ngIf="checkMeasurement(8)" class="main-btn btn6" [routerLink]="['/404-error']"
+        [ngStyle]="{'opacity': activeMeasurements[7].active ? '1': '0.7'}" [disabled]="!activeMeasurements[7].active">
             <fa-icon *ngIf="activeMeasurements[7].active" [icon]="['fas', 'thumbs-up']" transform="grow-5"></fa-icon>
             <fa-icon *ngIf="!activeMeasurements[7].active" id="done" [icon]="['fas', 'check-circle']" transform="grow-5"></fa-icon>
             <p>Ventolin</p>

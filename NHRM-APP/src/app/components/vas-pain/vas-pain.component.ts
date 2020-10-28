@@ -26,7 +26,7 @@ export class VasPainComponent implements OnInit {
     heading: "How to perform VAS score",
     content: "Instruction - To help you to best describe how good or bad you feel on a given day, we have drawn a scale from Best on the top of the slider to Worst on the bottom of the slider. Please position the slider at the point that describes how you feel today."
   }
-  
+
   constructor(public dialog: MatDialog, private dataService: DataService, private router: Router) {
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
@@ -73,6 +73,10 @@ export class VasPainComponent implements OnInit {
         this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
           this.router.navigate(['survey-nav']);
         });
+
+        let submittedMeasurements: number[] = this.dataService.submittedMeasurements.value;
+        submittedMeasurements.push(this.measurementId);
+        this.dataService.submittedMeasurements.next(submittedMeasurements);
       })
       .catch((err) => console.error(err + " Pain ERR"))
       .finally(() => {

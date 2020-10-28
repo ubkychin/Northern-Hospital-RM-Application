@@ -63,6 +63,11 @@ export class FluidDrainComponent implements OnInit {
           this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
             this.router.navigate(['survey-nav']);
           });
+
+          let submittedMeasurements: number[] = this.dataService.submittedMeasurements.value;
+          submittedMeasurements.push(this.measurementId);
+          this.dataService.submittedMeasurements.next(submittedMeasurements);
+          
         })
         .catch((err) => {
           this.errorMsg = "Something went wrong, please try again";

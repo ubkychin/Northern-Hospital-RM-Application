@@ -20,8 +20,10 @@ export class DataService {
   patientResources: PatientResource[];
   pdfResource: string;
   categoryChosen: BehaviorSubject<any>;
+  submittedMeasurements: BehaviorSubject<number[]>;
 
   constructor(private _http: HttpClient, private spinner: NgxSpinnerService, private jwtHelper: JwtHelperService) {
+    this.submittedMeasurements = new BehaviorSubject([]);
     this.termsAcceptance = new BehaviorSubject(null);
     this.emergancyAgreement = new BehaviorSubject(null);
     this.loading = new BehaviorSubject(false);

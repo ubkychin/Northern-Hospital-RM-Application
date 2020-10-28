@@ -1,4 +1,4 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { DataService } from './services/data.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -10,7 +10,7 @@ import { AuthService } from './services/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'NHRM-APP';
 
   @ViewChild('bars') toggleNav: ElementRef;
@@ -45,6 +45,11 @@ export class AppComponent {
 
     this.loadingSpinner();
   }
+
+  ngOnInit(): void {
+    /* this.router.navigate(['/home']); */
+  }
+
 
   selectCategory(value){
     this.dataService.categoryChosen.next(value);

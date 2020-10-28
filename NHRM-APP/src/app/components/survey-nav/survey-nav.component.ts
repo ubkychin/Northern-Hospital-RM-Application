@@ -16,19 +16,24 @@ export class SurveyNavComponent implements OnInit {
   constructor(private dataService: DataService) {
     this.surveys = ["Survey ", "Survey "]
     this.activeMeasurements = [
-      { meas: "Ecog", active: true },
-      { meas: "Likert", active: true },
-      { meas: "Breath", active: true },
-      { meas: "Pain", active: true },
-      { meas: "Fluid", active: true },
-      { meas: "Qol", active: true },
-      { meas: "Hads", active: true },
-      { meas: "Ventolin", active: true }
+      { meas: "ecog", active: true },
+      { meas: "likert", active: true },
+      { meas: "breath", active: true },
+      { meas: "pain", active: true },
+      { meas: "fluid", active: true },
+      { meas: "qol", active: true },
+      { meas: "hads", active: true },
+      { meas: "ventolin", active: true }
     ];
+
+    this.dataService.submittedMeasurements.subscribe((data) => {
+      data.forEach(number => {
+        this.activeMeasurements[number - 1].active = false;
+      })
+    });
   }
 
   ngOnInit(): void {
-    console.log("something")
     this.dataService.categoryChosen.subscribe(data => {
       this.category = data;
       this.setSurveyTtitle();
