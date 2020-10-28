@@ -112,8 +112,7 @@ export class QolComponent implements OnInit {
   }
 
   submitSurvey() {
-    let categories = Object.keys(this.form.value);
-    let date = new Date();
+    let categories = Object.keys(this.form.value);    
 
     for (let i = 0; i < categories.length; i++) {
       this.measurementRecord[i] = ({

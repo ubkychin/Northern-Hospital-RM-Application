@@ -175,32 +175,30 @@ input[type=radio]:checked {
 
 .btn1 {
     background: linear-gradient(180deg, #75BFE7, #4d8ab8);
-    /* background: #75BFE7; */
 }
 
 .btn2 {
-    /* background: #8AD999; */
     background: linear-gradient(180deg, #8AD999, #478a53);
 }
 
 .btn3 {
-    /* background: #AA6DB4; */
     background: linear-gradient(180deg, #AA6DB4, #862F93);
 }
 
 .btn4 {
-    /* background: #EBA563; */
     background: linear-gradient(180deg, #EBA563, #DB834D);
 }
 
 .btn5 {
-    /* background: #D67AAF; */
     background: linear-gradient(180deg, #D67AAF, #C43984);
 }
 
 .btn6 {
-    /* background: #749ACE; */
     background: linear-gradient(180deg, #749ACE, #3468B8);
+}
+
+.btn7 {
+    background: linear-gradient(180deg, #db5d5d, #b83737);
 }
 
 .dialog-style {

@@ -51,7 +51,7 @@
             <fa-icon *ngIf="!activeMeasurements[5].active" id="done" [icon]="['fas', 'check-circle']" transform="grow-5"></fa-icon>
             <p>Quality of Life</p>
         </button>
-        <button *ngIf="checkMeasurement(8)" class="main-btn btn6" [routerLink]="['/404-error']"
+        <button *ngIf="checkMeasurement(8)" class="main-btn btn7" [routerLink]="['/404-error']"
         [ngStyle]="{'opacity': activeMeasurements[7].active ? '1': '0.7'}" [disabled]="!activeMeasurements[7].active">
             <fa-icon *ngIf="activeMeasurements[7].active" [icon]="['fas', 'thumbs-up']" transform="grow-5"></fa-icon>
             <fa-icon *ngIf="!activeMeasurements[7].active" id="done" [icon]="['fas', 'check-circle']" transform="grow-5"></fa-icon>
