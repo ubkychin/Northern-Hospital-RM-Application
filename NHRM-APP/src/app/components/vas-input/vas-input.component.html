@@ -1,12 +1,12 @@
-<form class="form-container" #vasInputForm="ngForm" (ngSubmit)="submitVasScore(vasInputForm.form);">
+<div class="form-container">
 
-    <input class="vas-level-input" (input)="this.error = false" type="number" placeholder="0" min="0" max="10" maxlength="2" name="vas-input" ngModel
-        #vasInputField="ngModel" required>
+    <input placeholder="0" min="0" max="100" maxlength="3" type="number" class="vas-level-input" [(ngModel)]="this.vasScore"
+    oninput="if(this.value < 0) this.value = 0; if(this.value > 100) this.value = 100;">
         
     <div class="error">
-        <p *ngIf="this.error">{{this.errorMsg}}</p>
+        <p *ngIf="!this.vasScore">{{this.errorMsg}}</p>
     </div>
 
-    <button type="submit" class="submit-button">Next</button>
+    <button type="submit" class="submit-button" (click)="submitVasScore()">Next</button>
 
-</form>
+</div>

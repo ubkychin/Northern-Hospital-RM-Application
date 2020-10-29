@@ -2,6 +2,10 @@
 
     <div class="vas-slider"></div>
 
+    <div class="error">
+        <p *ngIf="!this.currentHealthScore">{{this.errorMsg}}</p>
+    </div>
+
     <button type="submit" class="submit-button" (click)="submitVasScore()">Submit</button>
 
 </div>

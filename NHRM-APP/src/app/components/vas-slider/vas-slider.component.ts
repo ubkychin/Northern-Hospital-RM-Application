@@ -13,6 +13,7 @@ export class VasSliderComponent implements OnInit {
   currentHealthScore: Number;
   vasSlider: noUiSlider.Instance;
   isValid: Boolean = true;
+  errorMsg: string;
 
   @Output() vasValue: EventEmitter<Number> = new EventEmitter<Number>();
 
@@ -36,17 +37,19 @@ export class VasSliderComponent implements OnInit {
         density: 1,
       },
     });
+
     this.vasSlider.noUiSlider.on('slide.one', (values) => {
       this.currentHealthScore = values[0];
     });
-/*     this.vasSlider.noUiSlider.on('update.one', (values) => {
 
-      this.currentHealthScore = values[0];
-    }); */
   }
 
   submitVasScore() {
-    console.log(this.currentHealthScore)
-    this.vasValue.emit(this.currentHealthScore);
+    if (this.currentHealthScore) {
+      console.log(this.currentHealthScore)
+      this.vasValue.emit(this.currentHealthScore);
+    } else {
+      this.errorMsg = "You must enter a value to proceed";
+    }
   }
 }
