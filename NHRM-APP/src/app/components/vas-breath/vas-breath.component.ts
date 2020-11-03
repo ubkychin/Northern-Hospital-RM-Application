@@ -68,7 +68,15 @@ export class VasBreathComponent implements OnInit {
   }
 
   recordVASBreath() {
-    this.dataService.postMeasurementResult(this.measurementRecord, this.dataService.categoryChosen.getValue())
+    let categoryList = [];
+      
+    this.patient.patientCategories.forEach(p => {
+      if(p.measurementIds.find(m => m == this.measurementId)){
+        categoryList.push(p.categoryId);
+      }
+    })
+
+    this.dataService.postMeasurementResult(this.measurementRecord, categoryList)
       .then(() => {
         this.dialogConfig.panelClass = 'success-dialog-container';
         this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {

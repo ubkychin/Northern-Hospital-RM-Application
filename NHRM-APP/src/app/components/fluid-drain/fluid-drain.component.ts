@@ -57,17 +57,21 @@ export class FluidDrainComponent implements OnInit {
         'value': this.fluid
       }];
   
-      this.dataService.postMeasurementResult(measurementRecord, this.dataService.categoryChosen.getValue())
+      let categoryList = [];
+      
+      this.patient.patientCategories.forEach(p => {
+        if(p.measurementIds.find(m => m == this.measurementId)){
+          categoryList.push(p.categoryId);
+        }
+      })
+
+      this.dataService.postMeasurementResult(measurementRecord, categoryList)
         .then(() => {
           this.dialogConfig.panelClass = 'success-dialog-container';
           this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
             this.router.navigate(['survey-nav']);
           });
-
-          let submittedMeasurements: number[] = this.dataService.submittedMeasurements.value;
-          submittedMeasurements.push(this.measurementId);
-          this.dataService.submittedMeasurements.next(submittedMeasurements);
-          
+   
         })
         .catch((err) => {
           this.errorMsg = "Something went wrong, please try again";

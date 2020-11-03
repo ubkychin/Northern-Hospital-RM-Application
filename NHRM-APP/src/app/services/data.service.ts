@@ -44,15 +44,17 @@ export class DataService {
     }
   }
 
-  postMeasurementResult(measurementRecord: DataPointRecord[], categoryId: number) {
+  postMeasurementResult(measurementRecord: DataPointRecord[], categoryIdList: number[]) {
     this.loading.next(true);
-    console.log(measurementRecord);
-    console.log(categoryId);
+    let params = new HttpParams();
+    params = params.append('urNumber', this.patient.value['urNumber']);
+    categoryIdList.forEach(c => {
+      params = params.append('categoryIdList', c.toString())
+    })
     return new Promise((resolve, reject) => {
       this._http.post(this.apiURL + "/patient/recordmeasurement",
         measurementRecord, {
-          params: new HttpParams().append('urNumber', this.patient.value['urNumber'])
-          .append('categoryId', categoryId.toString())
+          params: params
         }).subscribe(
           res => {
             console.log("MR Resolved")

@@ -20,10 +20,8 @@ export class SurveyNavComponent implements OnInit {
       { meas: "likert", active: true },
       { meas: "breath", active: true },
       { meas: "pain", active: true },
-      { meas: "fluid", active: true },
       { meas: "qol", active: true },
-      { meas: "hads", active: true },
-      { meas: "ventolin", active: true }
+      { meas: "hads", active: true }
     ];
 
     this.dataService.submittedMeasurements.subscribe((data) => {

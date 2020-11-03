@@ -63,7 +63,17 @@ export class LikertComponent implements OnInit {
         'value': Number(this.form.value["feeling"])
       }];
 
-      this.dataService.postMeasurementResult(measurementRecord, this.dataService.categoryChosen.getValue())
+      let categoryList = [];
+      
+      this.patient.patientCategories.forEach(p => {
+        if(p.measurementIds.find(m => m == this.measurementId)){
+          categoryList.push(p.categoryId);
+        }
+      })
+
+      console.log(categoryList);
+
+      this.dataService.postMeasurementResult(measurementRecord, categoryList)
         .then(() => {
           this.dialogConfig.panelClass = 'success-dialog-container';
           this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {

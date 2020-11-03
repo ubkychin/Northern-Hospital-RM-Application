@@ -65,7 +65,17 @@ export class EcogStatusComponent implements OnInit {
         'value': this.status
       }];
 
-      this.dataService.postMeasurementResult(measurementRecord, this.dataService.categoryChosen.getValue())
+      let categoryList = [];
+      
+      this.patient.patientCategories.forEach(p => {
+        if(p.measurementIds.find(m => m == this.measurementId)){
+          categoryList.push(p.categoryId);
+        }
+      })
+
+      console.log(categoryList);
+
+      this.dataService.postMeasurementResult(measurementRecord, categoryList)
         .then(() => {
           this.dialogConfig.panelClass = 'success-dialog-container';
 
