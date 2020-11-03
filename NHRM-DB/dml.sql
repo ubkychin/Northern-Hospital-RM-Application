@@ -19,7 +19,7 @@ VALUES('ECOG Status', 1),
     ('Likert Scale', 1),
     ('Breathlessness', 1),
     ('Level of Pain', 1),
-    ('Fluid Drain', 1),
+    ('Fluid Drain', 0),
     ('Quality of Life', 1),
     ('HADS', 1),
     ('Ventolin', 1);

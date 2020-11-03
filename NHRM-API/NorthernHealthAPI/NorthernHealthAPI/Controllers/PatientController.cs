@@ -90,35 +90,40 @@ namespace NorthernHealthAPI.Controllers
         }
 
         //  GET api/patient/recordmeasurement
-        //  Accepts a List of DataPointRecords, urNumber (string) and categoryId (int) - inserts a MeasurementRecord
+        //  Accepts a List of DataPointRecords, urNumber (string) and List of categoryId (int) - inserts a MeasurementRecord
         //  and all DataPointRecords sent
         //  If there is an error, the transaction will be rolled back
         [HttpPost, Route("recordmeasurement"), Authorize]
-        public async Task<IActionResult> RecordMeasurement(List<DataPointRecord> records, string urNumber, int categoryId)
+        public async Task<IActionResult> RecordMeasurement(List<DataPointRecord> records, string urNumber, 
+            [FromQuery(Name = "categoryIdList")] List<int> categoryId)
         {
-
             try
             {
                 await _context.Database.BeginTransactionAsync();
 
-                var measurementRecord = new MeasurementRecord
-                {
-                    DateTimeRecorded = DateTime.Now,
-                    MeasurementId = records.FirstOrDefault().MeasurementId,
-                    CategoryId = categoryId,
-                    Urnumber = urNumber
-                };
+                var recordedDate = DateTime.Now;
 
-                _context.MeasurementRecord.Add(measurementRecord);
-                await _context.SaveChangesAsync();
-
-                foreach (DataPointRecord record in records)
+                foreach(int catId in categoryId)
                 {
-                    record.MeasurementRecordId = measurementRecord.MeasurementRecordId;
-                    _context.DataPointRecord.Add(record);
+                    var measurementRecord = new MeasurementRecord
+                    {
+                        DateTimeRecorded = recordedDate,
+                        MeasurementId = records.FirstOrDefault().MeasurementId,
+                        CategoryId = catId,
+                        Urnumber = urNumber
+                    };
+
+                    _context.MeasurementRecord.Add(measurementRecord);
+                    await _context.SaveChangesAsync();
+
+                    foreach (DataPointRecord record in records)
+                    {
+                        record.MeasurementRecordId = measurementRecord.MeasurementRecordId;
+                        _context.DataPointRecord.Add(record);
+                    }
+
+                    await _context.SaveChangesAsync();
                 }
-
-                await _context.SaveChangesAsync();
 
                 _context.Database.CommitTransaction();
 
