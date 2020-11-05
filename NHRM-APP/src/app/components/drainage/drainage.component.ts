@@ -2,19 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
-  selector: 'app-survey-nav',
-  templateUrl: './survey-nav.component.html',
-  styleUrls: ['./survey-nav.component.css']
+  selector: 'app-drainage',
+  templateUrl: './drainage.component.html',
+  styleUrls: ['./drainage.component.css']
 })
-export class SurveyNavComponent implements OnInit {
+export class DrainageComponent implements OnInit {
 
-  categoryTitle: any;
-  surveys: string[];
-  category: number = 0;
   activeMeasurements: any[] = [];
 
   constructor(private dataService: DataService) {
-
     dataService.getDisabledMeasurements()
     .then((res) => console.log(res))
     .catch((err) => console.log(err))
@@ -35,21 +31,9 @@ export class SurveyNavComponent implements OnInit {
         this.activeMeasurements[number - 1].active = false;
       })
     });
-
-  }
+   }
 
   ngOnInit(): void {
-    this.dataService.categoryChosen.subscribe(data => {
-      this.category = data;
-    })
-  }
-
-  checkMeasurement(measurementId) {
-
-    let patientCategory = JSON.parse(sessionStorage.getItem('Patient')).patientCategories
-      .find(catId => catId.categoryId == this.category);
-
-    return patientCategory.measurementIds.find(measId => measId == measurementId);
   }
 
 }

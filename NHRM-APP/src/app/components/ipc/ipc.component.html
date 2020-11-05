@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="heading">
+        <h1 class="main-heading">My IPC</h1>
+        <h3 class="sub-heading">There is a build up of fluid around the lungs, etc...</h3>
+    </div>
+
+    <div class="main-buttons">
+        <button class="main-btn btn2 btn-reg" [routerLink]="['/patient-details']">
+            <fa-icon [icon]="['fas', 'user-edit']"></fa-icon>
+            <p>My Condition Details</p>
+        </button>
+        <button class="main-btn btn3 btn-reg" [routerLink]="['/my-ipc-drainage']">
+            <fa-icon [icon]="['fas', 'question-circle']" transform="grow-3"></fa-icon>
+            <p>My Drainage</p>
+        </button>
+        <button class="main-btn btn5 btn-reg" [routerLink]="['/my-ipc-surveys']">
+            <fa-icon [icon]="['fas', 'photo-video']"></fa-icon>
+            <p>My Surveys</p>
+        </button>
+        <button class="main-btn btn1 btn-reg" [routerLink]="['/patient-resources']">
+            <fa-icon [icon]="['fas', 'photo-video']"></fa-icon>
+            <p>My Resources</p>
+        </button>
+    </div>
+</div>
+<div class="main-wide-buttons">
+    <button class="main-btn btn4 btn-wide" [routerLink]="['/patient-details']">
+        <fa-icon [icon]="['fas', 'phone-square-alt']" transform="grow-5"></fa-icon>
+        <p>Contact Northern</p>
+    </button>
+</div>

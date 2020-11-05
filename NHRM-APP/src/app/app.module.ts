@@ -26,7 +26,7 @@ import { InfoBarComponent } from './components/info-bar/info-bar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
-import { PatientDetailsComponent } from './patient-details/patient-details.component';
+import { PatientDetailsComponent } from './components/patient-details/patient-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QolVasComponent } from './components/qol-vas/qol-vas.component';
 import { SafePipe } from './pipes/safe.pipe';
@@ -34,13 +34,15 @@ import { PdfResourceComponent } from './components/pdf-resource/pdf-resource.com
 import { VasSliderComponent } from './components/vas-slider/vas-slider.component';
 import { Error404Component } from './components/error404/error404.component';
 import { ResourceFilterPipe } from './pipes/resource-filter.pipe';
-import { HadsComponent } from './components/hads/hads.component';
 import { VasInputComponent } from './components/vas-input/vas-input.component';
 import { ResourceDialogComponent } from './components/dialogs/resource-dialog/resource-dialog.component';
 import { SuccessDialogComponent } from './components/dialogs/success-dialog/success-dialog.component';
 import { DisclaimerDialogComponent } from './components/dialogs/disclaimer-dialog/disclaimer-dialog.component';
 import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-dialog.component';
 import { SurveyQuestionComponent } from './components/survey-question/survey-question.component';
+import { IpcComponent } from './components/ipc/ipc.component';
+import { IpcServeysComponent } from './components/ipc-serveys/ipc-serveys.component';
+import { DrainageComponent } from './components/drainage/drainage.component';
 
 export function tokenGetter() {
   return JSON.parse(localStorage.getItem('Authorization'));
@@ -67,13 +69,15 @@ export function tokenGetter() {
     VasSliderComponent,
     Error404Component,
     ResourceFilterPipe,
-    HadsComponent,
     VasInputComponent,
     ResourceDialogComponent,
     SuccessDialogComponent,
     DisclaimerDialogComponent,
     AlertDialogComponent,
-    SurveyQuestionComponent
+    SurveyQuestionComponent,
+    IpcComponent,
+    IpcServeysComponent,
+    DrainageComponent
   ],
   imports: [
     BrowserModule,

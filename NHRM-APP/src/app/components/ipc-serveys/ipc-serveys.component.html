@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="heading">
+        <h1 class="main-heading">My IPC Surveys</h1>
+    </div>
+
+    <div class="main-buttons">
+        <button class="main-btn btn6 btn-reg" [routerLink]="['/qol']"
+        [ngStyle]="{'opacity': activeMeasurements[5].active ? '1': '0.7'}" [disabled]="!activeMeasurements[5].active">
+            <fa-icon *ngIf="activeMeasurements[5].active" [icon]="['fas', 'thumbs-up']" transform="grow-5"></fa-icon>
+            <fa-icon *ngIf="!activeMeasurements[5].active" id="done" [icon]="['fas', 'check-circle']" transform="grow-5"></fa-icon>
+            <p>Quality of Life</p>
+        </button>
+        <button class="main-btn btn1 btn-reg" [routerLink]="['/ecog-status']" 
+        [ngStyle]="{'opacity': activeMeasurements[0].active ? '1': '0.7'}" [disabled]="!activeMeasurements[0].active">
+            <fa-icon *ngIf="activeMeasurements[0].active" [icon]="['fas', 'running']" transform="grow-5"></fa-icon>
+            <fa-icon *ngIf="!activeMeasurements[0].active" id="done" [icon]="['fas', 'check-circle']" transform="grow-5"></fa-icon>
+            <p>Ecog Status</p>
+        </button>
+    </div>
+</div>

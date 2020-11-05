@@ -134,15 +134,16 @@ input[type=radio]:checked {
     justify-items: center;
 }
 
+.main-wide-buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .main-buttons>div>div {
     flex-grow: 1;
     width: 33%;
-}
-
-.main-btn {
-    margin: 5px;
-    width: 150px;
-    height: 95px;
 }
 
 .main-btn p {
@@ -173,6 +174,12 @@ input[type=radio]:checked {
     appearance: none;
 }
 
+.btn-reg {
+    margin: 5px;
+    width: 150px;
+    height: 95px;
+}
+
 .btn1 {
     background: linear-gradient(180deg, #75BFE7, #4d8ab8);
 }
@@ -199,6 +206,12 @@ input[type=radio]:checked {
 
 .btn7 {
     background: linear-gradient(180deg, #db5d5d, #b83737);
+}
+
+.btn-wide {
+    margin: 5px;
+    height: 75px;
+    width: 310px;
 }
 
 .dialog-style {
@@ -250,4 +263,8 @@ mat-dialog-content, h2 {
     color: black;
     min-height: fit-content;
     min-width: fit-content;
+}
+
+#done {
+    color: rgb(94, 255, 94);
 }

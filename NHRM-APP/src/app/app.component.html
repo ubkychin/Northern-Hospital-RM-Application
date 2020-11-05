@@ -29,8 +29,9 @@
             <div class="dropdown" [ngStyle]=" {'display' : this.toggle ? 'none' : 'block'}">
                 <div routerLink="patient-resources">My Resources</div>
                 <div routerLink="patient-details">My Details</div>
-                <div routerLink="survey-nav" (click)="selectCategory(1)">My IPC</div>
-                <div routerLink="survey-nav" (click)="selectCategory(2)">My Asthma</div>
+                <div routerLink="my-ipc" (click)="selectCategory(1)">My IPC</div>
+                <div routerLink="404-error" (click)="selectCategory(2)">My Asthma</div>
+                <div routerLink="404-error" (click)="selectCategory(3)">My COPD</div>
                 <div routerLink="patient-details">Help Info</div>
                 <div routerLink="patient-details">Contact Us</div>
             </div>

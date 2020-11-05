@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="heading">
+        <h1 class="main-heading">My IPC Drainage</h1>
+    </div>
+
+    <div class="main-buttons">
+        <button class="main-btn btn3 btn-reg" [routerLink]="['/vas-breath']"
+        [ngStyle]="{'opacity': activeMeasurements[2].active ? '1': '0.7'}" [disabled]="!activeMeasurements[2].active">
+            <fa-icon *ngIf="activeMeasurements[2].active" [icon]="['fas', 'lungs']" transform="grow-5"></fa-icon>
+            <fa-icon *ngIf="!activeMeasurements[2].active" id="done" [icon]="['fas', 'check-circle']" transform="grow-5"></fa-icon>
+            <p>Breathlessness</p>
+        </button>
+        <button class="main-btn btn4 btn-reg" [routerLink]="['/vas-pain']"
+        [ngStyle]="{'opacity': activeMeasurements[3].active ? '1': '0.7'}" [disabled]="!activeMeasurements[3].active">
+            <fa-icon *ngIf="activeMeasurements[3].active" [icon]="['fas', 'user-injured']" transform="grow-5"></fa-icon>
+            <fa-icon *ngIf="!activeMeasurements[3].active" id="done" [icon]="['fas', 'check-circle']" transform="grow-5"></fa-icon>
+            <p>Level of Pain</p>
+        </button>
+        <button class="main-btn btn5 btn-reg" [routerLink]="['/fluid-drain']">
+            <fa-icon [icon]="['fas', 'syringe']" transform="grow-5"></fa-icon>
+            <p>Fluid Drain</p>
+        </button>
+    </div>
+</div>

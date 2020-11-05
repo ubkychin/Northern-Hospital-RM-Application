@@ -3,36 +3,31 @@
         <h1 class="main-heading">Department of Respiratory Medicine</h1>
         <h3 class="sub-heading">Outpatient Status Reporter</h3>
     </div>
-    <div class="heading">
-        <h1 class="main-heading">My Categories</h1>
-    </div>
-    <button *ngIf="checkCategory(1)" (click)="selectCategory(1)" class="main-btn btn5" [routerLink]="['/survey-nav']">
+    <button *ngIf="checkCategory(1)" (click)="selectCategory(1)" class="main-btn btn-reg btn5"
+        [routerLink]="['/my-ipc']">
         <fa-icon [icon]="['fas', 'edit']" transform="grow-2"></fa-icon>
         <p>My IPC</p>
     </button>
-    <button *ngIf="checkCategory(2)" (click)="selectCategory(2)" class="main-btn btn6" [routerLink]="['/survey-nav']">
+    <button *ngIf="checkCategory(2)" (click)="selectCategory(2)" class="main-btn btn-reg btn6"
+        [routerLink]="['/404-error']">
         <fa-icon [icon]="['fas', 'edit']"></fa-icon>
         <p>My Asthma</p>
     </button>
-    <div class="heading">
-        <h1 class="main-heading">Resources</h1>
-    </div>
-    <div class="main-buttons">
-<!--         <button class="main-btn btn1" [routerLink]="['/patient-resources']">
-            <fa-icon [icon]="['fas', 'photo-video']"></fa-icon>
-            <p>My Resources</p>
-        </button> -->
-        <button class="main-btn btn2" [routerLink]="['/patient-details']">
-            <fa-icon [icon]="['fas', 'user-edit']"></fa-icon>
-            <p>My Details</p>
-        </button>
-        <button class="main-btn btn3" [routerLink]="['/patient-details']">
-            <fa-icon [icon]="['fas', 'question-circle']" transform="grow-3"></fa-icon>
-            <p>Help Info</p>
-        </button>
-        <button class="main-btn btn4" [routerLink]="['/patient-details']">
-            <fa-icon [icon]="['fas', 'phone-square-alt']" transform="grow-5"></fa-icon>
-            <p>Contact Us</p>
-        </button>
-    </div>
+    <button *ngIf="checkCategory(3)" (click)="selectCategory(3)" class="main-btn btn-reg btn4"
+        [routerLink]="['/404-error']">
+        <fa-icon [icon]="['fas', 'edit']"></fa-icon>
+        <p>My COPD</p>
+    </button>
+
+
+</div>
+<div class="main-wide-buttons">
+    <button class="main-btn btn2 btn-wide" [routerLink]="['/patient-details']">
+        <fa-icon [icon]="['fas', 'user-edit']"></fa-icon>
+        <p>My Settings</p>
+    </button>
+    <button class="main-btn btn3 btn-wide" [routerLink]="['/patient-details']">
+        <fa-icon [icon]="['fas', 'question-circle']" transform="grow-3"></fa-icon>
+        <p>Help Info</p>
+    </button>
 </div>
