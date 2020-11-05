@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-ipc',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IpcComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataService: DataService) {
+    dataService.getDisabledMeasurements()
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err))
+    .finally(() => this.dataService.loading.next(false));
+   }
 
   ngOnInit(): void {
   }

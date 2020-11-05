@@ -11,11 +11,6 @@ export class IpcServeysComponent implements OnInit {
   activeMeasurements: any[] = [];
 
   constructor(private dataService: DataService) {
-    dataService.getDisabledMeasurements()
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err))
-    .finally(() => this.dataService.loading.next(false));
-
     this.activeMeasurements = [
       { meas: "ecog", active: true },
       { meas: "likert", active: true },

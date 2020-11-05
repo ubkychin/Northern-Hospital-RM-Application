@@ -10,7 +10,7 @@ import { AuthService } from './services/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'NHRM-APP';
 
   @ViewChild('bars') toggleNav: ElementRef;
@@ -25,17 +25,16 @@ export class AppComponent implements OnInit{
     private location: Location, private renderer: Renderer2,
     private spinner: NgxSpinnerService) {
 
-    //Change all these to True to bypass all Login and Agreement screens
     this.dataService.termsAcceptance.subscribe(data => {
-      this.authorised = data; //true
+      this.authorised = data;
     })
     this.authService.loggedIn.subscribe(data => {
-      this.loggedIn = data; //true
+      this.loggedIn = data;
     })
     this.dataService.emergancyAgreement.subscribe(data => {
-      this.emergancy = data; //true
+      this.emergancy = data;
     })
-    
+
     this.router.events.subscribe(event => {
       if (this.location.path() !== '/home')
         this.isRoot = false;
@@ -47,10 +46,10 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    //this.router.navigate(['/home']);
+    this.router.navigate(['/home']);
   }
 
-  selectCategory(value){
+  selectCategory(value) {
     this.dataService.categoryChosen.next(value);
   }
 
@@ -64,7 +63,6 @@ export class AppComponent implements OnInit{
   }
 
   dropdown() {
-    //Dropdown Nav
     this.toggle = false
     this.unlistener = this.renderer.listen('window', 'click', (e: Event) => {
       console.log("Clicked")
@@ -83,5 +81,12 @@ export class AppComponent implements OnInit{
         this.spinner.hide();
       }
     });
+  }
+
+  checkCategory(categoryId) {
+    if (sessionStorage.getItem('Patient')) {
+      return JSON.parse(sessionStorage.getItem('Patient')).patientCategories
+        .find(catId => catId.categoryId == categoryId);
+    }
   }
 }

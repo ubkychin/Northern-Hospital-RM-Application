@@ -14,7 +14,6 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { LoginComponent } from './components/login/login.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { SurveyNavComponent } from './components/survey-nav/survey-nav.component';
 import { FluidDrainComponent } from './measurements/fluid-drain/fluid-drain.component';
 import { VasBreathComponent } from './measurements/vas-breath/vas-breath.component';
 import { VasPainComponent } from './measurements/vas-pain/vas-pain.component';
@@ -43,6 +42,9 @@ import { SurveyQuestionComponent } from './components/survey-question/survey-que
 import { IpcComponent } from './components/ipc/ipc.component';
 import { IpcServeysComponent } from './components/ipc-serveys/ipc-serveys.component';
 import { DrainageComponent } from './components/drainage/drainage.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { HelpInfoComponent } from './components/help-info/help-info.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
 
 export function tokenGetter() {
   return JSON.parse(localStorage.getItem('Authorization'));
@@ -53,7 +55,6 @@ export function tokenGetter() {
     LoginComponent,
     WelcomeComponent,
     NavigationComponent,
-    SurveyNavComponent,
     FluidDrainComponent,
     VasBreathComponent,
     VasPainComponent,
@@ -77,7 +78,10 @@ export function tokenGetter() {
     SurveyQuestionComponent,
     IpcComponent,
     IpcServeysComponent,
-    DrainageComponent
+    DrainageComponent,
+    SettingsComponent,
+    HelpInfoComponent,
+    ContactsComponent
   ],
   imports: [
     BrowserModule,

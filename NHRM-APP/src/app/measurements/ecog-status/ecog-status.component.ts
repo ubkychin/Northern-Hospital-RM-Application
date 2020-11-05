@@ -80,7 +80,7 @@ export class EcogStatusComponent implements OnInit {
           this.dialogConfig.panelClass = 'success-dialog-container';
 
           this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
-            this.router.navigate(['my-ipc-surveys']);
+            this.router.navigate(['my-ipc']);
           });
           
         })

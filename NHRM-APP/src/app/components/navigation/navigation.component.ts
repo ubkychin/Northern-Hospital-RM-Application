@@ -32,7 +32,7 @@ export class NavigationComponent implements OnInit {
   }
 
   checkCategory(categoryId) {
-    if(sessionStorage.getItem('Patient')){
+    if (sessionStorage.getItem('Patient')) {
       return JSON.parse(sessionStorage.getItem('Patient')).patientCategories
         .find(catId => catId.categoryId == categoryId);
     }
