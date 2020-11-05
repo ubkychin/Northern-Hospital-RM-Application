@@ -5,8 +5,8 @@ import { DataPointRecord } from 'src/app/models/data-point-record';
 import { Patient } from 'src/app/models/patient';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
 import { DataService } from 'src/app/services/data.service';
-import { ResourceDialogComponent } from '../dialogs/resource-dialog/resource-dialog.component';
-import { SuccessDialogComponent } from '../dialogs/success-dialog/success-dialog.component';
+import { ResourceDialogComponent } from '../../components/dialogs/resource-dialog/resource-dialog.component';
+import { SuccessDialogComponent } from '../../components/dialogs/success-dialog/success-dialog.component';
 
 @Component({
   selector: 'app-fluid-drain',

@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { Router } from '@angular/router';
 import { Patient } from 'src/app/models/patient';
 import { DataService } from 'src/app/services/data.service';
 import { DataPointRecord } from 'src/app/models/data-point-record';
-import { SuccessDialogComponent } from '../dialogs/success-dialog/success-dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
-import { ResourceDialogComponent } from '../dialogs/resource-dialog/resource-dialog.component';
+import { SuccessDialogComponent } from '../../components/dialogs/success-dialog/success-dialog.component';
+import { ResourceDialogComponent } from '../../components/dialogs/resource-dialog/resource-dialog.component';
 
 @Component({
   selector: 'app-qol',

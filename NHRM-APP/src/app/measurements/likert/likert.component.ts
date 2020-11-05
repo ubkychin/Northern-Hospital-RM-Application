@@ -5,9 +5,9 @@ import { Patient } from 'src/app/models/patient';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
-import { ResourceDialogComponent } from '../dialogs/resource-dialog/resource-dialog.component';
+import { ResourceDialogComponent } from '../../components/dialogs/resource-dialog/resource-dialog.component';
 import { DataPointRecord } from 'src/app/models/data-point-record';
-import { SuccessDialogComponent } from '../dialogs/success-dialog/success-dialog.component';
+import { SuccessDialogComponent } from '../../components/dialogs/success-dialog/success-dialog.component';
 
 @Component({
   selector: 'app-likert',
