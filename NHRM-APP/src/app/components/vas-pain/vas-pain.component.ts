@@ -82,9 +82,6 @@ export class VasPainComponent implements OnInit {
           this.router.navigate(['survey-nav']);
         });
 
-        let submittedMeasurements: number[] = this.dataService.submittedMeasurements.value;
-        submittedMeasurements.push(this.measurementId);
-        this.dataService.submittedMeasurements.next(submittedMeasurements);
       })
       .catch((err) => console.error(err + " Pain ERR"))
       .finally(() => {

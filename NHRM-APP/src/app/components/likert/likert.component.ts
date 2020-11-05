@@ -80,9 +80,6 @@ export class LikertComponent implements OnInit {
             this.router.navigate(['survey-nav']);
           });
 
-          let submittedMeasurements: number[] = this.dataService.submittedMeasurements.value;
-          submittedMeasurements.push(this.measurementId);
-          this.dataService.submittedMeasurements.next(submittedMeasurements);
         })
         .catch((err) => {
           this.error = true;

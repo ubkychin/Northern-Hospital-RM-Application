@@ -44,9 +44,9 @@
             <p>Fluid Drain</p>
         </button>
         <button *ngIf="checkMeasurement(6)" class="main-btn btn6" [routerLink]="['/qol']"
-        [ngStyle]="{'opacity': activeMeasurements[4].active ? '1': '0.7'}" [disabled]="!activeMeasurements[4].active">
-            <fa-icon *ngIf="activeMeasurements[4].active" [icon]="['fas', 'thumbs-up']" transform="grow-5"></fa-icon>
-            <fa-icon *ngIf="!activeMeasurements[4].active" id="done" [icon]="['fas', 'check-circle']" transform="grow-5"></fa-icon>
+        [ngStyle]="{'opacity': activeMeasurements[5].active ? '1': '0.7'}" [disabled]="!activeMeasurements[5].active">
+            <fa-icon *ngIf="activeMeasurements[5].active" [icon]="['fas', 'thumbs-up']" transform="grow-5"></fa-icon>
+            <fa-icon *ngIf="!activeMeasurements[5].active" id="done" [icon]="['fas', 'check-circle']" transform="grow-5"></fa-icon>
             <p>Quality of Life</p>
         </button>
         <button *ngIf="checkMeasurement(8)" class="main-btn btn7" [routerLink]="['/404-error']">

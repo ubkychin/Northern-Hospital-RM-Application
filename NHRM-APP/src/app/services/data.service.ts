@@ -20,10 +20,10 @@ export class DataService {
   patientResources: PatientResource[];
   pdfResource: string;
   categoryChosen: BehaviorSubject<any>;
-  submittedMeasurements: BehaviorSubject<number[]>;
+  disabledMeasurements: BehaviorSubject<number[]>;
 
   constructor(private _http: HttpClient, private spinner: NgxSpinnerService, private jwtHelper: JwtHelperService) {
-    this.submittedMeasurements = new BehaviorSubject([]);
+    this.disabledMeasurements = new BehaviorSubject([]);
     this.termsAcceptance = new BehaviorSubject(null);
     this.emergancyAgreement = new BehaviorSubject(null);
     this.loading = new BehaviorSubject(false);
@@ -42,6 +42,21 @@ export class DataService {
           this.loading.next(false)
         });
     }
+  }
+
+  getDisabledMeasurements(){
+    this.loading.next(true);
+    return new Promise((resolve, reject) => {
+      this._http.get<number[]>(this.apiURL + "/patient/disabledMeasurements/" + this.patient.value['urNumber']).subscribe(
+        res => {
+          this.disabledMeasurements.next(res);
+          resolve(res);
+        },
+        err => {
+          console.error(err.error)
+          reject(err);
+        });
+    })
   }
 
   postMeasurementResult(measurementRecord: DataPointRecord[], categoryIdList: number[]) {

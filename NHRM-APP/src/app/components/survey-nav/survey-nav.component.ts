@@ -15,20 +15,28 @@ export class SurveyNavComponent implements OnInit {
 
   constructor(private dataService: DataService) {
     this.surveys = ["Survey ", "Survey "]
+
+    dataService.getDisabledMeasurements()
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err))
+    .finally(() => this.dataService.loading.next(false));
+
     this.activeMeasurements = [
       { meas: "ecog", active: true },
       { meas: "likert", active: true },
       { meas: "breath", active: true },
       { meas: "pain", active: true },
+      { meas: "fluid", active: true },
       { meas: "qol", active: true },
       { meas: "hads", active: true }
     ];
 
-    this.dataService.submittedMeasurements.subscribe((data) => {
+    this.dataService.disabledMeasurements.subscribe((data) => {
       data.forEach(number => {
         this.activeMeasurements[number - 1].active = false;
       })
     });
+
   }
 
   ngOnInit(): void {
