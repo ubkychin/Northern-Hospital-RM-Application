@@ -31,11 +31,11 @@ export class SurveyNavComponent implements OnInit {
       { meas: "hads", active: true }
     ];
 
-/*     this.dataService.disabledMeasurements.subscribe((data) => {
+    this.dataService.disabledMeasurements.subscribe((data) => {
       data.forEach(number => {
         this.activeMeasurements[number - 1].active = false;
       })
-    }); */
+    });
 
   }
 
