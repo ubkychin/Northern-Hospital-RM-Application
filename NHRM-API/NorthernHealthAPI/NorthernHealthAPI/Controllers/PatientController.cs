@@ -89,12 +89,43 @@ namespace NorthernHealthAPI.Controllers
                 return NoContent();
         }
 
+        // Return a list of measurementIds to be disabled
+        [HttpGet, Route("disableMeasurements/{urNumber}"), Authorize]
+        public IActionResult GetMeasurementsToDisable(string urNumber)
+        {
+            //List of disabled measurements to return
+            List<int> disabledMeasurements;
+
+            //Get all distinct patient measurements
+            var patientMeasurements = _context.Measurement.Join(_context.PatientMeasurement,
+                m => m.MeasurementId,
+                pm => pm.MeasurementId,
+                (m, pm) => new { m, pm }).Where(
+                pm => pm.pm.Urnumber == urNumber).Select(
+                patientMeasurements => new
+                {
+                    patientMeasurements.m.MeasurementId,
+                    patientMeasurements.m.Frequency
+                }).Distinct().ToList();
+                //_context.PatientMeasurement.Where(pm => pm.Urnumber == urNumber).Join
+                //.Select(m => m.MeasurementId).Distinct().ToList();
+
+            // Iterate through every measurement and check against Frequency 
+            // + last time measurement recorded to add to disabledMeasurements
+            //foreach(int pm in patientMeasurements)
+            //{
+            //    var lastRecorded = _context.MeasurementRecord
+            //}
+
+            return Ok(patientMeasurements);
+        }
+
         //  GET api/patient/recordmeasurement
         //  Accepts a List of DataPointRecords, urNumber (string) and List of categoryId (int) - inserts a MeasurementRecord
         //  and all DataPointRecords sent
         //  If there is an error, the transaction will be rolled back
         [HttpPost, Route("recordmeasurement"), Authorize]
-        public async Task<IActionResult> RecordMeasurement(List<DataPointRecord> records, string urNumber, 
+        public async Task<IActionResult> RecordMeasurement(List<DataPointRecord> records, string urNumber,
             [FromQuery(Name = "categoryIdList")] List<int> categoryId)
         {
             try
@@ -103,7 +134,7 @@ namespace NorthernHealthAPI.Controllers
 
                 var recordedDate = DateTime.Now;
 
-                foreach(int catId in categoryId)
+                foreach (int catId in categoryId)
                 {
                     var measurementRecord = new MeasurementRecord
                     {

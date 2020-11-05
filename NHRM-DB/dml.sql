@@ -15,13 +15,13 @@ VALUES('123456789', 'patient@patient.com', 'Mr', 'John', 'Doe', 'Male', GETDATE(
 
 INSERT INTO Measurement
     (MeasurementName, Frequency)
-VALUES('ECOG Status', 1),
+VALUES('ECOG Status', 28),
     ('Likert Scale', 1),
     ('Breathlessness', 1),
     ('Level of Pain', 1),
     ('Fluid Drain', 0),
-    ('Quality of Life', 1),
-    ('HADS', 1),
+    ('Quality of Life', 7),
+    ('HADS', 84),
     ('Ventolin', 1);
 
 INSERT INTO DataPoint
