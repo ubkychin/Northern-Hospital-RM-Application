@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import 'nouislider/distribute/nouislider.css';
 import { DataPointRecord } from 'src/app/models/data-point-record';
 import { Patient } from 'src/app/models/patient';
+import { ResourceDialog } from 'src/app/models/resource-dialog';
 import { DataService } from 'src/app/services/data.service';
+import { ResourceDialogComponent } from '../dialogs/resource-dialog/resource-dialog.component';
 import { SuccessDialogComponent } from '../dialogs/success-dialog/success-dialog.component';
 
 
@@ -23,6 +25,10 @@ export class QolVasComponent implements OnInit {
   patient: Patient;
   partA: boolean = true;
   measurementRecord: DataPointRecord[] = [];
+  dialogInfo: ResourceDialog = {
+    heading: "Quality of Life",
+    content: "Figure out what to write here</p>"
+  }
 
   constructor(public dialog: MatDialog, private dataService: DataService, private router: Router) {
     this.dialogConfig = new MatDialogConfig();
@@ -35,7 +41,11 @@ export class QolVasComponent implements OnInit {
   }
 
   infoDialog() {
-
+    this.dialogConfig.data = {
+      content: this.dialogInfo.content,
+      heading: this.dialogInfo.heading
+    }
+    this.dialog.open(ResourceDialogComponent, this.dialogConfig);
   }
 
   getVasInputScore(event) {
