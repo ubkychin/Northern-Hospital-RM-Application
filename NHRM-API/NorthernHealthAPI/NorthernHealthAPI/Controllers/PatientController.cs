@@ -89,12 +89,13 @@ namespace NorthernHealthAPI.Controllers
                 return NoContent();
         }
 
-        // Return a list of measurementIds to be disabled
-        [HttpGet, Route("disableMeasurements/{urNumber}"), Authorize]
+        //  GET api/patient/disabledMeasurements/{urNumber}
+        //  Accepts a URNumber (string) and returns all measurements that should be disabled in the app 
+        [HttpGet, Route("disabledMeasurements/{urNumber}"), Authorize]
         public IActionResult GetMeasurementsToDisable(string urNumber)
         {
             //List of disabled measurements to return
-            List<int> disabledMeasurements;
+            List<int> disabledMeasurements = new List<int>();
 
             //Get all distinct patient measurements
             var patientMeasurements = _context.Measurement.Join(_context.PatientMeasurement,
@@ -107,17 +108,23 @@ namespace NorthernHealthAPI.Controllers
                     patientMeasurements.m.MeasurementId,
                     patientMeasurements.m.Frequency
                 }).Distinct().ToList();
-                //_context.PatientMeasurement.Where(pm => pm.Urnumber == urNumber).Join
-                //.Select(m => m.MeasurementId).Distinct().ToList();
 
-            // Iterate through every measurement and check against Frequency 
-            // + last time measurement recorded to add to disabledMeasurements
-            //foreach(int pm in patientMeasurements)
-            //{
-            //    var lastRecorded = _context.MeasurementRecord
-            //}
+            // Iterate through every measurement and check last record recorded against Frequency 
+            foreach (var pm in patientMeasurements)
+            {
+                var lastRecorded = _context.MeasurementRecord.
+                    Where(mr => mr.MeasurementId == pm.MeasurementId
+                    && mr.Urnumber == urNumber).OrderByDescending(lr => lr.DateTimeRecorded).FirstOrDefault();
 
-            return Ok(patientMeasurements);
+                if (lastRecorded != null)
+                {
+                    if (lastRecorded.DateTimeRecorded.AddDays(pm.Frequency) > DateTime.Now)
+                        disabledMeasurements.Add(pm.MeasurementId);
+                }
+
+            }
+
+            return Ok(disabledMeasurements);
         }
 
         //  GET api/patient/recordmeasurement

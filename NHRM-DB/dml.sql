@@ -154,14 +154,6 @@ VALUES(1, 1, '123456789'),
     (6, 2, '987654321'),
     (8, 2, '987654321');
 
-INSERT INTO MeasurementRecord
-    (DateTimeRecorded,MeasurementID,CategoryID,URNumber)
-VALUES(GETDATE(), 1, 1, '123456789');
-
-INSERT INTO DataPointRecord
-    (MeasurementID,DataPointNumber,[Value],MeasurementRecordID)
-VALUES(1, 1, 1, 1);
-
 INSERT INTO SurveyQuestion
     (MeasurementID, DataPointNumber, CategoryName, Question)
 VALUES(7, 1, 'Anxiety', 'I feel tense or ''wound up'':'),
