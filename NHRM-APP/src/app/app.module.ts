@@ -40,7 +40,7 @@ import { DisclaimerDialogComponent } from './components/dialogs/disclaimer-dialo
 import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-dialog.component';
 import { SurveyQuestionComponent } from './components/survey-question/survey-question.component';
 import { IpcComponent } from './components/ipc/ipc.component';
-import { IpcServeysComponent } from './components/ipc-serveys/ipc-serveys.component';
+import { IpcSurveysComponent } from './components/ipc-surveys/ipc-surveys.component';
 import { DrainageComponent } from './components/drainage/drainage.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { HelpInfoComponent } from './components/help-info/help-info.component';
@@ -77,7 +77,7 @@ export function tokenGetter() {
     AlertDialogComponent,
     SurveyQuestionComponent,
     IpcComponent,
-    IpcServeysComponent,
+    IpcSurveysComponent,
     DrainageComponent,
     SettingsComponent,
     HelpInfoComponent,

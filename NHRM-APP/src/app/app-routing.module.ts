@@ -15,7 +15,7 @@ import { AuthGuard } from './guard/auth.guard';
 import { PdfResourceComponent } from './components/pdf-resource/pdf-resource.component';
 import { Error404Component } from './components/error404/error404.component';
 import { IpcComponent } from './components/ipc/ipc.component';
-import { IpcServeysComponent } from './components/ipc-serveys/ipc-serveys.component';
+import { IpcSurveysComponent } from './components/ipc-surveys/ipc-surveys.component';
 import { DrainageComponent } from './components/drainage/drainage.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { HelpInfoComponent } from './components/help-info/help-info.component';
@@ -46,7 +46,7 @@ const routes: Routes = [
   { path: 'patient-resources', component: PatientResourcesComponent, canActivate: [AuthGuard] },
   { path: 'pdf-resource', component: PdfResourceComponent, canActivate: [AuthGuard] },
   { path: 'my-ipc', component: IpcComponent, canActivate: [AuthGuard] },
-  { path: 'my-ipc-surveys', component: IpcServeysComponent, canActivate: [AuthGuard] },
+  { path: 'my-ipc-surveys', component: IpcSurveysComponent, canActivate: [AuthGuard] },
   { path: 'my-ipc-drainage', component: DrainageComponent, canActivate: [AuthGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: 'help-info', component: HelpInfoComponent, canActivate: [AuthGuard] },

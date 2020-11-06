@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
-  selector: 'app-ipc-serveys',
-  templateUrl: './ipc-serveys.component.html',
-  styleUrls: ['./ipc-serveys.component.css']
+  selector: 'app-ipc-surveys',
+  templateUrl: './ipc-surveys.component.html',
+  styleUrls: ['./ipc-surveys.component.css']
 })
-export class IpcServeysComponent implements OnInit {
+export class IpcSurveysComponent implements OnInit {
 
   activeMeasurements: any[] = [];
 

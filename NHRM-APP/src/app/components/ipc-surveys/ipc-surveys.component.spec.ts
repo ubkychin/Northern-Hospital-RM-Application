@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IpcServeysComponent } from './ipc-serveys.component';
+import { IpcSurveysComponent } from './ipc-surveys.component';
 
 describe('IpcServeysComponent', () => {
-  let component: IpcServeysComponent;
-  let fixture: ComponentFixture<IpcServeysComponent>;
+  let component: IpcSurveysComponent;
+  let fixture: ComponentFixture<IpcSurveysComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IpcServeysComponent ]
+      declarations: [ IpcSurveysComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(IpcServeysComponent);
+    fixture = TestBed.createComponent(IpcSurveysComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
