@@ -118,7 +118,7 @@ namespace NorthernHealthAPI.Controllers
 
                 if (lastRecorded != null)
                 {
-                    if (lastRecorded.DateTimeRecorded.AddDays(pm.Frequency).DayOfYear >= DateTime.Now.DayOfYear)
+                    if (lastRecorded.DateTimeRecorded.AddDays(pm.Frequency).DayOfYear > DateTime.Now.DayOfYear)
                         disabledMeasurements.Add(pm.MeasurementId);
                 }
 
