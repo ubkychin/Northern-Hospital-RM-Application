@@ -2,14 +2,6 @@
     <h1 class="main-heading">Patient Resources</h1>
 </div>
 <div class="container">
-
-    <div id="t-1" class="resource-tile tile-one" *ngFor="let resource of listOfResources | resourceFilter:'phone'">
-        <p class="res-title">{{resource.title}}</p>
-        <p class="res-info">
-            <fa-icon [icon]="['fas', 'phone']" transform="rotate-130 grow-5"></fa-icon>
-            <strong>{{resource.prompt}}</strong>
-        </p>
-    </div>
     <div id="t-2" class="resource-tile tile-one resource-click"
         *ngFor="let resource of listOfResources | resourceFilter:'pdf'" [routerLink]="['/pdf-resource']"
         (click)="setPdfResource(resource)">
@@ -19,7 +11,6 @@
             <strong>{{resource.prompt}}</strong>
         </p>
     </div>
-
     <div id="t-3" class="resource-tile tile-one resource-click"
         *ngFor="let resource of listOfResources | resourceFilter:'dialog'" (click)="showDialog(resource)">
         <p class="res-title">{{resource.title}}</p>
@@ -29,15 +20,4 @@
             <strong>{{resource.prompt}}</strong>
         </p>
     </div>
-
-    <div id="t-4" class="resource-tile tile-one" *ngFor="let resource of listOfResources | resourceFilter:'link'">
-        <p class="res-title">{{resource.title}}</p>
-        <p class="res-info">
-            <a href="{{resource.resContent}}" target="_blank">
-                <fa-icon [icon]="['fas', 'globe']" transform="grow-5"></fa-icon>
-                <strong>{{resource.prompt}}</strong>
-            </a>
-        </p>
-    </div>
-
 </div>

@@ -20,12 +20,16 @@ export class PatientResourcesComponent implements OnInit {
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.panelClass = 'information-dialog-container';
-    if (this.dataService.patientResources == null) {
+
+    if (this.dataService.patientResources == null ||
+      this.dataService.patientResources[0].categoryId != this.dataService.categoryChosen.getValue()) {
       this.dataService.getPatientResource(dataService.patient.value['urNumber'])
-        .then(() => this.listOfResources = this.dataService.patientResources)
+        .then((res) => this.listOfResources = this.dataService.patientResources)
+        .catch((err) => console.log(err))
         .finally(() => this.dataService.loading.next(false));
+    } else {
+      this.listOfResources = this.dataService.patientResources
     }
-    this.listOfResources = this.dataService.patientResources;
   }
 
   ngOnInit(): void {

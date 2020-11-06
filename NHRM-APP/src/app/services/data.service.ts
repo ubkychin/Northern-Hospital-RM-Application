@@ -44,7 +44,7 @@ export class DataService {
     }
   }
 
-  getDisabledMeasurements(){
+  getDisabledMeasurements() {
     this.loading.next(true);
     return new Promise((resolve, reject) => {
       this._http.get<number[]>(this.apiURL + "/patient/disabledMeasurements/" + this.patient.value['urNumber']).subscribe(
@@ -69,16 +69,16 @@ export class DataService {
     return new Promise((resolve, reject) => {
       this._http.post(this.apiURL + "/patient/recordmeasurement",
         measurementRecord, {
-          params: params
-        }).subscribe(
-          res => {
-            console.log("MR Resolved")
-            resolve(res);
-          },
-          err => {
-            console.error(err.error)
-            reject(err);
-          });
+        params: params
+      }).subscribe(
+        res => {
+          console.log("MR Resolved")
+          resolve(res);
+        },
+        err => {
+          console.error(err.error)
+          reject(err);
+        });
     })
   }
 
@@ -100,9 +100,10 @@ export class DataService {
 
   getPatientResource(urNumber: string) {
     this.loading.next(true);
-
     return new Promise((resolve, reject) => {
-      this._http.get<PatientResource[]>(this.apiURL + "/patient/resources/" + urNumber).subscribe(
+      this._http.get<PatientResource[]>(this.apiURL + "/patient/resources/" + urNumber, {
+        params: new HttpParams().append('categoryId', this.categoryChosen.value)
+      }).subscribe(
         res => {
           console.log(res);
           this.patientResources = res;

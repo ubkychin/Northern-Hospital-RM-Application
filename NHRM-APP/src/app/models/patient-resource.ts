@@ -1,6 +1,5 @@
-import { ResourceDialog } from './resource-dialog';
-
 export class PatientResource {
+    categoryId: number;
     title: string;
     resType: string;
     prompt: string;

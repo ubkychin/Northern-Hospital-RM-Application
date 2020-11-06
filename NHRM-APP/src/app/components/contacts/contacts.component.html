@@ -1,1 +1,21 @@
-<h1>Contacts Under Construction!</h1>
+<div class="heading">
+    <h1 class="main-heading">Patient Contacts</h1>
+</div>
+<div class="container">
+    <div id="t-1" class="resource-tile tile-one" *ngFor="let resource of listOfResources | resourceFilter:'phone'">
+        <p class="res-title">{{resource.title}}</p>
+        <p class="res-info">
+            <fa-icon [icon]="['fas', 'phone']" transform="rotate-130 grow-5"></fa-icon>
+            <strong>{{resource.prompt}}</strong>
+        </p>
+    </div>
+    <div id="t-4" class="resource-tile tile-one" *ngFor="let resource of listOfResources | resourceFilter:'link'">
+        <p class="res-title">{{resource.title}}</p>
+        <p class="res-info">
+            <a href="{{resource.resContent}}" target="_blank">
+                <fa-icon [icon]="['fas', 'globe']" transform="grow-5"></fa-icon>
+                <strong>{{resource.prompt}}</strong>
+            </a>
+        </p>
+    </div>
+</div>

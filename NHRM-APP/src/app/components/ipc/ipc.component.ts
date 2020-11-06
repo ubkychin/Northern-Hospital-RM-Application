@@ -8,14 +8,19 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class IpcComponent implements OnInit {
 
+  resources: boolean;
+  measurements: boolean;
+
   constructor(private dataService: DataService) {
-    dataService.getDisabledMeasurements()
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err))
-    .finally(() => this.dataService.loading.next(false));
-   }
+    this.dataService.getDisabledMeasurements()
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
+      .finally(() => this.dataService.loading.next(false));
+
+  }
 
   ngOnInit(): void {
+
   }
 
 }
