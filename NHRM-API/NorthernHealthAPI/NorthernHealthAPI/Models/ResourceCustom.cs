@@ -7,6 +7,7 @@ namespace NorthernHealthAPI.Models
 {
     public class ResourceCustom
     {
+        public int CategoryId { get; set; }
         public string Title { get; set; }
         public string Prompt { get; set; }
         public dynamic ResContent { get; set; }

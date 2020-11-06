@@ -75,6 +75,7 @@ namespace NorthernHealthAPI.Controllers
                     resourceList.Add(_context.Resource.Where(r => r.ResourceId == res)
                          .Select(r => new ResourceCustom
                          {
+                             CategoryId = categoryId,
                              Title = r.Title,
                              Prompt = r.Prompt,
                              ResType = setResource(r.TypeId),
