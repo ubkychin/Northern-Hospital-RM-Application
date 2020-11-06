@@ -12,21 +12,20 @@ export class DrainageComponent implements OnInit {
 
   constructor(private dataService: DataService) {
     this.activeMeasurements = [
-      { meas: "ecog", active: true },
-      { meas: "likert", active: true },
-      { meas: "breath", active: true },
-      { meas: "pain", active: true },
-      { meas: "fluid", active: true },
-      { meas: "qol", active: true },
-      { meas: "hads", active: true }
+      { meas: "breath", id: 3, active: true },
+      { meas: "pain", id: 4, active: true }
     ];
 
     this.dataService.disabledMeasurements.subscribe((data) => {
       data.forEach(number => {
-        this.activeMeasurements[number - 1].active = false;
+        this.activeMeasurements.forEach(am => {
+          if (am.id == number) {
+            am.active = false;
+          }
+        })
       })
     });
-   }
+  }
 
   ngOnInit(): void {
   }

@@ -12,21 +12,20 @@ export class IpcServeysComponent implements OnInit {
 
   constructor(private dataService: DataService) {
     this.activeMeasurements = [
-      { meas: "ecog", active: true },
-      { meas: "likert", active: true },
-      { meas: "breath", active: true },
-      { meas: "pain", active: true },
-      { meas: "fluid", active: true },
-      { meas: "qol", active: true },
-      { meas: "hads", active: true }
+      { meas: "ecog", id: 1, active: true },
+      { meas: "qol", id: 6, active: true }
     ];
 
     this.dataService.disabledMeasurements.subscribe((data) => {
       data.forEach(number => {
-        this.activeMeasurements[number - 1].active = false;
+        this.activeMeasurements.forEach(am => {
+          if (am.id == number) {
+            am.active = false;
+          }
+        })
       })
     });
-   }
+  }
 
   ngOnInit(): void {
   }
