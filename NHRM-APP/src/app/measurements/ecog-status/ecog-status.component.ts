@@ -16,7 +16,7 @@ import { SuccessDialogComponent } from '../../components/dialogs/success-dialog/
 export class EcogStatusComponent implements OnInit {
 
   readonly measurementId: number = 1;
-  status: number;
+  status: string;
   dialogConfig: MatDialogConfig;
   patient: Patient;
   error: boolean;
@@ -37,7 +37,7 @@ export class EcogStatusComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ecogStatus(value: number) {
+  ecogStatus(value) {
     this.status = value;
     if (this.error) {
       this.error = false;
@@ -62,13 +62,13 @@ export class EcogStatusComponent implements OnInit {
       let measurementRecord: DataPointRecord[] = [{
         'measurementId': this.measurementId,
         'dataPointNumber': 1,
-        'value': this.status
+        'value': parseInt(this.status)
       }];
 
       let categoryList = [];
-      
+
       this.patient.patientCategories.forEach(p => {
-        if(p.measurementIds.find(m => m == this.measurementId)){
+        if (p.measurementIds.find(m => m == this.measurementId)) {
           categoryList.push(p.categoryId);
         }
       })
@@ -82,7 +82,7 @@ export class EcogStatusComponent implements OnInit {
           this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
             this.router.navigate(['my-ipc']);
           });
-          
+
         })
         .catch((err) => {
           this.error = true;
