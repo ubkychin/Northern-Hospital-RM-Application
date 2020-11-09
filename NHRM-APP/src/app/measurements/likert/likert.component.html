@@ -1,10 +1,4 @@
 <article>
-    <h1 class="main-heading">Likert Scale</h1>
-    <h2 class="sub-heading">Tick the box beside the face that
-        is closest to how you are feeling today</h2>
-
-    <app-info-bar (click)="infoDialog()"></app-info-bar>
-
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
 
         <fieldset id="likert-scale">
@@ -13,7 +7,7 @@
                 <figure>
                     <div class="emotion">
                         <img src="assets/svg/crying_face.svg" alt="Very poor face" />
-                        <figcaption>(Very Poor)</figcaption>
+                        <figcaption>{{feelings[0]}}</figcaption>
                     </div>
                 </figure>
                 <input type="radio" name="feeling" value="1" formControlName="feeling" />
@@ -23,7 +17,7 @@
                 <figure>
                     <div class="emotion">
                         <img src="assets/svg/poor_face.svg" alt="Poor face" />
-                        <figcaption>(Poor)</figcaption>
+                        <figcaption>{{feelings[1]}}</figcaption>
                     </div>
                 </figure>
                 <input type="radio" name="feeling" value="2" formControlName="feeling" />
@@ -33,7 +27,7 @@
                 <figure>
                     <div class="emotion">
                         <img src="assets/svg/average_face.svg" alt="Average face" />
-                        <figcaption>(Average)</figcaption>
+                        <figcaption>{{feelings[2]}}</figcaption>
                     </div>
                 </figure>
                 <input type="radio" name="feeling" value="3" formControlName="feeling" />
@@ -44,7 +38,7 @@
                 <figure>
                     <div class="emotion">
                         <img src="assets/svg/good_face.svg" alt="Good face" />
-                        <figcaption>(Good)</figcaption>
+                        <figcaption>{{feelings[3]}}</figcaption>
                     </div>
                 </figure>
                 <input type="radio" name="feeling" value="4" formControlName="feeling" />
@@ -54,17 +48,13 @@
                 <figure>
                     <div class="emotion">
                         <img src="assets/svg/excellent_face.svg" alt="Excellent face" />
-                        <figcaption>(Excellent)</figcaption>
+                        <figcaption>{{feelings[4]}}</figcaption>
                     </div>
                 </figure>
                 <input type="radio" name="feeling" value="5" formControlName="feeling" />
             </div>
         </fieldset>
 
-        <div class="error">
-            <p *ngIf="!this.form.value['feeling'] || this.error">{{this.errorMsg}}</p>
-        </div>
-        
         <button type="submit" class="btn submit-button">Submit</button>
         
     </form>

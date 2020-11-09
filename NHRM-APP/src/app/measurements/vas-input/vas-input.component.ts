@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-vas-input',
@@ -10,10 +10,12 @@ export class VasInputComponent implements OnInit {
   vasScore: number;
   errorMsg: string;
 
+  @Input() childItem : string;
   @Output() vasValue: EventEmitter<Number> = new EventEmitter<Number>();
 
-  constructor() { }
-
+  constructor() {
+  }
+  
   ngOnInit(): void {
   }
 

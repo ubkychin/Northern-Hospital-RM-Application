@@ -17,14 +17,14 @@ export class VasPainComponent implements OnInit {
 
   readonly measurementId: number = 4;
   patient: Patient;
-  vasScore: number[] = [];
-  partA: boolean = true;
   measurementRecord: DataPointRecord[] = [];
+
+  feelings: string[] = ["(No Pain)", "(Mild)", "(Moderate)", "(Severe)", "(Worst Posible)"];
 
   dialogConfig: MatDialogConfig;
   dialogInfo: ResourceDialog = {
-    heading: "How to perform VAS score",
-    content: "To help you to best describe how good or bad you feel on a given day, we have drawn a scale from Best on the top of the slider to Worst on the bottom of the slider. Please position the slider at the point that describes how you feel today."
+    heading: "How to use the Likert scale",
+    content: "To help you to best describe how good or bad you feel today, we have included five options to select - ranging from Very Poor to Excellent. Please select the option that describes how you feel today."
   }
 
   constructor(public dialog: MatDialog, private dataService: DataService, private router: Router) {
@@ -46,31 +46,23 @@ export class VasPainComponent implements OnInit {
     this.dialog.open(ResourceDialogComponent, this.dialogConfig);
   }
 
-  getVasInputScore(event) {
+  getPainScore(event) {
     console.log(event);
     this.measurementRecord.push({
       'measurementId': this.measurementId,
       'dataPointNumber': 1,
       'value': event
     });
-    this.partA = false;
-  }
+    console.log(this.measurementRecord)
 
-  getVasSliderScore(event) {
-    console.log(parseInt(event));
-    this.measurementRecord.push({
-      'measurementId': this.measurementId,
-      'dataPointNumber': 2,
-      'value': parseInt(event)
-    });
     this.recordVASPain();
   }
 
   recordVASPain() {
     let categoryList = [];
-      
+
     this.patient.patientCategories.forEach(p => {
-      if(p.measurementIds.find(m => m == this.measurementId)){
+      if (p.measurementIds.find(m => m == this.measurementId)) {
         categoryList.push(p.categoryId);
       }
     })

@@ -1,13 +1,9 @@
 <div class="heading">
-    <h1 class="main-heading">Visual Analogue Scale (Pain)</h1>
-    <h3 *ngIf="partA" class="sub-heading">Enter Level of Pain from 0 to 100. Entering 0 meaning you have No Pain and
-        entering 100 having Worst Possible Pain</h3>
-    <h3 *ngIf="!partA" class="sub-heading">Touch the slider between 0 to 100 below, Touching 0 meaning you have No
-        Pain and touching 100 having Extreme Pain</h3>
+    <h1 class="main-heading">Likert Scale (Pain)</h1>
+    <h3 class="sub-heading">Tick the box beside the face that
+        is closest to how your Pain is feeling today</h3>
 </div>
 
 <app-info-bar (click)="infoDialog()"></app-info-bar>
 
-<app-vas-input *ngIf="partA" (vasValue)="getVasInputScore($event)"></app-vas-input>
-
-<app-vas-slider *ngIf="!partA" (vasValue)="getVasSliderScore($event)"></app-vas-slider>
+<app-likert [feelings]="feelings" (likertValue)="getPainScore($event)"></app-likert>

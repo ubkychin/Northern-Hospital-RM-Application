@@ -19,15 +19,13 @@ import { SuccessDialogComponent } from '../../components/dialogs/success-dialog/
 export class QolVasComponent implements OnInit {
 
   readonly measurementId: number = 6;
-  dialogConfig: MatDialogConfig;
-  isValid: Boolean = true;
-  vasScore: number[] = [];
   patient: Patient;
-  partA: boolean = true;
   measurementRecord: DataPointRecord[] = [];
+  
+  dialogConfig: MatDialogConfig;
   dialogInfo: ResourceDialog = {
     heading: "Quality of Life: Part 2",
-    content: "There are two parts to this section - both require you to enter a number between 0 to 100. 100 means the best health you can imagine and 0 means the worst health you can imagine. <p/>Part 1 requires you to input a number between 0 and 100 - 100 meaning best possible health and 0 meaning worst possible health.</p>Part 2 requires you to touch the slider at the point you feel best represents your health. The left-hand side of the slider represents worst possible health, and the right-hand side represents best possible health. <p/>Click the 'submit' button to submit."
+    content: "Part 2 requires you to touch the slider at the point you feel best represents your health. The left-hand side of the slider represents worst possible health, and the right-hand side represents best possible health. <br><br> Click the 'submit' button to submit."
   }
 
   constructor(public dialog: MatDialog, private dataService: DataService, private router: Router) {
@@ -46,17 +44,6 @@ export class QolVasComponent implements OnInit {
       heading: this.dialogInfo.heading
     }
     this.dialog.open(ResourceDialogComponent, this.dialogConfig);
-  }
-
-  getVasInputScore(event) {
-    console.log(event);
-    this.measurementRecord.push({
-      'measurementId': this.measurementId,
-      'dataPointNumber': 6,
-      'value': event
-    });
-
-    this.partA = false;
   }
 
   getVasSliderScore(event) {

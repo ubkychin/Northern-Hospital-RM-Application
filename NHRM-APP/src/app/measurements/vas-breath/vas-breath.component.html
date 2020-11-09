@@ -1,16 +1,10 @@
 <div class="heading">
-    <h1 class="main-heading">Visual Analogue Scale (Breathlessness)</h1>
-    <h3 *ngIf="partA" class="sub-heading">Enter Level of Breathlessness from 0 to 100. Entering 0 meaning you have No
-        difficulty
-        breathing and entering 100 having Extreme difficulty breathing</h3>
-    <h3 *ngIf="!partA" class="sub-heading">Touch the slider between 0 to 100 below, Touching 0 meaning you have No
-        difficulty
-        breathing and touching 100 having Extreme difficulty breathing</h3>
+    <h1 class="main-heading">Likert Scale (Breathlessness)</h1>
+    <h3 class="sub-heading">Tick the box beside the face that
+        is closest to how your Breathing is feeling today</h3>
 
 </div>
 
 <app-info-bar (click)="infoDialog()"></app-info-bar>
 
-<app-vas-input *ngIf="partA" (vasValue)="getVasInputScore($event)"></app-vas-input>
-
-<app-vas-slider *ngIf="!partA" (vasValue)="getVasSliderScore($event)"></app-vas-slider>
+<app-likert [feelings]="feelings" (likertValue)="getBreathScore($event)"></app-likert>
