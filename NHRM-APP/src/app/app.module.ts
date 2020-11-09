@@ -43,8 +43,10 @@ import { IpcComponent } from './components/ipc/ipc.component';
 import { IpcSurveysComponent } from './components/ipc-surveys/ipc-surveys.component';
 import { DrainageComponent } from './components/drainage/drainage.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { HelpInfoComponent } from './components/help-info/help-info.component';
+import { HelpInfoComponent } from './components/help/help-info/help-info.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
+import { EcogHelpComponent } from './components/help/ecog-help/ecog-help.component';
+import { FluidHelpComponent } from './components/help/fluid-help/fluid-help.component';
 
 export function tokenGetter() {
   return JSON.parse(localStorage.getItem('Authorization'));
@@ -81,7 +83,9 @@ export function tokenGetter() {
     DrainageComponent,
     SettingsComponent,
     HelpInfoComponent,
-    ContactsComponent
+    ContactsComponent,
+    EcogHelpComponent,
+    FluidHelpComponent
   ],
   imports: [
     BrowserModule,

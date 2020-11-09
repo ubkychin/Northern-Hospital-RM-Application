@@ -18,8 +18,10 @@ import { IpcComponent } from './components/ipc/ipc.component';
 import { IpcSurveysComponent } from './components/ipc-surveys/ipc-surveys.component';
 import { DrainageComponent } from './components/drainage/drainage.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { HelpInfoComponent } from './components/help-info/help-info.component';
+import { HelpInfoComponent } from './components/help/help-info/help-info.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
+import { EcogHelpComponent } from './components/help/ecog-help/ecog-help.component';
+import { FluidHelpComponent } from './components/help/fluid-help/fluid-help.component';
 
 
 const routes: Routes = [
@@ -49,7 +51,13 @@ const routes: Routes = [
   { path: 'my-ipc-surveys', component: IpcSurveysComponent, canActivate: [AuthGuard] },
   { path: 'my-ipc-drainage', component: DrainageComponent, canActivate: [AuthGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
-  { path: 'help-info', component: HelpInfoComponent, canActivate: [AuthGuard] },
+  {
+    path: 'help-info', component: HelpInfoComponent, canActivate: [AuthGuard],
+    children: [
+      { path: 'help-ecog', component: EcogHelpComponent },
+      { path: 'help-fluid', component: FluidHelpComponent }
+    ]
+  },
   { path: 'contacts', component: ContactsComponent, canActivate: [AuthGuard] },
   { path: '404-error', component: Error404Component },
   {
