@@ -24,7 +24,7 @@ export class VasPainComponent implements OnInit {
   dialogConfig: MatDialogConfig;
   dialogInfo: ResourceDialog = {
     heading: "How to perform VAS score",
-    content: "Instruction - To help you to best describe how good or bad you feel on a given day, we have drawn a scale from Best on the top of the slider to Worst on the bottom of the slider. Please position the slider at the point that describes how you feel today."
+    content: "To help you to best describe how good or bad you feel on a given day, we have drawn a scale from Best on the top of the slider to Worst on the bottom of the slider. Please position the slider at the point that describes how you feel today."
   }
 
   constructor(public dialog: MatDialog, private dataService: DataService, private router: Router) {

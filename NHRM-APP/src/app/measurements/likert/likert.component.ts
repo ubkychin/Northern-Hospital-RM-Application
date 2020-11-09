@@ -26,7 +26,7 @@ export class LikertComponent implements OnInit {
 
   dialogInfo: ResourceDialog = {
     heading: "How to use the Likert scale",
-    content: "Instruction - To help you to best describe how good or bad you feel today, we have included five options to select - ranging from Very Poor to Excellent. Please select the option that describes how you feel today."
+    content: "To help you to best describe how good or bad you feel today, we have included five options to select - ranging from Very Poor to Excellent. Please select the option that describes how you feel today."
   }
 
   constructor(public dialog: MatDialog, fb: FormBuilder, private dataService: DataService, private router: Router) {

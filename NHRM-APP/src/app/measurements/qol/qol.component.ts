@@ -22,8 +22,8 @@ export class QolComponent implements OnInit {
   isValid: boolean = true;
   measurementRecord: DataPointRecord[] = [];
   dialogInfo: ResourceDialog = {
-    heading: "Quality of Life",
-    content: "Figure out what to write here</p>"
+    heading: "Quality of Life: Part 1",
+    content: "There are five categories we would like you to record answers for. These are Mobility, Self Care, Usual Activites, Pain/Discomfort, and Anxiety/Depression. Please click one of the five answers for each category by clicking the box. Press the 'next' button below the answers to continue and the 'submit' button when you have answered all prompts.</p>"
   }
 
   // The survey categories and questions retrieved from the API
