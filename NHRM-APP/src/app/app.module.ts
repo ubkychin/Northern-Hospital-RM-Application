@@ -47,6 +47,9 @@ import { HelpInfoComponent } from './components/help/help-info/help-info.compone
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { EcogHelpComponent } from './components/help/ecog-help/ecog-help.component';
 import { FluidHelpComponent } from './components/help/fluid-help/fluid-help.component';
+import { QolHelpComponent } from './components/help/qol-help/qol-help.component';
+import { BreathHelpComponent } from './components/help/breath-help/breath-help.component';
+import { PainHelpComponent } from './components/help/pain-help/pain-help.component';
 
 export function tokenGetter() {
   return JSON.parse(localStorage.getItem('Authorization'));
@@ -85,7 +88,10 @@ export function tokenGetter() {
     HelpInfoComponent,
     ContactsComponent,
     EcogHelpComponent,
-    FluidHelpComponent
+    FluidHelpComponent,
+    QolHelpComponent,
+    BreathHelpComponent,
+    PainHelpComponent
   ],
   imports: [
     BrowserModule,

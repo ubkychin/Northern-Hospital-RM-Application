@@ -22,6 +22,9 @@ import { HelpInfoComponent } from './components/help/help-info/help-info.compone
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { EcogHelpComponent } from './components/help/ecog-help/ecog-help.component';
 import { FluidHelpComponent } from './components/help/fluid-help/fluid-help.component';
+import { PainHelpComponent } from './components/help/pain-help/pain-help.component';
+import { BreathHelpComponent } from './components/help/breath-help/breath-help.component';
+import { QolHelpComponent } from './components/help/qol-help/qol-help.component';
 
 
 const routes: Routes = [
@@ -55,7 +58,10 @@ const routes: Routes = [
     path: 'help-info', component: HelpInfoComponent, canActivate: [AuthGuard],
     children: [
       { path: 'help-ecog', component: EcogHelpComponent },
-      { path: 'help-fluid', component: FluidHelpComponent }
+      { path: 'help-fluid', component: FluidHelpComponent },
+      { path: 'help-pain', component: PainHelpComponent },
+      { path: 'help-breath', component: BreathHelpComponent },
+      { path: 'help-qol', component: QolHelpComponent }
     ]
   },
   { path: 'contacts', component: ContactsComponent, canActivate: [AuthGuard] },
