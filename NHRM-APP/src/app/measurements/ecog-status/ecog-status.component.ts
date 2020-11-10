@@ -16,7 +16,7 @@ import { SuccessDialogComponent } from '../../components/dialogs/success-dialog/
 export class EcogStatusComponent implements OnInit {
 
   readonly measurementId: number = 1;
-  status: string;
+  value: string;
   dialogConfig: MatDialogConfig;
   patient: Patient;
   error: boolean;
@@ -37,8 +37,8 @@ export class EcogStatusComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ecogStatus(value) {
-    this.status = value;
+  submitEcog(value) {
+    this.value = value;
     if (this.error) {
       this.error = false;
     }
@@ -54,15 +54,15 @@ export class EcogStatusComponent implements OnInit {
   }
 
   recordECOG() {
-    if (!this.status) {
+    if (!this.value) {
       this.error = true;
-      this.errorMsg = "You must select a box before submitting";
+      this.errorMsg = "Please select an option before submitting";
 
     } else {
       let measurementRecord: DataPointRecord[] = [{
         'measurementId': this.measurementId,
         'dataPointNumber': 1,
-        'value': parseInt(this.status)
+        'value': parseInt(this.value)
       }];
 
       let categoryList = [];

@@ -104,13 +104,13 @@ export class QolComponent implements OnInit {
     this.dialog.open(ResourceDialogComponent, this.dialogConfig);
   }
 
-  submit() {
+  proceed() {
     let categories = Object.keys(this.form.value);
     this.isValid = true;
 
     if (this.form.value[categories[this.currentCategory]] !== null) {
       if (this.currentCategory === this.survey.length - 1) {
-        this.submitSurvey();
+        this.recordSurvey();
       }
       else {
         this.currentCategory += 1;
@@ -121,7 +121,7 @@ export class QolComponent implements OnInit {
     }
   }
 
-  submitSurvey() {
+  recordSurvey() {
     let categories = Object.keys(this.form.value);    
 
     for (let i = 0; i < categories.length; i++) {

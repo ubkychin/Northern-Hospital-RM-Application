@@ -49,7 +49,7 @@ export class FluidDrainComponent implements OnInit {
 
   submitFluid() {
     if (!this.fluid) {
-      this.errorMsg = "You must enter fluid amount before submitting";
+      this.errorMsg = "You must enter the amount of fluid drained before submitting";
     } else {
       this.dialogConfig.panelClass = 'confirmation-dialog-container';
       this.dialogConfig.disableClose = true;

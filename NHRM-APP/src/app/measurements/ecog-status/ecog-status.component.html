@@ -7,27 +7,27 @@
 
 <div class="container">
 
-    <div class="active box" [ngClass]="{'selected': this.status == '0'}">Fully Active</div>
+    <div class="active box" [ngClass]="{'selected': this.value == '0'}">Fully Active</div>
     <p id="ful">0</p>
-    <input type="radio" name="ecog" (click)="ecogStatus('0')">
+    <input type="radio" name="ecog" (click)="submitEcog('0')">
 
-    <div class="restricted box" [ngClass]="{'selected': this.status == '1'}">Activity Restricted</div>
+    <div class="restricted box" [ngClass]="{'selected': this.value == '1'}">Activity Restricted</div>
     <p id="res">1</p>
-    <input type="radio" name="ecog" (click)="ecogStatus('1')">
+    <input type="radio" name="ecog" (click)="submitEcog('1')">
 
-    <div class="capable box" [ngClass]="{'selected': this.status == '2'}">Capable of Self-care, Active over 50% of time
+    <div class="capable box" [ngClass]="{'selected': this.value == '2'}">Capable of Self-care, Active over 50% of time
         awake</div>
     <p id="cap">2</p>
-    <input type="radio" name="ecog" (click)="ecogStatus('2')">
+    <input type="radio" name="ecog" (click)="submitEcog('2')">
 
-    <div class="limited box" [ngClass]="{'selected': this.status == '3'}">Limited Self-care, Confined over 50% of time
+    <div class="limited box" [ngClass]="{'selected': this.value == '3'}">Limited Self-care, Confined over 50% of time
         awake</div>
     <p id="lim">3</p>
-    <input type="radio" name="ecog" (click)="ecogStatus('3')">
+    <input type="radio" name="ecog" (click)="submitEcog('3')">
 
-    <div class="disabled box" [ngClass]="{'selected': this.status == '4'}">Completely Disabled</div>
+    <div class="disabled box" [ngClass]="{'selected': this.value == '4'}">Completely Disabled</div>
     <p id="com">4</p>
-    <input type="radio" name="ecog" (click)="ecogStatus('4')">
+    <input type="radio" name="ecog" (click)="submitEcog('4')">
 
 </div>
 <div class="submit">

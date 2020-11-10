@@ -1,22 +1,22 @@
 <article>
     <h1 class="heading main-heading">Quality of Life: Part 1</h1>
-    <h2 class="sub-heading">Tick the box most appropriate</h2>
+    <h2 class="sub-heading">Select an option that is most appropriate</h2>
 
     <app-info-bar (click)="infoDialog()"></app-info-bar>
 
-    <form [formGroup]="form" class="form" (ngSubmit)="submit()">
+    <form [formGroup]="form" class="form" (ngSubmit)="proceed()">
         <h2 class="category-name">{{this.survey[this.currentCategory].categoryName}}</h2>
         <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
 
         <div class="error-message">
-            <p class="alert" *ngIf="!isValid">Please tick the box more appropriate before moving to the next section</p>
+            <p class="alert" *ngIf="!isValid">Please select an appropriate option before proceeding to the next section</p>
         </div>
 
         <button type="submit" class="btn submit-button"
             *ngIf="this.currentCategory < this.survey.length - 1">Next</button>
 
         <button type="button" class="btn submit-button" *ngIf="this.currentCategory === this.survey.length - 1"
-            (click)="submit()">Submit</button>
+            (click)="proceed()">Submit</button>
 
         <router-outlet></router-outlet>
     </form>

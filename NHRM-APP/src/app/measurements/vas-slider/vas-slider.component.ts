@@ -47,7 +47,7 @@ export class VasSliderComponent implements OnInit {
       console.log(this.currentHealthScore)
       this.vasValue.emit(this.currentHealthScore);
     } else {
-      this.errorMsg = "You must Position the Slider to proceed";
+      this.errorMsg = "You must position the slider before submitting";
     }
   }
 }

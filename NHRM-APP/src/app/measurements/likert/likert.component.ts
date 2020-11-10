@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-likert',
@@ -8,25 +7,29 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LikertComponent implements OnInit {
 
-  form: FormGroup;
   errorMsg: string;
+  value: number;
 
   @Input() feelings: string[];
   @Output() likertValue: EventEmitter<Number> = new EventEmitter<Number>();
 
-  constructor(fb: FormBuilder) {
-    this.form = fb.group({
-      feeling: ['', Validators.required]
-    });
+  constructor() {
   }
 
   ngOnInit(): void {
-
   }
 
-  onSubmit() {
-    console.log(Number(this.form.value["feeling"]));
-    this.likertValue.emit(Number(this.form.value["feeling"]));
+  getValue(value){
+    this.value = value;
+    this.errorMsg = "";
+  }
+
+  submitLikert() {
+    if(this.value){  
+      this.likertValue.emit(this.value);
+    }
+    else
+      this.errorMsg = "Please select an option before submitting";
   }
 
 }

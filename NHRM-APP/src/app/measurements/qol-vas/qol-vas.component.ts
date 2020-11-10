@@ -56,6 +56,7 @@ export class QolVasComponent implements OnInit {
 
     this.recordVASHealth();
   }
+  
   recordVASHealth() {
     let categoryList = [];
       

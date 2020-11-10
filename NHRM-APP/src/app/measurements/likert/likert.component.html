@@ -1,61 +1,59 @@
 <article>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+    <fieldset id="likert-scale">
 
-        <fieldset id="likert-scale">
+        <div class="user-feeling">
+            <figure>
+                <div class="emotion">
+                    <img src="assets/svg/crying_face.svg" alt="Very poor face" />
+                    <figcaption>{{feelings[0]}}</figcaption>
+                </div>
+            </figure>
+            <input type="radio" name="feeling" (click)="getValue(1)"/>
+        </div>
 
-            <div class="user-feeling">
-                <figure>
-                    <div class="emotion">
-                        <img src="assets/svg/crying_face.svg" alt="Very poor face" />
-                        <figcaption>{{feelings[0]}}</figcaption>
-                    </div>
-                </figure>
-                <input type="radio" name="feeling" value="1" formControlName="feeling" />
-            </div>
+        <div class="user-feeling">
+            <figure>
+                <div class="emotion">
+                    <img src="assets/svg/poor_face.svg" alt="Poor face" />
+                    <figcaption>{{feelings[1]}}</figcaption>
+                </div>
+            </figure>
+            <input type="radio" name="feeling" (click)="getValue(2)"/>
+        </div>
 
-            <div class="user-feeling">
-                <figure>
-                    <div class="emotion">
-                        <img src="assets/svg/poor_face.svg" alt="Poor face" />
-                        <figcaption>{{feelings[1]}}</figcaption>
-                    </div>
-                </figure>
-                <input type="radio" name="feeling" value="2" formControlName="feeling" />
-            </div>
-
-            <div class="user-feeling">
-                <figure>
-                    <div class="emotion">
-                        <img src="assets/svg/average_face.svg" alt="Average face" />
-                        <figcaption>{{feelings[2]}}</figcaption>
-                    </div>
-                </figure>
-                <input type="radio" name="feeling" value="3" formControlName="feeling" />
-            </div>
+        <div class="user-feeling">
+            <figure>
+                <div class="emotion">
+                    <img src="assets/svg/average_face.svg" alt="Average face" />
+                    <figcaption>{{feelings[2]}}</figcaption>
+                </div>
+            </figure>
+            <input type="radio" name="feeling" (click)="getValue(3)"/>
+        </div>
 
 
-            <div class="user-feeling">
-                <figure>
-                    <div class="emotion">
-                        <img src="assets/svg/good_face.svg" alt="Good face" />
-                        <figcaption>{{feelings[3]}}</figcaption>
-                    </div>
-                </figure>
-                <input type="radio" name="feeling" value="4" formControlName="feeling" />
-            </div>
+        <div class="user-feeling">
+            <figure>
+                <div class="emotion">
+                    <img src="assets/svg/good_face.svg" alt="Good face" />
+                    <figcaption>{{feelings[3]}}</figcaption>
+                </div>
+            </figure>
+            <input type="radio" name="feeling" (click)="getValue(4)"/>
+        </div>
 
-            <div class="user-feeling">
-                <figure>
-                    <div class="emotion">
-                        <img src="assets/svg/excellent_face.svg" alt="Excellent face" />
-                        <figcaption>{{feelings[4]}}</figcaption>
-                    </div>
-                </figure>
-                <input type="radio" name="feeling" value="5" formControlName="feeling" />
-            </div>
-        </fieldset>
-
-        <button type="submit" class="btn submit-button">Submit</button>
-        
-    </form>
+        <div class="user-feeling">
+            <figure>
+                <div class="emotion">
+                    <img src="assets/svg/excellent_face.svg" alt="Excellent face" />
+                    <figcaption>{{feelings[4]}}</figcaption>
+                </div>
+            </figure>
+            <input type="radio" name="feeling" (click)="getValue(5)" />
+        </div>
+    </fieldset>
+    <div class="error">
+        <p>{{this.errorMsg}}</p>
+    </div>
+    <button type="submit" class="btn submit-button" (click)="submitLikert()">Submit</button>
 </article>

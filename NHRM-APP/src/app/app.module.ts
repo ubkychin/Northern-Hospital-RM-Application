@@ -33,7 +33,6 @@ import { PdfResourceComponent } from './components/pdf-resource/pdf-resource.com
 import { VasSliderComponent } from './measurements/vas-slider/vas-slider.component';
 import { Error404Component } from './components/error404/error404.component';
 import { ResourceFilterPipe } from './pipes/resource-filter.pipe';
-import { VasInputComponent } from './measurements/vas-input/vas-input.component';
 import { ResourceDialogComponent } from './components/dialogs/resource-dialog/resource-dialog.component';
 import { SuccessDialogComponent } from './components/dialogs/success-dialog/success-dialog.component';
 import { DisclaimerDialogComponent } from './components/dialogs/disclaimer-dialog/disclaimer-dialog.component';
@@ -76,7 +75,6 @@ export function tokenGetter() {
     VasSliderComponent,
     Error404Component,
     ResourceFilterPipe,
-    VasInputComponent,
     ResourceDialogComponent,
     SuccessDialogComponent,
     DisclaimerDialogComponent,
