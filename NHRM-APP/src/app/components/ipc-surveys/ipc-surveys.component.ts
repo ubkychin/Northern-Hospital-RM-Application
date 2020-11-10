@@ -13,7 +13,7 @@ export class IpcSurveysComponent implements OnInit {
   constructor(private dataService: DataService) {
     this.activeMeasurements = [
       { meas: "ecog", id: 1, active: true },
-      { meas: "qol", id: 6, active: true }
+      { meas: "qol", id: 5, active: true }
     ];
 
     this.dataService.disabledMeasurements.subscribe((data) => {
