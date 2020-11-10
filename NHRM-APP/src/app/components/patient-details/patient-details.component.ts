@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ConditionDetails } from 'src/app/models/condition-details';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-patient-details',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PatientDetailsComponent implements OnInit {
 
-  constructor() { }
+  conditionDetails: ConditionDetails;
+
+  constructor(private dataService: DataService) {
+      this.dataService.getConditionsDetails()
+    this.conditionDetails = this.dataService.conditiondetails;
+  }
 
   ngOnInit(): void {
   }
