@@ -1,7 +1,6 @@
+<h2 mat-dialog-title>{{this.data.heading}}</h2>
 <mat-dialog-content>
-    <h2 mat-dialog-title>{{this.data.heading}}</h2>
-    <div>
-        You have selected <strong>{{this.data.content}}</strong>. Would you like to confirm your selection?
+    <div [innerHTML]="this.data.content">
     </div>
     <div style="float:right;margin:20px;">
         <input type="button" value="Confirm" [mat-dialog-close]="true">

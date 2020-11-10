@@ -50,6 +50,8 @@ header {
 .sub-heading {
     font-size: 18px;
     color: #707070;
+    margin: auto;
+    max-width: 800px;
 }
 
 .category-name {
@@ -235,6 +237,32 @@ mat-dialog-content, h2 {
     padding: 10px;
 }
 
+.confirmation-dialog-container .mat-dialog-container {
+    box-shadow: none;
+    border-radius: 20px;
+    background: #e9e9d7;
+    color: black;
+    min-height: fit-content;
+    width: fit-content;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.confirmation-dialog-container .mat-dialog-container input {
+    cursor: pointer;
+    justify-self: center;
+    margin: 3px;
+    background-color: rgb(146, 146, 69);
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: large;
+    outline: none;
+    border: none;
+}
+
 .disclaimer-dialog-container .mat-dialog-container {
     border-top: 20px#C4393C solid;
     box-shadow: none;
@@ -254,21 +282,6 @@ mat-dialog-content, h2 {
     width: fit-content;
     text-align: center;
     word-wrap: break-word;
-}
-
-.information-dialog-container .mat-dialog-container input {
-    cursor: pointer;
-    justify-self: center;
-    margin: 3px;
-    background-color: var(--nh-blue);
-    border-radius: 15px;
-    width: 100px;
-    height: 40px;
-    color: whitesmoke;
-    font-weight: bold;
-    font-size: large;
-    outline: none;
-    border: none;
 }
 
 .success-dialog-container .mat-dialog-container {

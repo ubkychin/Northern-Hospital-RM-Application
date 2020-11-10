@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ConfirmationDialogComponent } from 'src/app/components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { DataPointRecord } from 'src/app/models/data-point-record';
 import { Patient } from 'src/app/models/patient';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
@@ -46,40 +47,52 @@ export class FluidDrainComponent implements OnInit {
     this.dialog.open(ResourceDialogComponent, this.dialogConfig);
   }
 
-  recordFluid() {
+  submitFluid() {
     if (!this.fluid) {
       this.errorMsg = "You must enter fluid amount before submitting";
-
-    }else{
-      let measurementRecord: DataPointRecord[] = [{
-        'measurementId': this.measurementId,
-        'dataPointNumber': 1,
-        'value': this.fluid
-      }];
-  
-      let categoryList = [];
-      
-      this.patient.patientCategories.forEach(p => {
-        if(p.measurementIds.find(m => m == this.measurementId)){
-          categoryList.push(p.categoryId);
-        }
+    } else {
+      this.dialogConfig.panelClass = 'confirmation-dialog-container';
+      this.dialogConfig.disableClose = true;
+      this.dialogConfig.data = {
+        heading: 'Fluid Amount',
+        content: "You have entered <strong>" + this.fluid + " mL</strong> Would you like to confirm your selection?"
+      }
+      this.dialog.open(ConfirmationDialogComponent, this.dialogConfig).afterClosed().subscribe(option => {
+        if (option)
+          this.recordFluid();
       })
-
-      this.dataService.postMeasurementResult(measurementRecord, categoryList)
-        .then(() => {
-          this.dialogConfig.panelClass = 'success-dialog-container';
-          this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
-            this.router.navigate(['my-ipc']);
-          });
-   
-        })
-        .catch((err) => {
-          this.errorMsg = "Something went wrong, please try again";
-        })
-        .finally(() => {
-          console.log("Finalized");
-          this.dataService.loading.next(false);
-        });
     }
+  }
+
+  recordFluid() {
+    let measurementRecord: DataPointRecord[] = [{
+      'measurementId': this.measurementId,
+      'dataPointNumber': 1,
+      'value': this.fluid
+    }];
+
+    let categoryList = [];
+
+    this.patient.patientCategories.forEach(p => {
+      if (p.measurementIds.find(m => m == this.measurementId)) {
+        categoryList.push(p.categoryId);
+      }
+    })
+
+    this.dataService.postMeasurementResult(measurementRecord, categoryList)
+      .then(() => {
+        this.dialogConfig.panelClass = 'success-dialog-container';
+        this.dialogConfig.disableClose = false;
+        this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
+          this.router.navigate(['my-ipc']);
+        });
+      })
+      .catch((err) => {
+        this.errorMsg = "Something went wrong, please try again";
+      })
+      .finally(() => {
+        console.log("Finalized");
+        this.dataService.loading.next(false);
+      });
   }
 }

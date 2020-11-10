@@ -1,38 +1,47 @@
-h1{
+h1 {
     font-size: 35px;
     text-align: center;
 }
-.container-title{
+
+.container-title {
     font-size: 1em;
     text-align: left;
 }
-.details-container{
+
+.details-container {
     max-width: 840px;
     margin: auto;
 }
-.ur-number-container{
+
+.ur-number-container {
     background-color: #D2E8F2;
 }
-.diagnosis-container{
- background-color: #DAF4C8;
+
+.diagnosis-container {
+    background-color: #DAF4C8;
 }
-.date-container{
+
+.date-container {
     background-color: #F4F8C2;
 }
-.appointment-container{
+
+.appointment-container {
     background-color: #F9BFBF;
 }
-.detail-section{
-    padding:15px;
+
+.detail-section {
+    padding: 15px;
     margin: 20px;
     margin-top: 0px;
     margin-bottom: 10px;
     border: solid 1px var(--nh-grey);
     border-radius: 5px;
 }
-.mydrain{
+
+.mydrain {
     background-color: #ECA451;
 }
-.mydrain h1{
+
+.mydrain h1 {
     text-align: center;
 }
