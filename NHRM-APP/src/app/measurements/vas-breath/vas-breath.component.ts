@@ -16,7 +16,7 @@ import { SuccessDialogComponent } from '../../components/dialogs/success-dialog/
 export class VasBreathComponent implements OnInit {
 
 
-  readonly measurementId: number = 3;
+  readonly measurementId: number = 2;
   patient: Patient;
   measurementRecord: DataPointRecord[] = [];
 

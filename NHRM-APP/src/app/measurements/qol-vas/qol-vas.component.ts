@@ -18,7 +18,7 @@ import { SuccessDialogComponent } from '../../components/dialogs/success-dialog/
 })
 export class QolVasComponent implements OnInit {
 
-  readonly measurementId: number = 6;
+  readonly measurementId: number = 5;
   patient: Patient;
   measurementRecord: DataPointRecord[] = [];
   
@@ -50,7 +50,7 @@ export class QolVasComponent implements OnInit {
     console.log(parseInt(event));
     this.measurementRecord.push({
       'measurementId': this.measurementId,
-      'dataPointNumber': 7,
+      'dataPointNumber': 6,
       'value': parseInt(event)
     });
 

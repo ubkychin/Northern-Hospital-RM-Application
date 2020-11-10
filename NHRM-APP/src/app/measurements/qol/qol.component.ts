@@ -58,7 +58,7 @@ export class QolComponent implements OnInit {
   }
   ];
 
-  readonly measurementId: number = 6;
+  readonly measurementId: number = 5;
   options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[]
   form = new FormGroup({});

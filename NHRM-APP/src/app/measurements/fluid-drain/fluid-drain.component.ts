@@ -15,7 +15,7 @@ import { SuccessDialogComponent } from '../../components/dialogs/success-dialog/
 })
 export class FluidDrainComponent implements OnInit {
 
-  readonly measurementId: number = 5;
+  readonly measurementId: number = 4;
   dialogConfig: MatDialogConfig;
   fluid: number;
   patient: Patient;
