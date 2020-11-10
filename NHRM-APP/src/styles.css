@@ -256,6 +256,21 @@ mat-dialog-content, h2 {
     word-wrap: break-word;
 }
 
+.information-dialog-container .mat-dialog-container input {
+    cursor: pointer;
+    justify-self: center;
+    margin: 3px;
+    background-color: var(--nh-blue);
+    border-radius: 15px;
+    width: 100px;
+    height: 40px;
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: large;
+    outline: none;
+    border: none;
+}
+
 .success-dialog-container .mat-dialog-container {
     box-shadow: none;
     background: white;
