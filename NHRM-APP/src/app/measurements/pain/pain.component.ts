@@ -10,16 +10,16 @@ import { SuccessDialogComponent } from '../../components/dialogs/success-dialog/
 
 @Component({
   selector: 'app-vas-pain',
-  templateUrl: './vas-pain.component.html',
-  styleUrls: ['./vas-pain.component.css']
+  templateUrl: './pain.component.html',
+  styleUrls: ['./pain.component.css']
 })
-export class VasPainComponent implements OnInit {
+export class PainComponent implements OnInit {
 
   readonly measurementId: number = 3;
   patient: Patient;
   measurementRecord: DataPointRecord[] = [];
 
-  feelings: string[] = ["(No Pain)", "(Mild)", "(Moderate)", "(Severe)", "(Worst Posible)"];
+  feelings: string[] = ["(Worst Possible)", "(Severe)", "(Moderate)", "(Mild)", "(No Pain)"];
 
   dialogConfig: MatDialogConfig;
   dialogInfo: ResourceDialog = {

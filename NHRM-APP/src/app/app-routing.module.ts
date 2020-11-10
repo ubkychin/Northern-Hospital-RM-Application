@@ -4,8 +4,8 @@ import { LoginComponent } from './components/login/login.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { EcogStatusComponent } from './measurements/ecog-status/ecog-status.component';
 import { LikertComponent } from './measurements/likert/likert.component';
-import { VasBreathComponent } from './measurements/vas-breath/vas-breath.component';
-import { VasPainComponent } from './measurements/vas-pain/vas-pain.component';
+import { BreathComponent } from './measurements/breath/breath.component';
+import { PainComponent } from './measurements/pain/pain.component';
 import { FluidDrainComponent } from './measurements/fluid-drain/fluid-drain.component';
 import { QolComponent } from './measurements/qol/qol.component';
 import { PatientResourcesComponent } from './components/patient-resources/patient-resources.component';
@@ -38,15 +38,10 @@ const routes: Routes = [
   { path: 'patient-details', component: PatientDetailsComponent, canActivate: [AuthGuard] },
   { path: 'ecog-status', component: EcogStatusComponent, canActivate: [AuthGuard] },
   { path: 'likert', component: LikertComponent, canActivate: [AuthGuard] },
-  { path: 'vas-breath', component: VasBreathComponent, canActivate: [AuthGuard] },
-  { path: 'vas-pain', component: VasPainComponent, canActivate: [AuthGuard] },
+  { path: 'breath', component: BreathComponent, canActivate: [AuthGuard] },
+  { path: 'pain', component: PainComponent, canActivate: [AuthGuard] },
   { path: 'fluid-drain', component: FluidDrainComponent, canActivate: [AuthGuard] },
-  {
-    path: 'qol', component: QolComponent, canActivate: [AuthGuard],
-    children: [
-      { path: 'qol-vas', component: QolVasComponent, canActivate: [AuthGuard] }
-    ]
-  },
+  { path: 'qol', component: QolComponent, canActivate: [AuthGuard] },
   { path: 'qol-vas', component: QolVasComponent, canActivate: [AuthGuard] },
   { path: 'patient-resources', component: PatientResourcesComponent, canActivate: [AuthGuard] },
   { path: 'pdf-resource', component: PdfResourceComponent, canActivate: [AuthGuard] },

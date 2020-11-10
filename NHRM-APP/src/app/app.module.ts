@@ -15,8 +15,8 @@ import { LoginComponent } from './components/login/login.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { FluidDrainComponent } from './measurements/fluid-drain/fluid-drain.component';
-import { VasBreathComponent } from './measurements/vas-breath/vas-breath.component';
-import { VasPainComponent } from './measurements/vas-pain/vas-pain.component';
+import { BreathComponent } from './measurements/breath/breath.component';
+import { PainComponent } from './measurements/pain/pain.component';
 import { QolComponent } from './measurements/qol/qol.component';
 import { LikertComponent } from './measurements/likert/likert.component';
 import { EcogStatusComponent } from './measurements/ecog-status/ecog-status.component';
@@ -62,8 +62,8 @@ export function tokenGetter() {
     WelcomeComponent,
     NavigationComponent,
     FluidDrainComponent,
-    VasBreathComponent,
-    VasPainComponent,
+    BreathComponent,
+    PainComponent,
     QolComponent,
     LikertComponent,
     EcogStatusComponent,

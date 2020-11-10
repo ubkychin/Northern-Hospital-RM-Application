@@ -10,10 +10,10 @@ import { SuccessDialogComponent } from '../../components/dialogs/success-dialog/
 
 @Component({
   selector: 'app-vas-breath',
-  templateUrl: './vas-breath.component.html',
-  styleUrls: ['./vas-breath.component.css']
+  templateUrl: './breath.component.html',
+  styleUrls: ['./breath.component.css']
 })
-export class VasBreathComponent implements OnInit {
+export class BreathComponent implements OnInit {
 
 
   readonly measurementId: number = 2;

@@ -4,13 +4,13 @@
     </div>
 
     <div class="main-buttons">
-        <button class="main-btn btn3 btn-reg" [routerLink]="['/vas-breath']"
+        <button class="main-btn btn3 btn-reg" [routerLink]="['/breath']"
         [ngStyle]="{'opacity': activeMeasurements[0].active ? '1': '0.7'}" [disabled]="!activeMeasurements[0].active">
             <fa-icon *ngIf="activeMeasurements[0].active" [icon]="['fas', 'lungs']" transform="grow-5"></fa-icon>
             <fa-icon *ngIf="!activeMeasurements[0].active" id="done" [icon]="['fas', 'check-circle']" transform="grow-5"></fa-icon>
             <p>Breathlessness</p>
         </button>
-        <button class="main-btn btn4 btn-reg" [routerLink]="['/vas-pain']"
+        <button class="main-btn btn4 btn-reg" [routerLink]="['/pain']"
         [ngStyle]="{'opacity': activeMeasurements[1].active ? '1': '0.7'}" [disabled]="!activeMeasurements[1].active">
             <fa-icon *ngIf="activeMeasurements[1].active" [icon]="['fas', 'user-injured']" transform="grow-5"></fa-icon>
             <fa-icon *ngIf="!activeMeasurements[1].active" id="done" [icon]="['fas', 'check-circle']" transform="grow-5"></fa-icon>
