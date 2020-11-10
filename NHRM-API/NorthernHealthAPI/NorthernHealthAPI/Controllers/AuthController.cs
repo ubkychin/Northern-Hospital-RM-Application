@@ -43,35 +43,42 @@ namespace NorthernHealthAPI.Controllers
                 Password = p.Password
             });
 
-            var passwordHash = SHA512.Create();
-
-            passwordHash.ComputeHash(Encoding.UTF8.GetBytes(login.Password + patient.SingleOrDefault().Salt + Environment.GetEnvironmentVariable("pepper")));
-
-            if (passwordHash.Hash.SequenceEqual(patient.SingleOrDefault().Password))
+            if(patient.Count() > 0)
             {
-                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("secret")));
-                var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+                var passwordHash = SHA512.Create();
 
-                var claims = new[] {
+                passwordHash.ComputeHash(Encoding.UTF8.GetBytes(login.Password + patient.SingleOrDefault().Salt + Environment.GetEnvironmentVariable("pepper")));
+
+                if (passwordHash.Hash.SequenceEqual(patient.SingleOrDefault().Password))
+                {
+                    var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("secret")));
+                    var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+
+                    var claims = new[] {
                     new Claim(ClaimTypes.Role, "Patient"),
                     new Claim("URNumber", patient.SingleOrDefault().Urnumber)
                 };
 
-                var tokenOptions = new JwtSecurityToken(
-                    issuer: Environment.GetEnvironmentVariable("applicationUrl"),
-                    audience: Environment.GetEnvironmentVariable("applicationUrl"),
-                    claims: claims,
-                    expires: DateTime.Now.AddDays(5),
-                    signingCredentials: signinCredentials
-                );
+                    var tokenOptions = new JwtSecurityToken(
+                        issuer: Environment.GetEnvironmentVariable("applicationUrl"),
+                        audience: Environment.GetEnvironmentVariable("applicationUrl"),
+                        claims: claims,
+                        expires: DateTime.Now.AddDays(5),
+                        signingCredentials: signinCredentials
+                    );
 
-                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+                    var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
 
-                return Ok(new { Token = tokenString });
+                    return Ok(new { Token = tokenString });
+                }
+                else
+                {
+                    return Unauthorized();
+                }
             }
             else
             {
-                return Unauthorized();
+                return NotFound(new { message = "Patient not found" });
             }
         }
     }
