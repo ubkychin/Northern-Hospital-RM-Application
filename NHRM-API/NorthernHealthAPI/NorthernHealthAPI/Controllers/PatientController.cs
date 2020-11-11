@@ -37,6 +37,7 @@ namespace NorthernHealthAPI.Controllers
                 .Where(p => p.Urnumber == urNumber)
                 .Select(p => new
                 {
+                    Name = p.FirstName,
                     UrNumber = p.Urnumber,
                     PatientCategories = _context.PatientCategory
                                         .Where(pc => pc.Urnumber == p.Urnumber)
