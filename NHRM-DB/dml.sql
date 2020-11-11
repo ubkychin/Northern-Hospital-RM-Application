@@ -10,8 +10,8 @@ VALUES('staff@staff.com', 'Staff', 'One', HASHBYTES('SHA2_512', CONCAT('password
 
 INSERT INTO Patient
     (URNumber,Email,Title,SurName,FirstName,Gender,DOB,[Address],Suburb,PostCode,MobileNumber,HomeNumber,CountryOfBirth,PreferredLanguage,[Password],Salt,LivesAlone,RegisteredBy,Active)
-VALUES('123456789', 'patient@patient.com', 'Mr', 'John', 'Doe', 'Male', GETDATE(), '123 Evergreen Terrace', 'Springfield', '1234', '0123456789', '0123456789', 'Australia', 'English', HASHBYTES('SHA2_512', CONCAT('password', 'salt', 'this15myp3pper')), 'salt', 0, 1, 1),
-    ('987654321', 'patient2@patient.com', 'Mrs', 'Jane', 'Doe', 'Female', GETDATE(), '123 Evergreen Terrace', 'Springfield', '1234', '0123456789', '0123456789', 'Australia', 'English', HASHBYTES('SHA2_512', CONCAT('password', 'salt', 'this15myp3pper')), 'salt', 0, 1, 1);
+VALUES('123456789', 'patient@patient.com', 'Mrs', 'Doe', 'Jane', 'Female', GETDATE(), '123 Evergreen Terrace', 'Springfield', '1234', '0123456789', '0123456789', 'Australia', 'English', HASHBYTES('SHA2_512', CONCAT('password', 'salt', 'this15myp3pper')), 'salt', 0, 1, 1),
+    ('987654321', 'patient2@patient.com', 'Mr', 'Doe', 'John', 'Male', GETDATE(), '123 Evergreen Terrace', 'Springfield', '1234', '0123456789', '0123456789', 'Australia', 'English', HASHBYTES('SHA2_512', CONCAT('password', 'salt', 'this15myp3pper')), 'salt', 0, 1, 1);
 
 INSERT INTO Measurement
     (MeasurementName, Frequency)
