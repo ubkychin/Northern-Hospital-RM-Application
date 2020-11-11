@@ -24,6 +24,12 @@
     float: right;
 }
 
+.patient-name{
+    position: absolute;
+    padding: 15px 15px;
+    right: 0;
+}
+
 .access {
     flex-grow: 1;
 }

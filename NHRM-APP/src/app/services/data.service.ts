@@ -23,8 +23,9 @@ export class DataService {
   categoryChosen: BehaviorSubject<any>;
   disabledMeasurements: BehaviorSubject<number[]>;
   conditiondetails: ConditionDetails;
+  measurementRecord: DataPointRecord[];
 
-  constructor(private _http: HttpClient, private spinner: NgxSpinnerService, private jwtHelper: JwtHelperService) {
+  constructor(private _http: HttpClient, private jwtHelper: JwtHelperService) {
     this.disabledMeasurements = new BehaviorSubject([]);
     this.termsAcceptance = new BehaviorSubject(null);
     this.emergancyAgreement = new BehaviorSubject(null);
@@ -61,7 +62,7 @@ export class DataService {
     })
   }
 
-  postMeasurementResult(measurementRecord: DataPointRecord[], categoryIdList: number[]) {
+  postMeasurementResult(categoryIdList: number[]) {
     this.loading.next(true);
     let params = new HttpParams();
     params = params.append('urNumber', this.patient.value['urNumber']);
@@ -70,7 +71,7 @@ export class DataService {
     })
     return new Promise((resolve, reject) => {
       this._http.post(this.apiURL + "/patient/recordmeasurement",
-        measurementRecord, {
+        this.measurementRecord, {
         params: params
       }).subscribe(
         res => {

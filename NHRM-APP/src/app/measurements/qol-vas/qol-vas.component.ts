@@ -20,8 +20,7 @@ export class QolVasComponent implements OnInit {
 
   readonly measurementId: number = 5;
   patient: Patient;
-  measurementRecord: DataPointRecord[] = [];
-  
+
   dialogConfig: MatDialogConfig;
   dialogInfo: ResourceDialog = {
     heading: "Quality of Life: Part 2",
@@ -48,7 +47,7 @@ export class QolVasComponent implements OnInit {
 
   getVasSliderScore(event) {
     console.log(parseInt(event));
-    this.measurementRecord.push({
+    this.dataService.measurementRecord.push({
       'measurementId': this.measurementId,
       'dataPointNumber': 6,
       'value': parseInt(event)
@@ -56,17 +55,17 @@ export class QolVasComponent implements OnInit {
 
     this.recordVASHealth();
   }
-  
+
   recordVASHealth() {
     let categoryList = [];
-      
+
     this.patient.patientCategories.forEach(p => {
-      if(p.measurementIds.find(m => m == this.measurementId)){
+      if (p.measurementIds.find(m => m == this.measurementId)) {
         categoryList.push(p.categoryId);
       }
     })
-    
-    this.dataService.postMeasurementResult(this.measurementRecord, categoryList)
+
+    this.dataService.postMeasurementResult(categoryList)
       .then(() => {
         this.dialogConfig.panelClass = 'success-dialog-container';
         this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {

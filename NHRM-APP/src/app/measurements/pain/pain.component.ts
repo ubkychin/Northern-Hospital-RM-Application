@@ -17,7 +17,6 @@ export class PainComponent implements OnInit {
 
   readonly measurementId: number = 3;
   patient: Patient;
-  measurementRecord: DataPointRecord[] = [];
 
   feelings: string[] = ["(Worst Possible)", "(Severe)", "(Moderate)", "(Mild)", "(No Pain)"];
 
@@ -48,12 +47,11 @@ export class PainComponent implements OnInit {
 
   getPainScore(event) {
     console.log(event);
-    this.measurementRecord.push({
+    this.dataService.measurementRecord = [{
       'measurementId': this.measurementId,
       'dataPointNumber': 1,
       'value': event
-    });
-    console.log(this.measurementRecord)
+    }];
 
     this.recordVASPain();
   }
@@ -67,7 +65,7 @@ export class PainComponent implements OnInit {
       }
     })
 
-    this.dataService.postMeasurementResult(this.measurementRecord, categoryList)
+    this.dataService.postMeasurementResult(categoryList)
       .then(() => {
         this.dialogConfig.panelClass = 'success-dialog-container';
         this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {

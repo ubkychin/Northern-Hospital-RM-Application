@@ -1,5 +1,6 @@
 export class Patient {
-    URNumber: string;
+    name: string;
+    urNumber: string;
     categoryId: number;
     patientCategories: PatientCategory [];
 }

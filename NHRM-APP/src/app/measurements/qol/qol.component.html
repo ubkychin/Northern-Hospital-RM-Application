@@ -6,7 +6,7 @@
 
     <form [formGroup]="form" class="form" (ngSubmit)="proceed()">
         <h2 class="category-name">{{this.survey[this.currentCategory].categoryName}}</h2>
-        <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+        <formly-form [fields]="fields" [options]="options" [form]="form"></formly-form>
 
         <div class="error-message">
             <p class="alert" *ngIf="!isValid">Please select an appropriate option before proceeding to the next section</p>

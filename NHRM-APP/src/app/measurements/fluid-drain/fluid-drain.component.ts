@@ -65,7 +65,7 @@ export class FluidDrainComponent implements OnInit {
   }
 
   recordFluid() {
-    let measurementRecord: DataPointRecord[] = [{
+    this.dataService.measurementRecord = [{
       'measurementId': this.measurementId,
       'dataPointNumber': 1,
       'value': this.fluid
@@ -79,7 +79,7 @@ export class FluidDrainComponent implements OnInit {
       }
     })
 
-    this.dataService.postMeasurementResult(measurementRecord, categoryList)
+    this.dataService.postMeasurementResult(categoryList)
       .then(() => {
         this.dialogConfig.panelClass = 'success-dialog-container';
         this.dialogConfig.disableClose = false;

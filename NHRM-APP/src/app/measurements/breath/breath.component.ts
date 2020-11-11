@@ -18,7 +18,6 @@ export class BreathComponent implements OnInit {
 
   readonly measurementId: number = 2;
   patient: Patient;
-  measurementRecord: DataPointRecord[] = [];
 
   feelings: string[] = ["(Very Poor)", "(Poor)", "(Average)", "(Good)", "(Excellent)"];
 
@@ -49,12 +48,11 @@ export class BreathComponent implements OnInit {
 
   getBreathScore(event) {
     console.log(event);
-    this.measurementRecord.push({
+    this.dataService.measurementRecord = [{
       'measurementId': this.measurementId,
       'dataPointNumber': 1,
       'value': event
-    });
-    console.log(this.measurementRecord)
+    }];
 
     this.recordVASBreath();
 
@@ -69,7 +67,7 @@ export class BreathComponent implements OnInit {
       }
     })
 
-    this.dataService.postMeasurementResult(this.measurementRecord, categoryList)
+    this.dataService.postMeasurementResult(categoryList)
       .then(() => {
         this.dialogConfig.panelClass = 'success-dialog-container';
         this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {

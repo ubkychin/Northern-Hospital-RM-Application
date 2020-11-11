@@ -20,10 +20,10 @@ export class AppComponent implements OnInit {
   emergancy: boolean;
   loggedIn: boolean;
   isRoot: boolean;
+  patientName: string;
 
   constructor(private dataService: DataService, private authService: AuthService, private router: Router,
-    private location: Location, private renderer: Renderer2,
-    private spinner: NgxSpinnerService) {
+    private location: Location, private renderer: Renderer2, private spinner: NgxSpinnerService) {
 
     this.dataService.termsAcceptance.subscribe(data => {
       this.authorised = data;
@@ -41,6 +41,12 @@ export class AppComponent implements OnInit {
       else
         this.isRoot = true;
     })
+
+    dataService.patient.subscribe(data => {
+      if(data){
+        this.patientName = data.name;
+      }
+    });
 
     this.loadingSpinner();
   }

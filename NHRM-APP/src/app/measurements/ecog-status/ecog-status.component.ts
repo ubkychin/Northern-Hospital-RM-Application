@@ -59,7 +59,7 @@ export class EcogStatusComponent implements OnInit {
       this.errorMsg = "Please select an option before submitting";
 
     } else {
-      let measurementRecord: DataPointRecord[] = [{
+      this.dataService.measurementRecord = [{
         'measurementId': this.measurementId,
         'dataPointNumber': 1,
         'value': parseInt(this.value)
@@ -75,7 +75,7 @@ export class EcogStatusComponent implements OnInit {
 
       console.log(categoryList);
 
-      this.dataService.postMeasurementResult(measurementRecord, categoryList)
+      this.dataService.postMeasurementResult(categoryList)
         .then(() => {
           this.dialogConfig.panelClass = 'success-dialog-container';
 

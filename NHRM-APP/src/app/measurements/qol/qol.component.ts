@@ -7,7 +7,6 @@ import { DataService } from 'src/app/services/data.service';
 import { DataPointRecord } from 'src/app/models/data-point-record';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
-import { SuccessDialogComponent } from '../../components/dialogs/success-dialog/success-dialog.component';
 import { ResourceDialogComponent } from '../../components/dialogs/resource-dialog/resource-dialog.component';
 
 @Component({
@@ -17,16 +16,21 @@ import { ResourceDialogComponent } from '../../components/dialogs/resource-dialo
 })
 export class QolComponent implements OnInit {
 
-  public patient: Patient;
-  model: any = {};
+  readonly measurementId: number = 5;
+  options: FormlyFormOptions = {};
+  fields: FormlyFieldConfig[]
+  form = new FormGroup({});
+  currentCategory: number;
+  patient: Patient;
   isValid: boolean = true;
   measurementRecord: DataPointRecord[] = [];
+
+  dialogConfig: MatDialogConfig;
   dialogInfo: ResourceDialog = {
     heading: "Quality of Life: Part 1",
     content: "There are five categories we would like you to record answers for. These are Mobility, Self Care, Usual Activites, Pain/Discomfort, and Anxiety/Depression. Please click one of the five answers for each category by clicking the box. Press the 'next' button below the answers to continue and the 'submit' button when you have answered all prompts.</p>"
   }
 
-  // The survey categories and questions retrieved from the API
   survey: any = [{
     categoryName: "Mobility",
     questions: ["I have no problems in walking about", "I have slight problems in walking about",
@@ -57,13 +61,6 @@ export class QolComponent implements OnInit {
       "I am extremely anxious or depressed"]
   }
   ];
-
-  readonly measurementId: number = 5;
-  options: FormlyFormOptions = {};
-  fields: FormlyFieldConfig[]
-  form = new FormGroup({});
-  currentCategory: number;
-  dialogConfig: MatDialogConfig;
 
   constructor(public dialog: MatDialog, private router: Router, private dataService: DataService) {
     this.dialogConfig = new MatDialogConfig();
@@ -122,7 +119,7 @@ export class QolComponent implements OnInit {
   }
 
   recordSurvey() {
-    let categories = Object.keys(this.form.value);    
+    let categories = Object.keys(this.form.value);
 
     for (let i = 0; i < categories.length; i++) {
       this.measurementRecord[i] = ({
@@ -132,25 +129,8 @@ export class QolComponent implements OnInit {
       });
     }
 
-    let categoryList = [];
-      
-    this.patient.patientCategories.forEach(p => {
-      if(p.measurementIds.find(m => m == this.measurementId)){
-        categoryList.push(p.categoryId);
-      }
-    })
-    
-    this.dataService.postMeasurementResult(this.measurementRecord, categoryList)
-      .then(() => {
-        this.dialogConfig.panelClass = 'success-dialog-container';
-        this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
-          this.router.navigate(['qol-vas']);
-        });
-      })
-      .catch((err) => console.log(err + "Quality of Life Error"))
-      .finally(() => {
-        console.log("Finalized");
-        this.dataService.loading.next(false);
-      });
+    this.dataService.measurementRecord = this.measurementRecord;
+
+    this.router.navigate(['qol-vas']);
   }
 }
