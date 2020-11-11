@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     this.authService.loggedIn.subscribe(data => {
       this.loggedIn = data;
     })
-    this.dataService.emergancyAgreement.subscribe(data => {
+    this.dataService.emergencyAgreement.subscribe(data => {
       this.emergancy = data;
     })
 
@@ -65,7 +65,7 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    this.dataService.emergancyAgreement.next(false);
+    this.dataService.emergencyAgreement.next(false);
   }
 
   dropdown() {

@@ -25,6 +25,7 @@ import { FluidHelpComponent } from './components/help/fluid-help/fluid-help.comp
 import { PainHelpComponent } from './components/help/pain-help/pain-help.component';
 import { BreathHelpComponent } from './components/help/breath-help/breath-help.component';
 import { QolHelpComponent } from './components/help/qol-help/qol-help.component';
+import { MeasurementGuard } from './guard/measurement.guard';
 
 
 const routes: Routes = [
@@ -36,13 +37,12 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: NavigationComponent, canActivate: [AuthGuard] },
   { path: 'patient-details', component: PatientDetailsComponent, canActivate: [AuthGuard] },
-  { path: 'ecog-status', component: EcogStatusComponent, canActivate: [AuthGuard] },
-  { path: 'likert', component: LikertComponent, canActivate: [AuthGuard] },
-  { path: 'breath', component: BreathComponent, canActivate: [AuthGuard] },
-  { path: 'pain', component: PainComponent, canActivate: [AuthGuard] },
+  { path: 'ecog-status', component: EcogStatusComponent, canActivate: [AuthGuard, MeasurementGuard], data: {measurementId: 1} },
+  { path: 'breath', component: BreathComponent, canActivate: [AuthGuard, MeasurementGuard], data: {measurementId: 2}},
+  { path: 'pain', component: PainComponent, canActivate: [AuthGuard, MeasurementGuard], data: {measurementId: 3}},
   { path: 'fluid-drain', component: FluidDrainComponent, canActivate: [AuthGuard] },
-  { path: 'qol', component: QolComponent, canActivate: [AuthGuard] },
-  { path: 'qol-vas', component: QolVasComponent, canActivate: [AuthGuard] },
+  { path: 'qol', component: QolComponent, canActivate: [AuthGuard, MeasurementGuard], data: {measurementId: 5}},
+  { path: 'qol-vas', component: QolVasComponent, canActivate: [AuthGuard, MeasurementGuard], data: {measurementId: 5} },
   { path: 'patient-resources', component: PatientResourcesComponent, canActivate: [AuthGuard] },
   { path: 'pdf-resource', component: PdfResourceComponent, canActivate: [AuthGuard] },
   { path: 'my-ipc', component: IpcComponent, canActivate: [AuthGuard] },

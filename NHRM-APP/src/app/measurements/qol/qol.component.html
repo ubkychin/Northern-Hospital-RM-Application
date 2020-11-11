@@ -16,7 +16,7 @@
             *ngIf="this.currentCategory < this.survey.length - 1">Next</button>
 
         <button type="button" class="btn submit-button" *ngIf="this.currentCategory === this.survey.length - 1"
-            (click)="proceed()">Submit</button>
+            (click)="proceed()">Next</button>
 
         <router-outlet></router-outlet>
     </form>

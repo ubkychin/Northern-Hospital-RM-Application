@@ -15,7 +15,7 @@ export class DataService {
 
   apiURL = "https://localhost:5001/api";;
   termsAcceptance: BehaviorSubject<boolean>;
-  emergancyAgreement: BehaviorSubject<boolean>;
+  emergencyAgreement: BehaviorSubject<boolean>;
   patient: BehaviorSubject<Patient>;
   loading: BehaviorSubject<boolean>;
   patientResources: PatientResource[];
@@ -28,7 +28,7 @@ export class DataService {
   constructor(private _http: HttpClient, private jwtHelper: JwtHelperService) {
     this.disabledMeasurements = new BehaviorSubject([]);
     this.termsAcceptance = new BehaviorSubject(null);
-    this.emergancyAgreement = new BehaviorSubject(null);
+    this.emergencyAgreement = new BehaviorSubject(null);
     this.loading = new BehaviorSubject(false);
     this.patient = new BehaviorSubject(null);
     this.categoryChosen = new BehaviorSubject(null);
@@ -38,6 +38,9 @@ export class DataService {
       this.getPatientDetails(this.jwtHelper.decodeToken().URNumber)
         .then(() => {
           console.log("Patient returned\nURNumber: " + this.patient.value['urNumber'])
+          this.getDisabledMeasurements().then(data => {
+            sessionStorage.setItem('disabledMeasurements', JSON.stringify(data));
+          });
           sessionStorage.setItem('Patient', JSON.stringify(this.patient.value));
         })
         .catch((err) => console.log(err.error))
@@ -45,6 +48,7 @@ export class DataService {
           this.loading.next(false)
         });
     }
+
   }
 
   getDisabledMeasurements() {
@@ -119,7 +123,7 @@ export class DataService {
       );
     })
   }
-  getConditionsDetails(){
+  getConditionsDetails() {
     let conditionDetails: ConditionDetails = {
       urNumber: "123456789XYZ",
       diagnosis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec nulla risus. Quisque vehicula felis a magna consequat fringilla. Sed ut purus mollis, gravida eros eget, tincidunt diam. Nunc hendrerit ut felis nec venenatis. Vestibulum fringilla suscipit lacinia. Sed tincidunt, libero in luctus faucibus, enim urna mollis orci, sit amet pretium nulla nibh ac tellus. Proin a ligula quis nisi efficitur accumsan. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris varius malesuada hendrerit. Aliquam malesuada ultrices nunc, in vestibulum magna malesuada eget. Praesent ligula elit, fringilla ac neque et, finibus convallis ante. Praesent id tristique neque, non bibendum augue. Pellentesque pulvinar quam lorem, at aliquam velit bibendum ut.",

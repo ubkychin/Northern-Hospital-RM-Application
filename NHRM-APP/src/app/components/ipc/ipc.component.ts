@@ -13,10 +13,11 @@ export class IpcComponent implements OnInit {
 
   constructor(private dataService: DataService) {
     this.dataService.getDisabledMeasurements()
-      .then((res) => console.log(res))
+      .then((res) => {
+        sessionStorage.setItem('disabledMeasurements', JSON.stringify(res));
+      })
       .catch((err) => console.log(err))
       .finally(() => this.dataService.loading.next(false));
-
   }
 
   ngOnInit(): void {

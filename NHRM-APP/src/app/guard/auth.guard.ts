@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
@@ -10,7 +10,8 @@ export class AuthGuard implements CanActivate {
 
   constructor(private authService: AuthService) { }
 
-  canActivate(): Observable<boolean> | Promise<boolean> | boolean {
+  canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    console.log("AuthGuard measurementId: " + route.data.measurementId);
     if (this.authService.loggedIn.getValue())
       return true;
     else
