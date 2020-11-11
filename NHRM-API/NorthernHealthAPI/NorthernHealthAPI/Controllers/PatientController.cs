@@ -29,7 +29,7 @@ namespace NorthernHealthAPI.Controllers
 
         //  GET api/patient/{urNumber}
         //  Accepts a URNumber (string) and returns a Patient and their categories
-        [HttpGet, Route("patient/{urNumber}"), Authorize]
+        [HttpGet, Route("patient/{urNumber}"), Authorize(Roles = "Patient")]
         public IActionResult GetPatient(string urNumber)
         {
             //Get Patient, Categories and Measurements Assigned
@@ -58,7 +58,7 @@ namespace NorthernHealthAPI.Controllers
 
         //  GET api/patient/resources/{urNumber}
         //  Accepts a URNumber (string) and returns all Resources assigned to a Patient 
-        [HttpGet, Route("resources/{urNumber}"), Authorize]
+        [HttpGet, Route("resources/{urNumber}"), Authorize(Roles = "Patient")]
         public IActionResult GetPatientResources(string urNumber, int categoryId)
         {
             //Get all Resources that have been assigned to a Patient
@@ -93,7 +93,7 @@ namespace NorthernHealthAPI.Controllers
 
         //  GET api/patient/disabledMeasurements/{urNumber}
         //  Accepts a URNumber (string) and returns all measurements that should be disabled in the app 
-        [HttpGet, Route("disabledMeasurements/{urNumber}"), Authorize]
+        [HttpGet, Route("disabledMeasurements/{urNumber}"), Authorize(Roles = "Patient")]
         public IActionResult GetMeasurementsToDisable(string urNumber)
         {
             //List of disabled measurements to return
@@ -133,7 +133,7 @@ namespace NorthernHealthAPI.Controllers
         //  Accepts a List of DataPointRecords, urNumber (string) and List of categoryId (int) - inserts a MeasurementRecord
         //  and all DataPointRecords sent
         //  If there is an error, the transaction will be rolled back
-        [HttpPost, Route("recordmeasurement"), Authorize]
+        [HttpPost, Route("recordmeasurement"), Authorize(Roles = "Patient")]
         public async Task<IActionResult> RecordMeasurement(List<DataPointRecord> records, string urNumber,
             [FromQuery(Name = "categoryIdList")] List<int> categoryId)
         {
