@@ -3,19 +3,34 @@
 </div>
 <div class="details-container">
     <div class="ur-number-container detail-section">
-        <h1 class="container-title">UR number: {{conditionDetails.urNumber}}</h1>
+        <h3>UR Number: {{conditionDetails.urNumber}}</h3>
     </div>
     <div class="diagnosis-container detail-section">
-        <h1 class="container-title">Diagnosis:</h1>
+        <h3 class="container-title">Diagnosis:</h3>
         <p>{{conditionDetails.diagnosis}}</p>
     </div>
     <div class="date-container detail-section">
-        <h1 class="container-title">Date of insertion: {{conditionDetails.dateOfOperation | date: "short"}}</h1>
+        <h3>Date of Insertion: {{conditionDetails.insertionDate | date: "short"}}</h3>
     </div>
     <div class="appointment-container detail-section">
-        <h1 class="container-title">Next appointment: {{conditionDetails.nextAppointment | date: "short"}}</h1>
+        <h3>Next Appointment: {{conditionDetails.nextAppointment | date: "short"}}</h3>
     </div>
-    <div class="mydrain detail-section">
-        <h1 class="container-title">My drainage </h1>
+    <div class="drainage detail-section">
+        <h3>Last Drainage {{conditionDetails.myDrainage.drainageDate | date: "short"}}</h3>
+        <h3>Duration: {{duration}}</h3>
+        <div class="drainage-detail">
+            <div class="drainage-grid">
+                <h4>Fluid Drained:</h4>
+                <p>{{conditionDetails.myDrainage.fluidScore}} mL</p>
+            </div>
+            <div class="drainage-grid">
+                <h4>Level of Breathlessness:</h4>
+                <p>{{breath}}</p>
+            </div>
+            <div class="drainage-grid">
+                <h4>Level of pain:</h4>
+                <p>{{pain}}</p>
+            </div>
+        </div>
     </div>
 </div>

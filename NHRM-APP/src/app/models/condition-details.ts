@@ -1,6 +1,16 @@
 export class ConditionDetails {
     urNumber: string;
     diagnosis: string;
-    dateOfOperation: Date;
+    insertionDate: Date;
     nextAppointment: Date;
+    myDrainage: MyDrainage;
+}
+
+export class MyDrainage {
+    frequency: number;
+    fluidScore: number;
+    breathScore: number;
+    painScore: number;
+    drainageDate: Date;
+
 }

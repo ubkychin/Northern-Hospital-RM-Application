@@ -1,16 +1,15 @@
-h1 {
-    font-size: 35px;
+.heading h1 {
+    font-size: 30px;
     text-align: center;
-}
-
-.container-title {
-    font-size: 1em;
-    text-align: left;
 }
 
 .details-container {
     max-width: 840px;
     margin: auto;
+}
+
+.details-container h3 {
+    font-size: 1em;
 }
 
 .ur-number-container {
@@ -30,7 +29,7 @@ h1 {
 }
 
 .detail-section {
-    padding: 15px;
+    padding: 10px;
     margin: 20px;
     margin-top: 0px;
     margin-bottom: 10px;
@@ -38,10 +37,40 @@ h1 {
     border-radius: 5px;
 }
 
-.mydrain {
+.drainage {
     background-color: #ECA451;
 }
 
-.mydrain h1 {
+.drainage h3 {
     text-align: center;
+    font-size: 1em;
+}
+
+.drainage-detail {
+    margin: auto;
+    margin-top: 10px;
+    background-color: #f5cd9f;
+    border-radius: 5px;
+    max-width: 700px;
+}
+
+.drainage-grid {
+    padding: 5px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: #f5cd9f;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.drainage-grid h4 {
+    text-align: left;
+    font-size: .9em;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+span{
+    display: flex;
 }

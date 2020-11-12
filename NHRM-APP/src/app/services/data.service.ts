@@ -6,7 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { PatientResource } from '../models/patient-resource';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { DataPointRecord } from '../models/data-point-record';
-import { ConditionDetails } from '../models/condition-details';
+import { ConditionDetails, MyDrainage } from '../models/condition-details';
 
 @Injectable({
   providedIn: 'root'
@@ -126,10 +126,17 @@ export class DataService {
   }
   getConditionsDetails() {
     let conditionDetails: ConditionDetails = {
-      urNumber: "123456789XYZ",
-      diagnosis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec nulla risus. Quisque vehicula felis a magna consequat fringilla. Sed ut purus mollis, gravida eros eget, tincidunt diam. Nunc hendrerit ut felis nec venenatis. Vestibulum fringilla suscipit lacinia. Sed tincidunt, libero in luctus faucibus, enim urna mollis orci, sit amet pretium nulla nibh ac tellus. Proin a ligula quis nisi efficitur accumsan. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris varius malesuada hendrerit. Aliquam malesuada ultrices nunc, in vestibulum magna malesuada eget. Praesent ligula elit, fringilla ac neque et, finibus convallis ante. Praesent id tristique neque, non bibendum augue. Pellentesque pulvinar quam lorem, at aliquam velit bibendum ut.",
-      dateOfOperation: new Date(),
-      nextAppointment: new Date()
+      urNumber: "123456789",
+      diagnosis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec nulla risus. Quisque vehicula felis a magna consequat fringilla. Sed ut purus mollis, gravida eros eget, tincidunt diam. Nunc hendrerit ut felis nec venenatis. Vestibulum fringilla suscipit lacinia. Sed tincidunt, libero in luctus faucibus, enim urna mollis orci, sit amet pretium nulla nibh ac tellus. .",
+      insertionDate: new Date(),
+      nextAppointment: new Date(),
+      myDrainage: {
+        frequency: 1,
+        fluidScore: 78,
+        breathScore: 2,
+        painScore: 3,
+        drainageDate: new Date()
+      }
     };
     this.conditiondetails = conditionDetails;
   }
