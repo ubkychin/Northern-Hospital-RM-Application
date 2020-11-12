@@ -13,12 +13,8 @@ import { ConditionDetails } from '../models/condition-details';
 })
 export class DataService {
 
-<<<<<<< Updated upstream
-  apiURL = "https://localhost:5001/api";;
-=======
   apiURL = "https://localhost:5001/api";
   /* apiURL = "http://northernhealthapi-env.eba-iawekmm2.us-east-1.elasticbeanstalk.com/api"; */
->>>>>>> Stashed changes
   termsAcceptance: BehaviorSubject<boolean>;
   emergencyAgreement: BehaviorSubject<boolean>;
   patient: BehaviorSubject<Patient>;
