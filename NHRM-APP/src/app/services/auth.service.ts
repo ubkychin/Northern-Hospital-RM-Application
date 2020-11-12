@@ -12,6 +12,10 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   apiURL = "https://localhost:5001/api";
+<<<<<<< Updated upstream
+=======
+  /* apiURL = "http://northernhealthapi-env.eba-iawekmm2.us-east-1.elasticbeanstalk.com/api"; */
+>>>>>>> Stashed changes
   loggedIn: BehaviorSubject<boolean>;
 
   constructor(private _http: HttpClient, private dataService: DataService, private jwtHelper: JwtHelperService, private router: Router) { 
