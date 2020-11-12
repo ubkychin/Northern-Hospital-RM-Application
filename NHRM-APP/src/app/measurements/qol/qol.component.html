@@ -12,11 +12,7 @@
             <p class="alert" *ngIf="!isValid">Please select an appropriate option before proceeding to the next section</p>
         </div>
 
-        <button type="submit" class="btn submit-button"
-            *ngIf="this.currentCategory < this.survey.length - 1">Next</button>
-
-        <button type="button" class="btn submit-button" *ngIf="this.currentCategory === this.survey.length - 1"
-            (click)="proceed()">Next</button>
+        <button type="submit" class="btn submit-button">Next</button>
 
         <router-outlet></router-outlet>
     </form>

@@ -82,7 +82,9 @@ export class QolComponent implements OnInit {
           { value: 5, label: this.survey[this.currentCategory].questions[4] },
         ],
         required: true,
-        change: () => this.isValid = true
+        change: (data) => {
+          this.isValid = true
+        }
       },
 
     }];
