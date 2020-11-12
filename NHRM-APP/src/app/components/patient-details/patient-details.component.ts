@@ -25,7 +25,7 @@ export class PatientDetailsComponent implements OnInit {
     this.getPainFeeling();
   }
 
-  getPainFeeling(){
+  getPainFeeling() {
     switch (this.conditionDetails.myDrainage.painScore) {
       case 1: this.pain = "No Pain";
         break;
@@ -39,7 +39,7 @@ export class PatientDetailsComponent implements OnInit {
     }
   }
 
-  getBreathFeeling(){
+  getBreathFeeling() {
     switch (this.conditionDetails.myDrainage.frequency) {
       case 1: this.breath = "Very Poor";
         break;

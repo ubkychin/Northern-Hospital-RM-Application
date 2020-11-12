@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { Patient } from '../models/patient';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { PatientResource } from '../models/patient-resource';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { DataPointRecord } from '../models/data-point-record';
-import { ConditionDetails, MyDrainage } from '../models/condition-details';
+import { ConditionDetails } from '../models/condition-details';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,7 @@ import { ConditionDetails, MyDrainage } from '../models/condition-details';
 export class DataService {
 
   apiURL = "https://localhost:5001/api";
-  /* apiURL = "http://northernhealthapi-env.eba-iawekmm2.us-east-1.elasticbeanstalk.com/api"; */
+  //apiURL = "http://northernhealthapi-env.eba-iawekmm2.us-east-1.elasticbeanstalk.com/api";
   termsAcceptance: BehaviorSubject<boolean>;
   emergencyAgreement: BehaviorSubject<boolean>;
   patient: BehaviorSubject<Patient>;

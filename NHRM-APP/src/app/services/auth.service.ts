@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Login} from '../models/login';
-import {HttpClient} from '@angular/common/http';
+import { Login } from '../models/login';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { DataService } from './data.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -12,18 +12,18 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   apiURL = "https://localhost:5001/api";
-  /* apiURL = "http://northernhealthapi-env.eba-iawekmm2.us-east-1.elasticbeanstalk.com/api"; */
+  //apiURL = "http://northernhealthapi-env.eba-iawekmm2.us-east-1.elasticbeanstalk.com/api";
   loggedIn: BehaviorSubject<boolean>;
 
-  constructor(private _http: HttpClient, private dataService: DataService, private jwtHelper: JwtHelperService, private router: Router) { 
+  constructor(private _http: HttpClient, private dataService: DataService, private jwtHelper: JwtHelperService, private router: Router) {
     this.loggedIn = new BehaviorSubject(null);
-    if(this.isLoggedIn())
+    if (this.isLoggedIn())
       this.loggedIn.next(true);
     else
       this.loggedIn.next(false);
   }
 
-  login(credentials: Login){
+  login(credentials: Login) {
     this.dataService.loading.next(true);
     return new Promise((resolve, reject) => {
       this._http.post(this.apiURL + "/Auth/patientlogin", credentials).subscribe(
@@ -41,11 +41,11 @@ export class AuthService {
     })
   }
 
-  isLoggedIn(){
+  isLoggedIn() {
     return !this.jwtHelper.isTokenExpired();
   }
 
-  logout(){
+  logout() {
     window.location.reload();
     localStorage.removeItem('Authorization');
     sessionStorage.removeItem('disclaimer');
