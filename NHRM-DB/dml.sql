@@ -85,13 +85,7 @@ VALUES(1, '123456789'),
 
 INSERT INTO ConditionDetails 
 (CategoryID, URNumber, Diagnosis, ProcedureDate, NextAppointment)
-VALUES(1, '123456789', 'There has been a build-up of fluid
-        around your lungs. Therefore, it is
-        important for us to know and monitor
-        how you are feeling by using this app
-        to allow us to best optimise your care.
-        The app will be used in hospital and
-        in clinic during follow-up.', GETDATE(), GETDATE())
+VALUES(1, '123456789', 'There has been a build-up of fluid around your lungs. Therefore, it is important for us to know and monitor how you are feeling by using this app  to allow us to best optimise your care. The app will be used in hospital and in clinic during follow-up.', GETDATE(), GETDATE())
 
 INSERT INTO PatientResource
     (CategoryID,URNumber,ResourceID)

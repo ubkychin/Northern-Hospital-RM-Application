@@ -56,6 +56,25 @@ namespace NorthernHealthAPI.Controllers
 
         }
 
+        //  GET api/condition
+        //  Accepts a URNumber (string) and returns a Patient Condition Details
+        [HttpGet, Route("condition"), Authorize(Roles = "Patient")]
+        public IActionResult GetConditionDetails(string urNumber, int categoryId)
+        {
+            //Get Patient Condition Details for Category
+            var details = _context.ConditionDetails
+                .Where(p => p.Urnumber == urNumber && p.CategoryId == categoryId)
+                .Select(p => new
+                {
+                    p.Diagnosis,
+                    p.ProcedureDate,
+                    p.NextAppointment
+                }).ToList();
+
+            return Ok(details);
+
+        }
+
         //  GET api/patient/resources/{urNumber}
         //  Accepts a URNumber (string) and returns all Resources assigned to a Patient 
         [HttpGet, Route("resources/{urNumber}"), Authorize(Roles = "Patient")]
@@ -99,16 +118,13 @@ namespace NorthernHealthAPI.Controllers
             //List of disabled measurements to return
             List<int> disabledMeasurements = new List<int>();
 
-            //Get all distinct patient measurements
-            var patientMeasurements = _context.Measurement.Join(_context.PatientMeasurement,
-                m => m.MeasurementId,
-                pm => pm.MeasurementId,
-                (m, pm) => new { m, pm }).Where(
-                pm => pm.pm.Urnumber == urNumber).Select(
-                patientMeasurements => new
+            //Get all distinct patient measurements and frequency
+            var patientMeasurements = _context.PatientMeasurement
+                .Where(pm => pm.Urnumber == urNumber)
+                .Select(pm => new
                 {
-                    patientMeasurements.m.MeasurementId,
-                    patientMeasurements.pm.Frequency
+                    pm.MeasurementId,
+                    pm.Frequency
                 }).Distinct().ToList();
 
             // Iterate through every measurement and check last record recorded against Frequency 
@@ -209,19 +225,3 @@ namespace NorthernHealthAPI.Controllers
         }
     }
 }
-
-//PatientRecords = _context.PatientRecord.Where(pr => pr.Urnumber == p.Urnumber)
-//                .Select(pr => new
-//                {
-
-//                    Record = _context.RecordType.Where(rt => rt.RecordTypeId == pr.RecordTypeId)
-//                            .Select(rt => new
-//                            {
-//                                RecordCategory = _context.RecordCategory.Where(rc => rc.RecordCategoryId == rt.RecordCategoryId)
-//                                                                        .Select(rc => rc.Category).SingleOrDefault(),
-//                                RecordType = rt.RecordType1
-//                            }).SingleOrDefault(),
-
-//                    DateTimeRecorded = pr.DateTimeRecorded,
-//                    Notes = pr.Notes
-//                }).ToList()
