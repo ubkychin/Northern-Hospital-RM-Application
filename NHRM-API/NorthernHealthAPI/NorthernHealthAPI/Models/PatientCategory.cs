@@ -16,6 +16,7 @@ namespace NorthernHealthAPI.Models
 
         public virtual TemplateCategory Category { get; set; }
         public virtual Patient UrnumberNavigation { get; set; }
+        public virtual ConditionDetails ConditionDetails { get; set; }
         public virtual ICollection<PatientMeasurement> PatientMeasurement { get; set; }
         public virtual ICollection<PatientResource> PatientResource { get; set; }
     }

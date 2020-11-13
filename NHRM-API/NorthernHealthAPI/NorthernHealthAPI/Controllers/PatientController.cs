@@ -108,7 +108,7 @@ namespace NorthernHealthAPI.Controllers
                 patientMeasurements => new
                 {
                     patientMeasurements.m.MeasurementId,
-                    patientMeasurements.m.Frequency
+                    patientMeasurements.pm.Frequency
                 }).Distinct().ToList();
 
             // Iterate through every measurement and check last record recorded against Frequency 

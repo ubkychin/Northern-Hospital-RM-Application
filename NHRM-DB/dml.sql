@@ -18,7 +18,7 @@ INSERT INTO Measurement
 VALUES('ECOG Status', 28),
     ('Breathlessness', 1),
     ('Level of Pain', 1),
-    ('Fluid Drain', 0),
+    ('Fluid Drain', 1),
     ('Quality of Life', 7);
 
 INSERT INTO DataPoint
@@ -83,6 +83,16 @@ VALUES(1, '123456789'),
     (2, '987654321'),
     (3, '987654321');
 
+INSERT INTO ConditionDetails 
+(CategoryID, URNumber, Diagnosis, ProcedureDate, NextAppointment)
+VALUES(1, '123456789', 'There has been a build-up of fluid
+        around your lungs. Therefore, it is
+        important for us to know and monitor
+        how you are feeling by using this app
+        to allow us to best optimise your care.
+        The app will be used in hospital and
+        in clinic during follow-up.', GETDATE(), GETDATE())
+
 INSERT INTO PatientResource
     (CategoryID,URNumber,ResourceID)
 VALUES(1, '123456789', 1),
@@ -116,19 +126,19 @@ VALUES(1, 1),
     (2, 3);
 
 INSERT INTO PatientMeasurement
-    (MeasurementID,CategoryID,URNumber)
-VALUES(1, 1, '123456789'),
-    (2, 1, '123456789'),
-    (3, 1, '123456789'),
-    (4, 1, '123456789'),
-    (5, 1, '123456789'),
-    (1, 1, '987654321'),
-    (2, 1, '987654321'),
-    (3, 1, '987654321'),
-    (4, 1, '987654321'),
-    (5, 1, '987654321'),
-    (1, 2, '987654321'),
-    (2, 2, '987654321'),
-    (5, 2, '987654321'),
-    (1, 3, '987654321'),
-    (2, 3, '987654321');
+    (MeasurementID,CategoryID,URNumber,Frequency,FrequencySetDate)
+VALUES(1, 1, '123456789', 28, GETDATE()),
+    (2, 1, '123456789', 1, GETDATE()),
+    (3, 1, '123456789', 1, GETDATE()),
+    (4, 1, '123456789', 1, GETDATE()),
+    (5, 1, '123456789', 7, GETDATE()),
+    (1, 1, '987654321', 28, GETDATE()),
+    (2, 1, '987654321', 1, GETDATE()),
+    (3, 1, '987654321', 1, GETDATE()),
+    (4, 1, '987654321', 1, GETDATE()),
+    (5, 1, '987654321', 7, GETDATE()),
+    (1, 2, '987654321', 28, GETDATE()),
+    (2, 2, '987654321', 1, GETDATE()),
+    (5, 2, '987654321', 7, GETDATE()),
+    (1, 3, '987654321', 28, GETDATE()),
+    (2, 3, '987654321', 1, GETDATE());

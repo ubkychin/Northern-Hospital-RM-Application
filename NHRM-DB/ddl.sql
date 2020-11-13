@@ -20,6 +20,8 @@ DROP TABLE IF EXISTS MeasurementRecord;
 
 DROP TABLE IF EXISTS PatientMeasurement;
 
+DROP TABLE IF EXISTS ConditionDetails;
+
 DROP TABLE IF EXISTS PatientCategory;
 
 DROP TABLE IF EXISTS Treating;
@@ -198,7 +200,7 @@ GO
 
 CREATE TABLE PatientCategory(
     CategoryID INT NOT NULL,
-    URNumber NVARCHAR(50),
+    URNumber NVARCHAR(50) NOT NULL,
     CONSTRAINT PK_PatientCategory PRIMARY KEY (CategoryID, URNumber),
     CONSTRAINT FK_PatientCategory_Patient FOREIGN KEY (URNumber) REFERENCES Patient,
     CONSTRAINT FK_PatientCategory_TemplateCategory FOREIGN KEY (CategoryID) REFERENCES TemplateCategory
@@ -206,10 +208,24 @@ CREATE TABLE PatientCategory(
 
 GO 
 
+CREATE TABLE ConditionDetails(
+    CategoryID INT NOT NULL,
+    URNumber NVARCHAR(50) NOT NULL,
+    Diagnosis NVARCHAR(500),
+    ProcedureDate DATETIME,
+    NextAppointment DATETIME,
+    CONSTRAINT PK_ConditionDetails PRIMARY KEY (CategoryID, URNumber),
+    CONSTRAINT FK_ConditionDetails_PatientCategory FOREIGN KEY (CategoryID, URNumber) REFERENCES PatientCategory (CategoryID, URNumber)
+)
+
+GO
+
 CREATE TABLE PatientMeasurement(
     MeasurementID INT NOT NULL,
     CategoryID INT NOT NULL,
     URNumber NVARCHAR(50) NOT NULL,
+    Frequency INT NOT NULL,
+    FrequencySetDate DATETIME NOT NULL,
     CONSTRAINT PK_PatientMeasurement PRIMARY KEY (MeasurementID, CategoryID, URNumber),
     CONSTRAINT FK_PatientMeasurement_Measurement FOREIGN KEY (MeasurementID) REFERENCES Measurement,
     CONSTRAINT FK_PatientMeasurement_PatientCategory FOREIGN KEY (CategoryID, URNumber) REFERENCES PatientCategory(CategoryID, URNumber)

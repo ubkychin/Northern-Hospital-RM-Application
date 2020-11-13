@@ -21,7 +21,7 @@
       "environmentVariables": {
         "secret": "thisismytemporarysecretkey",
         "pepper": "this15myp3pper",
-        "NHRMConnection": "Server=nhrmdb.cl06hulbojtt.us-east-1.rds.amazonaws.com,1433;Database=NHRMDB;User=admin;Password=heyletmein05;",
+        "NHRMConnection": "Server=nhrmdb.cl06hulbojtt.us-east-1.rds.amazonaws.com,1433;Database=NHRMDBV2;User=admin;Password=heyletmein05;",
         "applicationUrl": "http://localhost:5001",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

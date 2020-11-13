@@ -12,7 +12,7 @@ namespace NorthernHealthAPI.Models
 
         public int MeasurementId { get; set; }
         public int DataPointNumber { get; set; }
-        public string CategpryName { get; set; }
+        public string CategoryName { get; set; }
         public string Question { get; set; }
 
         public virtual DataPoint DataPoint { get; set; }

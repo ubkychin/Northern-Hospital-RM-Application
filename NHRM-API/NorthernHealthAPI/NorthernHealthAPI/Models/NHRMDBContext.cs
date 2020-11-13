@@ -15,6 +15,7 @@ namespace NorthernHealthAPI.Models
         {
         }
 
+        public virtual DbSet<ConditionDetails> ConditionDetails { get; set; }
         public virtual DbSet<DataPoint> DataPoint { get; set; }
         public virtual DbSet<DataPointRecord> DataPointRecord { get; set; }
         public virtual DbSet<Measurement> Measurement { get; set; }
@@ -49,6 +50,29 @@ namespace NorthernHealthAPI.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ConditionDetails>(entity =>
+            {
+                entity.HasKey(e => new { e.CategoryId, e.Urnumber });
+
+                entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
+
+                entity.Property(e => e.Urnumber)
+                    .HasColumnName("URNumber")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Diagnosis).HasMaxLength(500);
+
+                entity.Property(e => e.NextAppointment).HasColumnType("datetime");
+
+                entity.Property(e => e.ProcedureDate).HasColumnType("datetime");
+
+                entity.HasOne(d => d.PatientCategory)
+                    .WithOne(p => p.ConditionDetails)
+                    .HasForeignKey<ConditionDetails>(d => new { d.CategoryId, d.Urnumber })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ConditionDetails_PatientCategory");
+            });
+
             modelBuilder.Entity<DataPoint>(entity =>
             {
                 entity.HasKey(e => new { e.MeasurementId, e.DataPointNumber });
@@ -230,6 +254,8 @@ namespace NorthernHealthAPI.Models
                 entity.Property(e => e.Urnumber)
                     .HasColumnName("URNumber")
                     .HasMaxLength(50);
+
+                entity.Property(e => e.FrequencySetDate).HasColumnType("datetime");
 
                 entity.HasOne(d => d.Measurement)
                     .WithMany(p => p.PatientMeasurement)
