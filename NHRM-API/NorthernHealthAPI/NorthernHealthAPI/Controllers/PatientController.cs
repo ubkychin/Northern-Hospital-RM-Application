@@ -49,8 +49,7 @@ namespace NorthernHealthAPI.Controllers
                                             .Select(pm => pm.MeasurementId).ToList()
                                         }).ToList()
 
-                })
-                .ToList().SingleOrDefault();
+                }).ToList().SingleOrDefault();
 
             return Ok(patient);
 
@@ -58,9 +57,45 @@ namespace NorthernHealthAPI.Controllers
 
         //  GET api/condition
         //  Accepts a URNumber (string) and returns a Patient Condition Details
-        [HttpGet, Route("condition"), Authorize(Roles = "Patient")]
+        [HttpGet, Route("condition/{urNumber}"), Authorize(Roles = "Patient")]
         public IActionResult GetConditionDetails(string urNumber, int categoryId)
         {
+            //Get patients last Fluid Drainage Data
+            var lastFluid = _context.MeasurementRecord.Join(_context.DataPointRecord,
+                m => m.MeasurementRecordId,
+                d => d.MeasurementRecordId,
+                (m, d) => new { m, d })
+                .Where(md => md.m.Urnumber == urNumber && md.m.CategoryId == categoryId && md.m.MeasurementId == 4)
+                .Select(md => new
+                {
+                    md.m.DateTimeRecorded,
+                    md.d.Value
+                }).ToList().OrderBy(o => o.DateTimeRecorded).LastOrDefault();
+
+            //Get patients last Breath Score Data
+            var lastBreath = _context.MeasurementRecord.Join(_context.DataPointRecord,
+                m => m.MeasurementRecordId,
+                d => d.MeasurementRecordId,
+                (m, d) => new { m, d })
+                .Where(md => md.m.Urnumber == urNumber && md.m.CategoryId == categoryId && md.m.MeasurementId == 2)
+                .Select(md => new
+                {
+                    md.m.DateTimeRecorded,
+                    md.d.Value
+                }).ToList().OrderBy(o => o.DateTimeRecorded).LastOrDefault();
+
+            //Get patients last Pain Score Data
+            var lastPain = _context.MeasurementRecord.Join(_context.DataPointRecord,
+                m => m.MeasurementRecordId,
+                d => d.MeasurementRecordId,
+                (m, d) => new { m, d })
+                .Where(md => md.m.Urnumber == urNumber && md.m.CategoryId == categoryId && md.m.MeasurementId == 3)
+                .Select(md => new
+                {
+                    md.m.DateTimeRecorded,
+                    md.d.Value
+                }).ToList().OrderBy(o => o.DateTimeRecorded).LastOrDefault();
+
             //Get Patient Condition Details for Category
             var details = _context.ConditionDetails
                 .Where(p => p.Urnumber == urNumber && p.CategoryId == categoryId)
@@ -68,7 +103,16 @@ namespace NorthernHealthAPI.Controllers
                 {
                     p.Diagnosis,
                     p.ProcedureDate,
-                    p.NextAppointment
+                    p.NextAppointment,
+                    MyDrainage = new
+                    {
+                        Frequency = _context.PatientMeasurement.Where(pm => pm.Urnumber == urNumber && pm.MeasurementId == 4)
+                                                               .Select(pm => pm.Frequency).SingleOrDefault(),
+                        FluidScore = lastFluid.Value,
+                        DrainageDate = lastFluid.DateTimeRecorded,
+                        BreathScore = lastBreath.Value,
+                        PainScore = lastPain.Value
+                    }
                 }).ToList();
 
             return Ok(details);
