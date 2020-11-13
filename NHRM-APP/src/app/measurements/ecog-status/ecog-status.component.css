@@ -1,20 +1,15 @@
 .container {
     justify-content: center;
-    justify-items: center;
     align-items: center;
-    margin: auto;
     margin-top: 45px;
-    max-width: 400px;
-    padding: 5px;
     display: grid;
     gap: 5px;
     grid-gap: 5px;
-    grid-template: repeat(5, 1fr) / 2fr 1fr 1fr;
+    grid-template: repeat(5, 1fr) / 240px 55px 35px;
 }
 
 .container p {
-    justify-self: left;
-    padding-left: 5px;
+    justify-self: center;
     font-weight: bold;
     font-size: 25px;
     line-height: 0%;
