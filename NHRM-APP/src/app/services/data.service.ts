@@ -123,6 +123,7 @@ export class DataService {
       );
     })
   }
+
   getConditionsDetails() {
     let conditionDetails: ConditionDetails = {
       urNumber: "123456789",

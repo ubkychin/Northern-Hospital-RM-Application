@@ -40,7 +40,7 @@ const routes: Routes = [
   { path: 'ecog-status', component: EcogStatusComponent, canActivate: [AuthGuard, MeasurementGuard], data: {measurementId: 1} },
   { path: 'breath', component: BreathComponent, canActivate: [AuthGuard, MeasurementGuard], data: {measurementId: 2}},
   { path: 'pain', component: PainComponent, canActivate: [AuthGuard, MeasurementGuard], data: {measurementId: 3}},
-  { path: 'fluid-drain', component: FluidDrainComponent, canActivate: [AuthGuard] },
+  { path: 'fluid-drain', component: FluidDrainComponent, canActivate: [AuthGuard, MeasurementGuard], data: {measurementId: 4} },
   { path: 'qol', component: QolComponent, canActivate: [AuthGuard, MeasurementGuard], data: {measurementId: 5}},
   { path: 'qol-vas', component: QolVasComponent, canActivate: [AuthGuard, MeasurementGuard], data: {measurementId: 5} },
   { path: 'patient-resources', component: PatientResourcesComponent, canActivate: [AuthGuard] },

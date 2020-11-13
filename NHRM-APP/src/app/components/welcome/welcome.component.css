@@ -13,12 +13,6 @@ a {
     width: 300px;
 }
 
-p.description {
-    font-weight: bold;
-    color: var(--nh-grey);
-    font-size: 20px;
-}
-
 .main-heading {
     color: var(--nh-blue);
     padding: 35px;

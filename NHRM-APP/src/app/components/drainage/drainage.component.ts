@@ -12,6 +12,7 @@ export class DrainageComponent implements OnInit {
 
   constructor(private dataService: DataService) {
     this.activeMeasurements = [
+      { meas: "fluid", id: 4, active: true },
       { meas: "breath", id: 2, active: true },
       { meas: "pain", id: 3, active: true }
     ];

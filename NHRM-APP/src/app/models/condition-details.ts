@@ -9,8 +9,7 @@ export class ConditionDetails {
 export class MyDrainage {
     frequency: number;
     fluidScore: number;
+    drainageDate: Date;
     breathScore: number;
     painScore: number;
-    drainageDate: Date;
-
 }
