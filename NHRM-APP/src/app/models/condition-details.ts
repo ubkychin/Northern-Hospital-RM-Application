@@ -1,7 +1,6 @@
 export class ConditionDetails {
-    urNumber: string;
     diagnosis: string;
-    insertionDate: Date;
+    procedureDate: Date;
     nextAppointment: Date;
     myDrainage: MyDrainage;
 }

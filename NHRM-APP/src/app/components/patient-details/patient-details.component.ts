@@ -10,19 +10,28 @@ import { DataService } from 'src/app/services/data.service';
 export class PatientDetailsComponent implements OnInit {
 
   conditionDetails: ConditionDetails;
+  urNumber: string;
   duration: string;
   breath: string;
   pain: string;
 
   constructor(private dataService: DataService) {
-    this.dataService.getConditionsDetails()
-    this.conditionDetails = this.dataService.conditiondetails;
+    this.urNumber = dataService.patient.value['urNumber'];
+    if(this.dataService.conditiondetails == null){
+      this.dataService.getConditionsDetails(this.urNumber)
+        .then(() => {
+          this.conditionDetails = this.dataService.conditiondetails;
+          this.getDuration();
+          this.getBreathFeeling();
+          this.getPainFeeling();
+        })
+        .catch((err) => console.log(err))
+        .finally(() => this.dataService.loading.next(false));
+    }
   }
 
   ngOnInit(): void {
-    this.getDuration();
-    this.getBreathFeeling();
-    this.getPainFeeling();
+
   }
 
   getPainFeeling() {

@@ -124,20 +124,22 @@ export class DataService {
     })
   }
 
-  getConditionsDetails() {
-    let conditionDetails: ConditionDetails = {
-      urNumber: "123456789",
-      diagnosis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec nulla risus. Quisque vehicula felis a magna consequat fringilla. Sed ut purus mollis, gravida eros eget, tincidunt diam. Nunc hendrerit ut felis nec venenatis. Vestibulum fringilla suscipit lacinia. Sed tincidunt, libero in luctus faucibus, enim urna mollis orci, sit amet pretium nulla nibh ac tellus. .",
-      insertionDate: new Date(),
-      nextAppointment: new Date(),
-      myDrainage: {
-        frequency: 1,
-        fluidScore: 78,
-        breathScore: 2,
-        painScore: 3,
-        drainageDate: new Date()
-      }
-    };
-    this.conditiondetails = conditionDetails;
+  getConditionsDetails(urNumber: string) {
+    this.loading.next(true);
+    return new Promise((resolve, reject) => {
+      this._http.get<ConditionDetails>(this.apiURL + "/patient/condition/" + urNumber, {
+        params: new HttpParams().append('categoryId', this.categoryChosen.value)
+      }).subscribe(
+        res => {
+          console.log(res);
+          this.conditiondetails = res;
+          resolve();
+        },
+        err => {
+          console.log(err.error);
+          reject();
+        }
+      );
+    })
   }
 }
