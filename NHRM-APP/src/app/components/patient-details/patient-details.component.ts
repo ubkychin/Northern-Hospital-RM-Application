@@ -17,17 +17,15 @@ export class PatientDetailsComponent implements OnInit {
 
   constructor(private dataService: DataService) {
     this.urNumber = dataService.patient.value['urNumber'];
-    if(this.dataService.conditiondetails == null){
-      this.dataService.getConditionsDetails(this.urNumber)
-        .then(() => {
-          this.conditionDetails = this.dataService.conditiondetails;
-          this.getDuration();
-          this.getBreathFeeling();
-          this.getPainFeeling();
-        })
-        .catch((err) => console.log(err))
-        .finally(() => this.dataService.loading.next(false));
-    }
+    this.dataService.getConditionsDetails(this.urNumber)
+      .then(() => {
+        this.conditionDetails = this.dataService.conditiondetails;
+        this.getDuration();
+        this.getBreathFeeling();
+        this.getPainFeeling();
+      })
+      .catch((err) => console.log(err))
+      .finally(() => this.dataService.loading.next(false));
   }
 
   ngOnInit(): void {
