@@ -113,7 +113,7 @@ namespace NorthernHealthAPI.Controllers
                         BreathScore = lastBreath.Value,
                         PainScore = lastPain.Value
                     }
-                }).ToList();
+                }).ToList().SingleOrDefault();
 
             return Ok(details);
 
