@@ -20,9 +20,11 @@ export class PatientDetailsComponent implements OnInit {
     this.dataService.getConditionsDetails(this.urNumber)
       .then(() => {
         this.conditionDetails = this.dataService.conditiondetails;
-        this.getDuration();
-        this.getBreathFeeling();
-        this.getPainFeeling();
+        if(this.dataService.conditiondetails.myDrainage){
+          this.getDuration();
+          this.getBreathFeeling();
+          this.getPainFeeling();
+        }
       })
       .catch((err) => console.log(err))
       .finally(() => this.dataService.loading.next(false));

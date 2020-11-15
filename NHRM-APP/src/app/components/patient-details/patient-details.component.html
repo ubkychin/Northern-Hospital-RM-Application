@@ -15,7 +15,7 @@
     <div class="appointment-container detail-section">
         <h3>Next Appointment: {{conditionDetails.nextAppointment | date: "d-MMM-yyyy, h:mm a"}}</h3>
     </div>
-    <div class="drainage detail-section">
+    <div *ngIf="conditionDetails.myDrainage" class="drainage detail-section">
         <h3>My Drainage</h3>
         <div class="drainage-detail">
             <div class="drainage-grid">

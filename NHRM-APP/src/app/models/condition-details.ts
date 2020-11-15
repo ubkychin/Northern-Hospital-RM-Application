@@ -2,7 +2,7 @@ export class ConditionDetails {
     diagnosis: string;
     procedureDate: Date;
     nextAppointment: Date;
-    myDrainage: MyDrainage;
+    myDrainage?: MyDrainage;
 }
 
 export class MyDrainage {
