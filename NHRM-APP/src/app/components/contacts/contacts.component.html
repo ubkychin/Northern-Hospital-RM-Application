@@ -2,16 +2,16 @@
     <h1 class="main-heading">My Contacts</h1>
 </div>
 
+<div id="t-6" class="resource-tile tile-two">
+    <p class="triage-title">Northern Health Virtual Triage</p>
+    <p class="res-info">
+        <a href="https://redcap.nh.org.au/surveys/?s=9XNXCT4EEM" target="_blank">
+            <fa-icon [icon]="['fas', 'laptop-medical']" transform="grow-10"></fa-icon>
+            <strong>Click Here</strong>
+        </a>
+    </p>
+</div>
 <div class="container">
-    <div id="t-6" class="resource-tile tile-two">
-        <p class="triage-title">Northern Health Virtual Triage</p>
-        <p class="res-info">
-            <a href="https://redcap.nh.org.au/surveys/?s=9XNXCT4EEM" target="_blank">
-                <fa-icon [icon]="['fas', 'laptop-medical']" transform="grow-10"></fa-icon>
-                <strong>Click Here</strong>
-            </a>
-        </p>
-    </div>
     <div id="t-1" class="resource-tile tile-one" *ngFor="let resource of listOfResources | resourceFilter:'phone'">
         <p class="res-title">{{resource.title}}</p>
         <p class="res-info">

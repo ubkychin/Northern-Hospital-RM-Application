@@ -2,7 +2,7 @@
     <h1 class="main-heading">Patient Resources</h1>
 </div>
 <div class="container">
-    <div id="t-2" class="resource-tile tile-one resource-click"
+    <div id="t-5" class="resource-tile tile-one resource-click"
         *ngFor="let resource of listOfResources | resourceFilter:'pdf'" [routerLink]="['/pdf-resource']"
         (click)="setPdfResource(resource)">
         <p class="res-title">{{resource.title}}</p>
@@ -11,7 +11,7 @@
             <strong>{{resource.prompt}}</strong>
         </p>
     </div>
-    <div id="t-3" class="resource-tile tile-one resource-click"
+    <div id="t-2" class="resource-tile tile-one resource-click"
         *ngFor="let resource of listOfResources | resourceFilter:'dialog'" (click)="showDialog(resource)">
         <p class="res-title">{{resource.title}}</p>
         <p class="res-info">

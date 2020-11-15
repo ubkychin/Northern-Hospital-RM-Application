@@ -1,9 +1,13 @@
-<h1 class="main-heading">Help System</h1>
+<div class="heading">
+    <h1 class="main-heading">Help System</h1>
+</div>
 
-<a routerLink="help-ecog">Ecog</a>
-<a routerLink="help-fluid">Fluid</a>
-<a routerLink="help-breath">Breath</a>
-<a routerLink="help-pain">Pain</a>
-<a routerLink="help-qol">Qol</a>
+<button routerLink="help-ecog">Ecog</button>
+<button routerLink="help-fluid">Fluid</button>
+<button routerLink="help-breath">Breath</button>
+<button routerLink="help-pain">Pain</button>
+<button routerLink="help-qol">Qol</button>
+<button (click)="terms()">Terms & Conditions</button>
+<button (click)="privacy()">Privacy</button>
 
 <router-outlet></router-outlet>

@@ -1,4 +1,4 @@
-h1 {
+.heading h1 {
     font-size: 35px;
 }
 
@@ -41,7 +41,9 @@ h1 {
 }
 
 #t-6 {
-    background: #fabfbf;
+    margin: auto;
+    margin-bottom: 8px;
+    background: #eca0a0;
 }
 
 .resource-tile {

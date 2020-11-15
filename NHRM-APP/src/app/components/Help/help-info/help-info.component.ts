@@ -12,4 +12,12 @@ export class HelpInfoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  terms(){
+
+  }
+
+  privacy(){
+    
+  }
+
 }
