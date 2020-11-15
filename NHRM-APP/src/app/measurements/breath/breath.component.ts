@@ -7,6 +7,7 @@ import { ResourceDialog } from 'src/app/models/resource-dialog';
 import { ResourceDialogComponent } from '../../components/dialogs/resource-dialog/resource-dialog.component';
 import { DataPointRecord } from 'src/app/models/data-point-record';
 import { SuccessDialogComponent } from '../../components/dialogs/success-dialog/success-dialog.component';
+import { AlertDialogComponent } from 'src/app/components/dialogs/alert-dialog/alert-dialog.component';
 
 @Component({
   selector: 'app-vas-breath',
@@ -18,6 +19,7 @@ export class BreathComponent implements OnInit {
 
   readonly measurementId: number = 2;
   patient: Patient;
+  breathScore: number;
 
   feelings: string[] = ["(Very Poor)", "(Poor)", "(Average)", "(Good)", "(Excellent)"];
 
@@ -47,11 +49,12 @@ export class BreathComponent implements OnInit {
   }
 
   getBreathScore(event) {
+    this.breathScore = event;
     console.log(event);
     this.dataService.measurementRecord = [{
       'measurementId': this.measurementId,
       'dataPointNumber': 1,
-      'value': event
+      'value': this.breathScore
     }];
 
     this.recordVASBreath();
@@ -71,7 +74,20 @@ export class BreathComponent implements OnInit {
       .then(() => {
         this.dialogConfig.panelClass = 'success-dialog-container';
         this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
-          this.router.navigate(['my-ipc-drainage']);
+          //Check if score is 'Very Poor', open alert if so
+          if (this.breathScore == 1) {
+            this.dialogConfig.panelClass = 'alert-dialog-container';
+            this.dialogConfig.data = {
+              content: 'You have reported your Breathing feels very poor. To speak to the Pleural team for advice,<br> call - 0428-167-972.<br><br>To speak to the Emergency Department between 1pm and 9pm, click the button below'
+            }
+            this.dialog.open(AlertDialogComponent, this.dialogConfig)
+              .afterClosed()
+              .subscribe(() => {
+                this.router.navigate(['my-ipc-drainage']);
+              });
+          }
+          else
+            this.router.navigate(['my-ipc-drainage']);
         });
 
       })

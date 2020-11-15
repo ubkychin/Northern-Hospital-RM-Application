@@ -16,7 +16,7 @@ export class NavigationComponent implements OnInit {
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
     this.dialogConfig.disableClose = true;
-    this.dialogConfig.panelClass = 'disclaimer-dialog-container';
+    this.dialogConfig.panelClass = 'alert-dialog-container';
     if (sessionStorage.getItem('disclaimer') == null) {
       this.dialog.open(DisclaimerDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
         sessionStorage.setItem('disclaimer', 'accepted');

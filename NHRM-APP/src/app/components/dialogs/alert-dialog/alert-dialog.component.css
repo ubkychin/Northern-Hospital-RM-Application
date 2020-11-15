@@ -1,23 +1,10 @@
 fa-icon {
     color: #C4393C;
-    justify-self: right;
+    justify-self: center;
     font-size: 10vh;
 }
 
-.flex {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-}
-
-.text {
-    font-family: 'Arial Black';
-    width: 80%;
-}
-
-button {
+.alert-button {
     cursor: pointer;
     font-size: 14px bold;
     font-weight: bold;
@@ -28,4 +15,19 @@ button {
     outline: none;
     margin: 15px;
     padding: 15px;
+    text-decoration: none;
+    width: 120px;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.text {
+    font-family: 'Arial Black';
+    width: 80%;
 }
