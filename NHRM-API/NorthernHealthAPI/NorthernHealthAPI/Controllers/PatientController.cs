@@ -58,7 +58,7 @@ namespace NorthernHealthAPI.Controllers
         //  GET api/condition
         //  Accepts a URNumber (string) and returns a Patient Condition Details
         [HttpGet, Route("condition/{urNumber}"), Authorize(Roles = "Patient")]
-        public IActionResult GetConditionDetails(string urNumber, int categoryId)
+        public IActionResult GetIPCConditionDetails(string urNumber, int categoryId)
         {
             //Get patients last Fluid Drainage Data
             var lastFluid = _context.MeasurementRecord.Join(_context.DataPointRecord,
@@ -96,26 +96,44 @@ namespace NorthernHealthAPI.Controllers
                     md.d.Value
                 }).ToList().OrderBy(o => o.DateTimeRecorded).LastOrDefault();
 
-            //Get Patient Condition Details for Category
-            var details = _context.ConditionDetails
-                .Where(p => p.Urnumber == urNumber && p.CategoryId == categoryId)
-                .Select(p => new
-                {
-                    p.Diagnosis,
-                    p.ProcedureDate,
-                    p.NextAppointment,
-                    MyDrainage = new
+            //If lastFluid/lastBreath/lastPain were retrieved from DB, compile ConditionDetails
+            if (lastFluid != null && lastBreath != null && lastPain != null)
+            {
+                //Get Patient Condition Details for Category
+                var details = _context.ConditionDetails
+                    .Where(p => p.Urnumber == urNumber && p.CategoryId == categoryId)
+                    .Select(p => new
                     {
-                        Frequency = _context.PatientMeasurement.Where(pm => pm.Urnumber == urNumber && pm.MeasurementId == 4)
-                                                               .Select(pm => pm.Frequency).SingleOrDefault(),
-                        FluidScore = lastFluid.Value,
-                        DrainageDate = lastFluid.DateTimeRecorded,
-                        BreathScore = lastBreath.Value,
-                        PainScore = lastPain.Value
-                    }
-                }).ToList().SingleOrDefault();
+                        p.Diagnosis,
+                        p.ProcedureDate,
+                        p.NextAppointment,
+                        MyDrainage = new DrainageDetails
+                        {
+                            Frequency = _context.PatientMeasurement.Where(pm => pm.Urnumber == urNumber && pm.MeasurementId == 4)
+                                                                       .Select(pm => pm.Frequency).SingleOrDefault(),
+                            FluidScore = lastFluid.Value,
+                            DrainageDate = lastFluid.DateTimeRecorded,
+                            BreathScore = lastBreath.Value,
+                            PainScore = lastPain.Value
+                        }
+                    }).ToList().SingleOrDefault();
 
-            return Ok(details);
+                return Ok(details);
+            }
+            else
+            {
+                //Get Patient Condition Details for Category without MyDrainage
+                var details = _context.ConditionDetails
+                    .Where(p => p.Urnumber == urNumber && p.CategoryId == categoryId)
+                    .Select(p => new
+                    {
+                        p.Diagnosis,
+                        p.ProcedureDate,
+                        p.NextAppointment
+                    }).ToList().SingleOrDefault();
+
+                return Ok(details);
+            }
 
         }
 
