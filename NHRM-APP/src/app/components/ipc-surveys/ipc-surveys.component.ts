@@ -11,6 +11,13 @@ export class IpcSurveysComponent implements OnInit {
   activeMeasurements: any[] = [];
 
   constructor(private dataService: DataService) {
+    this.dataService.getDisabledMeasurements()
+    .then((res) => {
+      sessionStorage.setItem('disabledMeasurements', JSON.stringify(res));
+    })
+    .catch((err) => console.log(err))
+    .finally(() => this.dataService.loading.next(false));
+    
     this.activeMeasurements = [
       { meas: "ecog", id: 1, active: true },
       { meas: "qol", id: 5, active: true }

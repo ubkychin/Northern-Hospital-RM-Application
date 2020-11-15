@@ -8,20 +8,8 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class IpcComponent implements OnInit {
 
-  resources: boolean;
-  measurements: boolean;
+  constructor() { }
 
-  constructor(private dataService: DataService) {
-    this.dataService.getDisabledMeasurements()
-      .then((res) => {
-        sessionStorage.setItem('disabledMeasurements', JSON.stringify(res));
-      })
-      .catch((err) => console.log(err))
-      .finally(() => this.dataService.loading.next(false));
-  }
-
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void { }
 
 }

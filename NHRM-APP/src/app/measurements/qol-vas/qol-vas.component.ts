@@ -69,7 +69,7 @@ export class QolVasComponent implements OnInit {
       .then(() => {
         this.dialogConfig.panelClass = 'success-dialog-container';
         this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
-          this.router.navigate(['my-ipc']);
+          this.router.navigate(['my-ipc-surveys']);
         });
 
       })
