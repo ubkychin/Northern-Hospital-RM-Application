@@ -6,6 +6,7 @@ import { PatientResource } from '../models/patient-resource';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { DataPointRecord } from '../models/data-point-record';
 import { ConditionDetails } from '../models/condition-details';
+import { FrequencyChange } from '../models/frequency-change';
 
 @Injectable({
   providedIn: 'root'
@@ -134,6 +135,24 @@ export class DataService {
           console.log(res);
           this.conditiondetails = res;
           resolve();
+        },
+        err => {
+          console.log(err.error);
+          reject();
+        }
+      );
+    })
+  }
+
+  getFrequencyChange(urNumber: string) {
+    this.loading.next(true);
+    return new Promise((resolve, reject) => {
+      this._http.get<FrequencyChange>(this.apiURL + "/patient/frequency/" + urNumber, {
+        params: new HttpParams().append('categoryId', this.categoryChosen.value)
+      }).subscribe(
+        res => {
+          console.log(res);
+          resolve(res);
         },
         err => {
           console.log(err.error);

@@ -67,7 +67,7 @@ export class DrainageComponent implements OnInit {
       this.router.navigate(['breath']);
     }
     else {
-      this.errorMsg = "You must complete Fluid Drainage first"
+      this.errorMsg = "You must complete Fluid Drainage before entering how your Breathing feels"
     }
   }
 
@@ -75,9 +75,8 @@ export class DrainageComponent implements OnInit {
     if (!this.activeMeasurements[0].active) {
       this.router.navigate(['pain']);
     } else {
-      this.errorMsg = "You must complete Fluid Drainage first"
+      this.errorMsg = "You must complete Fluid Drainage before entering how your Pain feels"
     }
   }
-
 
 }

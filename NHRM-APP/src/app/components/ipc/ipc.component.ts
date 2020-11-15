@@ -8,7 +8,17 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class IpcComponent implements OnInit {
 
-  constructor() { }
+  urNumber: string;
+
+  constructor(private dataService: DataService) {
+    this.urNumber = dataService.patient.value['urNumber'];
+    dataService.getFrequencyChange(this.urNumber)
+    .then((res) =>{
+      console.log(res);
+    })
+    .catch((err) => console.log(err))
+    .finally(() => this.dataService.loading.next(false));
+   }
 
   ngOnInit(): void { }
 
