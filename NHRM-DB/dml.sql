@@ -44,15 +44,14 @@ VALUES('phone'),
 INSERT INTO [Resource]
     (Title,Prompt,Content,TypeID)
 VALUES('Pleural Nurse Clinical Consultant', '0428-167-972', '', 1),
-    ('How to perform a Visual Analogue Score', 'Click Here', '', 4),
     ('How to drain your Indwelling Pleural Catheter', 'Click Here', '', 4),
     ('Northern Health Respiratory Medicine', 'Click Here', 'https://www.nh.org.au/service/respiratory-medicine/', 3),
-    ('Indwelling Pleural Catheter Information Sheet', 'Click Here', 'IPC.pdf', 2);
+    ('Indwelling Pleural Catheter Information Sheet', 'Click Here', 'IPC.pdf', 2),
+    ('Northern Health Telehealth', 'Click Here', 'https://www.nh.org.au/telehealth/', 3);
 
 INSERT INTO ResourceDialog
     (Heading,Content,Video,ResourceID)
-VALUES('How to perform VAS score', 'Instruction: To help you to best describe how good or bad you feel on a given day, we have drawn a scale from Best on the top of the slider to Worst on the bottom of the slider. Please position the slider at the point that describes how you feel today.', NULL, 2),
-    ('How to drain your Indwelling Pleural Catheter', 'Please enter the amount of fluid you have drained today in millilitres. Enter the value in the box. <p>Below is a video which details how to perform a fluid drainage of an Indwelling Pleural Catheter.</p>', 'https://player.vimeo.com/video/270685188', 3);
+VALUES('How to drain your Indwelling Pleural Catheter', 'Please enter the amount of fluid you have drained today in millilitres. Enter the value in the box. <p>Below is a video which details how to perform a fluid drainage of an Indwelling Pleural Catheter.</p>', 'https://player.vimeo.com/video/270685188', 2);
 
 INSERT INTO RecordCategory
     (Category)
@@ -96,7 +95,9 @@ VALUES(1, '123456789', 1),
     (1, '123456789', 5),
     (1, '987654321', 1),
     (1, '987654321', 2),
-    (1, '987654321', 3);
+    (1, '987654321', 3),
+    (1, '987654321', 4),
+    (1, '987654321', 5);
 
 INSERT INTO TemplateResource
     (CategoryID,ResourceID)
