@@ -28,6 +28,7 @@ fa-icon {
 }
 
 .text {
-    font-family: 'Arial Black';
+    font-size: 1.4em;
+    font-weight: 500;
     width: 80%;
 }
