@@ -466,3 +466,4 @@ SELECT * FROM MeasurementRecord
 
 SELECT * FROM DataPointRecord
 
+UPDATE PatientMeasurement SET FrequencySetDate = '2020-11-15 17:30:00.00' WHERE MeasurementID = 4 AND CategoryID = 1 AND URNumber = '123456789'
