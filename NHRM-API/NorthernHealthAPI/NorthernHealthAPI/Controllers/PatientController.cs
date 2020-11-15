@@ -55,46 +55,52 @@ namespace NorthernHealthAPI.Controllers
 
         }
 
+        //  GET api/frequency/{urNumber}
+        //  Accepts a URNumber (string) and returns true if My Drainage Frequncy Changes
+        [HttpGet, Route("frequency/{urNumber}"), Authorize(Roles = "Patient")]
+        public IActionResult FrequencyChangeAlert(string urNumber, int categoryId)
+        {
+            var lastFluid = GetLastFluid(urNumber, categoryId);
+
+            //return Ok(lastFluid);
+            if (lastFluid != null)
+            {
+                var frequency = _context.PatientMeasurement
+                    .Where(pm => pm.Urnumber == urNumber && pm.CategoryId == categoryId && pm.MeasurementId == 4)
+                    .Select(pm => new
+                    {
+                        pm.Frequency,
+                        pm.FrequencySetDate
+                    }).ToList().SingleOrDefault();
+
+                if (lastFluid.DateTimeRecorded < frequency.FrequencySetDate)
+                {
+                    return Ok(new { change = true, frequency = frequency.Frequency });
+                }
+                else
+                {
+                    return Ok(new { change = false });
+                }
+            }
+            else
+            {
+                return Ok(new { change = false });
+            }
+        }
+
         //  GET api/condition
         //  Accepts a URNumber (string) and returns a Patient Condition Details
         [HttpGet, Route("condition/{urNumber}"), Authorize(Roles = "Patient")]
         public IActionResult GetIPCConditionDetails(string urNumber, int categoryId)
         {
             //Get patients last Fluid Drainage Data
-            var lastFluid = _context.MeasurementRecord.Join(_context.DataPointRecord,
-                m => m.MeasurementRecordId,
-                d => d.MeasurementRecordId,
-                (m, d) => new { m, d })
-                .Where(md => md.m.Urnumber == urNumber && md.m.CategoryId == categoryId && md.m.MeasurementId == 4)
-                .Select(md => new
-                {
-                    md.m.DateTimeRecorded,
-                    md.d.Value
-                }).ToList().OrderBy(o => o.DateTimeRecorded).LastOrDefault();
+            var lastFluid = GetLastFluid(urNumber, categoryId);
 
             //Get patients last Breath Score Data
-            var lastBreath = _context.MeasurementRecord.Join(_context.DataPointRecord,
-                m => m.MeasurementRecordId,
-                d => d.MeasurementRecordId,
-                (m, d) => new { m, d })
-                .Where(md => md.m.Urnumber == urNumber && md.m.CategoryId == categoryId && md.m.MeasurementId == 2)
-                .Select(md => new
-                {
-                    md.m.DateTimeRecorded,
-                    md.d.Value
-                }).ToList().OrderBy(o => o.DateTimeRecorded).LastOrDefault();
+            var lastBreath = GetLastBreath(urNumber, categoryId);
 
             //Get patients last Pain Score Data
-            var lastPain = _context.MeasurementRecord.Join(_context.DataPointRecord,
-                m => m.MeasurementRecordId,
-                d => d.MeasurementRecordId,
-                (m, d) => new { m, d })
-                .Where(md => md.m.Urnumber == urNumber && md.m.CategoryId == categoryId && md.m.MeasurementId == 3)
-                .Select(md => new
-                {
-                    md.m.DateTimeRecorded,
-                    md.d.Value
-                }).ToList().OrderBy(o => o.DateTimeRecorded).LastOrDefault();
+            var lastPain = GetLastPain(urNumber, categoryId);
 
             //If lastFluid/lastBreath/lastPain were retrieved from DB, compile ConditionDetails
             if (lastFluid != null && lastBreath != null && lastPain != null)
@@ -254,6 +260,60 @@ namespace NorthernHealthAPI.Controllers
 
             return Ok();
 
+        }
+
+        public static PatientMeasurementRecord GetLastFluid(string urNumber, int categoryId)
+        {
+            NHRMDBContext _con = new NHRMDBContext();
+
+            var lastFluid = _con.MeasurementRecord.Join(_con.DataPointRecord,
+                m => m.MeasurementRecordId,
+                d => d.MeasurementRecordId,
+                (m, d) => new { m, d })
+                .Where(md => md.m.Urnumber == urNumber && md.m.CategoryId == categoryId && md.m.MeasurementId == 4)
+                .Select(md => new PatientMeasurementRecord
+                {
+                    DateTimeRecorded = md.m.DateTimeRecorded,
+                    Value = md.d.Value
+                }).ToList().OrderBy(o => o.DateTimeRecorded).LastOrDefault();
+
+            return lastFluid;
+        }
+
+        public static PatientMeasurementRecord GetLastBreath(string urNumber, int categoryId)
+        {
+            NHRMDBContext _con = new NHRMDBContext();
+
+            var lastBreath = _con.MeasurementRecord.Join(_con.DataPointRecord,
+                m => m.MeasurementRecordId,
+                d => d.MeasurementRecordId,
+                (m, d) => new { m, d })
+                .Where(md => md.m.Urnumber == urNumber && md.m.CategoryId == categoryId && md.m.MeasurementId == 2)
+                .Select(md => new PatientMeasurementRecord
+                {
+                    DateTimeRecorded = md.m.DateTimeRecorded,
+                    Value = md.d.Value
+                }).ToList().OrderBy(o => o.DateTimeRecorded).LastOrDefault();
+
+            return lastBreath;
+        }
+
+        public static PatientMeasurementRecord GetLastPain(string urNumber, int categoryId)
+        {
+            NHRMDBContext _con = new NHRMDBContext();
+
+            var lastPain = _con.MeasurementRecord.Join(_con.DataPointRecord,
+                m => m.MeasurementRecordId,
+                d => d.MeasurementRecordId,
+                (m, d) => new { m, d })
+                .Where(md => md.m.Urnumber == urNumber && md.m.CategoryId == categoryId && md.m.MeasurementId == 3)
+                .Select(md => new PatientMeasurementRecord
+                {
+                    DateTimeRecorded = md.m.DateTimeRecorded,
+                    Value = md.d.Value
+                }).ToList().OrderBy(o => o.DateTimeRecorded).LastOrDefault();
+
+            return lastPain;
         }
 
         // Accepts a typeId (string) as a parameter and returns it's resource type, as a string
