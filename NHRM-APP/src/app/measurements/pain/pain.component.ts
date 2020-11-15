@@ -76,7 +76,8 @@ export class PainComponent implements OnInit {
           if (this.painScore == 1) {
             this.dialogConfig.panelClass = 'alert-dialog-container';
             this.dialogConfig.data = {
-              content: 'You have reported you feel Worst Possible Pain. To speak to the Pleural team for advice,<br> call - 0428-167-972.<br><br>To speak to the Emergency Department between 1pm and 9pm, click the button below'
+              content: 'You have reported you feel Worst Possible Pain. To speak to the Pleural team for advice,<br> call - 0428-167-972.<br><br>To speak to the Emergency Department between 1pm and 9pm, click the button below',
+              button: true
             }
             this.dialog.open(AlertDialogComponent, this.dialogConfig)
               .afterClosed()

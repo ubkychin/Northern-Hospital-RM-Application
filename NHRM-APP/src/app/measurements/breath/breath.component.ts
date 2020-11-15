@@ -78,7 +78,8 @@ export class BreathComponent implements OnInit {
           if (this.breathScore == 1) {
             this.dialogConfig.panelClass = 'alert-dialog-container';
             this.dialogConfig.data = {
-              content: 'You have reported your Breathing feels very poor. To speak to the Pleural team for advice,<br> call - 0428-167-972.<br><br>To speak to the Emergency Department between 1pm and 9pm, click the button below'
+              content: 'You have reported your Breathing feels very poor. To speak to the Pleural team for advice,<br> call - 0428-167-972.<br><br>To speak to the Emergency Department between 1pm and 9pm, click the button below',
+              button: true
             }
             this.dialog.open(AlertDialogComponent, this.dialogConfig)
               .afterClosed()
