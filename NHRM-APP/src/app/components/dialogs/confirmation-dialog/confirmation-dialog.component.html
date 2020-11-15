@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>{{this.data.heading}}</h2>
 <mat-dialog-content>
-    <div [innerHTML]="this.data.content">
+    <div class="confirmation-content" [innerHTML]="this.data.content">
     </div>
     <div style="float:right;margin:20px;">
         <input type="button" value="Confirm" [mat-dialog-close]="true">

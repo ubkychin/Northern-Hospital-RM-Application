@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
+import { MeasurementsCompleteComponent } from '../dialogs/measurements-complete/measurements-complete.component';
 
 @Component({
   selector: 'app-ipc-surveys',
@@ -9,15 +12,35 @@ import { DataService } from 'src/app/services/data.service';
 export class IpcSurveysComponent implements OnInit {
 
   activeMeasurements: any[] = [];
+  dialogConfig: MatDialogConfig;
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, public dialog: MatDialog, private router: Router) {
+    this.dialogConfig = new MatDialogConfig();
+    this.dialogConfig.autoFocus = true;
     this.dataService.getDisabledMeasurements()
-    .then((res) => {
-      sessionStorage.setItem('disabledMeasurements', JSON.stringify(res));
-    })
-    .catch((err) => console.log(err))
-    .finally(() => this.dataService.loading.next(false));
-    
+      .then((res) => {
+        sessionStorage.setItem('disabledMeasurements', JSON.stringify(res));
+        //Check if all measurements have been completed
+        if (!this.activeMeasurements[0].active && !this.activeMeasurements[1].active) {
+          //Alert user with dialog if measurements are complete
+          this.dialogConfig.panelClass = 'measurements-complete-container';
+          this.dialogConfig.disableClose = false;
+          this.dialogConfig.data = {
+            heading: "Measurements Complete",
+            content: "You have successfully recorded your IPC surveys for today. <br>In a moment you will be taken back to My IPC",
+          }
+          this.dialog.open(MeasurementsCompleteComponent, this.dialogConfig)
+            .afterClosed()
+            .subscribe(() => this.router.navigate(['my-ipc']));
+          //Ensure dialog closes after 10 seconds and routes
+          setTimeout(() => {
+            this.dialog.closeAll();
+          }, 10000)
+        }
+      })
+      .catch((err) => console.log(err))
+      .finally(() => this.dataService.loading.next(false));
+
     this.activeMeasurements = [
       { meas: "ecog", id: 1, active: true },
       { meas: "qol", id: 5, active: true }

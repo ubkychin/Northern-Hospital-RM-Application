@@ -50,6 +50,7 @@ import { QolHelpComponent } from './components/help/qol-help/qol-help.component'
 import { BreathHelpComponent } from './components/help/breath-help/breath-help.component';
 import { PainHelpComponent } from './components/help/pain-help/pain-help.component';
 import { ConfirmationDialogComponent } from './components/dialogs/confirmation-dialog/confirmation-dialog.component';
+import { MeasurementsCompleteComponent } from './components/dialogs/measurements-complete/measurements-complete.component';
 
 export function tokenGetter() {
   return JSON.parse(localStorage.getItem('Authorization'));
@@ -91,7 +92,8 @@ export function tokenGetter() {
     QolHelpComponent,
     BreathHelpComponent,
     PainHelpComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    MeasurementsCompleteComponent
   ],
   imports: [
     BrowserModule,

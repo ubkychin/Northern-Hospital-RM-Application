@@ -256,7 +256,7 @@ mat-dialog-content, h2 {
     cursor: pointer;
     justify-self: center;
     margin: 3px;
-    background-color: rgb(146, 146, 69);
+    background-color: #929245;
     border-radius: 10px;
     width: 100px;
     height: 40px;
@@ -282,15 +282,29 @@ mat-dialog-content, h2 {
     box-shadow: none;
     background: #d8e9fa;
     color: black;
+    font-size: 1.2em;
     min-height: fit-content;
     width: fit-content;
     text-align: center;
     word-wrap: break-word;
 }
 
+.measurements-complete-container .mat-dialog-container {
+    box-shadow: none;
+    background: whitesmoke;
+    border-radius: 30px;
+    border: 5px #66db66 solid;
+    color: black;
+    min-height: fit-content;
+    min-width: fit-content;
+    font-weight: 500;
+    font-size: 1.2em;
+    line-height: normal;
+}
+
 .success-dialog-container .mat-dialog-container {
     box-shadow: none;
-    background: white;
+    background: whitesmoke;
     border-radius: 30px;
     color: black;
     min-height: fit-content;
