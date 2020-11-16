@@ -25,7 +25,7 @@ export class BreathComponent implements OnInit {
   dialogConfig: MatDialogConfig;
   dialogInfo: ResourceDialog = {
     heading: "How to use the Likert scale",
-    content: "To help you to best describe how good or bad you feel today, we have included five options to select - ranging from Very Poor to Excellent. Please select the option that describes how you feel today."
+    content: "To help you to best describe how good or bad your Breathing feels today, we have included five options for you to select - ranging from Very Poor to Excellent. Please select the option that describes how you feel today."
   }
 
   constructor(public dialog: MatDialog, private dataService: DataService, private router: Router) {

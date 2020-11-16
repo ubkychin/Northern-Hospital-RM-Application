@@ -15,18 +15,10 @@ h1 {
 }
 
 .help-btn {
+    outline: none;
     width: 150px;
     height: 25px;
     border-radius: 5px;
     margin: 2px;
     font-weight: bold;
-}
-
-.b-1 {
-    color: whitesmoke;
-    background: #6495ff;
-}
-
-.b-2 {
-    background: #64c074;
 }
