@@ -31,8 +31,8 @@ export class DrainageComponent implements OnInit {
             content: "You have successfully recorded your IPC drainage for today. <br>In a moment you will be taken back to My IPC",
           }
           this.dialog.open(MeasurementsCompleteComponent, this.dialogConfig)
-          .afterClosed()
-          .subscribe(() => this.router.navigate(['my-ipc']));
+            .afterClosed()
+            .subscribe(() => this.router.navigate(['my-ipc']));
           //Ensure dialog closes after 10 seconds and routes
           setTimeout(() => {
             this.dialog.closeAll();

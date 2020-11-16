@@ -2,11 +2,11 @@ export class Patient {
     name: string;
     urNumber: string;
     categoryId: number;
-    patientCategories: PatientCategory [];
+    patientCategories: PatientCategory[];
 }
 
-export class PatientCategory{
+export class PatientCategory {
     categoryId: number;
-    measurementIds: number [];
+    measurementIds: number[];
 }
 

@@ -19,13 +19,13 @@ export class LikertComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getValue(value){
+  getValue(value) {
     this.value = value;
     this.errorMsg = "";
   }
 
   submitLikert() {
-    if(this.value){  
+    if (this.value) {
       this.likertValue.emit(this.value);
     }
     else

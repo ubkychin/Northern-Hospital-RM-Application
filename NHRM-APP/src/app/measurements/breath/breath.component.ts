@@ -5,7 +5,6 @@ import { DataService } from 'src/app/services/data.service';
 import { Router } from '@angular/router';
 import { ResourceDialog } from 'src/app/models/resource-dialog';
 import { ResourceDialogComponent } from '../../components/dialogs/resource-dialog/resource-dialog.component';
-import { DataPointRecord } from 'src/app/models/data-point-record';
 import { SuccessDialogComponent } from '../../components/dialogs/success-dialog/success-dialog.component';
 import { AlertDialogComponent } from 'src/app/components/dialogs/alert-dialog/alert-dialog.component';
 

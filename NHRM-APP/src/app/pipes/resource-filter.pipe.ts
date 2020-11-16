@@ -7,7 +7,7 @@ import { PatientResource } from '../models/patient-resource';
 export class ResourceFilterPipe implements PipeTransform {
 
   transform(items: PatientResource[], filter: string): any {
-    if(!items || !filter)
+    if (!items || !filter)
       return items;
 
     return items.filter(item => item.resType == filter)

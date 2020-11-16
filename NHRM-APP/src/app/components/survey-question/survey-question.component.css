@@ -1,16 +1,13 @@
 .hads {
     max-width: 90%;
-
     margin: auto;
 }
 
-.question{
+.question {
     color: var(--nh-blue);
     font-size: 30px;
     font-weight: bold;
-
     border-bottom: 4px solid var(--nh-blue);
-
     padding-bottom: 10px;
 }
 
@@ -28,5 +25,5 @@
 
 .answer input[type="checkbox"] {
     flex: 1 0 30%;
-    outline: 1px solid red;    
+    outline: 1px solid red;
 }

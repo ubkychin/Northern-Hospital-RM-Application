@@ -5,21 +5,27 @@
 
     <div class="main-buttons">
         <button class="main-btn btn5 btn-reg" [routerLink]="['/fluid-drain']"
-        [ngStyle]="{'opacity': activeMeasurements[0].active ? '1': '0.7'}" [disabled]="!activeMeasurements[0].active">
+            [ngStyle]="{'opacity': activeMeasurements[0].active ? '1': '0.7'}"
+            [disabled]="!activeMeasurements[0].active">
             <fa-icon *ngIf="activeMeasurements[0].active" [icon]="['fas', 'syringe']" transform="grow-5"></fa-icon>
-            <fa-icon *ngIf="!activeMeasurements[0].active" id="done"  [icon]="['fas', 'check-circle']" transform="grow-5"></fa-icon>
+            <fa-icon *ngIf="!activeMeasurements[0].active" id="done" [icon]="['fas', 'check-circle']"
+                transform="grow-5"></fa-icon>
             <p>Fluid Drain</p>
         </button>
         <button class="main-btn btn3 btn-reg" (click)="routeBreath()"
-        [ngStyle]="{'opacity': activeMeasurements[1].active ? '1': '0.7'}" [disabled]="!activeMeasurements[1].active">
+            [ngStyle]="{'opacity': activeMeasurements[1].active ? '1': '0.7'}"
+            [disabled]="!activeMeasurements[1].active">
             <fa-icon *ngIf="activeMeasurements[1].active" [icon]="['fas', 'lungs']" transform="grow-5"></fa-icon>
-            <fa-icon *ngIf="!activeMeasurements[1].active" id="done" [icon]="['fas', 'check-circle']" transform="grow-5"></fa-icon>
+            <fa-icon *ngIf="!activeMeasurements[1].active" id="done" [icon]="['fas', 'check-circle']"
+                transform="grow-5"></fa-icon>
             <p>Breathlessness</p>
         </button>
         <button class="main-btn btn4 btn-reg" (click)="routePain()"
-        [ngStyle]="{'opacity': activeMeasurements[2].active ? '1': '0.7'}" [disabled]="!activeMeasurements[2].active">
+            [ngStyle]="{'opacity': activeMeasurements[2].active ? '1': '0.7'}"
+            [disabled]="!activeMeasurements[2].active">
             <fa-icon *ngIf="activeMeasurements[2].active" [icon]="['fas', 'user-injured']" transform="grow-5"></fa-icon>
-            <fa-icon *ngIf="!activeMeasurements[2].active" id="done" [icon]="['fas', 'check-circle']" transform="grow-5"></fa-icon>
+            <fa-icon *ngIf="!activeMeasurements[2].active" id="done" [icon]="['fas', 'check-circle']"
+                transform="grow-5"></fa-icon>
             <p>Level of Pain</p>
         </button>
     </div>

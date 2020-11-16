@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
     })
 
     dataService.patient.subscribe(data => {
-      if(data){
+      if (data) {
         this.patientName = data.name;
       }
     });

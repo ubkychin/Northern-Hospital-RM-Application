@@ -1,13 +1,16 @@
 fa-icon {
     color: green;
 }
+
 h2 {
     color: green;
 }
+
 svg {
     width: 238.5px;
-    height: 231.43px; 
+    height: 231.43px;
 }
+
 .flex {
     display: flex;
     flex-direction: column;

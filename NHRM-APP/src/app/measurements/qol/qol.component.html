@@ -9,11 +9,10 @@
         <formly-form [fields]="fields" [options]="options" [form]="form"></formly-form>
 
         <div class="error-message">
-            <p class="alert" *ngIf="!isValid">Please select an appropriate option before proceeding to the next section</p>
+            <p class="alert" *ngIf="!isValid">Please select an appropriate option before proceeding to the next section
+            </p>
         </div>
 
         <button type="submit" class="btn submit-button">Next</button>
-
-        <router-outlet></router-outlet>
     </form>
 </article>

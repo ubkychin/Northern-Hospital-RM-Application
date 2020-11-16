@@ -21,21 +21,21 @@ export class IpcComponent implements OnInit {
     this.dialogConfig.disableClose = false;
     this.urNumber = dataService.patient.value['urNumber'];
     dataService.getFrequencyChange(this.urNumber)
-    .then((res: FrequencyChange) =>{
-      console.log(res);
-      if(res.change){
-        this.getDuration(res.frequency);
-        this.dialogConfig.panelClass = 'alert-dialog-container';
-            this.dialogConfig.data = {
-              content: 'Your Clinician has updated the duration at which you should be recording your Fluid Drainage, Breath and Pain. It is now expected <strong>' + this.duration + '</strong>',
-              button: false
-            }
-            this.dialog.open(AlertDialogComponent, this.dialogConfig);
-      }
-    })
-    .catch((err) => console.log(err))
-    .finally(() => this.dataService.loading.next(false));
-   }
+      .then((res: FrequencyChange) => {
+        console.log(res);
+        if (res.change) {
+          this.getDuration(res.frequency);
+          this.dialogConfig.panelClass = 'alert-dialog-container';
+          this.dialogConfig.data = {
+            content: 'Your Clinician has updated the duration at which you should be recording your Fluid Drainage, Breath and Pain. It is now expected <strong>' + this.duration + '</strong>',
+            button: false
+          }
+          this.dialog.open(AlertDialogComponent, this.dialogConfig);
+        }
+      })
+      .catch((err) => console.log(err))
+      .finally(() => this.dataService.loading.next(false));
+  }
 
   ngOnInit(): void { }
 
@@ -52,5 +52,5 @@ export class IpcComponent implements OnInit {
       case 28: this.duration = "Monthly"
     }
   }
-  
+
 }

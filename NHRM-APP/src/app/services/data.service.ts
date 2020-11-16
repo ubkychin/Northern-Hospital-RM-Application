@@ -118,7 +118,7 @@ export class DataService {
           resolve();
         },
         err => {
-          console.log(err.error);
+          console.error(err.error);
           reject();
         }
       );
@@ -132,12 +132,11 @@ export class DataService {
         params: new HttpParams().append('categoryId', this.categoryChosen.value)
       }).subscribe(
         res => {
-          console.log(res);
           this.conditiondetails = res;
-          resolve();
+          resolve(res);
         },
         err => {
-          console.log(err.error);
+          console.error(err.error);
           reject();
         }
       );
@@ -151,11 +150,10 @@ export class DataService {
         params: new HttpParams().append('categoryId', this.categoryChosen.value)
       }).subscribe(
         res => {
-          console.log(res);
           resolve(res);
         },
         err => {
-          console.log(err.error);
+          console.error(err.error);
           reject();
         }
       );

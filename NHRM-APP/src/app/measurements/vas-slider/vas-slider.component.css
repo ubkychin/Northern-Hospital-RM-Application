@@ -21,7 +21,7 @@
     width: 80%;
 }
 
-.noUi-target{
+.noUi-target {
     background-color: #c7c7c7;
 }
 
@@ -30,20 +30,20 @@
     color: black;
 }
 
-.noUi-touch-area{
+.noUi-touch-area {
     background: var(--nh-blue);
     border: 1px solid black;
 }
 
-.noUi-marker.noUi-marker-horizontal.noUi-marker-normal{
+.noUi-marker.noUi-marker-horizontal.noUi-marker-normal {
     background-color: var(--nh-grey);
 }
 
-.noUi-marker.noUi-marker-horizontal.noUi-marker-large{
+.noUi-marker.noUi-marker-horizontal.noUi-marker-large {
     background-color: var(--nh-grey);
 }
 
-.noUi-value.noUi-value-horizontal.noUi-value-large{
+.noUi-value.noUi-value-horizontal.noUi-value-large {
     padding: 5px;
     font-size: large;
     font-weight: bold;

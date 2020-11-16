@@ -3,7 +3,7 @@
     background: var(--nh-blue);
 }
 
-.blue-bar a{
+.blue-bar a {
     color: whitesmoke;
     padding: 15px;
     float: left;
@@ -14,7 +14,7 @@
     width: 100%;
 }
 
-#back{
+#back {
     position: relative;
     right: 5px;
 }
@@ -24,7 +24,7 @@
     float: right;
 }
 
-.patient-name{
+.patient-name {
     position: absolute;
     padding: 15px 15px;
     right: 0;
@@ -43,7 +43,6 @@
 
 #bars, #home {
     padding: 15px 10px 15px 20px;
-    
 }
 
 .navbar {
@@ -54,7 +53,7 @@
     height: 50px;
 }
 
-.navbar div:focus{
+.navbar div:focus {
     outline: none;
 }
 
@@ -63,7 +62,7 @@
     color: whitesmoke;
 }
 
-.navbar i{
+.navbar i {
     transform: scale(2);
 }
 
@@ -72,23 +71,24 @@
     font-weight: bold;
 }
 
-.dropdown{
+.dropdown {
     z-index: 5;
     margin-top: 25px;
     background: #505050;
     text-align: left;
 }
 
-.dropdown div{
+.dropdown div {
     background: #505050;
     display: block;
     padding: 10px;
 }
 
-.dropdown div:hover{
+.dropdown div:hover {
     background-color: whitesmoke;
     color: #4b4b4b;
 }
+
 .space {
     height: 100px;
 }

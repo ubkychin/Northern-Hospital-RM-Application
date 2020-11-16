@@ -19,8 +19,8 @@ export class HelpInfoComponent implements OnInit {
     heading: "Privacy Statement",
     content: "Awaiting Northern Hospital to supply statement"
   }
-  
-  constructor(public dialog: MatDialog) { 
+
+  constructor(public dialog: MatDialog) {
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.autoFocus = true;
   }
@@ -28,7 +28,7 @@ export class HelpInfoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  terms(){
+  terms() {
     this.dialogConfig.panelClass = 'information-dialog-container';
     this.dialogConfig.data = {
       content: this.termsDialog.content,
@@ -37,7 +37,7 @@ export class HelpInfoComponent implements OnInit {
     this.dialog.open(ResourceDialogComponent, this.dialogConfig);
   }
 
-  privacy(){
+  privacy() {
     this.dialogConfig.panelClass = 'information-dialog-container';
     this.dialogConfig.data = {
       content: this.privacyDialog.content,
