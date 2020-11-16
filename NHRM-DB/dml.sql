@@ -84,7 +84,8 @@ VALUES(1, '123456789'),
 
 INSERT INTO ConditionDetails 
 (CategoryID, URNumber, Diagnosis, ProcedureDate, NextAppointment)
-VALUES(1, '123456789', 'There has been a build-up of fluid around your lungs. Therefore, it is important for us to know and monitor how you are feeling by using this app  to allow us to best optimise your care. The app will be used in hospital and in clinic during follow-up.', GETDATE(), GETDATE())
+VALUES(1, '123456789', 'There has been a build-up of fluid around your lungs. Therefore, it is important for us to know and monitor how you are feeling by using this app  to allow us to best optimise your care. The app will be used in hospital and in clinic during follow-up.', GETDATE(), GETDATE()), 
+(1, '987654321', 'There has been a build-up of fluid around your lungs. Therefore, it is important for us to know and monitor how you are feeling by using this app  to allow us to best optimise your care. The app will be used in hospital and in clinic during follow-up.', GETDATE(), GETDATE())
 
 INSERT INTO PatientResource
     (CategoryID,URNumber,ResourceID)
@@ -113,12 +114,7 @@ VALUES(1, 1),
     (2, 1),
     (3, 1),
     (4, 1),
-    (5, 1),
-    (1, 2),
-    (2, 2),
-    (5, 2),
-    (1, 3),
-    (2, 3);
+    (5, 1);
 
 INSERT INTO PatientMeasurement
     (MeasurementID,CategoryID,URNumber,Frequency,FrequencySetDate)
@@ -131,9 +127,4 @@ VALUES(1, 1, '123456789', 28, GETDATE()),
     (2, 1, '987654321', 1, GETDATE()),
     (3, 1, '987654321', 1, GETDATE()),
     (4, 1, '987654321', 1, GETDATE()),
-    (5, 1, '987654321', 7, GETDATE()),
-    (1, 2, '987654321', 28, GETDATE()),
-    (2, 2, '987654321', 1, GETDATE()),
-    (5, 2, '987654321', 7, GETDATE()),
-    (1, 3, '987654321', 28, GETDATE()),
-    (2, 3, '987654321', 1, GETDATE());
+    (5, 1, '987654321', 7, GETDATE());
