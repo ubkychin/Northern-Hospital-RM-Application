@@ -28,7 +28,7 @@ export class VasSliderComponent implements OnInit {
     this.vasSlider = document.querySelector('.vas-slider');
 
     noUiSlider.create(this.vasSlider, {
-      start: 0,
+      start: 50,
       range: range_all_sliders,
       pips: {
         mode: 'range',
