@@ -14,6 +14,7 @@ export class DrainageComponent implements OnInit {
   activeMeasurements: any[] = [];
   errorMsg: string;
   dialogConfig: MatDialogConfig;
+  frequency: number;
 
   constructor(private dataService: DataService, private router: Router, public dialog: MatDialog) {
     this.dialogConfig = new MatDialogConfig();
@@ -60,10 +61,16 @@ export class DrainageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.dataService.getConditionsDetails(this.dataService.patient.value['urNumber'])
+      .then(() => {
+        this.frequency = this.dataService.conditiondetails.myDrainage.frequency;
+      })
+      .catch((err) => console.log(err))
+      .finally(() => this.dataService.loading.next(false));
   }
 
   routeBreath() {
-    if (!this.activeMeasurements[0].active) {
+    if (!this.activeMeasurements[0].active || this.frequency == 0) {
       this.router.navigate(['breath']);
     }
     else {
@@ -72,7 +79,7 @@ export class DrainageComponent implements OnInit {
   }
 
   routePain() {
-    if (!this.activeMeasurements[0].active) {
+    if (!this.activeMeasurements[0].active || this.frequency == 0) {
       this.router.navigate(['pain']);
     } else {
       this.errorMsg = "You must complete Fluid Drainage before entering how your Pain feels"
