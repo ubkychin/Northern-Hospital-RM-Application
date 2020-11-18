@@ -2,7 +2,6 @@
     <div class="heading">
         <h1 class="main-heading">My IPC Drainage</h1>
     </div>
-
     <div class="main-buttons">
         <button class="main-btn btn5 btn-reg" [routerLink]="['/fluid-drain']"
             [ngStyle]="{'opacity': activeMeasurements[0].active ? '1': '0.7'}"
@@ -12,6 +11,8 @@
                 transform="grow-5"></fa-icon>
             <p>Fluid Drain</p>
         </button>
+    </div>
+    <div class="main-buttons">
         <button class="main-btn btn3 btn-reg" (click)="routeBreath()"
             [ngStyle]="{'opacity': activeMeasurements[1].active ? '1': '0.7'}"
             [disabled]="!activeMeasurements[1].active">

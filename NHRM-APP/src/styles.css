@@ -304,3 +304,12 @@ mat-dialog-content, h2 {
 #done {
     color: rgb(94, 255, 94);
 }
+
+.help{
+    max-width: 100%;
+}
+/* .help:hover{
+    max-width: none;
+    display: block;
+    border: solid medium gray;
+} */

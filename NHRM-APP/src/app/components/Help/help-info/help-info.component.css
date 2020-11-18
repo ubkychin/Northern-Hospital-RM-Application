@@ -14,7 +14,12 @@ h1 {
     max-width: 700px;
 }
 
+.help-btn:active {
+    color: whitesmoke;
+}
+
 .help-btn {
+    cursor: pointer;
     outline: none;
     width: 150px;
     height: 25px;
