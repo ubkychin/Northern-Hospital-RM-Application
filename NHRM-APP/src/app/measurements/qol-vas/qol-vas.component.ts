@@ -70,7 +70,9 @@ export class QolVasComponent implements OnInit {
         this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
           this.router.navigate(['my-ipc-surveys']);
         });
-
+        setTimeout(() => {
+          this.dialog.closeAll();
+        }, 5000)
       })
       .catch((err) => console.log(err + "Qol VAS ERR"))
       .finally(() => {

@@ -89,7 +89,9 @@ export class BreathComponent implements OnInit {
           else
             this.router.navigate(['my-ipc-drainage']);
         });
-
+        setTimeout(() => {
+          this.dialog.closeAll();
+        }, 5000)
       })
       .catch((err) => console.error(err + " Breath ERR"))
       .finally(() => {
