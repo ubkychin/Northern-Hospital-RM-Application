@@ -31,13 +31,17 @@ export class DrainageComponent implements OnInit {
             heading: "Measurements Complete",
             content: "You have successfully recorded your IPC drainage for today. <br>In a moment you will be taken back to My IPC",
           }
-          this.dialog.open(MeasurementsCompleteComponent, this.dialogConfig)
-            .afterClosed()
-            .subscribe(() => this.router.navigate(['my-ipc']));
-          //Ensure dialog closes after 10 seconds and routes
-          setTimeout(() => {
-            this.dialog.closeAll();
-          }, 10000)
+          let timer;
+          let dialogRef = this.dialog.open(MeasurementsCompleteComponent, this.dialogConfig);
+          dialogRef.afterOpened().subscribe(() =>
+            timer = setTimeout(() => {
+              this.dialog.closeAll();
+            }, 10000))
+          dialogRef.afterClosed()
+            .subscribe(() => {
+              clearTimeout(timer);
+              this.router.navigate(['my-ipc']);
+            });
         }
       })
       .catch((err) => console.log(err))
