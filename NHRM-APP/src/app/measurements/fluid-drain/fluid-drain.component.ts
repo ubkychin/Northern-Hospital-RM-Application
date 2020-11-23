@@ -82,12 +82,17 @@ export class FluidDrainComponent implements OnInit {
       .then(() => {
         this.dialogConfig.panelClass = 'success-dialog-container';
         this.dialogConfig.disableClose = false;
-        this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
+        let timer;
+        let dialogRef = this.dialog.open(SuccessDialogComponent, this.dialogConfig);
+        dialogRef.afterOpened().subscribe(() => {
+          timer = setTimeout(() => {
+            this.dialog.closeAll();
+          }, 5000);
+        });
+        dialogRef.afterClosed().subscribe(() => {
+          clearTimeout(timer);
           this.router.navigate(['my-ipc-drainage']);
         });
-        setTimeout(() => {
-          this.dialog.closeAll();
-        }, 5000)
       })
       .catch((err) => {
         this.errorMsg = "Something went wrong, please try again";

@@ -77,13 +77,17 @@ export class EcogStatusComponent implements OnInit {
       this.dataService.postMeasurementResult(categoryList)
         .then(() => {
           this.dialogConfig.panelClass = 'success-dialog-container';
-
-          this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
+          let timer;
+          let dialogRef = this.dialog.open(SuccessDialogComponent, this.dialogConfig);
+          dialogRef.afterOpened().subscribe(() => {
+            timer = setTimeout(() => {
+              this.dialog.closeAll();
+            }, 5000);
+          });
+          dialogRef.afterClosed().subscribe(() => {
+            clearTimeout(timer);
             this.router.navigate(['my-ipc-surveys']);
           });
-          setTimeout(() => {
-            this.dialog.closeAll();
-          }, 5000)
         })
         .catch((err) => {
           this.error = true;

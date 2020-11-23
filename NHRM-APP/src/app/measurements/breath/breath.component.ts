@@ -80,18 +80,22 @@ export class BreathComponent implements OnInit {
               content: 'You have reported your Breathing feels very poor. To speak to the Pleural team for advice,<br> call - 0428-167-972.<br><br>To speak to the Emergency Department between 1pm and 9pm, click the button below',
               button: true
             }
-            this.dialog.open(AlertDialogComponent, this.dialogConfig)
-              .afterClosed()
+            let timer;
+            let dialogRef = this.dialog.open(AlertDialogComponent, this.dialogConfig);
+            dialogRef.afterOpened().subscribe(() => {
+              timer = setTimeout(() => {
+                this.dialog.closeAll();
+              }, 5000)
+            });
+            dialogRef.afterClosed()
               .subscribe(() => {
+                clearTimeout(timer);
                 this.router.navigate(['my-ipc-drainage']);
               });
           }
           else
             this.router.navigate(['my-ipc-drainage']);
         });
-        setTimeout(() => {
-          this.dialog.closeAll();
-        }, 5000)
       })
       .catch((err) => console.error(err + " Breath ERR"))
       .finally(() => {
