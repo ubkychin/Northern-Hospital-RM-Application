@@ -72,7 +72,7 @@ export class QolVasComponent implements OnInit {
         dialogRef.afterOpened().subscribe(() => {
           timer = setTimeout(() => {
             this.dialog.closeAll();
-          }, 5000)
+          }, 3000)
         });
         dialogRef.afterClosed().subscribe(() => {
           clearTimeout(timer);

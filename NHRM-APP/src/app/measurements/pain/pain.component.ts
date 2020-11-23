@@ -70,7 +70,15 @@ export class PainComponent implements OnInit {
     this.dataService.postMeasurementResult(categoryList)
       .then(() => {
         this.dialogConfig.panelClass = 'success-dialog-container';
-        this.dialog.open(SuccessDialogComponent, this.dialogConfig).afterClosed().subscribe(() => {
+        let timer;
+        let dialogRef = this.dialog.open(SuccessDialogComponent, this.dialogConfig);
+        dialogRef.afterOpened().subscribe(() => {
+          timer = setTimeout(() => {
+            this.dialog.closeAll();
+          }, 3000);
+        });
+        dialogRef.afterClosed().subscribe(() => {
+          clearTimeout(timer);
           //Check if score is 'Worst Possible', open alert if so
           if (this.painScore == 1) {
             this.dialogConfig.panelClass = 'alert-dialog-container';
@@ -83,7 +91,7 @@ export class PainComponent implements OnInit {
             dialogRef.afterOpened().subscribe(() => {
               timer = setTimeout(() => {
                 this.dialog.closeAll();
-              }, 5000)
+              }, 10000)
             });
             dialogRef.afterClosed()
               .subscribe(() => {
