@@ -65,10 +65,9 @@ export class DrainageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dataService.getConditionsDetails(this.dataService.patient.value['urNumber'])
-      .then(() => {
-        this.frequency = this.dataService.conditiondetails.myDrainage.frequency;
-      })
+    //Call getFrequency for measurementId 4 (Fluid measurement - primary IPC drainage frequency)
+    this.dataService.getFrequency(this.dataService.patient.value['urNumber'], 4)
+      .then((freq: number) => this.frequency = freq)
       .catch((err) => console.log(err))
       .finally(() => this.dataService.loading.next(false));
   }

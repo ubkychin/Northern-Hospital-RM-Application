@@ -13,8 +13,8 @@ import { FrequencyChange } from '../models/frequency-change';
 })
 export class DataService {
 
-  //apiURL = "https://localhost:5001/api";
-  apiURL = "http://nhrmapi-env.eba-fu7pyidc.us-east-1.elasticbeanstalk.com/api";
+  apiURL = "https://localhost:5001/api";
+  //apiURL = "http://nhrmapi-env.eba-fu7pyidc.us-east-1.elasticbeanstalk.com/api";
   termsAcceptance: BehaviorSubject<boolean>;
   emergencyAgreement: BehaviorSubject<boolean>;
   patient: BehaviorSubject<Patient>;
@@ -49,7 +49,6 @@ export class DataService {
           this.loading.next(false)
         });
     }
-
   }
 
   getDisabledMeasurements() {
@@ -148,6 +147,23 @@ export class DataService {
     return new Promise((resolve, reject) => {
       this._http.get<FrequencyChange>(this.apiURL + "/patient/frequency/" + urNumber, {
         params: new HttpParams().append('categoryId', this.categoryChosen.value)
+      }).subscribe(
+        res => {
+          resolve(res);
+        },
+        err => {
+          console.error(err.error);
+          reject();
+        }
+      );
+    })
+  }
+
+  getFrequency(urNumber: string, measurementId: number) {
+    this.loading.next(true);
+    return new Promise((resolve, reject) => {
+      this._http.get(this.apiURL + "/patient/getFrequency/" + urNumber, {
+        params: new HttpParams().append('measurementId', measurementId.toString())
       }).subscribe(
         res => {
           resolve(res);
