@@ -64,6 +64,8 @@ export class PatientDetailsComponent implements OnInit {
 
   getDuration() {
     switch (this.conditionDetails.myDrainage.frequency) {
+      case 0: this.duration = "As Required";
+        break;
       case 1: this.duration = "Daily";
         break;
       case 2: this.duration = "Every Other Day";
