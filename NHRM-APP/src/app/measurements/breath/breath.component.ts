@@ -93,7 +93,7 @@ export class BreathComponent implements OnInit {
             dialogRef.afterOpened().subscribe(() => {
               timer = setTimeout(() => {
                 this.dialog.closeAll();
-              }, 10000)
+              }, 30000)
             });
             dialogRef.afterClosed()
               .subscribe(() => {
