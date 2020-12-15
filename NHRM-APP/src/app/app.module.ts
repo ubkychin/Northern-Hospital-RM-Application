@@ -111,7 +111,7 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ['localhost:5001', 'nhrmapi-env.eba-fu7pyidc.us-east-1.elasticbeanstalk.com']
+        allowedDomains: ['localhost:5001', 'northernhealth-env.eba-9irxanfx.us-east-1.elasticbeanstalk.com']
       }
     })
   ],

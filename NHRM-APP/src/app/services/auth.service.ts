@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   //apiURL = "https://localhost:5001/api";
-  apiURL = "http://nhrmapi-env.eba-fu7pyidc.us-east-1.elasticbeanstalk.com/api";
+  apiURL = "http://northernhealth-env.eba-9irxanfx.us-east-1.elasticbeanstalk.com/api";
   loggedIn: BehaviorSubject<boolean>;
 
   constructor(private _http: HttpClient, private dataService: DataService, private jwtHelper: JwtHelperService, private router: Router) {
@@ -31,7 +31,7 @@ export class AuthService {
           console.log("Logged in")
           localStorage.setItem('Authorization', JSON.stringify(token['token']))
           this.loggedIn.next(true);
-          resolve();
+          resolve(token);
         },
         err => {
           console.error("Login Error")

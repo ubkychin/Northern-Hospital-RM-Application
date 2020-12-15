@@ -14,7 +14,7 @@ import { FrequencyChange } from '../models/frequency-change';
 export class DataService {
 
   //apiURL = "https://localhost:5001/api";
-  apiURL = "http://nhrmapi-env.eba-fu7pyidc.us-east-1.elasticbeanstalk.com/api";
+  apiURL = "http://northernhealth-env.eba-9irxanfx.us-east-1.elasticbeanstalk.com/api";
   termsAcceptance: BehaviorSubject<boolean>;
   emergencyAgreement: BehaviorSubject<boolean>;
   patient: BehaviorSubject<Patient>;
@@ -114,7 +114,7 @@ export class DataService {
         res => {
           console.log(res);
           this.patientResources = res;
-          resolve();
+          resolve(res);
         },
         err => {
           console.error(err.error);
