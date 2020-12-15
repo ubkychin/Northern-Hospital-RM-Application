@@ -88,6 +88,24 @@ namespace NorthernHealthAPI.Controllers
             }
         }
 
+        //  GET api/getFrequency/urNumber
+        //  Accepts a URNumber (string) and measurementId (int) and returns the Frequency for the specified measurement
+        [HttpGet, Route("getFrequency/{urNumber}"), Authorize(Roles = "Patient")]
+        public async Task<IActionResult> GetFrequency(string urNumber, int measurementId)
+        {
+            try
+            {
+                var frequency = await _context.PatientMeasurement.Where(pm => pm.Urnumber == urNumber && pm.MeasurementId == measurementId)
+                                                                                       .Select(pm => pm.Frequency).FirstAsync();
+
+                return Ok(frequency);
+            }
+            catch (InvalidOperationException)//InvalidOperationException will catch if not exists (FirstAsync does not return 0 as default value)
+            {
+                return NotFound("Frequency not found for data given");
+            }
+        }
+
         //  GET api/condition
         //  Accepts a URNumber (string) and returns a Patient Condition Details
         [HttpGet, Route("condition/{urNumber}"), Authorize(Roles = "Patient")]
